@@ -1,470 +1,1905 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Maker Faire Kochi 2027 — Creative Content Roadmap</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
-:root{
- --red:#ea002a; --cyan:#00aeef; --ink:#111; --paper:#f7f6f2; --white:#fff;
- --line:#d8d8d2; --muted:#686868; --shadow:0 18px 50px rgba(0,0,0,.09);
-}
-*{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.45}
-h1,h2,h3,.display,.phase-num,.navbrand{font-family:"Barlow Condensed",Arial,sans-serif;text-transform:uppercase;letter-spacing:-.02em}
-h1{font-size:clamp(4rem,9vw,9rem);line-height:.82;margin:0}
-h2{font-size:clamp(2.5rem,5vw,5rem);line-height:.88;margin:0 0 1rem}
-h3{font-size:1.55rem;margin:.2rem 0 .55rem}
-p{max-width:72ch}.small{font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:800}
-a{color:inherit}
-nav{position:fixed;z-index:50;top:0;left:0;right:0;background:rgba(247,246,242,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:10px 22px}
-.navbrand{font-size:1.5rem;font-weight:900;color:var(--red)}
-nav .links{display:flex;gap:5px;overflow:auto}
-nav button{border:0;background:transparent;padding:8px 10px;font:700 .72rem Inter;cursor:pointer;text-transform:uppercase}
-nav button:hover{background:var(--red);color:white}
-.page{min-height:100vh;padding:100px 6vw 7vw;position:relative;overflow:hidden}
-.hero{background:var(--ink);color:white;min-height:100vh;display:flex;align-items:center}
-.hero:before{content:"";position:absolute;inset:-30%;background:repeating-linear-gradient(90deg,transparent 0 48px,rgba(0,174,239,.09) 49px 50px);transform:rotate(-7deg);animation:gridmove 18s linear infinite}
-@keyframes gridmove{to{transform:rotate(-7deg) translateX(80px)}}
-.hero .inner{position:relative;z-index:2;max-width:1250px;width:100%}
-.kicker{display:inline-flex;gap:8px;align-items:center;background:var(--red);padding:7px 11px;font-size:.72rem;font-weight:900;text-transform:uppercase;margin-bottom:18px}
-.hero h1 span{color:var(--red)}
-.hero .sub{font-size:clamp(1rem,1.7vw,1.4rem);max-width:760px;margin:28px 0}
-.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
-.pill{border:1px solid #555;padding:8px 12px;font-size:.75rem;text-transform:uppercase;font-weight:800}
-.scroll{margin-top:50px;color:var(--cyan);font-weight:800;font-size:.75rem;letter-spacing:.15em}
-.hero-art{position:absolute;right:4vw;bottom:7vh;width:min(38vw,520px);height:360px;opacity:.95}
-.node{position:absolute;border:3px solid white;background:var(--ink);padding:14px 18px;font-family:"Barlow Condensed";font-size:1.4rem;text-transform:uppercase;box-shadow:8px 8px 0 var(--red);animation:float 3s ease-in-out infinite}
-.node:nth-child(1){left:0;top:35%;animation-delay:.1s}.node:nth-child(2){left:28%;top:10%;box-shadow:8px 8px 0 var(--cyan);animation-delay:.5s}
-.node:nth-child(3){right:0;top:38%;animation-delay:1s}.node:nth-child(4){left:31%;bottom:2%;box-shadow:8px 8px 0 var(--cyan);animation-delay:1.5s}
-.wire{position:absolute;background:white;height:2px;transform-origin:left center}
-.w1{left:19%;top:45%;width:28%;transform:rotate(-25deg)}.w2{left:50%;top:28%;width:26%;transform:rotate(27deg)}.w3{left:50%;top:58%;width:28%;transform:rotate(-4deg)}.w4{left:43%;top:65%;width:15%;transform:rotate(72deg)}
-@keyframes float{50%{transform:translateY(-10px) rotate(-1deg)}}
-.section-head{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:45px}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-.card{background:var(--white);border:1px solid var(--line);padding:24px;box-shadow:var(--shadow);transition:.25s}
-.card:hover{transform:translateY(-5px);box-shadow:0 25px 60px rgba(0,0,0,.13)}
-.span4{grid-column:span 4}.span6{grid-column:span 6}.span8{grid-column:span 8}.span12{grid-column:1/-1}
-.phase{position:relative;border-top:7px solid var(--red);padding-top:22px}
-.phase.cyan{border-color:var(--cyan)}
-.phase .phase-num{font-size:5rem;color:var(--red);line-height:.75;float:right}
-.phase.cyan .phase-num{color:var(--cyan)}
-.phase .date{font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
-.phase ul,.card ul{padding-left:1.1rem}.phase li,.card li{margin:.4rem 0}
-.metric{font-family:"Barlow Condensed";font-size:2.4rem;color:var(--red);line-height:1}
-.metric small{display:block;font:700 .68rem Inter;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:5px}
-.timeline{position:relative;margin:30px 0 10px;padding:24px 0}
-.track{height:8px;background:var(--ink);position:absolute;left:0;right:0;top:62px}
-.stops{display:grid;grid-template-columns:repeat(5,1fr);position:relative;z-index:2}
-.stop{text-align:center}.dot{width:24px;height:24px;border-radius:50%;background:var(--red);margin:27px auto 15px;border:5px solid var(--paper);box-shadow:0 0 0 2px var(--red)}
-.stop:nth-child(even) .dot{background:var(--cyan);box-shadow:0 0 0 2px var(--cyan)}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
-.tab{padding:9px 13px;border:1px solid var(--ink);background:white;cursor:pointer;font:800 .72rem Inter;text-transform:uppercase}
-.tab.active{background:var(--red);color:#fff}
-.story{display:none}.story.active{display:block;animation:in .35s ease}
-@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.story-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:20px}
-.quote{border-left:8px solid var(--red);padding:10px 22px;font-family:"Barlow Condensed";font-size:2rem;text-transform:uppercase}
-.template{background:var(--ink);color:white;border:0}.template strong{color:var(--cyan)}
-.matrix{width:100%;border-collapse:collapse;background:white;font-size:.88rem}
-.matrix th,.matrix td{border:1px solid var(--line);padding:12px;text-align:left;vertical-align:top}.matrix th{background:var(--ink);color:white;text-transform:uppercase;font-size:.7rem;letter-spacing:.08em}
-.accordion{border-top:1px solid var(--line)}.acc{border-bottom:1px solid var(--line)}
-.acc button{width:100%;padding:18px 0;border:0;background:transparent;text-align:left;font:800 1.1rem Inter;cursor:pointer;display:flex;justify-content:space-between}
-.acc .body{display:none;padding:0 0 18px;color:#444}.acc.open .body{display:block}
-.callout{background:var(--red);color:white;padding:35px;margin-top:30px;position:relative;overflow:hidden}.callout:after{content:"MAKE";position:absolute;right:-20px;bottom:-50px;font:900 12rem "Barlow Condensed";opacity:.12}
-.sources a{color:var(--red);font-weight:700}
-footer{background:var(--ink);color:white;padding:60px 6vw}
-.reveal{opacity:0;transform:translateY(25px);transition:.7s}.reveal.visible{opacity:1;transform:none}
-@media(max-width:850px){
- nav .links{display:none}.page{padding:85px 5vw 60px}.hero-art{position:relative;right:auto;bottom:auto;width:100%;height:260px;margin-top:40px}
- .hero{display:block;padding-top:120px}.span4,.span6,.span8{grid-column:1/-1}.story-grid{grid-template-columns:1fr}.stops{grid-template-columns:1fr}.track{left:50%;top:0;bottom:0;width:7px;height:auto}.stop{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center}.stop .dot{grid-column:2;margin:0}.stop strong{grid-column:1;text-align:right}.stop span:last-child{grid-column:3;text-align:left;padding:12px}.section-head{display:block}
-}
-@media print{
- nav{display:none}.page{min-height:auto;page-break-after:always;padding:25mm 15mm}.hero{background:#111;color:#fff}.card{box-shadow:none}.reveal{opacity:1;transform:none}.tabs{display:none}.story{display:block!important}
-}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Maker Faire Kochi 2027 — Creative Content Roadmap</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
 
-/* --- Interactive hero roadmap --- */
-.roadmap-hero{background:var(--paper);color:var(--ink);min-height:calc(100vh - 62px);display:block;position:relative;overflow:hidden;padding:clamp(42px,6vw,76px) 5vw 34px}
-.roadmap-hero:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.34;background-image:linear-gradient(rgba(17,17,17,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.055) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(to bottom,#000 0%,transparent 92%)}
-.roadmap-shell{position:relative;z-index:2;max-width:1450px;margin:auto}
-.roadmap-kicker{font-size:.68rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:22px}
-.roadmap-heading{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:6vw;align-items:end}
-.roadmap-heading h1{font-size:clamp(4rem,9vw,9.2rem);line-height:.78;margin:0;letter-spacing:-.045em}
-.roadmap-heading h1 span{color:var(--red)}
-.roadmap-lead{padding:0 0 5px;max-width:430px}
-.roadmap-lead strong{font-family:"Barlow Condensed",Arial,sans-serif;text-transform:uppercase;font-size:1.45rem;line-height:1;color:var(--cyan)}
-.roadmap-lead p{font-size:.9rem;line-height:1.5;margin:11px 0 0}
-
-.interactive-roadmap{height:150px;position:relative;margin:58px 4.8% 18px}
-.road-line{position:absolute;left:0;right:0;top:39px;height:4px;background:#cfcfca;border-radius:99px}
-.road-fill{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--cyan));border-radius:99px;transition:width .38s cubic-bezier(.22,1,.36,1);position:relative}
-.road-fill:after{content:"";position:absolute;right:-5px;top:-4px;width:12px;height:12px;border-radius:50%;background:var(--cyan)}
-
-.road-stop{position:absolute;top:0;transform:translateX(-50%);width:155px;border:0;background:transparent;padding:0;cursor:pointer;color:var(--ink);text-align:center}
-.road-stop:nth-of-type(1){left:0}.road-stop:nth-of-type(2){left:25%}.road-stop:nth-of-type(3){left:50%}.road-stop:nth-of-type(4){left:75%}.road-stop:nth-of-type(5){left:100%}
-
-.stop-ball{display:block;width:78px;height:78px;margin:0 auto;position:relative;border:2px solid var(--ink);border-radius:50%;background:var(--paper);box-shadow:0 7px 0 rgba(17,17,17,.07);transition:.25s cubic-bezier(.22,1,.36,1)}
-.stop-ball:before{content:"";position:absolute;inset:7px;border:1px solid rgba(17,17,17,.12);border-radius:50%}
-.stop-ball i{position:absolute;left:50%;top:50%;width:18px;height:18px;border-radius:50%;background:var(--ink);transform:translate(-50%,-50%);transition:.25s}
-.road-stop:nth-of-type(1) .stop-ball i,.road-stop:nth-of-type(3) .stop-ball i,.road-stop:nth-of-type(5) .stop-ball i{background:var(--red)}
-.road-stop:nth-of-type(2) .stop-ball i,.road-stop:nth-of-type(4) .stop-ball i{background:var(--cyan)}
-.road-stop:nth-of-type(1) .stop-ball,.road-stop:nth-of-type(3) .stop-ball,.road-stop:nth-of-type(5) .stop-ball{border-color:rgba(234,0,42,.45)}
-.road-stop:nth-of-type(2) .stop-ball,.road-stop:nth-of-type(4) .stop-ball{border-color:rgba(0,174,239,.5)}
-
-.road-stop:hover .stop-ball,.road-stop:focus-visible .stop-ball,.road-stop.active .stop-ball{transform:scale(1.08);box-shadow:0 0 0 9px rgba(0,174,239,.08),0 9px 0 rgba(17,17,17,.07)}
-.road-stop:nth-of-type(1):hover .stop-ball,.road-stop:nth-of-type(3):hover .stop-ball,.road-stop:nth-of-type(5):hover .stop-ball,
-.road-stop:nth-of-type(1):focus-visible .stop-ball,.road-stop:nth-of-type(3):focus-visible .stop-ball,.road-stop:nth-of-type(5):focus-visible .stop-ball,
-.road-stop:nth-of-type(1).active .stop-ball,.road-stop:nth-of-type(3).active .stop-ball,.road-stop:nth-of-type(5).active .stop-ball{border-color:var(--red);box-shadow:0 0 0 9px rgba(234,0,42,.09),0 9px 0 rgba(17,17,17,.07)}
-.road-stop:nth-of-type(2):hover .stop-ball,.road-stop:nth-of-type(4):hover .stop-ball,
-.road-stop:nth-of-type(2):focus-visible .stop-ball,.road-stop:nth-of-type(4):focus-visible .stop-ball,
-.road-stop:nth-of-type(2).active .stop-ball,.road-stop:nth-of-type(4).active .stop-ball{border-color:var(--cyan);box-shadow:0 0 0 9px rgba(0,174,239,.1),0 9px 0 rgba(17,17,17,.07)}
-
-.stop-index{display:block;margin-top:10px;font-size:.58rem;letter-spacing:.13em;font-weight:800;opacity:.5}
-.stop-name{display:block;font-family:"Barlow Condensed",Arial,sans-serif;text-transform:uppercase;font-size:1rem;font-weight:800;letter-spacing:.03em}
-.stop-date{display:block;font-size:.58rem;letter-spacing:.08em;opacity:.58;margin-top:1px}
-.road-stop:nth-of-type(odd).active .stop-name,.road-stop:nth-of-type(odd):hover .stop-name,.road-stop:nth-of-type(odd):focus-visible .stop-name{color:var(--red)}
-.road-stop:nth-of-type(even).active .stop-name,.road-stop:nth-of-type(even):hover .stop-name,.road-stop:nth-of-type(even):focus-visible .stop-name{color:var(--cyan)}
-
-.road-cards{position:relative}
-.road-stage-card{display:none;grid-template-columns:74px 1fr;gap:22px;background:#fff;border:1px solid rgba(17,17,17,.11);border-radius:20px;padding:26px 30px;box-shadow:0 18px 45px rgba(17,17,17,.08);opacity:0;transform:translateY(12px)}
-.road-stage-card.active{display:grid;animation:stageIn .38s cubic-bezier(.22,1,.36,1) forwards}
-.road-stage-card:nth-child(odd){border-top:4px solid var(--red)}
-.road-stage-card:nth-child(even){border-top:4px solid var(--cyan)}
-@keyframes stageIn{to{opacity:1;transform:none}}
-.stage-number{font-family:"Barlow Condensed",Arial,sans-serif;color:var(--red);font-size:2.8rem;line-height:.95}
-.road-stage-card:nth-child(even) .stage-number{color:var(--cyan)}
-.stage-top{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
-.stage-top h2{font-family:"Barlow Condensed",Arial,sans-serif;font-size:2.15rem;line-height:1;margin:0}
-.stage-top span{font-size:.64rem;letter-spacing:.13em;opacity:.55;font-weight:700}
-.stage-question{font-family:"Barlow Condensed",Arial,sans-serif;font-size:1.2rem;line-height:1.15;margin:10px 0 18px}
-.stage-columns{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:18px}
-.stage-columns div{border-top:1px solid rgba(17,17,17,.12);padding-top:10px}
-.stage-columns small{display:block;font-size:.58rem;letter-spacing:.13em;opacity:.55;margin-bottom:6px}
-.stage-columns b{display:block;font-size:.76rem;line-height:1.45}
-.roadmap-footer{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:.59rem;letter-spacing:.12em;opacity:.62}
-.core-tag{color:var(--cyan);font-weight:800}.core-tag i{display:inline-block;width:8px;height:8px;background:var(--cyan);border-radius:50%;margin-right:7px;box-shadow:0 0 0 0 rgba(0,174,239,.4);animation:coreBeat 1.8s infinite}
-@keyframes coreBeat{70%{box-shadow:0 0 0 9px rgba(0,174,239,0)}100%{box-shadow:0 0 0 0 rgba(0,174,239,0)}}
-
-@media(max-width:900px){
- .roadmap-heading{grid-template-columns:1fr;gap:18px}
- .interactive-roadmap{margin-top:45px}
- .road-stop{width:112px}
- .stop-ball{width:60px;height:60px}.stop-ball i{width:14px;height:14px}
- .stop-name{font-size:.76rem}.stop-date{font-size:.5rem}
- .road-stage-card{grid-template-columns:48px 1fr;padding:22px}
- .stage-columns{grid-template-columns:1fr}
-}
-@media(max-width:600px){
- .roadmap-hero{padding:38px 18px 26px}
- .roadmap-heading h1{font-size:clamp(3.3rem,17vw,5.2rem)}
- .roadmap-lead strong{font-size:1.2rem}
- .interactive-roadmap{height:128px;margin:38px 0 10px}
- .road-line{top:24px}
- .road-stop{width:70px}
- .stop-ball{width:48px;height:48px}.stop-ball:before{inset:5px}.stop-ball i{width:11px;height:11px}
- .stop-index{font-size:.48rem;margin-top:8px}.stop-name{font-size:.55rem}.stop-date{font-size:.43rem;line-height:1.1}
- .road-stage-card{padding:19px 17px;border-radius:15px}
- .stage-top h2{font-size:1.7rem}.stage-question{font-size:1.05rem}
- .stage-columns b{font-size:.72rem}
- .roadmap-footer{gap:12px;align-items:flex-start;flex-direction:column}
-}
-</style>
-</head>
-<body>
-<nav><div class="navbrand">MAKE / KOCHI 27</div><div class="links">
-<button onclick="go('roadmap')">Roadmap</button><button onclick="go('stories')">Maker Stories</button><button onclick="go('content')">Content</button><button onclick="go('calendar')">Calendar</button><button onclick="go('ops')">Playbook</button>
-</div></nav>
-
-<section class="page hero roadmap-hero" id="top">
-<div class="roadmap-shell">
-  <div class="roadmap-kicker">MAKER FAIRE KOCHI 2027 / CONTENT ROADMAP</div>
-
-  <div class="roadmap-heading">
-    <div>
-      <h1>THE ROAD<br><span>TO MAKER FAIRE.</span></h1>
-    </div>
-    <div class="roadmap-lead">
-      <strong>Maker Stories = the core engine.</strong>
-      <p>Five movements, one continuous story. Hover or focus a stage to change the content card below.</p>
-    </div>
-  </div>
-
-  <div class="interactive-roadmap" aria-label="Interactive Maker Faire campaign roadmap">
-    <div class="road-line"><div class="road-fill"></div></div>
-
-    <button class="road-stop active" data-stage="awareness" aria-label="Awareness, mid September to October">
-      <span class="stop-ball"><i></i></span>
-      <span class="stop-index">01</span>
-      <span class="stop-name">Awareness</span>
-      <span class="stop-date">Mid-Sep → Oct</span>
-    </button>
-
-    <button class="road-stop" data-stage="interaction" aria-label="Interaction, November">
-      <span class="stop-ball"><i></i></span>
-      <span class="stop-index">02</span>
-      <span class="stop-name">Interaction</span>
-      <span class="stop-date">November</span>
-    </button>
-
-    <button class="road-stop" data-stage="pre-event" aria-label="Pre-event, December to January 22">
-      <span class="stop-ball"><i></i></span>
-      <span class="stop-index">03</span>
-      <span class="stop-name">Pre-event</span>
-      <span class="stop-date">Dec → Jan 22</span>
-    </button>
-
-    <button class="road-stop" data-stage="event" aria-label="Event, January 23 to 24">
-      <span class="stop-ball"><i></i></span>
-      <span class="stop-index">04</span>
-      <span class="stop-name">Event</span>
-      <span class="stop-date">Jan 23–24</span>
-    </button>
-
-    <button class="road-stop" data-stage="post-event" aria-label="Post-event, February">
-      <span class="stop-ball"><i></i></span>
-      <span class="stop-index">05</span>
-      <span class="stop-name">Post-event</span>
-      <span class="stop-date">February</span>
-    </button>
-  </div>
-
-  <div class="road-cards">
-    <article class="road-stage-card active" data-card="awareness">
-      <div class="stage-number">01</div>
-      <div class="stage-content">
-        <div class="stage-top"><h2>AWARENESS</h2><span>MID-SEP → OCT</span></div>
-        <p class="stage-question">What is Maker Faire — and why does Kerala belong in this story?</p>
-        <div class="stage-columns">
-          <div><small>AUDIENCE</small><b>General public · students · parents · creators · hobbyists</b></div>
-          <div><small>CONTENT</small><b>What is Maker Faire · Kerala already makes · past Maker Stories · maker culture beyond tech</b></div>
-          <div><small>SUCCESS</small><b>Reach · views · shares · profile visits · recognition</b></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="road-stage-card" data-card="interaction">
-      <div class="stage-number">02</div>
-      <div class="stage-content">
-        <div class="stage-top"><h2>INTERACTION</h2><span>NOVEMBER</span></div>
-        <p class="stage-question">Who are the makers around me?</p>
-        <div class="stage-columns">
-          <div><small>AUDIENCE</small><b>Aspiring + existing makers · student groups · communities · indie makers</b></div>
-          <div><small>CONTENT</small><b>Show what you made · nominate a maker · side projects · repair stories · maker prompts</b></div>
-          <div><small>SUCCESS</small><b>Comments · saves · shares · UGC · nominations · participation</b></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="road-stage-card" data-card="pre-event">
-      <div class="stage-number">03</div>
-      <div class="stage-content">
-        <div class="stage-top"><h2>PRE-EVENT</h2><span>DEC → JAN 22</span></div>
-        <p class="stage-question">What will I discover, build, bring or participate in?</p>
-        <div class="stage-columns">
-          <div><small>AUDIENCE</small><b>Attendees · families · students · educators · exhibitors · volunteers</b></div>
-          <div><small>CONTENT</small><b>Maker reveals · project walkthroughs · countdowns · what to bring · behind-the-build</b></div>
-          <div><small>SUCCESS</small><b>Registrations · RSVPs · applications · workshop interest</b></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="road-stage-card" data-card="event">
-      <div class="stage-number">04</div>
-      <div class="stage-content">
-        <div class="stage-top"><h2>EVENT</h2><span>JAN 23–24</span></div>
-        <p class="stage-question">What happens when all these makers meet?</p>
-        <div class="stage-columns">
-          <div><small>CAPTURE</small><b>People · projects · reactions · failures · discoveries · quotes · atmosphere</b></div>
-          <div><small>CONTENT</small><b>Live Maker Stories · demos · reactions · walkthroughs · community moments</b></div>
-          <div><small>SUCCESS</small><b>Attendance · UGC · mentions · live views · press</b></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="road-stage-card" data-card="post-event">
-      <div class="stage-number">05</div>
-      <div class="stage-content">
-        <div class="stage-top"><h2>POST-EVENT</h2><span>FEBRUARY</span></div>
-        <p class="stage-question">What did Kerala make because we made together?</p>
-        <div class="stage-columns">
-          <div><small>AUDIENCE</small><b>Makers · attendees · communities · people who missed it</b></div>
-          <div><small>CONTENT</small><b>Maker follow-ups · photo essays · short doc · lessons · “what happened next?”</b></div>
-          <div><small>SUCCESS</small><b>Maker retention · community growth · repeat participation</b></div>
-        </div>
-      </div>
-    </article>
-  </div>
-
-  <div class="roadmap-footer">
-    <span><b>23–24 JAN 2027</b> · KOCHI</span>
-    <span class="core-tag"><i></i> MAKER STORIES / CORE ENGINE</span>
-    <span>HOVER / FOCUS A STAGE</span>
-  </div>
-</div>
-</section>
-
-
-
-<section class="page reveal" id="stories">
-<div class="section-head"><div><div class="small">02 / Core content engine</div><h2>Maker<br>Stories.</h2></div><p>Every onboarded maker gets a story system, not a single promotional post. The same raw material can become a Reel, carousel, article, quote card, project walkthrough, event-day cut and post-event profile.</p></div>
-<div class="grid">
-<div class="card span4"><div class="small">The person</div><h3>Why do you make?</h3><ul><li>The first thing they built</li><li>The obsession behind the project</li><li>What failed</li><li>What keeps them going</li></ul></div>
-<div class="card span4"><div class="small">The project</div><h3>Show me the thing.</h3><ul><li>What it does</li><li>How it works</li><li>What is weird / beautiful / useful</li><li>What changed from version 1</li></ul></div>
-<div class="card span4"><div class="small">The world</div><h3>Why should I care?</h3><ul><li>Problem or curiosity</li><li>Who it is for</li><li>What they learned</li><li>What they want to make next</li></ul></div>
-</div>
-<div class="quote">“A maker profile should feel like a story about a human who happens to have made something extraordinary.”</div>
-<div class="tabs" role="tablist">
-<button class="tab active" onclick="story('origin',this)">Origin</button><button class="tab" onclick="story('build',this)">Build</button><button class="tab" onclick="story('failure',this)">Failure</button><button class="tab" onclick="story('belief',this)">Belief</button><button class="tab" onclick="story('future',this)">Next</button>
-</div>
-<div class="story-grid">
-<div class="card">
-<div id="origin" class="story active"><div class="small">Story angle</div><h3>“I didn't set out to become a maker.”</h3><p>Trace the accidental beginning: childhood repair, curiosity, a broken thing, a campus club, a side project, a problem nobody else wanted to solve.</p></div>
-<div id="build" class="story"><div class="small">Story angle</div><h3>“Here's how the impossible became a prototype.”</h3><p>Make the process visible. Hands, tools, sketches, failed versions, code, materials and the moment the prototype finally works.</p></div>
-<div id="failure" class="story"><div class="small">Story angle</div><h3>“The version that didn't work.”</h3><p>Failure makes maker culture relatable. Show the wrong circuit, broken print, rejected idea or embarrassing prototype — and what changed afterwards.</p></div>
-<div id="belief" class="story"><div class="small">Story angle</div><h3>“What I wish more people understood about making.”</h3><p>Give the maker a point of view. This is where a project becomes a culture story rather than a product advertisement.</p></div>
-<div id="future" class="story"><div class="small">Story angle</div><h3>“If I had one more year…”</h3><p>End each profile with the next experiment. It creates a natural bridge to the Faire and gives the audience a reason to follow the maker after the event.</p></div>
-</div>
-<div class="card template"><div class="small">One maker → many outputs</div><h3>Content multiplication</h3><p><strong>1 interview</strong> → 1 hero Reel + 1 long-form article + 3 short clips + 1 carousel + 5 quote cards + 1 project walkthrough + event-day follow-up + post-event story.</p><p><strong>Maker publishes?</strong> Yes, whenever possible. Co-create the story and give the maker ready-to-post cuts, captions and assets so their own audience becomes an amplification layer.</p></div>
-</div>
-</section>
-
-<section class="page reveal" id="content">
-<div class="section-head"><div><div class="small">03 / Content architecture</div><h2>What we<br>publish.</h2></div><p>Do not create a generic “innovation content calendar.” Build a recognizable editorial universe around making, makers and Kerala.</p></div>
-<table class="matrix">
-<thead><tr><th>Series</th><th>What it does</th><th>Formats</th><th>Best phase</th><th>Who can publish / feature</th></tr></thead>
-<tbody>
-<tr><td><b>KERALA ALREADY MAKES</b></td><td>Proves that making already exists across the state.</td><td>Reels, photo essays, maps, articles</td><td>Awareness → Interaction</td><td>Local makers, community voices, editorial team</td></tr>
-<tr><td><b>MAKER STORY / 001</b></td><td>Human-first profile of an onboarded maker.</td><td>Hero Reel, article, carousel</td><td>All phases</td><td>The maker + Maker Faire team</td></tr>
-<tr><td><b>THE THING I MADE</b></td><td>Project-first, satisfying visual explanation.</td><td>60-sec demo, macro shots, diagram</td><td>Interaction → Pre-event</td><td>Maker</td></tr>
-<tr><td><b>WHY I MAKE</b></td><td>Belief / identity / origin story.</td><td>Talking-head, quote, podcast clip</td><td>Interaction</td><td>Maker / community builder</td></tr>
-<tr><td><b>FROM MAKER PARTY TO MAKER FAIRE</b></td><td>Connects Kerala's maker history without claiming a simplistic causal chain.</td><td>Timeline, archive reel, interview</td><td>Awareness</td><td>Past organizers / community</td></tr>
-<tr><td><b>NOT JUST TECH</b></td><td>Expands “maker” to craft, food, art, repair, fashion, music, wood, metal, code and more.</td><td>Reels, portraits, mini-docs</td><td>Awareness → Interaction</td><td>Cross-disciplinary makers</td></tr>
-<tr><td><b>BUILD WITH ME</b></td><td>Turns passive viewers into participants.</td><td>Micro tutorial, challenge, prompt</td><td>Interaction</td><td>Makers / educators</td></tr>
-<tr><td><b>MEET THE MAKER</b></td><td>Creates anticipation for the Faire.</td><td>Portrait + 3 facts + project reveal</td><td>Pre-event</td><td>Onboarded makers</td></tr>
-<tr><td><b>MAKER FAIRE, IRL</b></td><td>Live documentation of discovery and participation.</td><td>Stories, reels, interviews, photo diary</td><td>Event</td><td>Capture team + makers + attendees</td></tr>
-<tr><td><b>WHAT HAPPENED NEXT?</b></td><td>Shows that the Faire created relationships and momentum.</td><td>Follow-up profiles, mini-doc, case study</td><td>Post-event</td><td>Makers + organizers</td></tr>
-</tbody></table>
-<div class="grid" style="margin-top:20px">
-<div class="card span4"><div class="small">Awareness</div><h3>Make people curious.</h3><p>What is Maker Faire? Who counts as a maker? Why not Kerala? What did people make here before “maker” became a label?</p></div>
-<div class="card span4"><div class="small">Interaction</div><h3>Make people answer.</h3><p>What have you repaired? What have you made? Who is the maker in your family? What would you build if you had a workshop?</p></div>
-<div class="card span4"><div class="small">Pre-event</div><h3>Make people choose.</h3><p>Which maker will you meet? Which project will you try? What will you bring? Who are you bringing with you?</p></div>
-</div>
-</section>
-
-<section class="page reveal" id="calendar">
-<div class="section-head"><div><div class="small">04 / Editorial calendar</div><h2>Build the<br>anticipation.</h2></div><p>Cadence is deliberately story-led. The event announcement should not dominate the feed; the growing cast of makers should.</p></div>
-<div class="accordion">
-<div class="acc open"><button onclick="acc(this)">MID-SEP → OCT / AWARENESS <span>+</span></button><div class="body"><ul><li><b>Maker Faire 101:</b> “It isn't a conference. It's a place where people show what they make.”</li><li><b>Kerala Already Makes:</b> 4–6 stories showing making outside the obvious tech/startup frame.</li><li><b>Maker Party Kochi archive:</b> the 2014 story, including its 30 stations and 4,000+ attendees, as a historical signal of community appetite.</li><li><b>First Maker Story pilots:</b> 2–3 strong profiles to establish the visual/editorial grammar.</li></ul></div></div>
-<div class="acc"><button onclick="acc(this)">NOV / INTERACTION <span>+</span></button><div class="body"><ul><li>2–3 Maker Stories per week, mixing established and emerging makers.</li><li>Audience prompts: “Show us what you made”, “Nominate a maker”, “What would you build?”</li><li>Maker-led posts: ask featured makers to publish their own version / behind-the-scenes story.</li><li>Community formats: TinkerSpace tour, MakerGram conversation, KSUM/Maker Village ecosystem stories.</li></ul></div></div>
-<div class="acc"><button onclick="acc(this)">DEC → JAN 22 / PRE-EVENT <span>+</span></button><div class="body"><ul><li>“Meet the Maker” countdown begins.</li><li>Every confirmed maker gets a project reveal + human profile + “what to try” hook.</li><li>Build guides: “What can I actually do at Maker Faire?”</li><li>Audience utility: schedule, venue, accessibility, family/student guidance, registration and FAQ.</li></ul></div></div>
-<div class="acc"><button onclick="acc(this)">JAN 23–24 / EVENT <span>+</span></button><div class="body"><ul><li>Capture 10–20 micro Maker Stories per day: name, project, why, one surprising detail.</li><li>Publish “maker of the moment”, project demos, reactions and failures.</li><li>Give makers a same-day asset pack: portrait, 10–20s clip, tag/caption suggestion.</li></ul></div></div>
-<div class="acc"><button onclick="acc(this)">FEB / POST-EVENT <span>+</span></button><div class="body"><ul><li>Hero recap: “What Kerala made together.”</li><li>5–10 deeper Maker Stories: what changed after the Faire.</li><li>Data story: makers, projects, attendees, workshops, states represented, community connections — use verified final numbers only.</li><li>“What happens next?” follow-ups to keep the maker network alive.</li></ul></div></div>
-</div>
-</section>
-
-<section class="page reveal" id="ops">
-<div class="section-head"><div><div class="small">05 / Maker Story operating system</div><h2>Make the<br>content machine.</h2></div><p>The team should be able to onboard a maker on Monday and have a complete story package ready for distribution by Friday.</p></div>
-<div class="grid">
-<div class="card span6"><div class="small">01 / Intake</div><h3>Maker story form</h3><ul><li>Name / project / location / category</li><li>What are you presenting?</li><li>Why did you make it?</li><li>What failed?</li><li>What do you want visitors to try?</li><li>What are you making next?</li><li>Links, social handles, photo/video assets</li></ul></div>
-<div class="card span6"><div class="small">02 / Interview</div><h3>30-minute conversation</h3><ul><li>5 min: origin</li><li>10 min: project + process</li><li>5 min: failure / unexpected discovery</li><li>5 min: belief about making</li><li>5 min: Faire invitation / next build</li></ul></div>
-<div class="card span4"><div class="small">03 / Capture</div><h3>Film the hands.</h3><p>Face, hands, tools, materials, prototype, failure, environment, finished project. Avoid only talking-head footage.</p></div>
-<div class="card span4"><div class="small">04 / Package</div><h3>One story, many cuts.</h3><p>Hero Reel + short clips + carousel + article + quotes + portrait + maker-provided caption + event-day update.</p></div>
-<div class="card span4"><div class="small">05 / Amplify</div><h3>Let the maker own it.</h3><p>Give every maker a ready-to-share kit. Encourage cross-posting, tagging and their own first-person version.</p></div>
-</div>
-<div class="callout"><div class="small">Editorial rule</div><h2>PEOPLE > ORGANISATIONS.<br>STORIES > ANNOUNCEMENTS.</h2><p>Organisations provide context. Makers provide the heartbeat. Do not turn every post into an institutional announcement.</p></div>
-</section>
-
-<section class="page reveal">
-<div class="section-head"><div><div class="small">06 / People & ecosystem</div><h2>Who can<br>carry the story?</h2></div><p>Use people as potential storytellers only after verifying their current role, availability and relationship to the 2027 Faire. Never imply participation until confirmed.</p></div>
-<div class="grid">
-<div class="card span4"><h3>Kerala / Kochi</h3><ul><li>Arvind Sanjeev — design / technology / experimental making</li><li>Salman Faris — hardware / maker community</li><li>Kurian Jacob — maker community / TinkerSpace</li><li>Moosa Mehar — TinkerHub / community building</li><li>Praveen Sridhar — experiential / peer learning</li><li>Abid Aboobacker — TinkerHub / maker profile</li><li>Nidhiya V Raj — maker / community journey</li><li>Gopi Krishnan — TinkerHub campus history</li></ul></div>
-<div class="card span4"><h3>Infrastructure / communities</h3><ul><li>TinkerHub / TinkerSpace</li><li>MakerGram</li><li>Kerala Startup Mission</li><li>Maker Village</li><li>Super FabLab Kerala</li><li>Campus maker communities</li><li>Independent repairers, artists, craftspeople, builders</li></ul></div>
-<div class="card span4"><h3>India-wide voices</h3><ul><li>Vaibhav Chhabra — Maker’s Asylum</li><li>Anool Mahidharia — Maker’s Asylum</li><li>Other Fab / STEAM / open hardware communities</li><li>Artists and interdisciplinary builders</li><li>Hardware founders and indie makers</li></ul><p class="small">All names: verify current affiliations and event status.</p></div>
-</div>
-</section>
-
-<section class="page reveal">
-<div class="section-head"><div><div class="small">07 / Measurement</div><h2>Measure the<br>culture shift.</h2></div><p>Do not judge the campaign only by impressions. The ladder should move from recognition to participation to continuity.</p></div>
-<div class="grid">
-<div class="card span4"><div class="metric">01<br><small>Reach</small></div><p>Impressions, unique reach, video views, profile visits, search interest.</p></div>
-<div class="card span4"><div class="metric">02<br><small>Recognition</small></div><p>Branded search, direct traffic, mentions, “Maker Faire” recall in qualitative feedback.</p></div>
-<div class="card span4"><div class="metric">03<br><small>Interaction</small></div><p>Comments, shares, saves, replies, nominations, maker submissions and UGC.</p></div>
-<div class="card span4"><div class="metric">04<br><small>Participation</small></div><p>Registrations, Call for Makers applications, workshop sign-ups, volunteer/community joins.</p></div>
-<div class="card span4"><div class="metric">05<br><small>Community</small></div><p>Cross-posts, maker-to-maker introductions, new collaborations, repeat contributors.</p></div>
-<div class="card span4"><div class="metric">06<br><small>Continuity</small></div><p>February story views, maker follow-through, returning creators and post-event community activity.</p></div>
-</div>
-<div class="quote" style="margin-top:30px">THE GOAL IS NOT TO MAKE KERALA INTERESTED IN MAKER FAIRE.<br>THE GOAL IS TO MAKE KERALA REALISE IT HAS BEEN MAKING ALL ALONG.</div>
-</section>
-
-<section class="page reveal sources">
-<div class="section-head"><div><div class="small">08 / Research notes</div><h2>Grounded in<br>the ecosystem.</h2></div><p>This roadmap is based on the current official event listing, supplied brand guidance, and research into Kerala / India maker communities. Verify operational facts before publishing.</p></div>
-<div class="grid">
-<div class="card span6"><h3>Official references</h3><ul>
-<li><a href="https://makerfaire.com/upcoming-faires/" target="_blank">Maker Faire — Upcoming Faires</a> — currently lists Kochi for Jan 23–24, 2027.</li>
-<li><a href="https://makerfaire.com/community/guidelines/" target="_blank">Maker Faire Licensing Guidelines</a> — licensing, naming, social and identity context.</li>
-<li><a href="https://makerfaire.com/wp-content/uploads/2021/08/MAKE_Style-Guide-web.pdf" target="_blank">MAKE Style Guide PDF</a> — supplied guide: red #EA002A, cyan #00AEEF, white; Benton Sans Bold; logo rules.</li>
-</ul></div>
-<div class="card span6"><h3>Kerala / India references</h3><ul>
-<li><a href="https://tinkerhub.org/" target="_blank">TinkerHub</a> and TinkerSpace ecosystem.</li>
-<li><a href="https://medium.com/tinkerhub/fostering-a-culture-of-learning-tinkerhubs-approach-to-learning-stations-9b3216ca8867" target="_blank">TinkerHub history / Maker Party Kochi</a> — 2014 event history and community impact.</li>
-<li><a href="https://startupmission.kerala.gov.in/" target="_blank">Kerala Startup Mission</a> — startup, incubation and maker infrastructure context.</li>
-<li><a href="https://makergram.com/" target="_blank">MakerGram</a> — hardware and maker community context.</li>
-</ul></div>
-</div>
-<div class="callout"><div class="small">Brand implementation</div><h2>MAKE palette.<br>Maker energy.</h2><p>This file uses the guide's red, cyan, white and black/neutral foundation, with bold condensed display typography as a practical web fallback for Benton Sans Bold. The official supplied guide should remain the authority for final logo usage and licensed assets.</p></div>
-</section>
-
-<footer><div class="small" style="color:#00aeef">Maker Faire Kochi 2027</div><h2>MAKE SOMETHING.<br>THEN TELL ITS STORY.</h2><p>Single-file interactive roadmap · responsive · printable · no framework dependencies · maker stories at the centre.</p></footer>
-
-<script>
-function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}
-function story(id,btn){
- document.querySelectorAll('.story').forEach(x=>x.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
-}
-function acc(btn){btn.parentElement.classList.toggle('open')}
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
-</script>
-
-<script>
-(() => {
-  const stops = [...document.querySelectorAll('.road-stop')];
-  const cards = [...document.querySelectorAll('.road-stage-card')];
-  const fill = document.querySelector('.road-fill');
-  if (!stops.length || !cards.length) return;
-
-  const order = stops.map(el => el.dataset.stage);
-
-  function setStage(stage) {
-    const i = order.indexOf(stage);
-    if (i < 0) return;
-    stops.forEach((el) => {
-      const active = el.dataset.stage === stage;
-      el.classList.toggle('active', active);
-      el.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-    cards.forEach((el) => el.classList.toggle('active', el.dataset.card === stage));
-
-    if (fill) {
-      fill.style.width = (i * 25) + '%';
-      fill.style.background = (i % 2 === 0)
-        ? 'linear-gradient(90deg,var(--red),var(--cyan))'
-        : 'linear-gradient(90deg,var(--cyan),var(--red))';
+    :root {
+      --red: #ea002a;
+      --cyan: #00aeef;
+      --ink: #111;
+      --paper: #f7f6f2;
+      --white: #fff;
+      --line: #d8d8d2;
+      --muted: #686868;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .09);
     }
-  }
 
-  stops.forEach((stop) => {
-    stop.addEventListener('mouseenter', () => setStage(stop.dataset.stage));
-    stop.addEventListener('focus', () => setStage(stop.dataset.stage));
-    stop.addEventListener('click', () => setStage(stop.dataset.stage));
-  });
+    * {
+      box-sizing: border-box
+    }
 
-  setStage('awareness');
-})();
-</script>
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.45
+    }
+
+    h1,
+    h2,
+    h3,
+    .display,
+    .phase-num,
+    .navbrand {
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: -.02em
+    }
+
+    h1 {
+      font-size: clamp(4rem, 9vw, 9rem);
+      line-height: .82;
+      margin: 0
+    }
+
+    h2 {
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: .88;
+      margin: 0 0 1rem
+    }
+
+    h3 {
+      font-size: 1.55rem;
+      margin: .2rem 0 .55rem
+    }
+
+    p {
+      max-width: 72ch
+    }
+
+    .small {
+      font-size: .78rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 800
+    }
+
+    a {
+      color: inherit
+    }
+
+    nav {
+      position: fixed;
+      z-index: 50;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(247, 246, 242, .9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 22px
+    }
+
+    .navbrand {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--red)
+    }
+
+    nav .links {
+      display: flex;
+      gap: 5px;
+      overflow: auto
+    }
+
+    nav button {
+      border: 0;
+      background: transparent;
+      padding: 8px 10px;
+      font: 700 .72rem Inter;
+      cursor: pointer;
+      text-transform: uppercase
+    }
+
+    nav button:hover {
+      background: var(--red);
+      color: white
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 100px 6vw 7vw;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero {
+      background: var(--ink);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center
+    }
+
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background: repeating-linear-gradient(90deg, transparent 0 48px, rgba(0, 174, 239, .09) 49px 50px);
+      transform: rotate(-7deg);
+      animation: gridmove 18s linear infinite
+    }
+
+    @keyframes gridmove {
+      to {
+        transform: rotate(-7deg) translateX(80px)
+      }
+    }
+
+    .hero .inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1250px;
+      width: 100%
+    }
+
+    .kicker {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      background: var(--red);
+      padding: 7px 11px;
+      font-size: .72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 18px
+    }
+
+    .hero h1 span {
+      color: var(--red)
+    }
+
+    .hero .sub {
+      font-size: clamp(1rem, 1.7vw, 1.4rem);
+      max-width: 760px;
+      margin: 28px 0
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px
+    }
+
+    .pill {
+      border: 1px solid #555;
+      padding: 8px 12px;
+      font-size: .75rem;
+      text-transform: uppercase;
+      font-weight: 800
+    }
+
+    .scroll {
+      margin-top: 50px;
+      color: var(--cyan);
+      font-weight: 800;
+      font-size: .75rem;
+      letter-spacing: .15em
+    }
+
+    .hero-art {
+      position: absolute;
+      right: 4vw;
+      bottom: 7vh;
+      width: min(38vw, 520px);
+      height: 360px;
+      opacity: .95
+    }
+
+    .node {
+      position: absolute;
+      border: 3px solid white;
+      background: var(--ink);
+      padding: 14px 18px;
+      font-family: "Barlow Condensed";
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      box-shadow: 8px 8px 0 var(--red);
+      animation: float 3s ease-in-out infinite
+    }
+
+    .node:nth-child(1) {
+      left: 0;
+      top: 35%;
+      animation-delay: .1s
+    }
+
+    .node:nth-child(2) {
+      left: 28%;
+      top: 10%;
+      box-shadow: 8px 8px 0 var(--cyan);
+      animation-delay: .5s
+    }
+
+    .node:nth-child(3) {
+      right: 0;
+      top: 38%;
+      animation-delay: 1s
+    }
+
+    .node:nth-child(4) {
+      left: 31%;
+      bottom: 2%;
+      box-shadow: 8px 8px 0 var(--cyan);
+      animation-delay: 1.5s
+    }
+
+    .wire {
+      position: absolute;
+      background: white;
+      height: 2px;
+      transform-origin: left center
+    }
+
+    .w1 {
+      left: 19%;
+      top: 45%;
+      width: 28%;
+      transform: rotate(-25deg)
+    }
+
+    .w2 {
+      left: 50%;
+      top: 28%;
+      width: 26%;
+      transform: rotate(27deg)
+    }
+
+    .w3 {
+      left: 50%;
+      top: 58%;
+      width: 28%;
+      transform: rotate(-4deg)
+    }
+
+    .w4 {
+      left: 43%;
+      top: 65%;
+      width: 15%;
+      transform: rotate(72deg)
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-10px) rotate(-1deg)
+      }
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: flex-end;
+      margin-bottom: 45px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: .25s
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, .13)
+    }
+
+    .span4 {
+      grid-column: span 4
+    }
+
+    .span6 {
+      grid-column: span 6
+    }
+
+    .span8 {
+      grid-column: span 8
+    }
+
+    .span12 {
+      grid-column: 1/-1
+    }
+
+    .phase {
+      position: relative;
+      border-top: 7px solid var(--red);
+      padding-top: 22px
+    }
+
+    .phase.cyan {
+      border-color: var(--cyan)
+    }
+
+    .phase .phase-num {
+      font-size: 5rem;
+      color: var(--red);
+      line-height: .75;
+      float: right
+    }
+
+    .phase.cyan .phase-num {
+      color: var(--cyan)
+    }
+
+    .phase .date {
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase
+    }
+
+    .phase ul,
+    .card ul {
+      padding-left: 1.1rem
+    }
+
+    .phase li,
+    .card li {
+      margin: .4rem 0
+    }
+
+    .metric {
+      font-family: "Barlow Condensed";
+      font-size: 2.4rem;
+      color: var(--red);
+      line-height: 1
+    }
+
+    .metric small {
+      display: block;
+      font: 700 .68rem Inter;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 5px
+    }
+
+    .timeline {
+      position: relative;
+      margin: 30px 0 10px;
+      padding: 24px 0
+    }
+
+    .track {
+      height: 8px;
+      background: var(--ink);
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 62px
+    }
+
+    .stops {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      position: relative;
+      z-index: 2
+    }
+
+    .stop {
+      text-align: center
+    }
+
+    .dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--red);
+      margin: 27px auto 15px;
+      border: 5px solid var(--paper);
+      box-shadow: 0 0 0 2px var(--red)
+    }
+
+    .stop:nth-child(even) .dot {
+      background: var(--cyan);
+      box-shadow: 0 0 0 2px var(--cyan)
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 20px 0
+    }
+
+    .tab {
+      padding: 9px 13px;
+      border: 1px solid var(--ink);
+      background: white;
+      cursor: pointer;
+      font: 800 .72rem Inter;
+      text-transform: uppercase
+    }
+
+    .tab.active {
+      background: var(--red);
+      color: #fff
+    }
+
+    .story {
+      display: none
+    }
+
+    .story.active {
+      display: block;
+      animation: in .35s ease
+    }
+
+    @keyframes in {
+      from {
+        opacity: 0;
+        transform: translateY(8px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 20px
+    }
+
+    .quote {
+      border-left: 8px solid var(--red);
+      padding: 10px 22px;
+      margin-top: 15px;
+      font-family: "Barlow Condensed";
+      font-size: 2rem;
+      text-transform: uppercase
+    }
+
+    .template {
+      background: var(--ink);
+      color: white;
+      border: 0
+    }
+
+    .template strong {
+      color: var(--cyan)
+    }
+
+    .matrix {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: .88rem
+    }
+
+    .matrix th,
+    .matrix td {
+      border: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    .matrix th {
+      background: var(--ink);
+      color: white;
+      text-transform: uppercase;
+      font-size: .7rem;
+      letter-spacing: .08em
+    }
+
+    .accordion {
+      border-top: 1px solid var(--line)
+    }
+
+    .acc {
+      border-bottom: 1px solid var(--line)
+    }
+
+    .acc button {
+      width: 100%;
+      padding: 18px 0;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      font: 800 1.1rem Inter;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between
+    }
+
+    .acc .body {
+      display: none;
+      padding: 0 0 18px;
+      color: #444
+    }
+
+    .acc.open .body {
+      display: block
+    }
+
+    .callout {
+      background: var(--red);
+      color: white;
+      padding: 35px;
+      margin-top: 30px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .callout:after {
+      content: "MAKE";
+      position: absolute;
+      right: -20px;
+      bottom: -50px;
+      font: 900 12rem "Barlow Condensed";
+      opacity: .12
+    }
+
+    .sources a {
+      color: var(--red);
+      font-weight: 700
+    }
+
+    footer {
+      background: var(--ink);
+      color: white;
+      padding: 60px 6vw
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: .7s
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none
+    }
+
+    @media(max-width:850px) {
+      nav .links {
+        display: none
+      }
+
+      .page {
+        padding: 85px 5vw 60px
+      }
+
+      .hero-art {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        height: 260px;
+        margin-top: 40px
+      }
+
+      .hero {
+        display: block;
+        padding-top: 120px
+      }
+
+      .span4,
+      .span6,
+      .span8 {
+        grid-column: 1/-1
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr
+      }
+
+      .stops {
+        grid-template-columns: 1fr
+      }
+
+      .track {
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 7px;
+        height: auto
+      }
+
+      .stop {
+        display: grid;
+        grid-template-columns: 1fr 40px 1fr;
+        align-items: center
+      }
+
+      .stop .dot {
+        grid-column: 2;
+        margin: 0
+      }
+
+      .stop strong {
+        grid-column: 1;
+        text-align: right
+      }
+
+      .stop span:last-child {
+        grid-column: 3;
+        text-align: left;
+        padding: 12px
+      }
+
+      .section-head {
+        display: block
+      }
+    }
+
+    @media print {
+      nav {
+        display: none
+      }
+
+      .page {
+        min-height: auto;
+        page-break-after: always;
+        padding: 25mm 15mm
+      }
+
+      .hero {
+        background: #111;
+        color: #fff
+      }
+
+      .card {
+        box-shadow: none
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none
+      }
+
+      .tabs {
+        display: none
+      }
+
+      .story {
+        display: block !important
+      }
+    }
+
+    /* --- Interactive hero roadmap --- */
+    .roadmap-hero {
+      background: var(--paper);
+      color: var(--ink);
+      min-height: calc(100vh - 62px);
+      display: block;
+      position: relative;
+      overflow: hidden;
+      padding: clamp(42px, 6vw, 76px) 5vw 34px
+    }
+
+    .roadmap-hero:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .34;
+      background-image: linear-gradient(rgba(17, 17, 17, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(17, 17, 17, .055) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, #000 0%, transparent 92%)
+    }
+
+    .roadmap-shell {
+      position: relative;
+      z-index: 2;
+      max-width: 1450px;
+      margin: auto
+    }
+
+    .roadmap-kicker {
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 22px
+    }
+
+    .roadmap-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+      gap: 6vw;
+      align-items: end
+    }
+
+    .roadmap-heading h1 {
+      font-size: clamp(4rem, 9vw, 9.2rem);
+      line-height: .78;
+      margin: 0;
+      letter-spacing: -.045em
+    }
+
+    .roadmap-heading h1 span {
+      color: var(--red)
+    }
+
+    .roadmap-lead {
+      padding: 0 0 5px;
+      max-width: 430px
+    }
+
+    .roadmap-lead strong {
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      text-transform: uppercase;
+      font-size: 1.45rem;
+      line-height: 1;
+      color: var(--cyan)
+    }
+
+    .roadmap-lead p {
+      font-size: .9rem;
+      line-height: 1.5;
+      margin: 11px 0 0
+    }
+
+    .interactive-roadmap {
+      height: 150px;
+      position: relative;
+      margin: 58px 4.8% 18px
+    }
+
+    .road-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 39px;
+      height: 4px;
+      background: #cfcfca;
+      border-radius: 99px
+    }
+
+    .road-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--red), var(--cyan));
+      border-radius: 99px;
+      transition: width .38s cubic-bezier(.22, 1, .36, 1);
+      position: relative
+    }
+
+    .road-fill:after {
+      content: "";
+      position: absolute;
+      right: -5px;
+      top: -4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--cyan)
+    }
+
+    .road-stop {
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+      width: 155px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      color: var(--ink);
+      text-align: center
+    }
+
+    .road-stop:nth-of-type(1) {
+      left: 0
+    }
+
+    .road-stop:nth-of-type(2) {
+      left: 25%
+    }
+
+    .road-stop:nth-of-type(3) {
+      left: 50%
+    }
+
+    .road-stop:nth-of-type(4) {
+      left: 75%
+    }
+
+    .road-stop:nth-of-type(5) {
+      left: 100%
+    }
+
+    .stop-ball {
+      display: block;
+      width: 78px;
+      height: 78px;
+      margin: 0 auto;
+      position: relative;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: 0 7px 0 rgba(17, 17, 17, .07);
+      transition: .25s cubic-bezier(.22, 1, .36, 1)
+    }
+
+    .stop-ball:before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(17, 17, 17, .12);
+      border-radius: 50%
+    }
+
+    .stop-ball i {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--ink);
+      transform: translate(-50%, -50%);
+      transition: .25s
+    }
+
+    .road-stop:nth-of-type(1) .stop-ball i,
+    .road-stop:nth-of-type(3) .stop-ball i,
+    .road-stop:nth-of-type(5) .stop-ball i {
+      background: var(--red)
+    }
+
+    .road-stop:nth-of-type(2) .stop-ball i,
+    .road-stop:nth-of-type(4) .stop-ball i {
+      background: var(--cyan)
+    }
+
+    .road-stop:nth-of-type(1) .stop-ball,
+    .road-stop:nth-of-type(3) .stop-ball,
+    .road-stop:nth-of-type(5) .stop-ball {
+      border-color: rgba(234, 0, 42, .45)
+    }
+
+    .road-stop:nth-of-type(2) .stop-ball,
+    .road-stop:nth-of-type(4) .stop-ball {
+      border-color: rgba(0, 174, 239, .5)
+    }
+
+    .road-stop:hover .stop-ball,
+    .road-stop:focus-visible .stop-ball,
+    .road-stop.active .stop-ball {
+      transform: scale(1.08);
+      box-shadow: 0 0 0 9px rgba(0, 174, 239, .08), 0 9px 0 rgba(17, 17, 17, .07)
+    }
+
+    .road-stop:nth-of-type(1):hover .stop-ball,
+    .road-stop:nth-of-type(3):hover .stop-ball,
+    .road-stop:nth-of-type(5):hover .stop-ball,
+    .road-stop:nth-of-type(1):focus-visible .stop-ball,
+    .road-stop:nth-of-type(3):focus-visible .stop-ball,
+    .road-stop:nth-of-type(5):focus-visible .stop-ball,
+    .road-stop:nth-of-type(1).active .stop-ball,
+    .road-stop:nth-of-type(3).active .stop-ball,
+    .road-stop:nth-of-type(5).active .stop-ball {
+      border-color: var(--red);
+      box-shadow: 0 0 0 9px rgba(234, 0, 42, .09), 0 9px 0 rgba(17, 17, 17, .07)
+    }
+
+    .road-stop:nth-of-type(2):hover .stop-ball,
+    .road-stop:nth-of-type(4):hover .stop-ball,
+    .road-stop:nth-of-type(2):focus-visible .stop-ball,
+    .road-stop:nth-of-type(4):focus-visible .stop-ball,
+    .road-stop:nth-of-type(2).active .stop-ball,
+    .road-stop:nth-of-type(4).active .stop-ball {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 9px rgba(0, 174, 239, .1), 0 9px 0 rgba(17, 17, 17, .07)
+    }
+
+    .stop-index {
+      display: block;
+      margin-top: 10px;
+      font-size: .58rem;
+      letter-spacing: .13em;
+      font-weight: 800;
+      opacity: .5
+    }
+
+    .stop-name {
+      display: block;
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      text-transform: uppercase;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: .03em
+    }
+
+    .stop-date {
+      display: block;
+      font-size: .58rem;
+      letter-spacing: .08em;
+      opacity: .58;
+      margin-top: 1px
+    }
+
+    .road-stop:nth-of-type(odd).active .stop-name,
+    .road-stop:nth-of-type(odd):hover .stop-name,
+    .road-stop:nth-of-type(odd):focus-visible .stop-name {
+      color: var(--red)
+    }
+
+    .road-stop:nth-of-type(even).active .stop-name,
+    .road-stop:nth-of-type(even):hover .stop-name,
+    .road-stop:nth-of-type(even):focus-visible .stop-name {
+      color: var(--cyan)
+    }
+
+    .road-cards {
+      position: relative
+    }
+
+    .road-stage-card {
+      display: none;
+      grid-template-columns: 74px 1fr;
+      gap: 22px;
+      background: #fff;
+      border: 1px solid rgba(17, 17, 17, .11);
+      border-radius: 20px;
+      padding: 26px 30px;
+      box-shadow: 0 18px 45px rgba(17, 17, 17, .08);
+      opacity: 0;
+      transform: translateY(12px)
+    }
+
+    .road-stage-card.active {
+      display: grid;
+      animation: stageIn .38s cubic-bezier(.22, 1, .36, 1) forwards
+    }
+
+    .road-stage-card:nth-child(odd) {
+      border-top: 4px solid var(--red)
+    }
+
+    .road-stage-card:nth-child(even) {
+      border-top: 4px solid var(--cyan)
+    }
+
+    @keyframes stageIn {
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .stage-number {
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      color: var(--red);
+      font-size: 2.8rem;
+      line-height: .95
+    }
+
+    .road-stage-card:nth-child(even) .stage-number {
+      color: var(--cyan)
+    }
+
+    .stage-top {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .stage-top h2 {
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: 2.15rem;
+      line-height: 1;
+      margin: 0
+    }
+
+    .stage-top span {
+      font-size: .64rem;
+      letter-spacing: .13em;
+      opacity: .55;
+      font-weight: 700
+    }
+
+    .stage-question {
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      font-size: 1.2rem;
+      line-height: 1.15;
+      margin: 10px 0 18px
+    }
+
+    .stage-columns {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      gap: 18px
+    }
+
+    .stage-columns div {
+      border-top: 1px solid rgba(17, 17, 17, .12);
+      padding-top: 10px
+    }
+
+    .stage-columns small {
+      display: block;
+      font-size: .58rem;
+      letter-spacing: .13em;
+      opacity: .55;
+      margin-bottom: 6px
+    }
+
+    .stage-columns b {
+      display: block;
+      font-size: .76rem;
+      line-height: 1.45
+    }
+
+    .roadmap-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      font-size: .59rem;
+      letter-spacing: .12em;
+      opacity: .62
+    }
+
+    .core-tag {
+      color: var(--cyan);
+      font-weight: 800
+    }
+
+    .core-tag i {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      margin-right: 7px;
+      box-shadow: 0 0 0 0 rgba(0, 174, 239, .4);
+      animation: coreBeat 1.8s infinite
+    }
+
+    @keyframes coreBeat {
+      70% {
+        box-shadow: 0 0 0 9px rgba(0, 174, 239, 0)
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 174, 239, 0)
+      }
+    }
+
+    @media(max-width:900px) {
+      .roadmap-heading {
+        grid-template-columns: 1fr;
+        gap: 18px
+      }
+
+      .interactive-roadmap {
+        margin-top: 45px
+      }
+
+      .road-stop {
+        width: 112px
+      }
+
+      .stop-ball {
+        width: 60px;
+        height: 60px
+      }
+
+      .stop-ball i {
+        width: 14px;
+        height: 14px
+      }
+
+      .stop-name {
+        font-size: .76rem
+      }
+
+      .stop-date {
+        font-size: .5rem
+      }
+
+      .road-stage-card {
+        grid-template-columns: 48px 1fr;
+        padding: 22px
+      }
+
+      .stage-columns {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:600px) {
+      .roadmap-hero {
+        padding: 38px 18px 26px
+      }
+
+      .roadmap-heading h1 {
+        font-size: clamp(3.3rem, 17vw, 5.2rem)
+      }
+
+      .roadmap-lead strong {
+        font-size: 1.2rem
+      }
+
+      .interactive-roadmap {
+        height: 128px;
+        margin: 38px 0 10px
+      }
+
+      .road-line {
+        top: 24px
+      }
+
+      .road-stop {
+        width: 70px
+      }
+
+      .stop-ball {
+        width: 48px;
+        height: 48px
+      }
+
+      .stop-ball:before {
+        inset: 5px
+      }
+
+      .stop-ball i {
+        width: 11px;
+        height: 11px
+      }
+
+      .stop-index {
+        font-size: .48rem;
+        margin-top: 8px
+      }
+
+      .stop-name {
+        font-size: .55rem
+      }
+
+      .stop-date {
+        font-size: .43rem;
+        line-height: 1.1
+      }
+
+      .road-stage-card {
+        padding: 19px 17px;
+        border-radius: 15px
+      }
+
+      .stage-top h2 {
+        font-size: 1.7rem
+      }
+
+      .stage-question {
+        font-size: 1.05rem
+      }
+
+      .stage-columns b {
+        font-size: .72rem
+      }
+
+      .roadmap-footer {
+        gap: 12px;
+        align-items: flex-start;
+        flex-direction: column
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="navbrand">MAKE / KOCHI 27</div>
+    <div class="links">
+      <button onclick="go('roadmap')">Roadmap</button><button onclick="go('stories')">Maker Stories</button><button
+        onclick="go('content')">Content</button><button onclick="go('calendar')">Calendar</button><button
+        onclick="go('ops')">Playbook</button>
+    </div>
+  </nav>
+
+  <section class="page hero roadmap-hero" id="top">
+    <div class="roadmap-shell">
+      <div class="roadmap-kicker">MAKER FAIRE KOCHI 2027 / CONTENT ROADMAP</div>
+
+      <div class="roadmap-heading">
+        <div>
+          <h1>THE ROAD<br><span>TO MAKER FAIRE.</span></h1>
+        </div>
+        <div class="roadmap-lead">
+          <strong>Maker Stories = the core engine.</strong>
+          <p>Five movements, one continuous story. Hover or focus a stage to change the content card below.</p>
+        </div>
+      </div>
+
+      <div class="interactive-roadmap" aria-label="Interactive Maker Faire campaign roadmap">
+        <div class="road-line">
+          <div class="road-fill"></div>
+        </div>
+
+        <button class="road-stop active" data-stage="awareness" aria-label="Awareness, mid September to October">
+          <span class="stop-ball"><i></i></span>
+          <span class="stop-index">01</span>
+          <span class="stop-name">Awareness</span>
+          <span class="stop-date">Mid-Sep → Oct</span>
+        </button>
+
+        <button class="road-stop" data-stage="interaction" aria-label="Interaction, November">
+          <span class="stop-ball"><i></i></span>
+          <span class="stop-index">02</span>
+          <span class="stop-name">Interaction</span>
+          <span class="stop-date">November</span>
+        </button>
+
+        <button class="road-stop" data-stage="pre-event" aria-label="Pre-event, December to January 22">
+          <span class="stop-ball"><i></i></span>
+          <span class="stop-index">03</span>
+          <span class="stop-name">Pre-event</span>
+          <span class="stop-date">Dec → Jan 22</span>
+        </button>
+
+        <button class="road-stop" data-stage="event" aria-label="Event, January 23 to 24">
+          <span class="stop-ball"><i></i></span>
+          <span class="stop-index">04</span>
+          <span class="stop-name">Event</span>
+          <span class="stop-date">Jan 23–24</span>
+        </button>
+
+        <button class="road-stop" data-stage="post-event" aria-label="Post-event, February">
+          <span class="stop-ball"><i></i></span>
+          <span class="stop-index">05</span>
+          <span class="stop-name">Post-event</span>
+          <span class="stop-date">February</span>
+        </button>
+      </div>
+
+      <div class="road-cards">
+        <article class="road-stage-card active" data-card="awareness">
+          <div class="stage-number">01</div>
+          <div class="stage-content">
+            <div class="stage-top">
+              <h2>AWARENESS</h2><span>MID-SEP → OCT</span>
+            </div>
+            <p class="stage-question">What is Maker Faire — and why does Kerala belong in this story?</p>
+            <div class="stage-columns">
+              <div><small>AUDIENCE</small><b>General public · students · parents · creators · hobbyists</b></div>
+              <div><small>CONTENT</small><b>What is Maker Faire · Kerala already makes · past Maker Stories · maker
+                  culture beyond tech</b></div>
+              <div><small>SUCCESS</small><b>Reach · views · shares · profile visits · recognition</b></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="road-stage-card" data-card="interaction">
+          <div class="stage-number">02</div>
+          <div class="stage-content">
+            <div class="stage-top">
+              <h2>INTERACTION</h2><span>NOVEMBER</span>
+            </div>
+            <p class="stage-question">Who are the makers around me?</p>
+            <div class="stage-columns">
+              <div><small>AUDIENCE</small><b>Aspiring + existing makers · student groups · communities · indie
+                  makers</b></div>
+              <div><small>CONTENT</small><b>Show what you made · nominate a maker · side projects · repair stories ·
+                  maker prompts</b></div>
+              <div><small>SUCCESS</small><b>Comments · saves · shares · UGC · nominations · participation</b></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="road-stage-card" data-card="pre-event">
+          <div class="stage-number">03</div>
+          <div class="stage-content">
+            <div class="stage-top">
+              <h2>PRE-EVENT</h2><span>DEC → JAN 22</span>
+            </div>
+            <p class="stage-question">What will I discover, build, bring or participate in?</p>
+            <div class="stage-columns">
+              <div><small>AUDIENCE</small><b>Attendees · families · students · educators · exhibitors · volunteers</b>
+              </div>
+              <div><small>CONTENT</small><b>Maker reveals · project walkthroughs · countdowns · what to bring ·
+                  behind-the-build</b></div>
+              <div><small>SUCCESS</small><b>Registrations · RSVPs · applications · workshop interest</b></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="road-stage-card" data-card="event">
+          <div class="stage-number">04</div>
+          <div class="stage-content">
+            <div class="stage-top">
+              <h2>EVENT</h2><span>JAN 23–24</span>
+            </div>
+            <p class="stage-question">What happens when all these makers meet?</p>
+            <div class="stage-columns">
+              <div><small>CAPTURE</small><b>People · projects · reactions · failures · discoveries · quotes ·
+                  atmosphere</b></div>
+              <div><small>CONTENT</small><b>Live Maker Stories · demos · reactions · walkthroughs · community
+                  moments</b></div>
+              <div><small>SUCCESS</small><b>Attendance · UGC · mentions · live views · press</b></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="road-stage-card" data-card="post-event">
+          <div class="stage-number">05</div>
+          <div class="stage-content">
+            <div class="stage-top">
+              <h2>POST-EVENT</h2><span>FEBRUARY</span>
+            </div>
+            <p class="stage-question">What did Kerala make because we made together?</p>
+            <div class="stage-columns">
+              <div><small>AUDIENCE</small><b>Makers · attendees · communities · people who missed it</b></div>
+              <div><small>CONTENT</small><b>Maker follow-ups · photo essays · short doc · lessons · “what happened
+                  next?”</b></div>
+              <div><small>SUCCESS</small><b>Maker retention · community growth · repeat participation</b></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="roadmap-footer">
+        <span><b>23–24 JAN 2027</b> · KOCHI</span>
+        <span class="core-tag"><i></i> MAKER STORIES / CORE ENGINE</span>
+        <span>HOVER / FOCUS A STAGE</span>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="page reveal" id="stories">
+    <div class="section-head">
+      <div>
+        <div class="small">02 / Core content engine</div>
+        <h2>Maker<br>Stories.</h2>
+      </div>
+      <p>Every onboarded maker gets a story system, not a single promotional post. The same raw material can become a
+        Reel, carousel, article, quote card, project walkthrough, event-day cut and post-event profile.</p>
+    </div>
+    <div class="grid">
+      <div class="card span4">
+        <div class="small">The person</div>
+        <h3>Why do you make?</h3>
+        <ul>
+          <li>The first thing they built</li>
+          <li>The obsession behind the project</li>
+          <li>What failed</li>
+          <li>What keeps them going</li>
+        </ul>
+      </div>
+      <div class="card span4">
+        <div class="small">The project</div>
+        <h3>Show me the thing.</h3>
+        <ul>
+          <li>What it does</li>
+          <li>How it works</li>
+          <li>What is weird / beautiful / useful</li>
+          <li>What changed from version 1</li>
+        </ul>
+      </div>
+      <div class="card span4">
+        <div class="small">The world</div>
+        <h3>Why should I care?</h3>
+        <ul>
+          <li>Problem or curiosity</li>
+          <li>Who it is for</li>
+          <li>What they learned</li>
+          <li>What they want to make next</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">“A maker profile should feel like a story about a human who happens to have made something
+      <s>extraordinary</s>.”
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab active" onclick="story('origin',this)">Origin</button><button class="tab"
+        onclick="story('build',this)">Build</button><button class="tab"
+        onclick="story('failure',this)">Failure</button><button class="tab"
+        onclick="story('belief',this)">Belief</button><button class="tab" onclick="story('future',this)">Next</button>
+    </div>
+    <div class="story-grid">
+      <div class="card">
+        <div id="origin" class="story active">
+          <div class="small">Story angle</div>
+          <h3>“I didn't set out to become a maker.”</h3>
+          <p>Trace the accidental beginning: childhood repair, curiosity, a broken thing, a campus club, a side project,
+            a problem nobody else wanted to solve.</p>
+        </div>
+        <div id="build" class="story">
+          <div class="small">Story angle</div>
+          <h3>“Here's how the impossible became a prototype.”</h3>
+          <p>Make the process visible. Hands, tools, sketches, failed versions, code, materials and the moment the
+            prototype finally works.</p>
+        </div>
+        <div id="failure" class="story">
+          <div class="small">Story angle</div>
+          <h3>“The version that didn't work.”</h3>
+          <p>Failure makes maker culture relatable. Show the wrong circuit, broken print, rejected idea or embarrassing
+            prototype — and what changed afterwards.</p>
+        </div>
+        <div id="belief" class="story">
+          <div class="small">Story angle</div>
+          <h3>“What I wish more people understood about making.”</h3>
+          <p>Give the maker a point of view. This is where a project becomes a culture story rather than a product
+            advertisement.</p>
+        </div>
+        <div id="future" class="story">
+          <div class="small">Story angle</div>
+          <h3>“If I had one more year…”</h3>
+          <p>End each profile with the next experiment. It creates a natural bridge to the Faire and gives the audience
+            a reason to follow the maker after the event.</p>
+        </div>
+      </div>
+      <div class="card template">
+        <div class="small">One maker → many outputs</div>
+        <h3>Content multiplication</h3>
+        <p><strong>1 interview</strong> → 1 hero Reel + 1 long-form article + 3 short clips + 1 carousel + 5 quote cards
+          + 1 project walkthrough + event-day follow-up + post-event story.</p>
+        <p><strong>Maker publishes?</strong> Yes, whenever possible. Co-create the story and give the maker
+          ready-to-post cuts, captions and assets so their own audience becomes an amplification layer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page reveal" id="content">
+    <div class="section-head">
+      <div>
+        <div class="small">03 / Content architecture</div>
+        <h2>What we<br>publish.</h2>
+      </div>
+      <p>Do not create a generic “innovation content calendar.” Build a recognizable editorial universe around making,
+        makers and Kerala.</p>
+    </div>
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Series</th>
+          <th>What it does</th>
+          <th>Formats</th>
+          <th>Best phase</th>
+          <th>Who can publish / feature</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>KERALA ALREADY MAKES</b></td>
+          <td>Proves that making already exists across the state.</td>
+          <td>Reels, photo essays, maps, articles</td>
+          <td>Awareness → Interaction</td>
+          <td>Local makers, community voices, editorial team</td>
+        </tr>
+        <tr>
+          <td><b>MAKER STORY / 001</b></td>
+          <td>Human-first profile of an onboarded maker.</td>
+          <td>Hero Reel, article, carousel</td>
+          <td>All phases</td>
+          <td>The maker + Maker Faire team</td>
+        </tr>
+        <tr>
+          <td><b>THE THING I MADE</b></td>
+          <td>Project-first, satisfying visual explanation.</td>
+          <td>60-sec demo, macro shots, diagram</td>
+          <td>Interaction → Pre-event</td>
+          <td>Maker</td>
+        </tr>
+        <tr>
+          <td><b>WHY I MAKE</b></td>
+          <td>Belief / identity / origin story.</td>
+          <td>Talking-head, quote, podcast clip</td>
+          <td>Interaction</td>
+          <td>Maker / community builder</td>
+        </tr>
+        <tr>
+          <td><b>FROM MAKER PARTY TO MAKER FAIRE</b></td>
+          <td>Connects Kerala's maker history without claiming a simplistic causal chain.</td>
+          <td>Timeline, archive reel, interview</td>
+          <td>Awareness</td>
+          <td>Past organizers / community</td>
+        </tr>
+        <tr>
+          <td><b>NOT JUST TECH</b></td>
+          <td>Expands “maker” to craft, food, art, repair, fashion, music, wood, metal, code and more.</td>
+          <td>Reels, portraits, mini-docs</td>
+          <td>Awareness → Interaction</td>
+          <td>Cross-disciplinary makers</td>
+        </tr>
+        <tr>
+          <td><b>BUILD WITH ME</b></td>
+          <td>Turns passive viewers into participants.</td>
+          <td>Micro tutorial, challenge, prompt</td>
+          <td>Interaction</td>
+          <td>Makers / educators</td>
+        </tr>
+        <tr>
+          <td><b>MEET THE MAKER</b></td>
+          <td>Creates anticipation for the Faire.</td>
+          <td>Portrait + 3 facts + project reveal</td>
+          <td>Pre-event</td>
+          <td>Onboarded makers</td>
+        </tr>
+        <tr>
+          <td><b>MAKER FAIRE, IRL</b></td>
+          <td>Live documentation of discovery and participation.</td>
+          <td>Stories, reels, interviews, photo diary</td>
+          <td>Event</td>
+          <td>Capture team + makers + attendees</td>
+        </tr>
+        <tr>
+          <td><b>WHAT HAPPENED NEXT?</b></td>
+          <td>Shows that the Faire created relationships and momentum.</td>
+          <td>Follow-up profiles, mini-doc, case study</td>
+          <td>Post-event</td>
+          <td>Makers + organizers</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="grid" style="margin-top:20px">
+      <div class="card span4">
+        <div class="small">Awareness</div>
+        <h3>Make people curious.</h3>
+        <p>What is Maker Faire? Who counts as a maker? Why not Kerala? What did people make here before “maker” became a
+          label?</p>
+      </div>
+      <div class="card span4">
+        <div class="small">Interaction</div>
+        <h3>Make people answer.</h3>
+        <p>What have you repaired? What have you made? Who is the maker in your family? What would you build if you had
+          a workshop?</p>
+      </div>
+      <div class="card span4">
+        <div class="small">Pre-event</div>
+        <h3>Make people choose.</h3>
+        <p>Which maker will you meet? Which project will you try? What will you bring? Who are you bringing with you?
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page reveal" id="calendar">
+    <div class="section-head">
+      <div>
+        <div class="small">04 / Editorial calendar</div>
+        <h2>Build the<br>anticipation.</h2>
+      </div>
+      <p>Cadence is deliberately story-led. The event announcement should not dominate the feed; the growing cast of
+        makers should.</p>
+    </div>
+    <div class="accordion">
+      <div class="acc open"><button onclick="acc(this)">MID-SEP → OCT / AWARENESS <span>+</span></button>
+        <div class="body">
+          <ul>
+            <li><b>Maker Faire 101:</b> “It isn't a conference. It's a place where people show what they make.”</li>
+            <li><b>Kerala Already Makes:</b> 4–6 stories showing making outside the obvious tech/startup frame.</li>
+            <li><b>Maker Party Kochi archive:</b> the 2014 story, including its 30 stations and 4,000+ attendees, as a
+              historical signal of community appetite.</li>
+            <li><b>First Maker Story pilots:</b> 2–3 strong profiles to establish the visual/editorial grammar.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc"><button onclick="acc(this)">NOV / INTERACTION <span>+</span></button>
+        <div class="body">
+          <ul>
+            <li>2–3 Maker Stories per week, mixing established and emerging makers.</li>
+            <li>Audience prompts: “Show us what you made”, “Nominate a maker”, “What would you build?”</li>
+            <li>Maker-led posts: ask featured makers to publish their own version / behind-the-scenes story.</li>
+            <li>Community formats: TinkerSpace tour, MakerGram conversation, KSUM/Maker Village ecosystem stories.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc"><button onclick="acc(this)">DEC → JAN 22 / PRE-EVENT <span>+</span></button>
+        <div class="body">
+          <ul>
+            <li>“Meet the Maker” countdown begins.</li>
+            <li>Every confirmed maker gets a project reveal + human profile + “what to try” hook.</li>
+            <li>Build guides: “What can I actually do at Maker Faire?”</li>
+            <li>Audience utility: schedule, venue, accessibility, family/student guidance, registration and FAQ.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc"><button onclick="acc(this)">JAN 23–24 / EVENT <span>+</span></button>
+        <div class="body">
+          <ul>
+            <li>Capture 10–20 micro Maker Stories per day: name, project, why, one surprising detail.</li>
+            <li>Publish “maker of the moment”, project demos, reactions and failures.</li>
+            <li>Give makers a same-day asset pack: portrait, 10–20s clip, tag/caption suggestion.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc"><button onclick="acc(this)">FEB / POST-EVENT <span>+</span></button>
+        <div class="body">
+          <ul>
+            <li>Hero recap: “What Kerala made together.”</li>
+            <li>5–10 deeper Maker Stories: what changed after the Faire.</li>
+            <li>Data story: makers, projects, attendees, workshops, states represented, community connections — use
+              verified final numbers only.</li>
+            <li>“What happens next?” follow-ups to keep the maker network alive.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page reveal" id="ops">
+    <div class="section-head">
+      <div>
+        <div class="small">05 / Maker Story operating system</div>
+        <h2>Make the<br>content machine.</h2>
+      </div>
+      <p>The team should be able to onboard a maker on Monday and have a complete story package ready for distribution
+        by Friday.</p>
+    </div>
+    <div class="grid">
+      <div class="card span6">
+        <div class="small">01 / Intake</div>
+        <h3>Maker story form</h3>
+        <ul>
+          <li>Name / project / location / category</li>
+          <li>What are you presenting?</li>
+          <li>Why did you make it?</li>
+          <li>What failed?</li>
+          <li>What do you want visitors to try?</li>
+          <li>What are you making next?</li>
+          <li>Links, social handles, photo/video assets</li>
+        </ul>
+      </div>
+      <div class="card span6">
+        <div class="small">02 / Interview</div>
+        <h3>30-minute conversation</h3>
+        <ul>
+          <li>5 min: origin</li>
+          <li>10 min: project + process</li>
+          <li>5 min: failure / unexpected discovery</li>
+          <li>5 min: belief about making</li>
+          <li>5 min: Faire invitation / next build</li>
+        </ul>
+      </div>
+      <div class="card span4">
+        <div class="small">03 / Capture</div>
+        <h3>Film the hands.</h3>
+        <p>Face, hands, tools, materials, prototype, failure, environment, finished project. Avoid only talking-head
+          footage.</p>
+      </div>
+      <div class="card span4">
+        <div class="small">04 / Package</div>
+        <h3>One story, many cuts.</h3>
+        <p>Hero Reel + short clips + carousel + article + quotes + portrait + maker-provided caption + event-day update.
+        </p>
+      </div>
+      <div class="card span4">
+        <div class="small">05 / Amplify</div>
+        <h3>Let the maker own it.</h3>
+        <p>Give every maker a ready-to-share kit. Encourage cross-posting, tagging and their own first-person version.
+        </p>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="small">Editorial rule</div>
+      <h2>PEOPLE > ORGANISATIONS.<br>STORIES > ANNOUNCEMENTS.</h2>
+      <p>Organisations provide context. Makers provide the heartbeat. Do not turn every post into an institutional
+        announcement.</p>
+    </div>
+  </section>
+
+  <section class="page reveal">
+    <div class="section-head">
+      <div>
+        <div class="small">06 / People & ecosystem</div>
+        <h2>Who can<br>carry the story?</h2>
+      </div>
+      <p>Use people as potential storytellers only after verifying their current role, availability and relationship to
+        the 2027 Faire. Never imply participation until confirmed.</p>
+    </div>
+    <div class="grid">
+      <div class="card span4">
+        <h3>Kerala / Kochi</h3>
+        <ul>
+          <li>Arvind Sanjeev — design / technology / experimental making</li>
+          <li>Salman Faris — hardware / maker community</li>
+          <li>Kurian Jacob — maker community / TinkerSpace</li>
+          <li>Moosa Mehar — TinkerHub / community building</li>
+          <li>Praveen Sridhar — experiential / peer learning</li>
+          <li>Abid Aboobacker — TinkerHub / maker profile</li>
+          <li>Nidhiya V Raj — maker / community journey</li>
+          <li>Gopi Krishnan — TinkerHub campus history</li>
+        </ul>
+      </div>
+      <div class="card span4">
+        <h3>Infrastructure / communities</h3>
+        <ul>
+          <li>TinkerHub / TinkerSpace</li>
+          <li>MakerGram</li>
+          <li>Kerala Startup Mission</li>
+          <li>Maker Village</li>
+          <li>Super FabLab Kerala</li>
+          <li>Campus maker communities</li>
+          <li>Independent repairers, artists, craftspeople, builders</li>
+        </ul>
+      </div>
+      <div class="card span4">
+        <h3>India-wide voices</h3>
+        <ul>
+          <li>Vaibhav Chhabra — Maker’s Asylum</li>
+          <li>Anool Mahidharia — Maker’s Asylum</li>
+          <li>Other Fab / STEAM / open hardware communities</li>
+          <li>Artists and interdisciplinary builders</li>
+          <li>Hardware founders and indie makers</li>
+        </ul>
+        <p class="small">All names: verify current affiliations and event status.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page reveal">
+    <div class="section-head">
+      <div>
+        <div class="small">07 / Measurement</div>
+        <h2>Measure the<br>culture shift.</h2>
+      </div>
+      <p>Do not judge the campaign only by impressions. The ladder should move from recognition to participation to
+        continuity.</p>
+    </div>
+    <div class="grid">
+      <div class="card span4">
+        <div class="metric">01<br><small>Reach</small></div>
+        <p>Impressions, unique reach, video views, profile visits, search interest.</p>
+      </div>
+      <div class="card span4">
+        <div class="metric">02<br><small>Recognition</small></div>
+        <p>Branded search, direct traffic, mentions, “Maker Faire” recall in qualitative feedback.</p>
+      </div>
+      <div class="card span4">
+        <div class="metric">03<br><small>Interaction</small></div>
+        <p>Comments, shares, saves, replies, nominations, maker submissions and UGC.</p>
+      </div>
+      <div class="card span4">
+        <div class="metric">04<br><small>Participation</small></div>
+        <p>Registrations, Call for Makers applications, workshop sign-ups, volunteer/community joins.</p>
+      </div>
+      <div class="card span4">
+        <div class="metric">05<br><small>Community</small></div>
+        <p>Cross-posts, maker-to-maker introductions, new collaborations, repeat contributors.</p>
+      </div>
+      <div class="card span4">
+        <div class="metric">06<br><small>Continuity</small></div>
+        <p>February story views, maker follow-through, returning creators and post-event community activity.</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:30px">THE GOAL IS NOT TO MAKE KERALA INTERESTED IN MAKER FAIRE.<br>THE GOAL IS
+      TO MAKE KERALA REALISE IT HAS BEEN MAKING ALL ALONG.</div>
+  </section>
+
+  <section class="page reveal sources">
+    <div class="section-head">
+      <div>
+        <div class="small">08 / Research notes</div>
+        <h2>Grounded in<br>the ecosystem.</h2>
+      </div>
+      <p>This roadmap is based on the current official event listing, supplied brand guidance, and research into Kerala
+        / India maker communities. Verify operational facts before publishing.</p>
+    </div>
+    <div class="grid">
+      <div class="card span6">
+        <h3>Official references</h3>
+        <ul>
+          <li><a href="https://makerfaire.com/upcoming-faires/" target="_blank">Maker Faire — Upcoming Faires</a> —
+            currently lists Kochi for Jan 23–24, 2027.</li>
+          <li><a href="https://makerfaire.com/community/guidelines/" target="_blank">Maker Faire Licensing
+              Guidelines</a> — licensing, naming, social and identity context.</li>
+          <li><a href="https://makerfaire.com/wp-content/uploads/2021/08/MAKE_Style-Guide-web.pdf" target="_blank">MAKE
+              Style Guide PDF</a> — supplied guide: red #EA002A, cyan #00AEEF, white; Benton Sans Bold; logo rules.</li>
+        </ul>
+      </div>
+      <div class="card span6">
+        <h3>Kerala / India references</h3>
+        <ul>
+          <li><a href="https://tinkerhub.org/" target="_blank">TinkerHub</a> and TinkerSpace ecosystem.</li>
+          <li><a
+              href="https://medium.com/tinkerhub/fostering-a-culture-of-learning-tinkerhubs-approach-to-learning-stations-9b3216ca8867"
+              target="_blank">TinkerHub history / Maker Party Kochi</a> — 2014 event history and community impact.</li>
+          <li><a href="https://startupmission.kerala.gov.in/" target="_blank">Kerala Startup Mission</a> — startup,
+            incubation and maker infrastructure context.</li>
+          <li><a href="https://makergram.com/" target="_blank">MakerGram</a> — hardware and maker community context.
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="small">Brand implementation</div>
+      <h2>MAKE palette.<br>Maker energy.</h2>
+      <p>This file uses the guide's red, cyan, white and black/neutral foundation, with bold condensed display
+        typography as a practical web fallback for Benton Sans Bold. The official supplied guide should remain the
+        authority for final logo usage and licensed assets.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="small" style="color:#00aeef">Maker Faire Kochi 2027</div>
+    <h2>MAKE SOMETHING.<br>THEN TELL ITS STORY.</h2>
+    <p>Single-file interactive roadmap · responsive · printable · no framework dependencies · maker stories at the
+      centre.</p>
+  </footer>
+
+  <script>
+    function go(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }
+    function story(id, btn) {
+      document.querySelectorAll('.story').forEach(x => x.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.tab').forEach(x => x.classList.remove('active')); btn.classList.add('active');
+    }
+    function acc(btn) { btn.parentElement.classList.toggle('open') }
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }), { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(x => io.observe(x));
+  </script>
+
+  <script>
+    (() => {
+      const stops = [...document.querySelectorAll('.road-stop')];
+      const cards = [...document.querySelectorAll('.road-stage-card')];
+      const fill = document.querySelector('.road-fill');
+      if (!stops.length || !cards.length) return;
+
+      const order = stops.map(el => el.dataset.stage);
+
+      function setStage(stage) {
+        const i = order.indexOf(stage);
+        if (i < 0) return;
+        stops.forEach((el) => {
+          const active = el.dataset.stage === stage;
+          el.classList.toggle('active', active);
+          el.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        cards.forEach((el) => el.classList.toggle('active', el.dataset.card === stage));
+
+        if (fill) {
+          fill.style.width = (i * 25) + '%';
+          fill.style.background = (i % 2 === 0)
+            ? 'linear-gradient(90deg,var(--red),var(--cyan))'
+            : 'linear-gradient(90deg,var(--cyan),var(--red))';
+        }
+      }
+
+      stops.forEach((stop) => {
+        stop.addEventListener('mouseenter', () => setStage(stop.dataset.stage));
+        stop.addEventListener('focus', () => setStage(stop.dataset.stage));
+        stop.addEventListener('click', () => setStage(stop.dataset.stage));
+      });
+
+      setStage('awareness');
+    })();
+  </script>
 
 </body>
+
 </html>
