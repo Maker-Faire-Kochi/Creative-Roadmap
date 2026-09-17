@@ -1216,6 +1216,165 @@
         flex-direction: column
       }
     }
+
+    .view-stage,
+    .view-month {
+      display: none;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .view-stage.active,
+    .view-month.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .timeline-tabs {
+      margin-top: 16px;
+    }
+
+    .month-axis {
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #cfcfca;
+      border-radius: 99px;
+    }
+
+    .month-tick {
+      position: absolute;
+      top: -4px;
+      width: 12px;
+      height: 12px;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
+
+    .month-tick span {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .month-braces {
+      position: absolute;
+      bottom: 33px;
+      left: 0;
+      right: 0;
+      height: 100px;
+    }
+
+    .month-brace-group {
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .month-brace-group:not(.active) {
+      opacity: 0.5;
+    }
+
+    .month-brace-group:hover,
+    .month-brace-group.active {
+      opacity: 1;
+      transform: scale(1.05);
+      z-index: 10;
+    }
+
+    .brace-title {
+      text-align: center;
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      text-transform: uppercase;
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+
+    .brace-title span {
+      display: block;
+      font-family: Inter, Arial, sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      opacity: 0.6;
+      margin-bottom: 3px;
+    }
+
+    .brace-svg {
+      width: 100%;
+      height: 28px;
+      flex-shrink: 0;
+      color: var(--ink);
+      transition: color 0.25s;
+    }
+
+    .month-brace-group:nth-child(odd) .brace-svg {
+      color: var(--red);
+    }
+
+    .month-brace-group:nth-child(even) .brace-svg {
+      color: var(--cyan);
+    }
+
+    .month-brace-group:nth-child(odd) .brace-title {
+      color: var(--red);
+    }
+
+    .month-brace-group:nth-child(even) .brace-title {
+      color: var(--cyan);
+    }
+
+    @media(max-width:900px) {
+      .brace-title {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media(max-width:600px) {
+      .brace-title {
+        font-size: 0.7rem;
+      }
+
+      .brace-title span {
+        font-size: 0.45rem;
+      }
+
+      .brace-svg {
+        height: 18px;
+      }
+
+      .month-tick span {
+        font-size: 0.55rem;
+      }
+    }
   </style>
 </head>
 
@@ -1239,48 +1398,104 @@
         </div>
         <div class="roadmap-lead">
           <p>Five stages/phases, one continuous story. Hover or focus a stage to change the content card below.</p>
+          <div class="timeline-tabs tabs">
+            <button class="tab active" data-view="stage">Stage View</button>
+            <button class="tab" data-view="month">Month View</button>
+          </div>
         </div>
       </div>
 
       <div class="interactive-roadmap" aria-label="Interactive Maker Faire campaign roadmap">
-        <div class="road-line">
-          <div class="road-fill"></div>
+        <div class="view-stage active">
+          <div class="road-line">
+            <div class="road-fill"></div>
+          </div>
+
+          <button class="road-stop active" data-stage="awareness" aria-label="Awareness, mid September to October">
+            <span class="stop-ball"><i></i></span>
+            <span class="stop-index">01</span>
+            <span class="stop-name">Awareness</span>
+            <span class="stop-date">Mid-Sep → Oct</span>
+          </button>
+
+          <button class="road-stop" data-stage="interaction" aria-label="Interaction, November">
+            <span class="stop-ball"><i></i></span>
+            <span class="stop-index">02</span>
+            <span class="stop-name">Interaction</span>
+            <span class="stop-date">November</span>
+          </button>
+
+          <button class="road-stop" data-stage="pre-event" aria-label="Pre-event, December to January 22">
+            <span class="stop-ball"><i></i></span>
+            <span class="stop-index">03</span>
+            <span class="stop-name">Pre-event</span>
+            <span class="stop-date">Dec → Jan 22</span>
+          </button>
+
+          <button class="road-stop" data-stage="event" aria-label="Event, January 23 to 24">
+            <span class="stop-ball"><i></i></span>
+            <span class="stop-index">04</span>
+            <span class="stop-name">Event</span>
+            <span class="stop-date">Jan 23–24</span>
+          </button>
+
+          <button class="road-stop" data-stage="post-event" aria-label="Post-event, February">
+            <span class="stop-ball"><i></i></span>
+            <span class="stop-index">05</span>
+            <span class="stop-name">Post-event</span>
+            <span class="stop-date">February</span>
+          </button>
         </div>
 
-        <button class="road-stop active" data-stage="awareness" aria-label="Awareness, mid September to October">
-          <span class="stop-ball"><i></i></span>
-          <span class="stop-index">01</span>
-          <span class="stop-name">Awareness</span>
-          <span class="stop-date">Mid-Sep → Oct</span>
-        </button>
+        <div class="view-month">
+          <div class="month-axis">
+            <div class="month-tick" style="left: 0%"><span>Sep</span></div>
+            <div class="month-tick" style="left: 16.66%"><span>Oct</span></div>
+            <div class="month-tick" style="left: 33.33%"><span>Nov</span></div>
+            <div class="month-tick" style="left: 50%"><span>Dec</span></div>
+            <div class="month-tick" style="left: 66.66%"><span>Jan</span></div>
+            <div class="month-tick" style="left: 83.33%"><span>Feb</span></div>
+            <div class="month-tick" style="left: 100%"><span>Mar</span></div>
+          </div>
 
-        <button class="road-stop" data-stage="interaction" aria-label="Interaction, November">
-          <span class="stop-ball"><i></i></span>
-          <span class="stop-index">02</span>
-          <span class="stop-name">Interaction</span>
-          <span class="stop-date">November</span>
-        </button>
-
-        <button class="road-stop" data-stage="pre-event" aria-label="Pre-event, December to January 22">
-          <span class="stop-ball"><i></i></span>
-          <span class="stop-index">03</span>
-          <span class="stop-name">Pre-event</span>
-          <span class="stop-date">Dec → Jan 22</span>
-        </button>
-
-        <button class="road-stop" data-stage="event" aria-label="Event, January 23 to 24">
-          <span class="stop-ball"><i></i></span>
-          <span class="stop-index">04</span>
-          <span class="stop-name">Event</span>
-          <span class="stop-date">Jan 23–24</span>
-        </button>
-
-        <button class="road-stop" data-stage="post-event" aria-label="Post-event, February">
-          <span class="stop-ball"><i></i></span>
-          <span class="stop-index">05</span>
-          <span class="stop-name">Post-event</span>
-          <span class="stop-date">February</span>
-        </button>
+          <div class="month-braces">
+            <div class="month-brace-group active" style="left: 8.33%; width: 25%;" data-stage="awareness">
+              <div class="brace-title"><span>01</span>Awareness</div>
+              <svg class="brace-svg" preserveAspectRatio="none" viewBox="0 0 100 20">
+                <path d="M 0,20 Q 0,10 10,10 L 45,10 Q 50,10 50,0 Q 50,10 55,10 L 90,10 Q 100,10 100,20" fill="none"
+                  stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" />
+              </svg>
+            </div>
+            <div class="month-brace-group" style="left: 33.33%; width: 16.66%;" data-stage="interaction">
+              <div class="brace-title"><span>02</span>Interaction</div>
+              <svg class="brace-svg" preserveAspectRatio="none" viewBox="0 0 100 20">
+                <path d="M 0,20 Q 0,10 10,10 L 45,10 Q 50,10 50,0 Q 50,10 55,10 L 90,10 Q 100,10 100,20" fill="none"
+                  stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" />
+              </svg>
+            </div>
+            <div class="month-brace-group" style="left: 50%; width: 28.48%;" data-stage="pre-event">
+              <div class="brace-title"><span>03</span>Pre-event</div>
+              <svg class="brace-svg" preserveAspectRatio="none" viewBox="0 0 100 20">
+                <path d="M 0,20 Q 0,10 10,10 L 45,10 Q 50,10 50,0 Q 50,10 55,10 L 90,10 Q 100,10 100,20" fill="none"
+                  stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" />
+              </svg>
+            </div>
+            <div class="month-brace-group" style="left: 78.48%; width: 4.85%;" data-stage="event">
+              <div class="brace-title"><span>04</span>Event</div>
+              <svg class="brace-svg" preserveAspectRatio="none" viewBox="0 0 100 20">
+                <path d="M 0,20 Q 0,10 10,10 L 45,10 Q 50,10 50,0 Q 50,10 55,10 L 90,10 Q 100,10 100,20" fill="none"
+                  stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" />
+              </svg>
+            </div>
+            <div class="month-brace-group" style="left: 83.33%; width: 16.66%;" data-stage="post-event">
+              <div class="brace-title"><span>05</span>Post-event</div>
+              <svg class="brace-svg" preserveAspectRatio="none" viewBox="0 0 100 20">
+                <path d="M 0,20 Q 0,10 10,10 L 45,10 Q 50,10 50,0 Q 50,10 55,10 L 90,10 Q 100,10 100,20" fill="none"
+                  stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="road-cards">
@@ -1325,7 +1540,8 @@
             </div>
             <p class="stage-question">What will I discover, build, bring or participate in?</p>
             <div class="stage-columns">
-              <div><small>AUDIENCE</small><b>Attendees · students · educators · exhibitors · volunteers</b>
+              <div><small>AUDIENCE</small><b>Attendees · students · collab orgs · educators · exhibitors ·
+                  volunteers</b>
               </div>
               <div><small>CONTENT</small><b>Maker reveals · project walkthroughs · countdowns · what to bring ·
                   behind-the-build</b></div>
@@ -1865,8 +2081,14 @@
   <script>
     (() => {
       const stops = [...document.querySelectorAll('.road-stop')];
+      const braces = [...document.querySelectorAll('.month-brace-group')];
       const cards = [...document.querySelectorAll('.road-stage-card')];
       const fill = document.querySelector('.road-fill');
+
+      const viewTabs = document.querySelectorAll('.timeline-tabs .tab');
+      const viewStage = document.querySelector('.view-stage');
+      const viewMonth = document.querySelector('.view-month');
+
       if (!stops.length || !cards.length) return;
 
       const order = stops.map(el => el.dataset.stage);
@@ -1878,6 +2100,10 @@
           const active = el.dataset.stage === stage;
           el.classList.toggle('active', active);
           el.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        braces.forEach((el) => {
+          const active = el.dataset.stage === stage;
+          el.classList.toggle('active', active);
         });
         cards.forEach((el) => el.classList.toggle('active', el.dataset.card === stage));
 
@@ -1893,6 +2119,27 @@
         stop.addEventListener('mouseenter', () => setStage(stop.dataset.stage));
         stop.addEventListener('focus', () => setStage(stop.dataset.stage));
         stop.addEventListener('click', () => setStage(stop.dataset.stage));
+      });
+
+      braces.forEach((brace) => {
+        brace.addEventListener('mouseenter', () => setStage(brace.dataset.stage));
+        brace.addEventListener('focus', () => setStage(brace.dataset.stage));
+        brace.addEventListener('click', () => setStage(brace.dataset.stage));
+      });
+
+      viewTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          viewTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const mode = tab.dataset.view;
+          if (mode === 'stage') {
+            viewStage.classList.add('active');
+            viewMonth.classList.remove('active');
+          } else {
+            viewStage.classList.remove('active');
+            viewMonth.classList.add('active');
+          }
+        });
       });
 
       setStage('awareness');
