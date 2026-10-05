@@ -1,0 +1,43 @@
+/* Maker Faire Kochi — The Open Workshop. Drop-in CSS tokens + local fonts.
+   Paths assume this file stays at design-system/tokens/tokens.css. */
+
+@font-face { font-family: "Bricolage Grotesque"; font-weight: 400 800; font-display: block;
+  src: url("../assets/fonts/BricolageGrotesque-800-latin.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 500; font-display: block;
+  src: url("../assets/fonts/IBMPlexMono-500-latin.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 600; font-display: block;
+  src: url("../assets/fonts/IBMPlexMono-600-latin.woff2") format("woff2"); }
+@font-face { font-family: "Noto Sans Malayalam"; font-weight: 700; font-display: block;
+  src: url("../assets/fonts/NotoSansMalayalam-700-malayalam.woff2") format("woff2"); unicode-range: U+0D00-0D7F, U+200C-200D, U+25CC; }
+
+:root {
+  /* colour — Figma variables */
+  --mf-color-paper: #f4efdf;
+  --mf-color-ink: #20251f;
+  --mf-color-blue: #2854d9;
+  --mf-color-red: #ef432d;
+  --mf-color-yellow: #f7c928;
+  --mf-color-white: #ffffff;      /* logo only */
+  --mf-color-maker-red: #ed1c24;  /* official logo only */
+  --mf-color-maker-blue: #00aeef; /* official logo only */
+
+  /* space / radius */
+  --mf-space-4: 4px;
+  --mf-frame-margin: 64px;
+  --mf-radius-none: 0;
+
+  /* families */
+  --mf-font-display: "Bricolage Grotesque", sans-serif;
+  --mf-font-body: "Bricolage Grotesque", sans-serif;
+  --mf-font-label: "IBM Plex Mono", monospace;
+  --mf-font-malayalam: "Noto Sans Malayalam", sans-serif;
+}
+
+/* type roles */
+.mf-display { font-family: var(--mf-font-display); font-weight: 800; font-variation-settings: "opsz" 96;
+  text-transform: uppercase; line-height: 0.92; letter-spacing: -0.03em; }
+.mf-title { font-family: var(--mf-font-display); font-weight: 800; font-variation-settings: "opsz" 96; line-height: 1.1; }
+.mf-body { font-family: var(--mf-font-body); font-weight: 400; font-variation-settings: "opsz" 14; line-height: 1.28; }
+.mf-label { font-family: var(--mf-font-label); font-weight: 500; text-transform: uppercase; line-height: 1.12; }
+.mf-malayalam { font-family: var(--mf-font-malayalam); font-weight: 700; color: var(--mf-color-blue); line-height: 1.12; }
+.mf-rule { height: 1px; background: currentColor; } /* 2–4px at 1080px social/video scale */

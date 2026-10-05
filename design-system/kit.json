@@ -1,0 +1,2720 @@
+{
+ "source": {
+  "figma_file": "xczyTXBjbMPH9JXyYDeO8w",
+  "figma_name": "Maker Faire Kochi Moodeboard (Copy)",
+  "component_sets": {
+   "parts": "7:74 MF / Construction Parts",
+   "assemblies": "8:42 MF / Assemblies",
+   "wayfinding": "21:145 MF / Wayfinding Arrow"
+  }
+ },
+ "units": "SVG user units (viewBox). bbox = [x, y, width, height]. Path index = order of <path> elements in the file (Figma names them Vector, Vector_2, \u2026).",
+ "parts": {
+  "beam-blue": {
+   "file": "assets/kit/parts/beam-blue.svg",
+   "part": "beam",
+   "tone": "blue",
+   "figma_node": "7:5",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    16,
+    80,
+    208,
+    80
+   ],
+   "holes": [
+    [
+     56,
+     120
+    ],
+    [
+     184,
+     120
+    ]
+   ],
+   "note": "Pivot at either end hole; the centre is a slot."
+  },
+  "beam-ink": {
+   "file": "assets/kit/parts/beam-ink.svg",
+   "part": "beam",
+   "tone": "ink",
+   "figma_node": "7:11",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    16,
+    80,
+    208,
+    80
+   ],
+   "holes": [
+    [
+     56,
+     120
+    ],
+    [
+     184,
+     120
+    ]
+   ],
+   "note": "Pivot at either end hole; the centre is a slot."
+  },
+  "beam-red": {
+   "file": "assets/kit/parts/beam-red.svg",
+   "part": "beam",
+   "tone": "red",
+   "figma_node": "7:2",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    16,
+    80,
+    208,
+    80
+   ],
+   "holes": [
+    [
+     56,
+     120
+    ],
+    [
+     184,
+     120
+    ]
+   ],
+   "note": "Pivot at either end hole; the centre is a slot."
+  },
+  "beam-yellow": {
+   "file": "assets/kit/parts/beam-yellow.svg",
+   "part": "beam",
+   "tone": "yellow",
+   "figma_node": "7:8",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    16,
+    80,
+    208,
+    80
+   ],
+   "holes": [
+    [
+     56,
+     120
+    ],
+    [
+     184,
+     120
+    ]
+   ],
+   "note": "Pivot at either end hole; the centre is a slot."
+  },
+  "elbow-blue": {
+   "file": "assets/kit/parts/elbow-blue.svg",
+   "part": "elbow",
+   "tone": "blue",
+   "figma_node": "7:17",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    32,
+    24,
+    184,
+    184
+   ],
+   "holes": "three holes: top of the vertical arm, the corner, end of the horizontal arm (approx. \u2014 read from the artwork)",
+   "note": "Corner connection; pivot at the corner hole."
+  },
+  "elbow-ink": {
+   "file": "assets/kit/parts/elbow-ink.svg",
+   "part": "elbow",
+   "tone": "ink",
+   "figma_node": "7:23",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    32,
+    24,
+    184,
+    184
+   ],
+   "holes": "three holes: top of the vertical arm, the corner, end of the horizontal arm (approx. \u2014 read from the artwork)",
+   "note": "Corner connection; pivot at the corner hole."
+  },
+  "elbow-red": {
+   "file": "assets/kit/parts/elbow-red.svg",
+   "part": "elbow",
+   "tone": "red",
+   "figma_node": "7:14",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    32,
+    24,
+    184,
+    184
+   ],
+   "holes": "three holes: top of the vertical arm, the corner, end of the horizontal arm (approx. \u2014 read from the artwork)",
+   "note": "Corner connection; pivot at the corner hole."
+  },
+  "elbow-yellow": {
+   "file": "assets/kit/parts/elbow-yellow.svg",
+   "part": "elbow",
+   "tone": "yellow",
+   "figma_node": "7:20",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    32,
+    24,
+    184,
+    184
+   ],
+   "holes": "three holes: top of the vertical arm, the corner, end of the horizontal arm (approx. \u2014 read from the artwork)",
+   "note": "Corner connection; pivot at the corner hole."
+  },
+  "wheel-blue": {
+   "file": "assets/kit/parts/wheel-blue.svg",
+   "part": "wheel",
+   "tone": "blue",
+   "figma_node": "7:29",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    17.1,
+    17.1,
+    205.8,
+    205.8
+   ],
+   "center": [
+    120,
+    120
+   ],
+   "note": "Rotates about its centre."
+  },
+  "wheel-ink": {
+   "file": "assets/kit/parts/wheel-ink.svg",
+   "part": "wheel",
+   "tone": "ink",
+   "figma_node": "7:35",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    17.1,
+    17.1,
+    205.8,
+    205.8
+   ],
+   "center": [
+    120,
+    120
+   ],
+   "note": "Rotates about its centre."
+  },
+  "wheel-red": {
+   "file": "assets/kit/parts/wheel-red.svg",
+   "part": "wheel",
+   "tone": "red",
+   "figma_node": "7:26",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    17.1,
+    17.1,
+    205.8,
+    205.8
+   ],
+   "center": [
+    120,
+    120
+   ],
+   "note": "Rotates about its centre."
+  },
+  "wheel-yellow": {
+   "file": "assets/kit/parts/wheel-yellow.svg",
+   "part": "wheel",
+   "tone": "yellow",
+   "figma_node": "7:32",
+   "viewBox": "0 0 240 240",
+   "bbox": [
+    17.1,
+    17.1,
+    205.8,
+    205.8
+   ],
+   "center": [
+    120,
+    120
+   ],
+   "note": "Rotates about its centre."
+  }
+ },
+ "assemblies": {
+  "arrow-blue": {
+   "file": "assets/kit/assemblies/arrow-blue.svg",
+   "assembly": "Direction arrow",
+   "tone": "blue",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:171 full \u00b7 8:180 ink \u00b7 8:189 paper \u00b7 8:198 blue \u00b7 12:68 yellow",
+   "pivots": {
+    "tip_joint": [
+     504,
+     300
+    ],
+    "note": "Heads (2, 3) rotate about the tip joint. Folded state: path 2 \u221245\u00b0, path 3 +45\u00b0 (lying along the shaft). Unfold to 0\u00b0."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#2854d9",
+     "bbox": [
+      48,
+      252,
+      504,
+      96
+     ],
+     "role": "shaft beam"
+    },
+    {
+     "index": 2,
+     "fill": "#2854d9",
+     "bbox": [
+      312,
+      108,
+      240,
+      240
+     ],
+     "role": "upper head beam"
+    },
+    {
+     "index": 3,
+     "fill": "#2854d9",
+     "bbox": [
+      312,
+      252,
+      240,
+      240
+     ],
+     "role": "lower head beam"
+    },
+    {
+     "index": 4,
+     "fill": "#2854d9",
+     "bbox": [
+      478,
+      274,
+      52,
+      52
+     ],
+     "role": "tip hub bolt (joint)"
+    },
+    {
+     "index": 5,
+     "fill": "#2854d9",
+     "bbox": [
+      75,
+      279,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 shaft tail"
+    },
+    {
+     "index": 6,
+     "fill": "#2854d9",
+     "bbox": [
+      339,
+      135,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 upper head end"
+    },
+    {
+     "index": 7,
+     "fill": "#2854d9",
+     "bbox": [
+      339,
+      423,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 lower head end"
+    }
+   ]
+  },
+  "arrow-full": {
+   "file": "assets/kit/assemblies/arrow-full.svg",
+   "assembly": "Direction arrow",
+   "tone": "full",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:171 full \u00b7 8:180 ink \u00b7 8:189 paper \u00b7 8:198 blue \u00b7 12:68 yellow",
+   "pivots": {
+    "tip_joint": [
+     504,
+     300
+    ],
+    "note": "Heads (2, 3) rotate about the tip joint. Folded state: path 2 \u221245\u00b0, path 3 +45\u00b0 (lying along the shaft). Unfold to 0\u00b0."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#2854d9",
+     "bbox": [
+      48,
+      252,
+      504,
+      96
+     ],
+     "role": "shaft beam"
+    },
+    {
+     "index": 2,
+     "fill": "#ef432d",
+     "bbox": [
+      312,
+      108,
+      240,
+      240
+     ],
+     "role": "upper head beam"
+    },
+    {
+     "index": 3,
+     "fill": "#f7c928",
+     "bbox": [
+      312,
+      252,
+      240,
+      240
+     ],
+     "role": "lower head beam"
+    },
+    {
+     "index": 4,
+     "fill": "#20251f",
+     "bbox": [
+      478,
+      274,
+      52,
+      52
+     ],
+     "role": "tip hub bolt (joint)"
+    },
+    {
+     "index": 5,
+     "fill": "#20251f",
+     "bbox": [
+      75,
+      279,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 shaft tail"
+    },
+    {
+     "index": 6,
+     "fill": "#20251f",
+     "bbox": [
+      339,
+      135,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 upper head end"
+    },
+    {
+     "index": 7,
+     "fill": "#20251f",
+     "bbox": [
+      339,
+      423,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 lower head end"
+    }
+   ]
+  },
+  "arrow-ink": {
+   "file": "assets/kit/assemblies/arrow-ink.svg",
+   "assembly": "Direction arrow",
+   "tone": "ink",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:171 full \u00b7 8:180 ink \u00b7 8:189 paper \u00b7 8:198 blue \u00b7 12:68 yellow",
+   "pivots": {
+    "tip_joint": [
+     504,
+     300
+    ],
+    "note": "Heads (2, 3) rotate about the tip joint. Folded state: path 2 \u221245\u00b0, path 3 +45\u00b0 (lying along the shaft). Unfold to 0\u00b0."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#20251f",
+     "bbox": [
+      48,
+      252,
+      504,
+      96
+     ],
+     "role": "shaft beam"
+    },
+    {
+     "index": 2,
+     "fill": "#20251f",
+     "bbox": [
+      312,
+      108,
+      240,
+      240
+     ],
+     "role": "upper head beam"
+    },
+    {
+     "index": 3,
+     "fill": "#20251f",
+     "bbox": [
+      312,
+      252,
+      240,
+      240
+     ],
+     "role": "lower head beam"
+    },
+    {
+     "index": 4,
+     "fill": "#20251f",
+     "bbox": [
+      478,
+      274,
+      52,
+      52
+     ],
+     "role": "tip hub bolt (joint)"
+    },
+    {
+     "index": 5,
+     "fill": "#20251f",
+     "bbox": [
+      75,
+      279,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 shaft tail"
+    },
+    {
+     "index": 6,
+     "fill": "#20251f",
+     "bbox": [
+      339,
+      135,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 upper head end"
+    },
+    {
+     "index": 7,
+     "fill": "#20251f",
+     "bbox": [
+      339,
+      423,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 lower head end"
+    }
+   ]
+  },
+  "arrow-paper": {
+   "file": "assets/kit/assemblies/arrow-paper.svg",
+   "assembly": "Direction arrow",
+   "tone": "paper",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:171 full \u00b7 8:180 ink \u00b7 8:189 paper \u00b7 8:198 blue \u00b7 12:68 yellow",
+   "pivots": {
+    "tip_joint": [
+     504,
+     300
+    ],
+    "note": "Heads (2, 3) rotate about the tip joint. Folded state: path 2 \u221245\u00b0, path 3 +45\u00b0 (lying along the shaft). Unfold to 0\u00b0."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f4efdf",
+     "bbox": [
+      48,
+      252,
+      504,
+      96
+     ],
+     "role": "shaft beam"
+    },
+    {
+     "index": 2,
+     "fill": "#f4efdf",
+     "bbox": [
+      312,
+      108,
+      240,
+      240
+     ],
+     "role": "upper head beam"
+    },
+    {
+     "index": 3,
+     "fill": "#f4efdf",
+     "bbox": [
+      312,
+      252,
+      240,
+      240
+     ],
+     "role": "lower head beam"
+    },
+    {
+     "index": 4,
+     "fill": "#f4efdf",
+     "bbox": [
+      478,
+      274,
+      52,
+      52
+     ],
+     "role": "tip hub bolt (joint)"
+    },
+    {
+     "index": 5,
+     "fill": "#f4efdf",
+     "bbox": [
+      75,
+      279,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 shaft tail"
+    },
+    {
+     "index": 6,
+     "fill": "#f4efdf",
+     "bbox": [
+      339,
+      135,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 upper head end"
+    },
+    {
+     "index": 7,
+     "fill": "#f4efdf",
+     "bbox": [
+      339,
+      423,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 lower head end"
+    }
+   ]
+  },
+  "arrow-yellow": {
+   "file": "assets/kit/assemblies/arrow-yellow.svg",
+   "assembly": "Direction arrow",
+   "tone": "yellow",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:171 full \u00b7 8:180 ink \u00b7 8:189 paper \u00b7 8:198 blue \u00b7 12:68 yellow",
+   "pivots": {
+    "tip_joint": [
+     504,
+     300
+    ],
+    "note": "Heads (2, 3) rotate about the tip joint. Folded state: path 2 \u221245\u00b0, path 3 +45\u00b0 (lying along the shaft). Unfold to 0\u00b0."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f7c928",
+     "bbox": [
+      48,
+      252,
+      504,
+      96
+     ],
+     "role": "shaft beam"
+    },
+    {
+     "index": 2,
+     "fill": "#f7c928",
+     "bbox": [
+      312,
+      108,
+      240,
+      240
+     ],
+     "role": "upper head beam"
+    },
+    {
+     "index": 3,
+     "fill": "#f7c928",
+     "bbox": [
+      312,
+      252,
+      240,
+      240
+     ],
+     "role": "lower head beam"
+    },
+    {
+     "index": 4,
+     "fill": "#f7c928",
+     "bbox": [
+      478,
+      274,
+      52,
+      52
+     ],
+     "role": "tip hub bolt (joint)"
+    },
+    {
+     "index": 5,
+     "fill": "#f7c928",
+     "bbox": [
+      75,
+      279,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 shaft tail"
+    },
+    {
+     "index": 6,
+     "fill": "#f7c928",
+     "bbox": [
+      339,
+      135,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 upper head end"
+    },
+    {
+     "index": 7,
+     "fill": "#f7c928",
+     "bbox": [
+      339,
+      423,
+      42,
+      42
+     ],
+     "role": "bolt \u2014 lower head end"
+    }
+   ]
+  },
+  "crane-blue": {
+   "file": "assets/kit/assemblies/crane-blue.svg",
+   "assembly": "Crane",
+   "tone": "blue",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:107 full \u00b7 8:123 ink \u00b7 8:139 paper \u00b7 8:155 blue \u00b7 12:52 yellow",
+   "pivots": {
+    "boom_pivot": [
+     216,
+     252
+    ],
+    "cable_top": [
+     486,
+     91
+    ],
+    "note": "Cable (1) can scale from its top (486,91) and the hook (2) translate with it \u2014 hook lowering. Boom (6) pivots on bolt 7 but the strut (5) would detach; move the whole crane instead of rotating the boom alone."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#2854d9",
+     "bbox": [
+      481.2,
+      91,
+      10,
+      264
+     ],
+     "role": "hoist cable"
+    },
+    {
+     "index": 2,
+     "fill": "#2854d9",
+     "bbox": [
+      454.2,
+      347,
+      64,
+      64
+     ],
+     "role": "hook"
+    },
+    {
+     "index": 3,
+     "fill": "#2854d9",
+     "bbox": [
+      68,
+      478,
+      344,
+      80
+     ],
+     "role": "base beam"
+    },
+    {
+     "index": 4,
+     "fill": "#2854d9",
+     "bbox": [
+      176,
+      212,
+      80,
+      346
+     ],
+     "role": "mast"
+    },
+    {
+     "index": 5,
+     "fill": "#2854d9",
+     "bbox": [
+      188,
+      140,
+      201.5,
+      308
+     ],
+     "role": "brace strut"
+    },
+    {
+     "index": 6,
+     "fill": "#2854d9",
+     "bbox": [
+      72.1,
+      56,
+      454.1,
+      296
+     ],
+     "role": "boom (jib)"
+    },
+    {
+     "index": 7,
+     "fill": "#2854d9",
+     "bbox": [
+      192,
+      228,
+      48,
+      48
+     ],
+     "role": "mast\u2013boom pivot bolt"
+    },
+    {
+     "index": 8,
+     "fill": "#2854d9",
+     "bbox": [
+      342.5,
+      149,
+      38,
+      38
+     ],
+     "role": "boom bolt (strut joint)"
+    },
+    {
+     "index": 9,
+     "fill": "#2854d9",
+     "bbox": [
+      196,
+      400,
+      40,
+      40
+     ],
+     "role": "mast bolt"
+    },
+    {
+     "index": 10,
+     "fill": "#2854d9",
+     "bbox": [
+      196,
+      498,
+      40,
+      40
+     ],
+     "role": "mast foot bolt"
+    },
+    {
+     "index": 11,
+     "fill": "#2854d9",
+     "bbox": [
+      92.1,
+      292,
+      40,
+      40
+     ],
+     "role": "boom tail bolt"
+    },
+    {
+     "index": 12,
+     "fill": "#2854d9",
+     "bbox": [
+      456.2,
+      66,
+      60,
+      60
+     ],
+     "role": "tip pulley"
+    },
+    {
+     "index": 13,
+     "fill": "#2854d9",
+     "bbox": [
+      474.2,
+      84,
+      24,
+      24
+     ],
+     "role": "tip pulley bolt"
+    }
+   ]
+  },
+  "crane-full": {
+   "file": "assets/kit/assemblies/crane-full.svg",
+   "assembly": "Crane",
+   "tone": "full",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:107 full \u00b7 8:123 ink \u00b7 8:139 paper \u00b7 8:155 blue \u00b7 12:52 yellow",
+   "pivots": {
+    "boom_pivot": [
+     216,
+     252
+    ],
+    "cable_top": [
+     486,
+     91
+    ],
+    "note": "Cable (1) can scale from its top (486,91) and the hook (2) translate with it \u2014 hook lowering. Boom (6) pivots on bolt 7 but the strut (5) would detach; move the whole crane instead of rotating the boom alone."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#20251f",
+     "bbox": [
+      481.2,
+      91,
+      10,
+      264
+     ],
+     "role": "hoist cable"
+    },
+    {
+     "index": 2,
+     "fill": "#f7c928",
+     "bbox": [
+      454.2,
+      347,
+      64,
+      64
+     ],
+     "role": "hook"
+    },
+    {
+     "index": 3,
+     "fill": "#f7c928",
+     "bbox": [
+      68,
+      478,
+      344,
+      80
+     ],
+     "role": "base beam"
+    },
+    {
+     "index": 4,
+     "fill": "#2854d9",
+     "bbox": [
+      176,
+      212,
+      80,
+      346
+     ],
+     "role": "mast"
+    },
+    {
+     "index": 5,
+     "fill": "#f7c928",
+     "bbox": [
+      188,
+      140,
+      201.5,
+      308
+     ],
+     "role": "brace strut"
+    },
+    {
+     "index": 6,
+     "fill": "#ef432d",
+     "bbox": [
+      72.1,
+      56,
+      454.1,
+      296
+     ],
+     "role": "boom (jib)"
+    },
+    {
+     "index": 7,
+     "fill": "#20251f",
+     "bbox": [
+      192,
+      228,
+      48,
+      48
+     ],
+     "role": "mast\u2013boom pivot bolt"
+    },
+    {
+     "index": 8,
+     "fill": "#20251f",
+     "bbox": [
+      342.5,
+      149,
+      38,
+      38
+     ],
+     "role": "boom bolt (strut joint)"
+    },
+    {
+     "index": 9,
+     "fill": "#20251f",
+     "bbox": [
+      196,
+      400,
+      40,
+      40
+     ],
+     "role": "mast bolt"
+    },
+    {
+     "index": 10,
+     "fill": "#20251f",
+     "bbox": [
+      196,
+      498,
+      40,
+      40
+     ],
+     "role": "mast foot bolt"
+    },
+    {
+     "index": 11,
+     "fill": "#20251f",
+     "bbox": [
+      92.1,
+      292,
+      40,
+      40
+     ],
+     "role": "boom tail bolt"
+    },
+    {
+     "index": 12,
+     "fill": "#f7c928",
+     "bbox": [
+      456.2,
+      66,
+      60,
+      60
+     ],
+     "role": "tip pulley"
+    },
+    {
+     "index": 13,
+     "fill": "#20251f",
+     "bbox": [
+      474.2,
+      84,
+      24,
+      24
+     ],
+     "role": "tip pulley bolt"
+    }
+   ]
+  },
+  "crane-ink": {
+   "file": "assets/kit/assemblies/crane-ink.svg",
+   "assembly": "Crane",
+   "tone": "ink",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:107 full \u00b7 8:123 ink \u00b7 8:139 paper \u00b7 8:155 blue \u00b7 12:52 yellow",
+   "pivots": {
+    "boom_pivot": [
+     216,
+     252
+    ],
+    "cable_top": [
+     486,
+     91
+    ],
+    "note": "Cable (1) can scale from its top (486,91) and the hook (2) translate with it \u2014 hook lowering. Boom (6) pivots on bolt 7 but the strut (5) would detach; move the whole crane instead of rotating the boom alone."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#20251f",
+     "bbox": [
+      481.2,
+      91,
+      10,
+      264
+     ],
+     "role": "hoist cable"
+    },
+    {
+     "index": 2,
+     "fill": "#20251f",
+     "bbox": [
+      454.2,
+      347,
+      64,
+      64
+     ],
+     "role": "hook"
+    },
+    {
+     "index": 3,
+     "fill": "#20251f",
+     "bbox": [
+      68,
+      478,
+      344,
+      80
+     ],
+     "role": "base beam"
+    },
+    {
+     "index": 4,
+     "fill": "#20251f",
+     "bbox": [
+      176,
+      212,
+      80,
+      346
+     ],
+     "role": "mast"
+    },
+    {
+     "index": 5,
+     "fill": "#20251f",
+     "bbox": [
+      188,
+      140,
+      201.5,
+      308
+     ],
+     "role": "brace strut"
+    },
+    {
+     "index": 6,
+     "fill": "#20251f",
+     "bbox": [
+      72.1,
+      56,
+      454.1,
+      296
+     ],
+     "role": "boom (jib)"
+    },
+    {
+     "index": 7,
+     "fill": "#20251f",
+     "bbox": [
+      192,
+      228,
+      48,
+      48
+     ],
+     "role": "mast\u2013boom pivot bolt"
+    },
+    {
+     "index": 8,
+     "fill": "#20251f",
+     "bbox": [
+      342.5,
+      149,
+      38,
+      38
+     ],
+     "role": "boom bolt (strut joint)"
+    },
+    {
+     "index": 9,
+     "fill": "#20251f",
+     "bbox": [
+      196,
+      400,
+      40,
+      40
+     ],
+     "role": "mast bolt"
+    },
+    {
+     "index": 10,
+     "fill": "#20251f",
+     "bbox": [
+      196,
+      498,
+      40,
+      40
+     ],
+     "role": "mast foot bolt"
+    },
+    {
+     "index": 11,
+     "fill": "#20251f",
+     "bbox": [
+      92.1,
+      292,
+      40,
+      40
+     ],
+     "role": "boom tail bolt"
+    },
+    {
+     "index": 12,
+     "fill": "#20251f",
+     "bbox": [
+      456.2,
+      66,
+      60,
+      60
+     ],
+     "role": "tip pulley"
+    },
+    {
+     "index": 13,
+     "fill": "#20251f",
+     "bbox": [
+      474.2,
+      84,
+      24,
+      24
+     ],
+     "role": "tip pulley bolt"
+    }
+   ]
+  },
+  "crane-paper": {
+   "file": "assets/kit/assemblies/crane-paper.svg",
+   "assembly": "Crane",
+   "tone": "paper",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:107 full \u00b7 8:123 ink \u00b7 8:139 paper \u00b7 8:155 blue \u00b7 12:52 yellow",
+   "pivots": {
+    "boom_pivot": [
+     216,
+     252
+    ],
+    "cable_top": [
+     486,
+     91
+    ],
+    "note": "Cable (1) can scale from its top (486,91) and the hook (2) translate with it \u2014 hook lowering. Boom (6) pivots on bolt 7 but the strut (5) would detach; move the whole crane instead of rotating the boom alone."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f4efdf",
+     "bbox": [
+      481.2,
+      91,
+      10,
+      264
+     ],
+     "role": "hoist cable"
+    },
+    {
+     "index": 2,
+     "fill": "#f4efdf",
+     "bbox": [
+      454.2,
+      347,
+      64,
+      64
+     ],
+     "role": "hook"
+    },
+    {
+     "index": 3,
+     "fill": "#f4efdf",
+     "bbox": [
+      68,
+      478,
+      344,
+      80
+     ],
+     "role": "base beam"
+    },
+    {
+     "index": 4,
+     "fill": "#f4efdf",
+     "bbox": [
+      176,
+      212,
+      80,
+      346
+     ],
+     "role": "mast"
+    },
+    {
+     "index": 5,
+     "fill": "#f4efdf",
+     "bbox": [
+      188,
+      140,
+      201.5,
+      308
+     ],
+     "role": "brace strut"
+    },
+    {
+     "index": 6,
+     "fill": "#f4efdf",
+     "bbox": [
+      72.1,
+      56,
+      454.1,
+      296
+     ],
+     "role": "boom (jib)"
+    },
+    {
+     "index": 7,
+     "fill": "#f4efdf",
+     "bbox": [
+      192,
+      228,
+      48,
+      48
+     ],
+     "role": "mast\u2013boom pivot bolt"
+    },
+    {
+     "index": 8,
+     "fill": "#f4efdf",
+     "bbox": [
+      342.5,
+      149,
+      38,
+      38
+     ],
+     "role": "boom bolt (strut joint)"
+    },
+    {
+     "index": 9,
+     "fill": "#f4efdf",
+     "bbox": [
+      196,
+      400,
+      40,
+      40
+     ],
+     "role": "mast bolt"
+    },
+    {
+     "index": 10,
+     "fill": "#f4efdf",
+     "bbox": [
+      196,
+      498,
+      40,
+      40
+     ],
+     "role": "mast foot bolt"
+    },
+    {
+     "index": 11,
+     "fill": "#f4efdf",
+     "bbox": [
+      92.1,
+      292,
+      40,
+      40
+     ],
+     "role": "boom tail bolt"
+    },
+    {
+     "index": 12,
+     "fill": "#f4efdf",
+     "bbox": [
+      456.2,
+      66,
+      60,
+      60
+     ],
+     "role": "tip pulley"
+    },
+    {
+     "index": 13,
+     "fill": "#f4efdf",
+     "bbox": [
+      474.2,
+      84,
+      24,
+      24
+     ],
+     "role": "tip pulley bolt"
+    }
+   ]
+  },
+  "crane-yellow": {
+   "file": "assets/kit/assemblies/crane-yellow.svg",
+   "assembly": "Crane",
+   "tone": "yellow",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:107 full \u00b7 8:123 ink \u00b7 8:139 paper \u00b7 8:155 blue \u00b7 12:52 yellow",
+   "pivots": {
+    "boom_pivot": [
+     216,
+     252
+    ],
+    "cable_top": [
+     486,
+     91
+    ],
+    "note": "Cable (1) can scale from its top (486,91) and the hook (2) translate with it \u2014 hook lowering. Boom (6) pivots on bolt 7 but the strut (5) would detach; move the whole crane instead of rotating the boom alone."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f7c928",
+     "bbox": [
+      481.2,
+      91,
+      10,
+      264
+     ],
+     "role": "hoist cable"
+    },
+    {
+     "index": 2,
+     "fill": "#f7c928",
+     "bbox": [
+      454.2,
+      347,
+      64,
+      64
+     ],
+     "role": "hook"
+    },
+    {
+     "index": 3,
+     "fill": "#f7c928",
+     "bbox": [
+      68,
+      478,
+      344,
+      80
+     ],
+     "role": "base beam"
+    },
+    {
+     "index": 4,
+     "fill": "#f7c928",
+     "bbox": [
+      176,
+      212,
+      80,
+      346
+     ],
+     "role": "mast"
+    },
+    {
+     "index": 5,
+     "fill": "#f7c928",
+     "bbox": [
+      188,
+      140,
+      201.5,
+      308
+     ],
+     "role": "brace strut"
+    },
+    {
+     "index": 6,
+     "fill": "#f7c928",
+     "bbox": [
+      72.1,
+      56,
+      454.1,
+      296
+     ],
+     "role": "boom (jib)"
+    },
+    {
+     "index": 7,
+     "fill": "#f7c928",
+     "bbox": [
+      192,
+      228,
+      48,
+      48
+     ],
+     "role": "mast\u2013boom pivot bolt"
+    },
+    {
+     "index": 8,
+     "fill": "#f7c928",
+     "bbox": [
+      342.5,
+      149,
+      38,
+      38
+     ],
+     "role": "boom bolt (strut joint)"
+    },
+    {
+     "index": 9,
+     "fill": "#f7c928",
+     "bbox": [
+      196,
+      400,
+      40,
+      40
+     ],
+     "role": "mast bolt"
+    },
+    {
+     "index": 10,
+     "fill": "#f7c928",
+     "bbox": [
+      196,
+      498,
+      40,
+      40
+     ],
+     "role": "mast foot bolt"
+    },
+    {
+     "index": 11,
+     "fill": "#f7c928",
+     "bbox": [
+      92.1,
+      292,
+      40,
+      40
+     ],
+     "role": "boom tail bolt"
+    },
+    {
+     "index": 12,
+     "fill": "#f7c928",
+     "bbox": [
+      456.2,
+      66,
+      60,
+      60
+     ],
+     "role": "tip pulley"
+    },
+    {
+     "index": 13,
+     "fill": "#f7c928",
+     "bbox": [
+      474.2,
+      84,
+      24,
+      24
+     ],
+     "role": "tip pulley bolt"
+    }
+   ]
+  },
+  "crank-blue": {
+   "file": "assets/kit/assemblies/crank-blue.svg",
+   "assembly": "Hand crank",
+   "tone": "blue",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:43 full \u00b7 8:59 ink \u00b7 8:75 paper \u00b7 8:91 blue \u00b7 12:36 yellow",
+   "pivots": {
+    "axle": [
+     300,
+     236
+    ],
+    "note": "Paths 3, 4, 5, 6 rotate together about the axle (the wheel turns, the handle rides with it)."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#2854d9",
+     "bbox": [
+      271,
+      207,
+      58,
+      330
+     ],
+     "role": "stand upright"
+    },
+    {
+     "index": 2,
+     "fill": "#2854d9",
+     "bbox": [
+      139,
+      479,
+      322,
+      58
+     ],
+     "role": "base beam"
+    },
+    {
+     "index": 3,
+     "fill": "#2854d9",
+     "bbox": [
+      128,
+      64,
+      344,
+      344
+     ],
+     "role": "wheel (rim + spokes)"
+    },
+    {
+     "index": 4,
+     "fill": "#2854d9",
+     "bbox": [
+      280,
+      139.6,
+      116.4,
+      116.4
+     ],
+     "role": "crank arm"
+    },
+    {
+     "index": 5,
+     "fill": "#2854d9",
+     "bbox": [
+      266,
+      202,
+      68,
+      68
+     ],
+     "role": "hub bolt (axle)"
+    },
+    {
+     "index": 6,
+     "fill": "#2854d9",
+     "bbox": [
+      352.4,
+      135.6,
+      48,
+      48
+     ],
+     "role": "handle knob"
+    },
+    {
+     "index": 7,
+     "fill": "#2854d9",
+     "bbox": [
+      151,
+      491,
+      34,
+      34
+     ],
+     "role": "base bolt left"
+    },
+    {
+     "index": 8,
+     "fill": "#2854d9",
+     "bbox": [
+      415,
+      491,
+      34,
+      34
+     ],
+     "role": "base bolt right"
+    }
+   ]
+  },
+  "crank-full": {
+   "file": "assets/kit/assemblies/crank-full.svg",
+   "assembly": "Hand crank",
+   "tone": "full",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:43 full \u00b7 8:59 ink \u00b7 8:75 paper \u00b7 8:91 blue \u00b7 12:36 yellow",
+   "pivots": {
+    "axle": [
+     300,
+     236
+    ],
+    "note": "Paths 3, 4, 5, 6 rotate together about the axle (the wheel turns, the handle rides with it)."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#2854d9",
+     "bbox": [
+      271,
+      207,
+      58,
+      330
+     ],
+     "role": "stand upright"
+    },
+    {
+     "index": 2,
+     "fill": "#2854d9",
+     "bbox": [
+      139,
+      479,
+      322,
+      58
+     ],
+     "role": "base beam"
+    },
+    {
+     "index": 3,
+     "fill": "#ef432d",
+     "bbox": [
+      128,
+      64,
+      344,
+      344
+     ],
+     "role": "wheel (rim + spokes)"
+    },
+    {
+     "index": 4,
+     "fill": "#20251f",
+     "bbox": [
+      280,
+      139.6,
+      116.4,
+      116.4
+     ],
+     "role": "crank arm"
+    },
+    {
+     "index": 5,
+     "fill": "#20251f",
+     "bbox": [
+      266,
+      202,
+      68,
+      68
+     ],
+     "role": "hub bolt (axle)"
+    },
+    {
+     "index": 6,
+     "fill": "#f7c928",
+     "bbox": [
+      352.4,
+      135.6,
+      48,
+      48
+     ],
+     "role": "handle knob"
+    },
+    {
+     "index": 7,
+     "fill": "#20251f",
+     "bbox": [
+      151,
+      491,
+      34,
+      34
+     ],
+     "role": "base bolt left"
+    },
+    {
+     "index": 8,
+     "fill": "#20251f",
+     "bbox": [
+      415,
+      491,
+      34,
+      34
+     ],
+     "role": "base bolt right"
+    }
+   ]
+  },
+  "crank-ink": {
+   "file": "assets/kit/assemblies/crank-ink.svg",
+   "assembly": "Hand crank",
+   "tone": "ink",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:43 full \u00b7 8:59 ink \u00b7 8:75 paper \u00b7 8:91 blue \u00b7 12:36 yellow",
+   "pivots": {
+    "axle": [
+     300,
+     236
+    ],
+    "note": "Paths 3, 4, 5, 6 rotate together about the axle (the wheel turns, the handle rides with it)."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#20251f",
+     "bbox": [
+      271,
+      207,
+      58,
+      330
+     ],
+     "role": "stand upright"
+    },
+    {
+     "index": 2,
+     "fill": "#20251f",
+     "bbox": [
+      139,
+      479,
+      322,
+      58
+     ],
+     "role": "base beam"
+    },
+    {
+     "index": 3,
+     "fill": "#20251f",
+     "bbox": [
+      128,
+      64,
+      344,
+      344
+     ],
+     "role": "wheel (rim + spokes)"
+    },
+    {
+     "index": 4,
+     "fill": "#20251f",
+     "bbox": [
+      280,
+      139.6,
+      116.4,
+      116.4
+     ],
+     "role": "crank arm"
+    },
+    {
+     "index": 5,
+     "fill": "#20251f",
+     "bbox": [
+      266,
+      202,
+      68,
+      68
+     ],
+     "role": "hub bolt (axle)"
+    },
+    {
+     "index": 6,
+     "fill": "#20251f",
+     "bbox": [
+      352.4,
+      135.6,
+      48,
+      48
+     ],
+     "role": "handle knob"
+    },
+    {
+     "index": 7,
+     "fill": "#20251f",
+     "bbox": [
+      151,
+      491,
+      34,
+      34
+     ],
+     "role": "base bolt left"
+    },
+    {
+     "index": 8,
+     "fill": "#20251f",
+     "bbox": [
+      415,
+      491,
+      34,
+      34
+     ],
+     "role": "base bolt right"
+    }
+   ]
+  },
+  "crank-paper": {
+   "file": "assets/kit/assemblies/crank-paper.svg",
+   "assembly": "Hand crank",
+   "tone": "paper",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:43 full \u00b7 8:59 ink \u00b7 8:75 paper \u00b7 8:91 blue \u00b7 12:36 yellow",
+   "pivots": {
+    "axle": [
+     300,
+     236
+    ],
+    "note": "Paths 3, 4, 5, 6 rotate together about the axle (the wheel turns, the handle rides with it)."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f4efdf",
+     "bbox": [
+      271,
+      207,
+      58,
+      330
+     ],
+     "role": "stand upright"
+    },
+    {
+     "index": 2,
+     "fill": "#f4efdf",
+     "bbox": [
+      139,
+      479,
+      322,
+      58
+     ],
+     "role": "base beam"
+    },
+    {
+     "index": 3,
+     "fill": "#f4efdf",
+     "bbox": [
+      128,
+      64,
+      344,
+      344
+     ],
+     "role": "wheel (rim + spokes)"
+    },
+    {
+     "index": 4,
+     "fill": "#f4efdf",
+     "bbox": [
+      280,
+      139.6,
+      116.4,
+      116.4
+     ],
+     "role": "crank arm"
+    },
+    {
+     "index": 5,
+     "fill": "#f4efdf",
+     "bbox": [
+      266,
+      202,
+      68,
+      68
+     ],
+     "role": "hub bolt (axle)"
+    },
+    {
+     "index": 6,
+     "fill": "#f4efdf",
+     "bbox": [
+      352.4,
+      135.6,
+      48,
+      48
+     ],
+     "role": "handle knob"
+    },
+    {
+     "index": 7,
+     "fill": "#f4efdf",
+     "bbox": [
+      151,
+      491,
+      34,
+      34
+     ],
+     "role": "base bolt left"
+    },
+    {
+     "index": 8,
+     "fill": "#f4efdf",
+     "bbox": [
+      415,
+      491,
+      34,
+      34
+     ],
+     "role": "base bolt right"
+    }
+   ]
+  },
+  "crank-yellow": {
+   "file": "assets/kit/assemblies/crank-yellow.svg",
+   "assembly": "Hand crank",
+   "tone": "yellow",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:43 full \u00b7 8:59 ink \u00b7 8:75 paper \u00b7 8:91 blue \u00b7 12:36 yellow",
+   "pivots": {
+    "axle": [
+     300,
+     236
+    ],
+    "note": "Paths 3, 4, 5, 6 rotate together about the axle (the wheel turns, the handle rides with it)."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f7c928",
+     "bbox": [
+      271,
+      207,
+      58,
+      330
+     ],
+     "role": "stand upright"
+    },
+    {
+     "index": 2,
+     "fill": "#f7c928",
+     "bbox": [
+      139,
+      479,
+      322,
+      58
+     ],
+     "role": "base beam"
+    },
+    {
+     "index": 3,
+     "fill": "#f7c928",
+     "bbox": [
+      128,
+      64,
+      344,
+      344
+     ],
+     "role": "wheel (rim + spokes)"
+    },
+    {
+     "index": 4,
+     "fill": "#f7c928",
+     "bbox": [
+      280,
+      139.6,
+      116.4,
+      116.4
+     ],
+     "role": "crank arm"
+    },
+    {
+     "index": 5,
+     "fill": "#f7c928",
+     "bbox": [
+      266,
+      202,
+      68,
+      68
+     ],
+     "role": "hub bolt (axle)"
+    },
+    {
+     "index": 6,
+     "fill": "#f7c928",
+     "bbox": [
+      352.4,
+      135.6,
+      48,
+      48
+     ],
+     "role": "handle knob"
+    },
+    {
+     "index": 7,
+     "fill": "#f7c928",
+     "bbox": [
+      151,
+      491,
+      34,
+      34
+     ],
+     "role": "base bolt left"
+    },
+    {
+     "index": 8,
+     "fill": "#f7c928",
+     "bbox": [
+      415,
+      491,
+      34,
+      34
+     ],
+     "role": "base bolt right"
+    }
+   ]
+  },
+  "k-blue": {
+   "file": "assets/kit/assemblies/k-blue.svg",
+   "assembly": "Construction K",
+   "tone": "blue",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:2 (full) \u00b7 8:12 ink \u00b7 8:22 paper \u00b7 8:32 blue \u00b7 12:26 yellow",
+   "pivots": {
+    "hub": [
+     204,
+     300
+    ],
+    "note": "Upper (2) and lower (3) beams rotate about the hub. Folded state: path 2 rotated \u221245\u00b0, path 3 rotated +45\u00b0 (both lie along the upright). Unfold to 0\u00b0."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#2854d9",
+     "bbox": [
+      156,
+      56,
+      96,
+      488
+     ],
+     "role": "upright beam (long)"
+    },
+    {
+     "index": 2,
+     "fill": "#2854d9",
+     "bbox": [
+      156,
+      60,
+      288,
+      288
+     ],
+     "role": "upper diagonal beam"
+    },
+    {
+     "index": 3,
+     "fill": "#2854d9",
+     "bbox": [
+      156,
+      252,
+      288,
+      288
+     ],
+     "role": "lower diagonal beam"
+    },
+    {
+     "index": 4,
+     "fill": "#2854d9",
+     "bbox": [
+      178,
+      274,
+      52,
+      52
+     ],
+     "role": "hub bolt (joint)"
+    },
+    {
+     "index": 5,
+     "fill": "#2854d9",
+     "bbox": [
+      185,
+      85,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upright top"
+    },
+    {
+     "index": 6,
+     "fill": "#2854d9",
+     "bbox": [
+      185,
+      477,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upright bottom"
+    },
+    {
+     "index": 7,
+     "fill": "#2854d9",
+     "bbox": [
+      377,
+      89,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upper beam end"
+    },
+    {
+     "index": 8,
+     "fill": "#2854d9",
+     "bbox": [
+      377,
+      473,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 lower beam end"
+    }
+   ]
+  },
+  "k-full": {
+   "file": "assets/kit/assemblies/k-full.svg",
+   "assembly": "Construction K",
+   "tone": "full",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:2 (full) \u00b7 8:12 ink \u00b7 8:22 paper \u00b7 8:32 blue \u00b7 12:26 yellow",
+   "pivots": {
+    "hub": [
+     204,
+     300
+    ],
+    "note": "Upper (2) and lower (3) beams rotate about the hub. Folded state: path 2 rotated \u221245\u00b0, path 3 rotated +45\u00b0 (both lie along the upright). Unfold to 0\u00b0."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#2854d9",
+     "bbox": [
+      156,
+      56,
+      96,
+      488
+     ],
+     "role": "upright beam (long)"
+    },
+    {
+     "index": 2,
+     "fill": "#ef432d",
+     "bbox": [
+      156,
+      60,
+      288,
+      288
+     ],
+     "role": "upper diagonal beam"
+    },
+    {
+     "index": 3,
+     "fill": "#f7c928",
+     "bbox": [
+      156,
+      252,
+      288,
+      288
+     ],
+     "role": "lower diagonal beam"
+    },
+    {
+     "index": 4,
+     "fill": "#20251f",
+     "bbox": [
+      178,
+      274,
+      52,
+      52
+     ],
+     "role": "hub bolt (joint)"
+    },
+    {
+     "index": 5,
+     "fill": "#20251f",
+     "bbox": [
+      185,
+      85,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upright top"
+    },
+    {
+     "index": 6,
+     "fill": "#20251f",
+     "bbox": [
+      185,
+      477,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upright bottom"
+    },
+    {
+     "index": 7,
+     "fill": "#20251f",
+     "bbox": [
+      377,
+      89,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upper beam end"
+    },
+    {
+     "index": 8,
+     "fill": "#20251f",
+     "bbox": [
+      377,
+      473,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 lower beam end"
+    }
+   ]
+  },
+  "k-ink": {
+   "file": "assets/kit/assemblies/k-ink.svg",
+   "assembly": "Construction K",
+   "tone": "ink",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:2 (full) \u00b7 8:12 ink \u00b7 8:22 paper \u00b7 8:32 blue \u00b7 12:26 yellow",
+   "pivots": {
+    "hub": [
+     204,
+     300
+    ],
+    "note": "Upper (2) and lower (3) beams rotate about the hub. Folded state: path 2 rotated \u221245\u00b0, path 3 rotated +45\u00b0 (both lie along the upright). Unfold to 0\u00b0."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#20251f",
+     "bbox": [
+      156,
+      56,
+      96,
+      488
+     ],
+     "role": "upright beam (long)"
+    },
+    {
+     "index": 2,
+     "fill": "#20251f",
+     "bbox": [
+      156,
+      60,
+      288,
+      288
+     ],
+     "role": "upper diagonal beam"
+    },
+    {
+     "index": 3,
+     "fill": "#20251f",
+     "bbox": [
+      156,
+      252,
+      288,
+      288
+     ],
+     "role": "lower diagonal beam"
+    },
+    {
+     "index": 4,
+     "fill": "#20251f",
+     "bbox": [
+      178,
+      274,
+      52,
+      52
+     ],
+     "role": "hub bolt (joint)"
+    },
+    {
+     "index": 5,
+     "fill": "#20251f",
+     "bbox": [
+      185,
+      85,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upright top"
+    },
+    {
+     "index": 6,
+     "fill": "#20251f",
+     "bbox": [
+      185,
+      477,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upright bottom"
+    },
+    {
+     "index": 7,
+     "fill": "#20251f",
+     "bbox": [
+      377,
+      89,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upper beam end"
+    },
+    {
+     "index": 8,
+     "fill": "#20251f",
+     "bbox": [
+      377,
+      473,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 lower beam end"
+    }
+   ]
+  },
+  "k-paper": {
+   "file": "assets/kit/assemblies/k-paper.svg",
+   "assembly": "Construction K",
+   "tone": "paper",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:2 (full) \u00b7 8:12 ink \u00b7 8:22 paper \u00b7 8:32 blue \u00b7 12:26 yellow",
+   "pivots": {
+    "hub": [
+     204,
+     300
+    ],
+    "note": "Upper (2) and lower (3) beams rotate about the hub. Folded state: path 2 rotated \u221245\u00b0, path 3 rotated +45\u00b0 (both lie along the upright). Unfold to 0\u00b0."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f4efdf",
+     "bbox": [
+      156,
+      56,
+      96,
+      488
+     ],
+     "role": "upright beam (long)"
+    },
+    {
+     "index": 2,
+     "fill": "#f4efdf",
+     "bbox": [
+      156,
+      60,
+      288,
+      288
+     ],
+     "role": "upper diagonal beam"
+    },
+    {
+     "index": 3,
+     "fill": "#f4efdf",
+     "bbox": [
+      156,
+      252,
+      288,
+      288
+     ],
+     "role": "lower diagonal beam"
+    },
+    {
+     "index": 4,
+     "fill": "#f4efdf",
+     "bbox": [
+      178,
+      274,
+      52,
+      52
+     ],
+     "role": "hub bolt (joint)"
+    },
+    {
+     "index": 5,
+     "fill": "#f4efdf",
+     "bbox": [
+      185,
+      85,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upright top"
+    },
+    {
+     "index": 6,
+     "fill": "#f4efdf",
+     "bbox": [
+      185,
+      477,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upright bottom"
+    },
+    {
+     "index": 7,
+     "fill": "#f4efdf",
+     "bbox": [
+      377,
+      89,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upper beam end"
+    },
+    {
+     "index": 8,
+     "fill": "#f4efdf",
+     "bbox": [
+      377,
+      473,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 lower beam end"
+    }
+   ]
+  },
+  "k-yellow": {
+   "file": "assets/kit/assemblies/k-yellow.svg",
+   "assembly": "Construction K",
+   "tone": "yellow",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "8:2 (full) \u00b7 8:12 ink \u00b7 8:22 paper \u00b7 8:32 blue \u00b7 12:26 yellow",
+   "pivots": {
+    "hub": [
+     204,
+     300
+    ],
+    "note": "Upper (2) and lower (3) beams rotate about the hub. Folded state: path 2 rotated \u221245\u00b0, path 3 rotated +45\u00b0 (both lie along the upright). Unfold to 0\u00b0."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f7c928",
+     "bbox": [
+      156,
+      56,
+      96,
+      488
+     ],
+     "role": "upright beam (long)"
+    },
+    {
+     "index": 2,
+     "fill": "#f7c928",
+     "bbox": [
+      156,
+      60,
+      288,
+      288
+     ],
+     "role": "upper diagonal beam"
+    },
+    {
+     "index": 3,
+     "fill": "#f7c928",
+     "bbox": [
+      156,
+      252,
+      288,
+      288
+     ],
+     "role": "lower diagonal beam"
+    },
+    {
+     "index": 4,
+     "fill": "#f7c928",
+     "bbox": [
+      178,
+      274,
+      52,
+      52
+     ],
+     "role": "hub bolt (joint)"
+    },
+    {
+     "index": 5,
+     "fill": "#f7c928",
+     "bbox": [
+      185,
+      85,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upright top"
+    },
+    {
+     "index": 6,
+     "fill": "#f7c928",
+     "bbox": [
+      185,
+      477,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upright bottom"
+    },
+    {
+     "index": 7,
+     "fill": "#f7c928",
+     "bbox": [
+      377,
+      89,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 upper beam end"
+    },
+    {
+     "index": 8,
+     "fill": "#f7c928",
+     "bbox": [
+      377,
+      473,
+      38,
+      38
+     ],
+     "role": "bolt \u2014 lower beam end"
+    }
+   ]
+  }
+ },
+ "wayfinding": {
+  "wayfinding-arrow-ink": {
+   "file": "assets/kit/wayfinding/wayfinding-arrow-ink.svg",
+   "viewBox": "0 0 523.882 423.764",
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#20251f",
+     "bbox": [
+      0,
+      163.9,
+      504,
+      96
+     ]
+    },
+    {
+     "index": 2,
+     "fill": "#20251f",
+     "bbox": [
+      264,
+      19.9,
+      240,
+      240
+     ]
+    },
+    {
+     "index": 3,
+     "fill": "#20251f",
+     "bbox": [
+      264,
+      163.9,
+      240,
+      240
+     ]
+    },
+    {
+     "index": 4,
+     "fill": "#20251f",
+     "bbox": [
+      430,
+      185.9,
+      52,
+      52
+     ]
+    },
+    {
+     "index": 5,
+     "fill": "#20251f",
+     "bbox": [
+      27,
+      190.9,
+      42,
+      42
+     ]
+    },
+    {
+     "index": 6,
+     "fill": "#20251f",
+     "bbox": [
+      291,
+      46.9,
+      42,
+      42
+     ]
+    },
+    {
+     "index": 7,
+     "fill": "#20251f",
+     "bbox": [
+      291,
+      334.9,
+      42,
+      42
+     ]
+    }
+   ],
+   "note": "Points right. Figma variants Direction=Up / Left are this artwork rotated \u221290\u00b0 / 180\u00b0 (nodes 21:85\u201321:135)."
+  },
+  "wayfinding-arrow-paper": {
+   "file": "assets/kit/wayfinding/wayfinding-arrow-paper.svg",
+   "viewBox": "0 0 523.882 423.764",
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f4efdf",
+     "bbox": [
+      0,
+      163.9,
+      504,
+      96
+     ]
+    },
+    {
+     "index": 2,
+     "fill": "#f4efdf",
+     "bbox": [
+      264,
+      19.9,
+      240,
+      240
+     ]
+    },
+    {
+     "index": 3,
+     "fill": "#f4efdf",
+     "bbox": [
+      264,
+      163.9,
+      240,
+      240
+     ]
+    },
+    {
+     "index": 4,
+     "fill": "#f4efdf",
+     "bbox": [
+      430,
+      185.9,
+      52,
+      52
+     ]
+    },
+    {
+     "index": 5,
+     "fill": "#f4efdf",
+     "bbox": [
+      27,
+      190.9,
+      42,
+      42
+     ]
+    },
+    {
+     "index": 6,
+     "fill": "#f4efdf",
+     "bbox": [
+      291,
+      46.9,
+      42,
+      42
+     ]
+    },
+    {
+     "index": 7,
+     "fill": "#f4efdf",
+     "bbox": [
+      291,
+      334.9,
+      42,
+      42
+     ]
+    }
+   ],
+   "note": "Points right. Figma variants Direction=Up / Left are this artwork rotated \u221290\u00b0 / 180\u00b0 (nodes 21:85\u201321:135)."
+  }
+ }
+}
