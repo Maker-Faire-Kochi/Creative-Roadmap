@@ -2559,6 +2559,386 @@
      "role": "bolt \u2014 lower beam end"
     }
    ]
+  },
+  "wheelarm-full": {
+   "file": "assets/kit/assemblies/wheelarm-full.svg",
+   "assembly": "Wheel arm (derived)",
+   "tone": "full",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "none \u2014 derived from kit parts, not in the Figma file",
+   "derived_from": "parts/elbow-blue + parts/beam-red + parts/wheel-yellow, joined hole-to-hole: elbow arm-end hole (180,172) \u2194 beam left hole (56,120); beam right hole (184,120) \u2194 wheel hub (120,120); group transform translate(-21.2 83.2) scale(1.45)",
+   "pivots": {
+    "elbow_beam_joint": [
+     239.8,
+     332.6
+    ],
+    "wheel_hub": [
+     425.4,
+     332.6
+    ],
+    "note": "Wheel (1) rotates about wheel_hub. Assembly order used in carousels: elbow (2) \u2192 wheel (1) \u2192 beam + bolts (3,4,5); the wheel sits behind so the connecting beam stays fully visible."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f7c928",
+     "bbox": [
+      17.1,
+      17.1,
+      205.8,
+      205.8
+     ],
+     "role": "wheel (behind)"
+    },
+    {
+     "index": 2,
+     "fill": "#2854d9",
+     "bbox": [
+      32,
+      24,
+      184,
+      184
+     ],
+     "role": "elbow bracket"
+    },
+    {
+     "index": 3,
+     "fill": "#ef432d",
+     "bbox": [
+      16,
+      80,
+      208,
+      80
+     ],
+     "role": "beam (bolted across)"
+    },
+    {
+     "index": 4,
+     "fill": "#20251f",
+     "bbox": [
+      158,
+      150,
+      44,
+      44
+     ],
+     "role": "bolt \u2014 elbow\u2013beam joint"
+    },
+    {
+     "index": 5,
+     "fill": "#20251f",
+     "bbox": [
+      286,
+      150,
+      44,
+      44
+     ],
+     "role": "bolt \u2014 wheel hub (axle)"
+    }
+   ]
+  },
+  "wheelarm-paper": {
+   "file": "assets/kit/assemblies/wheelarm-paper.svg",
+   "assembly": "Wheel arm (derived)",
+   "tone": "paper",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "none \u2014 derived from kit parts, not in the Figma file",
+   "derived_from": "parts/elbow-blue + parts/beam-red + parts/wheel-yellow, joined hole-to-hole: elbow arm-end hole (180,172) \u2194 beam left hole (56,120); beam right hole (184,120) \u2194 wheel hub (120,120); group transform translate(-21.2 83.2) scale(1.45)",
+   "pivots": {
+    "elbow_beam_joint": [
+     239.8,
+     332.6
+    ],
+    "wheel_hub": [
+     425.4,
+     332.6
+    ],
+    "note": "Wheel (1) rotates about wheel_hub. Assembly order used in carousels: elbow (2) \u2192 wheel (1) \u2192 beam + bolts (3,4,5); the wheel sits behind so the connecting beam stays fully visible."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f4efdf",
+     "bbox": [
+      17.1,
+      17.1,
+      205.8,
+      205.8
+     ],
+     "role": "wheel (behind)"
+    },
+    {
+     "index": 2,
+     "fill": "#f4efdf",
+     "bbox": [
+      32,
+      24,
+      184,
+      184
+     ],
+     "role": "elbow bracket"
+    },
+    {
+     "index": 3,
+     "fill": "#f4efdf",
+     "bbox": [
+      16,
+      80,
+      208,
+      80
+     ],
+     "role": "beam (bolted across)"
+    },
+    {
+     "index": 4,
+     "fill": "#f4efdf",
+     "bbox": [
+      158,
+      150,
+      44,
+      44
+     ],
+     "role": "bolt \u2014 elbow\u2013beam joint"
+    },
+    {
+     "index": 5,
+     "fill": "#f4efdf",
+     "bbox": [
+      286,
+      150,
+      44,
+      44
+     ],
+     "role": "bolt \u2014 wheel hub (axle)"
+    }
+   ]
+  },
+  "wheelarm-ink": {
+   "file": "assets/kit/assemblies/wheelarm-ink.svg",
+   "assembly": "Wheel arm (derived)",
+   "tone": "ink",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "none \u2014 derived from kit parts, not in the Figma file",
+   "derived_from": "parts/elbow-blue + parts/beam-red + parts/wheel-yellow, joined hole-to-hole: elbow arm-end hole (180,172) \u2194 beam left hole (56,120); beam right hole (184,120) \u2194 wheel hub (120,120); group transform translate(-21.2 83.2) scale(1.45)",
+   "pivots": {
+    "elbow_beam_joint": [
+     239.8,
+     332.6
+    ],
+    "wheel_hub": [
+     425.4,
+     332.6
+    ],
+    "note": "Wheel (1) rotates about wheel_hub. Assembly order used in carousels: elbow (2) \u2192 wheel (1) \u2192 beam + bolts (3,4,5); the wheel sits behind so the connecting beam stays fully visible."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#20251f",
+     "bbox": [
+      17.1,
+      17.1,
+      205.8,
+      205.8
+     ],
+     "role": "wheel (behind)"
+    },
+    {
+     "index": 2,
+     "fill": "#20251f",
+     "bbox": [
+      32,
+      24,
+      184,
+      184
+     ],
+     "role": "elbow bracket"
+    },
+    {
+     "index": 3,
+     "fill": "#20251f",
+     "bbox": [
+      16,
+      80,
+      208,
+      80
+     ],
+     "role": "beam (bolted across)"
+    },
+    {
+     "index": 4,
+     "fill": "#20251f",
+     "bbox": [
+      158,
+      150,
+      44,
+      44
+     ],
+     "role": "bolt \u2014 elbow\u2013beam joint"
+    },
+    {
+     "index": 5,
+     "fill": "#20251f",
+     "bbox": [
+      286,
+      150,
+      44,
+      44
+     ],
+     "role": "bolt \u2014 wheel hub (axle)"
+    }
+   ]
+  },
+  "wheelarm-blue": {
+   "file": "assets/kit/assemblies/wheelarm-blue.svg",
+   "assembly": "Wheel arm (derived)",
+   "tone": "blue",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "none \u2014 derived from kit parts, not in the Figma file",
+   "derived_from": "parts/elbow-blue + parts/beam-red + parts/wheel-yellow, joined hole-to-hole: elbow arm-end hole (180,172) \u2194 beam left hole (56,120); beam right hole (184,120) \u2194 wheel hub (120,120); group transform translate(-21.2 83.2) scale(1.45)",
+   "pivots": {
+    "elbow_beam_joint": [
+     239.8,
+     332.6
+    ],
+    "wheel_hub": [
+     425.4,
+     332.6
+    ],
+    "note": "Wheel (1) rotates about wheel_hub. Assembly order used in carousels: elbow (2) \u2192 wheel (1) \u2192 beam + bolts (3,4,5); the wheel sits behind so the connecting beam stays fully visible."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#2854d9",
+     "bbox": [
+      17.1,
+      17.1,
+      205.8,
+      205.8
+     ],
+     "role": "wheel (behind)"
+    },
+    {
+     "index": 2,
+     "fill": "#2854d9",
+     "bbox": [
+      32,
+      24,
+      184,
+      184
+     ],
+     "role": "elbow bracket"
+    },
+    {
+     "index": 3,
+     "fill": "#2854d9",
+     "bbox": [
+      16,
+      80,
+      208,
+      80
+     ],
+     "role": "beam (bolted across)"
+    },
+    {
+     "index": 4,
+     "fill": "#2854d9",
+     "bbox": [
+      158,
+      150,
+      44,
+      44
+     ],
+     "role": "bolt \u2014 elbow\u2013beam joint"
+    },
+    {
+     "index": 5,
+     "fill": "#2854d9",
+     "bbox": [
+      286,
+      150,
+      44,
+      44
+     ],
+     "role": "bolt \u2014 wheel hub (axle)"
+    }
+   ]
+  },
+  "wheelarm-yellow": {
+   "file": "assets/kit/assemblies/wheelarm-yellow.svg",
+   "assembly": "Wheel arm (derived)",
+   "tone": "yellow",
+   "viewBox": "0 0 600 600",
+   "figma_nodes": "none \u2014 derived from kit parts, not in the Figma file",
+   "derived_from": "parts/elbow-blue + parts/beam-red + parts/wheel-yellow, joined hole-to-hole: elbow arm-end hole (180,172) \u2194 beam left hole (56,120); beam right hole (184,120) \u2194 wheel hub (120,120); group transform translate(-21.2 83.2) scale(1.45)",
+   "pivots": {
+    "elbow_beam_joint": [
+     239.8,
+     332.6
+    ],
+    "wheel_hub": [
+     425.4,
+     332.6
+    ],
+    "note": "Wheel (1) rotates about wheel_hub. Assembly order used in carousels: elbow (2) \u2192 wheel (1) \u2192 beam + bolts (3,4,5); the wheel sits behind so the connecting beam stays fully visible."
+   },
+   "paths": [
+    {
+     "index": 1,
+     "fill": "#f7c928",
+     "bbox": [
+      17.1,
+      17.1,
+      205.8,
+      205.8
+     ],
+     "role": "wheel (behind)"
+    },
+    {
+     "index": 2,
+     "fill": "#f7c928",
+     "bbox": [
+      32,
+      24,
+      184,
+      184
+     ],
+     "role": "elbow bracket"
+    },
+    {
+     "index": 3,
+     "fill": "#f7c928",
+     "bbox": [
+      16,
+      80,
+      208,
+      80
+     ],
+     "role": "beam (bolted across)"
+    },
+    {
+     "index": 4,
+     "fill": "#f7c928",
+     "bbox": [
+      158,
+      150,
+      44,
+      44
+     ],
+     "role": "bolt \u2014 elbow\u2013beam joint"
+    },
+    {
+     "index": 5,
+     "fill": "#f7c928",
+     "bbox": [
+      286,
+      150,
+      44,
+      44
+     ],
+     "role": "bolt \u2014 wheel hub (axle)"
+    }
+   ]
   }
  },
  "wayfinding": {
