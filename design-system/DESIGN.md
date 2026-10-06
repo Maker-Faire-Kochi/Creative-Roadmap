@@ -62,6 +62,7 @@ rules:
 components:
   parts: "Beam, Elbow, Wheel × red/blue/yellow/ink — assets/kit/parts/*.svg (240×240 viewBox)"
   assemblies: "Construction K, Hand crank, Crane, Direction arrow × full/ink/paper/blue/yellow — assets/kit/assemblies/*.svg (600×600)"
+  assemblies_derived: "Wheel arm × full/ink/paper/blue/yellow — assets/kit/assemblies/wheelarm-*.svg (600×600) — NOT in Figma; built from kit parts"
   wayfinding: "Wayfinding arrow × ink/paper, direction by rotation — assets/kit/wayfinding/*.svg"
   logo: "assets/logo/reference-logo.svg — REFERENCE ONLY, replace with organiser-supplied Kochi mark"
   geometry: "kit.json — per-path roles, bounding boxes and joint pivots for every SVG"
@@ -144,9 +145,18 @@ All artwork is in `assets/kit/` as the exact Figma exports. Geometry, path roles
 | Crane | CRANE · "A reference to the working waterfront." | `assemblies/crane-*.svg` |
 | Direction arrow | DIRECTION ARROW · "Use the sign components for directions." | `assemblies/arrow-*.svg` |
 
+**Derived assemblies (not in the Figma file).** These are built in this repo from the kit's own parts, joined hole to hole by the kit rules. Treat them as campaign extensions, not moodboard canon.
+
+| Assembly | Built from | Files |
+|---|---|---|
+| Wheel arm | blue elbow bracket + red beam + yellow wheel. The elbow's arm-end hole meets the beam's left hole; the beam's right hole meets the wheel hub. Ink bolts sit at both joints, and the wheel sits behind so the connecting beam reads. | `assemblies/wheelarm-{full,ink,paper,blue,yellow}.svg` |
+
+Use it where a simple, three-step mechanism fits. The awareness carousels assemble it as elbow → wheel → beam. Geometry and pivots are in `kit.json → assemblies.wheelarm-*`.
+
 **Wayfinding arrow** (`MF / Wayfinding Arrow`, 21:145) — variants `Tone = ink | paper` × `Direction = Right | Up | Left`. The exported artwork points right; Up/Left are the same artwork rotated −90° / 180°.
 
 **Kit rules**
+- New assemblies are allowed when they are built from kit parts joined at their holes (see *Derived assemblies*). Record their provenance in `kit.json`.
 - Never recolour inside a part or distort it; scale uniformly; keep the holes/cutouts transparent (they show the ground through).
 - Build new graphics by **joining parts at their holes** (visible pivots), not by drawing new shapes.
 - Prefer single-tone artwork; full colour only for large focal pieces.
