@@ -64,7 +64,7 @@ components:
   assemblies: "Construction K, Hand crank, Crane, Direction arrow × full/ink/paper/blue/yellow — assets/kit/assemblies/*.svg (600×600)"
   assemblies_derived: "Wheel arm × full/ink/paper/blue/yellow — assets/kit/assemblies/wheelarm-*.svg (600×600) — NOT in Figma; built from kit parts"
   wayfinding: "Wayfinding arrow × ink/paper, direction by rotation — assets/kit/wayfinding/*.svg"
-  logo: "assets/logo/reference-logo.svg — REFERENCE ONLY, replace with organiser-supplied Kochi mark"
+  logo: "assets/logo/official/MF_Kochi_Logo_{long,border,square}.{png,pdf} — official organiser-supplied Maker Faire Kochi lockups (reference-logo.* is superseded)"
   geometry: "kit.json — per-path roles, bounding boxes and joint pivots for every SVG"
 ---
 
@@ -165,7 +165,22 @@ Use it where a simple, three-step mechanism fits. The awareness carousels assemb
 
 ## 6. Logo
 
-`assets/logo/reference-logo.svg` (node 10:2) is a **reference placeholder** (Maker Faire wordmark in maker-red/maker-blue). Figma note: *"REFERENCE ONLY. The public identity guide specifies the supplied local-event logo. Replace this reference with the current organiser-supplied Kochi mark before release. Preserve official artwork, proportions and clearspace."* Docs: https://makerfaire.com/make-logos/. Until the official mark is supplied, set "MAKER FAIRE KOCHI" in Plex Mono or display type instead of using this file in published work.
+**Official Maker Faire Kochi logos** (organiser-supplied): `assets/logo/official/`. Each comes as PNG (with alpha) and PDF (vector).
+
+| Variant | File | Shape | Use |
+|---|---|---|---|
+| long | `MF_Kochi_Logo_long.*` (3871×646) | Horizontal lockup inside a maker-blue frame, white fill, trimmed to the frame | Light grounds (paper) |
+| border | `MF_Kochi_Logo_border.*` (4092×859) | The long lockup on a white plate with built-in clearspace | Coloured or dark grounds (ink, blue, red, yellow). The plate separates the logo's maker-blue from campaign blue `#2854d9` |
+| square | `MF_Kochi_Logo_square.*` (1667×1667) | "Kochi" above a framed, stacked "Maker Faire", on a white plate | Stacked sign-offs, square slots, avatars |
+
+**Rules**
+- Use the files as supplied. The white plate is part of the mark: never recolour, crop, outline, rotate or overlap it, and keep kit parts and text off it.
+- The logo's own colours (maker-red `#ed1c24`, maker-blue `#00aeef`, white) stay inside the logo. They are never campaign colours.
+- Keep it **separate from the kit graphics**. The Construction K and the other assemblies are supporting graphics, never a logo or part of a lockup.
+- Minimum sizes used in campaign work: the long logo at 84px tall on 1080×1350 and 108px on 1080×1920; the border logo at 108 / 138px (its plate adds clearspace).
+- Placement pattern (awareness carousels): the logo stands alone in the cover header, top-left, replacing the "MAKER FAIRE KOCHI" label. The final slide uses the logo as a sign-off above a "COMING SOON" tag. Middle slides keep the mono header text.
+
+`assets/logo/reference-logo.svg|png` (Figma node 10:2) is the moodboard's **superseded placeholder**. Don't publish it. The Start Here board's instruction, *"apply the supplied Kochi logo and confirm typography against the current organiser kit"*, is now satisfied for the logo.
 
 ## 7. Using the system (Start Here board, verbatim)
 

@@ -16,7 +16,8 @@ Only go back to Figma (file `xczyTXBjbMPH9JXyYDeO8w`) if something isn't in that
 - Colours are paper `#f4efdf`, ink `#20251f`, blue `#2854d9`, red `#ef432d` and yellow `#f7c928`. Maker red and blue (`#ed1c24`, `#00aeef`) are for the official logo only.
 - Type is Bricolage Grotesque 96pt ExtraBold (display), Bricolage Regular (body), IBM Plex Mono Medium in uppercase (labels) and Noto Sans Malayalam Bold (place name).
 - Assemble, don't decorate. Build graphics from kit parts joined at their holes. Don't recolour inside a part or distort it; scale uniformly.
-- The K and the other assemblies are supporting graphics, never a logo. `assets/logo/reference-logo.*` is a reference only, so don't publish it.
+- Logo: use the official Maker Faire Kochi lockups in `design-system/assets/logo/official/`, as supplied. Use long on paper, border on coloured or dark grounds, and square for stacked sign-offs. Never recolour, crop or overlap them. `assets/logo/reference-logo.*` is a superseded placeholder, so don't publish it.
+- The K and the other assemblies are supporting graphics, never a logo or part of a lockup.
 - Content: no event date unless asked (use "COMING SOON"). Use clear, descriptive words (CODING, not CODE). Volunteer calls are Kerala-wide (location "KERALA").
 
 ## Other context
