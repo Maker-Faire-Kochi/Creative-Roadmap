@@ -18,7 +18,8 @@ assets/kit/parts/         beam|elbow|wheel - red|blue|yellow|ink .svg      (240�
 assets/kit/assemblies/    k|crank|crane|arrow - full|ink|paper|blue|yellow  (600×600, from Figma)
                           wheelarm - full|ink|paper|blue|yellow         (600×600, derived from kit parts — not in Figma)
 assets/kit/wayfinding/    wayfinding-arrow-ink|paper .svg (rotate for Up/Left)
-assets/logo/              reference-logo.svg/.png (REFERENCE ONLY, do not publish)
+assets/logo/official/     official Maker Faire Kochi logos: long | border | square (.png + .pdf)
+assets/logo/              reference-logo.svg/.png (superseded Figma placeholder, do not publish)
 assets/fonts/             Bricolage Grotesque (variable), IBM Plex Mono 500/600, Noto Sans Malayalam 700 (OFL)
 reference/figma-map.md    node-by-node map + verbatim copy
 reference/screens/        board screenshots + component-set exports + labelled kit contact sheet
