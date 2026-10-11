@@ -1,0 +1,20 @@
+{
+  "name": "2026-10-08 two-week awareness run",
+  "start_date": "2026-10-08",
+  "timezone": "Asia/Kolkata",
+  "weekly_counts": [16, 15, 16, 16, 16, 16],
+  "week3_starts_with": ["A14", "B15", "C16"],
+  "default_times": { "2": ["09:30", "16:30"], "3": ["09:30", "13:30", "16:30"] },
+  "days": [
+    "A1 B2 E3", "A4 C5", "D6 E7", "A10 B9", "C10 D11", "E12 A13",
+    "B14 C15 D16", "E17 C18", "D19 A2", "B3 E4", "B5 C6", "D7 E11",
+    "A9 B10", "C11 D12 E13"
+  ],
+  "overrides": {
+    "A1": "2026-10-08T10:30",
+    "E3": "2026-10-09T13:30",
+    "A4": "2026-10-09T16:30",
+    "C5": "2026-10-09T19:30"
+  },
+  "notes": "A1 moved to 10:30 and the 9 Oct posts shifted one slot because the original slots had passed. Topic 08 (Maker Stories) is excluded until the video series is live; A10/E11 replace A8/E8. Order follows the approved pattern a1-b2-e3, a4-c5-d6 ..., adjusted as described."
+}

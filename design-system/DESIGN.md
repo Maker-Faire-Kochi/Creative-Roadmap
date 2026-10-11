@@ -52,6 +52,10 @@ typography:
     size: "64px / 71.68px"
     color: "blue"
     text: "കൊച്ചി"
+  malayalam_display:
+    family: "Baloo Chettan 2"
+    weight: 800
+    use: "Malayalam / Manglish headlines (Malayalam letters only; Latin words stay in Bricolage Grotesque)"
 spacing:
   base: 4             # --mf-space-4 = 4px (the only spacing variable in the file)
   frame_margin: 64    # all 1440-wide boards use 64px outer margin
@@ -111,6 +115,7 @@ Grounds used in the file: paper (cover, base parts), blue (start here), ink (par
 - **Body — Bricolage Grotesque Regular** (`opsz` 14), line-height ≈ 1.28 × size.
 - **Labels — IBM Plex Mono Medium, UPPERCASE.** Used for headers, footers, numbering (`01`, `02`, `03`), section kickers (`03 / THE CONSTRUCTION KIT`), and links (underlined, 22px). Slash-separated metadata is the house pattern: `THE OPEN WORKSHOP / DESIGN DIRECTION`, `KOCHI / 2027`.
 - **Malayalam — Noto Sans Malayalam Bold**, in blue: കൊച്ചി (cover, under the K).
+- **Malayalam display — Baloo Chettan 2 ExtraBold**, for Malayalam/Manglish headlines (the Malayalam edition of the awareness carousels). Set as a fallback after Bricolage so English words in a Manglish line keep the brand face; headline colours follow the layout, not the place-name blue. Noto Sans Malayalam Bold remains the place-name face.
 - Web/video fallbacks: none needed — all four families are Google Fonts and ship in `assets/fonts/` (OFL). In Figma use the exact style names (`96pt ExtraBold`, `Regular`, `Medium`).
 - Before production the Start Here board says: *"apply the supplied Kochi logo and confirm typography against the current organiser kit."*
 
