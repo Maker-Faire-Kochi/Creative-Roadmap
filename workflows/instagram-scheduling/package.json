@@ -1,0 +1,13 @@
+{
+  "name": "mfk-instagram-scheduling",
+  "private": true,
+  "type": "module",
+  "description": "Schedule Maker Faire Kochi carousels and stories on Meta Business Suite via a dedicated Chrome profile",
+  "scripts": {
+    "launch": "node meta.mjs launch",
+    "batch": "node meta.mjs batch"
+  },
+  "dependencies": {
+    "playwright-core": "1.63.0"
+  }
+}
