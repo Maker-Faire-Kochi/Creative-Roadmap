@@ -9,6 +9,9 @@
   src: url("../assets/fonts/IBMPlexMono-600-latin.woff2") format("woff2"); }
 @font-face { font-family: "Noto Sans Malayalam"; font-weight: 700; font-display: block;
   src: url("../assets/fonts/NotoSansMalayalam-700-malayalam.woff2") format("woff2"); unicode-range: U+0D00-0D7F, U+200C-200D, U+25CC; }
+/* Malayalam/Manglish headlines: Malayalam letters only, so Latin words fall through to Bricolage */
+@font-face { font-family: "Baloo Chettan 2"; font-weight: 800; font-display: block;
+  src: url("../assets/fonts/BalooChettan2-800-malayalam.woff2") format("woff2"); unicode-range: U+0D00-0D7F, U+200C-200D, U+25CC; }
 
 :root {
   /* colour — Figma variables */
@@ -31,6 +34,7 @@
   --mf-font-body: "Bricolage Grotesque", sans-serif;
   --mf-font-label: "IBM Plex Mono", monospace;
   --mf-font-malayalam: "Noto Sans Malayalam", sans-serif;
+  --mf-font-malayalam-display: "Baloo Chettan 2", "Noto Sans Malayalam", sans-serif;
 }
 
 /* type roles */
