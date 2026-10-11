@@ -1,1 +1,6 @@
 .DS_Store
+node_modules/
+
+# Generated artwork, schedules and screenshots (the repo is public): see workflows/README.md
+output/
+awareness-carousels-*/
