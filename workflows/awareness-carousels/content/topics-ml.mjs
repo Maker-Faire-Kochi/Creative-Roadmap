@@ -1,7 +1,7 @@
 // Malayalam edition (Manglish): Malayalam grammar, with the English maker words people actually say kept in English.
 // Same keys and markup as topics.mjs (*accent*, ~strike~); asm/label/chapter/sources come from the English file.
 // A Malayalam suffix after an English word starts with a full letter ("project-ൽ", "Campus-കളിൽ"), never a bare vowel sign.
-// Rendered with: node build.mjs --lang=ml (Malayalam letters in Baloo Chettan 2, Latin in Bricolage).
+// Rendered with: node build.mjs --look=… --lang=ml (Malayalam letters in Baloo Chettan 2, Latin in the look's display face).
 export const TOPICS_ML = {
   "01-maker-faire-101": {
     slides: [

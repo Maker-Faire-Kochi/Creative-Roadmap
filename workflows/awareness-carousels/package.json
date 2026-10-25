@@ -4,10 +4,12 @@
   "type": "module",
   "description": "Maker Faire Kochi awareness carousels: render (English + Manglish), package, QA",
   "scripts": {
-    "build": "node src/build.mjs",
-    "build:ml": "node src/build.mjs --lang=ml",
-    "package": "node src/package.mjs",
-    "docs:ml": "node src/ml-docs.mjs"
+    "build:general": "node src/build.mjs --look=general",
+    "build:noise": "node src/build.mjs --look=noise",
+    "build:ml:general": "node src/build.mjs --look=general --lang=ml",
+    "build:ml:noise": "node src/build.mjs --look=noise --lang=ml",
+    "package:general": "node src/package.mjs --look=general",
+    "package:noise": "node src/package.mjs --look=noise"
   },
   "dependencies": {
     "playwright-core": "1.63.0"
