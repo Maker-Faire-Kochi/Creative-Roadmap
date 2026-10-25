@@ -1,0 +1,6 @@
+[submodule "workflows/motion-posters/vendor/poster-studio"]
+	path = workflows/motion-posters/vendor/poster-studio
+	url = https://github.com/niyamax/maker-faire-kochi-poster-studio.git
+[submodule "workflows/motion-posters/vendor/website"]
+	path = workflows/motion-posters/vendor/website
+	url = https://github.com/Maker-Faire-Kochi/Website.git

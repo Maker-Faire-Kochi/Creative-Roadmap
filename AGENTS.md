@@ -28,11 +28,12 @@ The guidelines come from [niyamax/maker-faire-kochi](https://github.com/niyamax/
 Repeatable pipelines live in **`workflows/`**; read `workflows/README.md`, then the runbook of the one you're using.
 
 - `workflows/awareness-carousels/`: renders the awareness carousels (19 topics × 5 designs × post + story) in English and Manglish, in either look (`--look=general` or `--look=noise`), with layout QA and a review gallery.
+- `workflows/motion-posters/`: renders a motion poster per awareness topic (post + story, 12–18-second silent MP4 stories, a beat per carousel slide) in either look: Poster Studio lettering over the makerfaire.in 3D scenes (`vendor/poster-studio` and `vendor/website`, git submodules: run `git submodule update --init`).
 - `workflows/instagram-scheduling/`: schedules the carousels and their stories on Meta Business Suite from an approved plan.
 
 Rules that apply to any agent:
 - **Source in git, output out of git.** Generated artwork, galleries, schedule ledgers, screenshots and upload copies go in `output/` (git-ignored) or a campaign output folder, never in `workflows/`. The repo is **public**: never commit them, or Meta account identifiers.
-- **Copy has one source of truth:** slide copy in `workflows/awareness-carousels/content/topics.mjs` (English) and `topics-ml.mjs` (Manglish); captions and keyword tags in `content/captions.md`; schedules in `workflows/instagram-scheduling/plans/*.json`. Change the source and re-render; never hand-edit a generated file.
+- **Copy has one source of truth:** slide copy in `workflows/awareness-carousels/content/topics.mjs` (English) and `topics-ml.mjs` (Manglish); motion poster storyboards (lettering and scene cues per beat) in `workflows/motion-posters/content/storyboards.mjs`; captions and keyword tags in `content/captions.md`; schedules in `workflows/instagram-scheduling/plans/*.json`. Change the source and re-render; never hand-edit a generated file.
 - **Human gates:** the user approves every caption before it is scheduled, and a fluent speaker reviews Manglish copy before it is published. Record approvals with `prepare.py --approve`; never assume one. Never publish immediately, and don't re-render or edit artwork that is already scheduled.
 - Captions use bracketed keyword tags (`[MakerFaireKochi, Maker, Kochi, Kerala]`), not hashtags. Stories have no caption.
 - Manglish: Malayalam grammar with English maker words kept in English, "Maker Faire Kochi" always English, no event date (`ഉടൻ വരുന്നു` = coming soon). Maker Stories isn't released yet, so copy says it is coming.
