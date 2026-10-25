@@ -1,4 +1,6 @@
-# design-system/ — Maker Faire Kochi "The Open Workshop" (offline)
+# archive/open-workshop/ — Maker Faire Kochi "The Open Workshop" (historical)
+
+> **Historical. Superseded by `guidelines/` on 2026-10-25.** Kept for provenance and as archive art for the awareness carousels. The official logos moved to `brand/logo/official/` and Baloo Chettan 2 to `brand/fonts/`. Don't use this folder for new work.
 
 An offline copy of the Figma moodboard's design system, so Claude, Codex or a person can work **without the Figma MCP**. Snapshot: 2026-10-05, from Figma file `xczyTXBjbMPH9JXyYDeO8w`.
 

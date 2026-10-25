@@ -1,0 +1,30 @@
+{
+  "researchedOn": "2026-10-10",
+  "sources": [
+    {
+      "region": "Bay Area",
+      "url": "https://makerfaire.com/yearbook/faires/bay-area-2025/",
+      "finding": "The official yearbook shows robotics, DIY machines and kinetic/large-scale exhibits.",
+      "interpretation": "Original kinetic contraption; Make believe."
+    },
+    {
+      "region": "Rome",
+      "url": "https://makerfairerome.eu/en/overview/circulareconomy/",
+      "finding": "The official circular-economy overview emphasizes reuse, regeneration, materials management and hands-on workshops.",
+      "interpretation": "Repair bench; Remake tomorrow."
+    },
+    {
+      "region": "Tokyo",
+      "url": "https://makezine.jp/event/mft2025/program/",
+      "finding": "The official 2025 program includes crafted robot fighters, robot-car programming, teardown and soldering workshops.",
+      "interpretation": "Playful homemade robots; Small robots. Big ideas."
+    },
+    {
+      "region": "Shenzhen",
+      "url": "https://www.shenzhenmakerfaire.com/2025/05/21/ai-and-more-things-maker-faire-shenzhen-2025-now-call-for-makers/",
+      "finding": "The official 2025 call presents AI and More Things as the theme, connecting technology, creators and tangible innovation.",
+      "interpretation": "Circuit-board artwork; From bits to things / Make it real."
+    }
+  ],
+  "note": "Creative interpretations of regional programming. Date-free concept series; no claim of an official commissioned campaign."
+}

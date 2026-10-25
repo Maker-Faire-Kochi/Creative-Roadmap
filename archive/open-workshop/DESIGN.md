@@ -72,6 +72,8 @@ components:
   geometry: "kit.json — per-path roles, bounding boxes and joint pivots for every SVG"
 ---
 
+> **Historical. Superseded by `guidelines/` on 2026-10-25.** This spec no longer governs new work.
+
 # The Open Workshop — Maker Faire Kochi visual system
 
 > **For agents (Claude, Codex, others):** the YAML frontmatter above is the **normative** layer — quote hex values, font families, weights and sizes verbatim; never invent or round them. The prose below is intent and judgment. Asset paths are relative to this folder. Machine-readable tokens: `tokens/tokens.json` (W3C design-token format) and `tokens/tokens.css` (CSS custom properties). Kit geometry: `kit.json`.

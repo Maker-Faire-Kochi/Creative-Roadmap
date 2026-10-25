@@ -1,0 +1,58 @@
+[
+  {
+    "file": "BricolageGrotesque-variable.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/bricolagegrotesque/BricolageGrotesque%5Bopsz%2Cwdth%2Cwght%5D.ttf",
+    "bytes": 408496,
+    "sha256": "413e7357809ddd12fd80a96a8a396de0e401638d4acd3cb3e37532f0472ac682"
+  },
+  {
+    "file": "BricolageGrotesque-OFL.txt",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/bricolagegrotesque/OFL.txt",
+    "bytes": 4403,
+    "sha256": "4b5a7d8f37f5602621c8a8d7358a6a2e71317e6c231c661e15aef0275d3e07ba"
+  },
+  {
+    "file": "NotoSansMalayalam-variable.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansmalayalam/NotoSansMalayalam%5Bwdth%2Cwght%5D.ttf",
+    "bytes": 504204,
+    "sha256": "312e0e7c3cc15fa09eb42a8f749eeb246b593ed420e3c81aafe8d910c3a6fb56"
+  },
+  {
+    "file": "NotoSansMalayalam-OFL.txt",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansmalayalam/OFL.txt",
+    "bytes": 4385,
+    "sha256": "1df18163a0bf60f02131401ba1609df90051f40c4047684dda1c8a2e9586f7f2"
+  },
+  {
+    "file": "IBMPlexMono-Regular.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexmono/IBMPlexMono-Regular.ttf",
+    "bytes": 135580,
+    "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+  },
+  {
+    "file": "IBMPlexMono-Medium.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexmono/IBMPlexMono-Medium.ttf",
+    "bytes": 136704,
+    "sha256": "a9b4c49bb299e05b5f6c481e7fb5e78943d2793249a0c8874ab574a2d1ea6755"
+  },
+  {
+    "file": "IBMPlexMono-OFL.txt",
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexmono/OFL.txt",
+    "bytes": 4456,
+    "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+  },
+  {
+    "file": "Anton-Regular.ttf",
+    "source": "kerala-photo-zine/fonts/Anton-Regular.ttf",
+    "bytes": 170812,
+    "sha256": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab",
+    "license": "SIL Open Font License 1.1"
+  },
+  {
+    "file": "Anton-OFL.txt",
+    "source": "kerala-photo-zine/fonts/Anton-OFL.txt",
+    "bytes": 4484,
+    "sha256": "ee67e6ee22790b7929f1a3769ca2801d565c64b5a9096942c1adf5596de9c9e4",
+    "license": "SIL Open Font License 1.1"
+  }
+]

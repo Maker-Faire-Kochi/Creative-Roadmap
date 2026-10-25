@@ -1,0 +1,24 @@
+/* Reference only. Existing studies keep their own palette and typography. */
+:root{
+  --mf-current-display:"Anton",sans-serif;
+  --mf-current-body:"IBM Plex Mono",monospace;
+  --mf-current-mono:"IBM Plex Mono",monospace;
+  --mf-official-white: #FFFFFF;
+  --mf-official-red: #ED1C24;
+  --mf-official-cyan: #00AEEF;
+  --mf-campaign-paper: #F4EFDF;
+  --mf-campaign-ink: #20251F;
+  --mf-campaign-red: #EF432D;
+  --mf-campaign-blue: #2854D9;
+  --mf-campaign-yellow: #F7C928;
+  --mf-campaign-coir: #B69B73;
+  --mf-campaign-white: #FFFFFF;
+  --mf-deck-surface: #E6E2D5;
+  --mf-deck-secondary: #62675F;
+  --mf-deck-rule: #CBCDC1;
+  --mf-official-font:"Benton Sans"; /* Licensed font not bundled. */
+  --mf-campaign-display:"Bricolage Grotesque",sans-serif;
+  --mf-campaign-body:"Bricolage Grotesque",sans-serif;
+  --mf-campaign-mono:"IBM Plex Mono",monospace;
+  --mf-campaign-malayalam:"Noto Sans Malayalam",sans-serif;
+}

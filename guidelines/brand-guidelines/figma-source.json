@@ -1,0 +1,3292 @@
+{
+  "fileKey": "0kwqCaBkGGypYupzl7gsuj",
+  "url": "https://www.figma.com/design/0kwqCaBkGGypYupzl7gsuj/Maker-Faire-Kochi-Moodboard?node-id=5-16",
+  "extractedOn": "2026-10-11",
+  "figmaChanged": false,
+  "collections": [
+    {
+      "id": "VariableCollectionId:4:2",
+      "name": "MF / Primitives",
+      "modes": [
+        {
+          "name": "Value",
+          "modeId": "4:0"
+        }
+      ],
+      "defaultModeId": "4:0"
+    },
+    {
+      "id": "VariableCollectionId:4:3",
+      "name": "MF / Visual System",
+      "modes": [
+        {
+          "name": "Value",
+          "modeId": "4:1"
+        }
+      ],
+      "defaultModeId": "4:1"
+    }
+  ],
+  "variables": [
+    {
+      "id": "VariableID:4:4",
+      "name": "raw/paper",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0.95686274766922,
+          "g": 0.9372549057006836,
+          "b": 0.8745098114013672,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:5",
+      "name": "raw/ink",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0.125490203499794,
+          "g": 0.14509804546833038,
+          "b": 0.12156862765550613,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:6",
+      "name": "raw/red",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0.9372549057006836,
+          "g": 0.26274511218070984,
+          "b": 0.1764705926179886,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:7",
+      "name": "raw/blue",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0.1568627506494522,
+          "g": 0.3294117748737335,
+          "b": 0.8509804010391235,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:8",
+      "name": "raw/yellow",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0.9686274528503418,
+          "g": 0.7882353067398071,
+          "b": 0.1568627506494522,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:9",
+      "name": "raw/coir",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0.7137255072593689,
+          "g": 0.6078431606292725,
+          "b": 0.45098039507865906,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:10",
+      "name": "raw/white",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:11",
+      "name": "raw/maker-red",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0.929411768913269,
+          "g": 0.10980392247438431,
+          "b": 0.1411764770746231,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:12",
+      "name": "raw/maker-blue",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0,
+          "g": 0.6823529601097107,
+          "b": 0.9372549057006836,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:13",
+      "name": "color/paper",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:4:4"
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:14",
+      "name": "color/ink",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:4:5"
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:15",
+      "name": "color/red",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:4:6"
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:16",
+      "name": "color/blue",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:4:7"
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:17",
+      "name": "color/yellow",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:4:8"
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:18",
+      "name": "color/coir",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:4:9"
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:19",
+      "name": "color/white",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:4:10"
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:20",
+      "name": "color/maker-red",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:4:11"
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:21",
+      "name": "color/maker-blue",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:4:12"
+        }
+      }
+    },
+    {
+      "id": "VariableID:4:22",
+      "name": "space/4",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 4
+      }
+    },
+    {
+      "id": "VariableID:4:23",
+      "name": "space/8",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 8
+      }
+    },
+    {
+      "id": "VariableID:4:24",
+      "name": "space/12",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 12
+      }
+    },
+    {
+      "id": "VariableID:4:25",
+      "name": "space/16",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 16
+      }
+    },
+    {
+      "id": "VariableID:4:26",
+      "name": "space/24",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 24
+      }
+    },
+    {
+      "id": "VariableID:4:27",
+      "name": "space/32",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 32
+      }
+    },
+    {
+      "id": "VariableID:4:28",
+      "name": "space/48",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 48
+      }
+    },
+    {
+      "id": "VariableID:4:29",
+      "name": "space/64",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 64
+      }
+    },
+    {
+      "id": "VariableID:4:30",
+      "name": "space/96",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 96
+      }
+    },
+    {
+      "id": "VariableID:4:31",
+      "name": "radius/none",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 0
+      }
+    },
+    {
+      "id": "VariableID:4:32",
+      "name": "radius/small",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 8
+      }
+    },
+    {
+      "id": "VariableID:4:33",
+      "name": "radius/round",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 999
+      }
+    },
+    {
+      "id": "VariableID:4:34",
+      "name": "stroke/1",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 1
+      }
+    },
+    {
+      "id": "VariableID:4:35",
+      "name": "stroke/2",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 2
+      }
+    },
+    {
+      "id": "VariableID:4:36",
+      "name": "type/12",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 12
+      }
+    },
+    {
+      "id": "VariableID:4:37",
+      "name": "type/16",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 16
+      }
+    },
+    {
+      "id": "VariableID:4:38",
+      "name": "type/20",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 20
+      }
+    },
+    {
+      "id": "VariableID:4:39",
+      "name": "type/28",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 28
+      }
+    },
+    {
+      "id": "VariableID:4:40",
+      "name": "type/40",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 40
+      }
+    },
+    {
+      "id": "VariableID:4:41",
+      "name": "type/64",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 64
+      }
+    },
+    {
+      "id": "VariableID:4:42",
+      "name": "type/96",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 96
+      }
+    },
+    {
+      "id": "VariableID:4:43",
+      "name": "type/160",
+      "type": "FLOAT",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": 160
+      }
+    },
+    {
+      "id": "VariableID:65:37",
+      "name": "raw/deck-surface",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0.9019607901573181,
+          "g": 0.886274516582489,
+          "b": 0.8352941274642944,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:65:38",
+      "name": "color/deck-surface",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:65:37"
+        }
+      }
+    },
+    {
+      "id": "VariableID:65:39",
+      "name": "raw/deck-secondary",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0.3843137323856354,
+          "g": 0.40392157435417175,
+          "b": 0.37254902720451355,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:65:40",
+      "name": "color/deck-secondary",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:65:39"
+        }
+      }
+    },
+    {
+      "id": "VariableID:65:41",
+      "name": "raw/deck-rule",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:2",
+      "description": "",
+      "valuesByMode": {
+        "4:0": {
+          "r": 0.7960784435272217,
+          "g": 0.8039215803146362,
+          "b": 0.7568627595901489,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:65:42",
+      "name": "color/deck-rule",
+      "type": "COLOR",
+      "collection": "VariableCollectionId:4:3",
+      "description": "",
+      "valuesByMode": {
+        "4:1": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:65:41"
+        }
+      }
+    }
+  ],
+  "textStyles": [
+    {
+      "id": "S:9279399b97b1f3a9eb9fff0c0ac7d6cc94bcd9cc,",
+      "name": "MF / Display / XL",
+      "description": "The Open Workshop — Display / XL. Use the display face for short invitations, mono for functional information, and Malayalam with equal visual weight.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "96pt ExtraBold",
+        "variationSettings": {
+          "wght": 800,
+          "wdth": 100,
+          "opsz": 96
+        }
+      },
+      "fontSize": 160,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 152
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": -4
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:f1c6d85f489433399893e718eee9dd922f4cc869,",
+      "name": "MF / Display / Large",
+      "description": "The Open Workshop — Display / Large. Use the display face for short invitations, mono for functional information, and Malayalam with equal visual weight.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "96pt ExtraBold",
+        "variationSettings": {
+          "wght": 800,
+          "wdth": 100,
+          "opsz": 96
+        }
+      },
+      "fontSize": 96,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 94
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": -2
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:f02c8e21eae6e6202bc1a0b131f055b1cd623454,",
+      "name": "MF / Heading / Large",
+      "description": "The Open Workshop — Heading / Large. Use the display face for short invitations, mono for functional information, and Malayalam with equal visual weight.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "96pt ExtraBold",
+        "variationSettings": {
+          "wght": 800,
+          "wdth": 100,
+          "opsz": 96
+        }
+      },
+      "fontSize": 64,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 66
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": -1
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:cad897cad2a3568b552c5715bbf95457e9ab201a,",
+      "name": "MF / Heading / Medium",
+      "description": "The Open Workshop — Heading / Medium. Use the display face for short invitations, mono for functional information, and Malayalam with equal visual weight.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "96pt ExtraBold",
+        "variationSettings": {
+          "wght": 800,
+          "wdth": 100,
+          "opsz": 96
+        }
+      },
+      "fontSize": 40,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 44
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": -0.4000000059604645
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:dba14df2fd40469f030d85543446d27b834683b7,",
+      "name": "MF / Body / Large",
+      "description": "The Open Workshop — Body / Large. Use the display face for short invitations, mono for functional information, and Malayalam with equal visual weight.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 400,
+          "wdth": 100,
+          "opsz": 14
+        }
+      },
+      "fontSize": 28,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 38
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:c79a6570f8d1de2862a37bd25ea8744d8cc22b7d,",
+      "name": "MF / Body / Regular",
+      "description": "The Open Workshop — Body / Regular. Use the display face for short invitations, mono for functional information, and Malayalam with equal visual weight.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 400,
+          "wdth": 100,
+          "opsz": 14
+        }
+      },
+      "fontSize": 20,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 28
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:4d338768b421f289fc746dc68081cc9eaa5a876a,",
+      "name": "MF / Label / Regular",
+      "description": "The Open Workshop — Label / Regular. Use the display face for short invitations, mono for functional information, and Malayalam with equal visual weight.",
+      "fontName": {
+        "family": "IBM Plex Mono",
+        "style": "Medium"
+      },
+      "fontSize": 16,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:b6c3222f76a189d7a44508e8415a68db3b06936c,",
+      "name": "MF / Label / Small",
+      "description": "The Open Workshop — Label / Small. Use the display face for short invitations, mono for functional information, and Malayalam with equal visual weight.",
+      "fontName": {
+        "family": "IBM Plex Mono",
+        "style": "Medium"
+      },
+      "fontSize": 12,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 18
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:d1eb7b2530be1bb4a5d774976687ac86077cc7b3,",
+      "name": "MF / Malayalam / Display",
+      "description": "The Open Workshop — Malayalam / Display. Use the display face for short invitations, mono for functional information, and Malayalam with equal visual weight.",
+      "fontName": {
+        "family": "Noto Sans Malayalam",
+        "style": "Bold",
+        "variationSettings": {
+          "wght": 700,
+          "wdth": 100
+        }
+      },
+      "fontSize": 64,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 86
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:9a244e9d35becdde890135e17a613e61407a83b7,",
+      "name": "MF / Campaign type / Label / 12",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "IBM Plex Mono",
+        "style": "Medium"
+      },
+      "fontSize": 12,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 13.4399995803833
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:b9d41be21dadb6e102ee1dab8d48e609f7547a90,",
+      "name": "MF / Campaign type / Label / 13",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "IBM Plex Mono",
+        "style": "Medium"
+      },
+      "fontSize": 13,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 14.5600004196167
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:8722b3843e6662f40515b77666b13bf18c475ce9,",
+      "name": "MF / Campaign type / Label / 14",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "IBM Plex Mono",
+        "style": "Medium"
+      },
+      "fontSize": 14,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 15.680000305175781
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:f11bd4c563dd014a79d01d913d1e32c5743459f9,",
+      "name": "MF / Campaign type / Label / 15",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "IBM Plex Mono",
+        "style": "Medium"
+      },
+      "fontSize": 15,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 16.799999237060547
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:b76d5a63189d8f3c151f505356c76ab826d42c70,",
+      "name": "MF / Campaign type / Label / 16",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "IBM Plex Mono",
+        "style": "Medium"
+      },
+      "fontSize": 16,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 17.920000076293945
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:2ab21653817fd6c97e59533b08fc555ca5515b6f,",
+      "name": "MF / Campaign type / Label / 17",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "IBM Plex Mono",
+        "style": "Medium"
+      },
+      "fontSize": 17,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 19.040000915527344
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:45f81277a1096f363e484e3eaf2bf519e5dcb767,",
+      "name": "MF / Campaign type / Label / 18",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "IBM Plex Mono",
+        "style": "Medium"
+      },
+      "fontSize": 18,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 20.15999984741211
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:366d8beae69cf2895454bb2630f8c69b3c0accec,",
+      "name": "MF / Campaign type / Label / 20",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "IBM Plex Mono",
+        "style": "Medium"
+      },
+      "fontSize": 20,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 22.399999618530273
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:4cbace36e1e0e8a82cede3d7bfb55e15ca9c724f,",
+      "name": "MF / Campaign type / Body / 17",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 400,
+          "wdth": 100,
+          "opsz": 14
+        }
+      },
+      "fontSize": 17,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 19.040000915527344
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:1e519b1b93d32b02b904fd4cb8a5581f296c3ffe,",
+      "name": "MF / Campaign type / Body / 20 tight",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 400,
+          "wdth": 100,
+          "opsz": 14
+        }
+      },
+      "fontSize": 20,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 22.399999618530273
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:3fcc8742b55100da0bcad3ef093f2c3504603733,",
+      "name": "MF / Campaign type / Body / 20 reading",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 400,
+          "wdth": 100,
+          "opsz": 14
+        }
+      },
+      "fontSize": 20,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 27
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:01419e562f72723cd6d240c68a3b3be66a7e8274,",
+      "name": "MF / Campaign type / Body / 24",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 400,
+          "wdth": 100,
+          "opsz": 14
+        }
+      },
+      "fontSize": 24,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 26.8799991607666
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:2197523efb510a379e89d4d6aaedd3b17eca816a,",
+      "name": "MF / Campaign type / Body / Badge",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 400,
+          "wdth": 100,
+          "opsz": 14
+        }
+      },
+      "fontSize": 24,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 29
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:512994023f8893e7b8588e72cb94192f4f2e66ca,",
+      "name": "MF / Campaign type / Heading / 22",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "96pt ExtraBold",
+        "variationSettings": {
+          "wght": 800,
+          "wdth": 100,
+          "opsz": 96
+        }
+      },
+      "fontSize": 22,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24.639999389648438
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:c12296bb9e087cba916bb6824ee9a5a1f066c8ad,",
+      "name": "MF / Campaign type / Heading / 28",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "96pt ExtraBold",
+        "variationSettings": {
+          "wght": 800,
+          "wdth": 100,
+          "opsz": 96
+        }
+      },
+      "fontSize": 28,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 31.360000610351562
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:e86d7547fc4614eabc80241a1858a776015b61b6,",
+      "name": "MF / Campaign type / Heading / 32",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "96pt ExtraBold",
+        "variationSettings": {
+          "wght": 800,
+          "wdth": 100,
+          "opsz": 96
+        }
+      },
+      "fontSize": 32,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 35.84000015258789
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:5202ccc006e87a319105c99196d257eaa27a9878,",
+      "name": "MF / Campaign type / Display / Sign",
+      "description": "Shared editorial style used in the Open Workshop campaign. Proposed type, pending current organiser brand-kit review.",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "96pt ExtraBold",
+        "variationSettings": {
+          "wght": 800,
+          "wdth": 100,
+          "opsz": 96
+        }
+      },
+      "fontSize": 100,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 112
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": -2
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:aaf6117184f7a8b7d07a62443885b2bddf18b0f4,",
+      "name": "MF / Deck type / Section",
+      "description": "",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "SemiBold",
+        "variationSettings": {
+          "wght": 600,
+          "wdth": 100,
+          "opsz": 14
+        }
+      },
+      "fontSize": 32,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 40
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": -0.4000000059604645
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:acc2b2a5ff6200482d291581711b859fd9fad48b,",
+      "name": "MF / Deck type / Body",
+      "description": "",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 400,
+          "wdth": 100,
+          "opsz": 14
+        }
+      },
+      "fontSize": 24,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 32
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": 0
+      },
+      "textCase": "ORIGINAL"
+    },
+    {
+      "id": "S:7a323ddfe5f537a56e111fb205455b35dc07c3b9,",
+      "name": "MF / Deck type / Cover",
+      "description": "",
+      "fontName": {
+        "family": "Bricolage Grotesque",
+        "style": "96pt ExtraBold",
+        "variationSettings": {
+          "wght": 800,
+          "wdth": 100,
+          "opsz": 96
+        }
+      },
+      "fontSize": 192,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 184
+      },
+      "letterSpacing": {
+        "unit": "PIXELS",
+        "value": -4
+      },
+      "textCase": "ORIGINAL"
+    }
+  ],
+  "pages": [
+    {
+      "page": {
+        "id": "5:12",
+        "name": "01 Foundations"
+      },
+      "frames": [
+        {
+          "id": "12:77",
+          "name": "01 — Campaign colour palette"
+        },
+        {
+          "id": "13:68",
+          "name": "02 — Campaign typography"
+        },
+        {
+          "id": "1188:49",
+          "name": "Photo zine / Source photographs & adaptations"
+        }
+      ],
+      "texts": [
+        {
+          "id": "12:79",
+          "name": "01 / COLOUR",
+          "text": "01 / PROPOSED CAMPAIGN COLOUR",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:81",
+          "name": "COLOUR / PALETTE",
+          "text": "COLOUR\nPALETTE",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "12:83",
+          "name": "Paper and ink form the base. / Add one main colour.",
+          "text": "Paper and ink form the base.\nAdd one main colour.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "12:85",
+          "name": "CAMPAIGN PALETTE / OFFICIAL LOGO COLOURS ARE SHOWN IN THE BRAND GUIDELINES.",
+          "text": "CAMPAIGN PALETTE / OFFICIAL LOGO COLOURS ARE SHOWN IN THE BRAND GUIDELINES.",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:88",
+          "name": "PAPER",
+          "text": "PAPER",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:90",
+          "name": "#F4EFDF",
+          "text": "#F4EFDF",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:95",
+          "name": "INK",
+          "text": "INK",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:97",
+          "name": "#20251F",
+          "text": "#20251F",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:102",
+          "name": "VERMILION",
+          "text": "VERMILION",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:104",
+          "name": "#EF432D",
+          "text": "#EF432D",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:109",
+          "name": "COBALT",
+          "text": "COBALT",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:111",
+          "name": "#2854D9",
+          "text": "#2854D9",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:116",
+          "name": "YELLOW",
+          "text": "YELLOW",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:118",
+          "name": "#F7C928",
+          "text": "#F7C928",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:122",
+          "name": "THE MATERIAL NOTE",
+          "text": "THE MATERIAL NOTE",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:125",
+          "name": "Coir / #B69B73",
+          "text": "Coir / #B69B73",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "12:127",
+          "name": "For material samples and mockups.",
+          "text": "For material samples and mockups.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "12:129",
+          "name": "COLOUR BALANCE",
+          "text": "COLOUR BALANCE",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:131",
+          "name": "Paper + ink, with one main colour.",
+          "text": "Paper + ink, with one main colour.",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:133",
+          "name": "Small type: ink on paper, or paper on cobalt.",
+          "text": "Small type: ink on paper, or paper on cobalt.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "12:136",
+          "name": "MAKER FAIRE KOCHI",
+          "text": "MAKER FAIRE KOCHI",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:138",
+          "name": "FOUNDATIONS / COLOUR",
+          "text": "FOUNDATIONS / COLOUR",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "12:140",
+          "name": "01",
+          "text": "01",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:70",
+          "name": "02 / PROPOSED CAMPAIGN TYPE",
+          "text": "02 / PROPOSED CAMPAIGN TYPE",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:72",
+          "name": "THE OPEN WORKSHOP",
+          "text": "THE OPEN WORKSHOP",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:74",
+          "name": "Campaign typography",
+          "text": "Campaign typography",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:76",
+          "name": "Bricolage for headlines and body copy. Plex Mono for details. Noto for Malayalam.",
+          "text": "Bricolage for headlines and body copy. Plex Mono for details. Noto for Malayalam.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:79",
+          "name": "HEADLINES / BRICOLAGE GROTESQUE",
+          "text": "HEADLINES / BRICOLAGE GROTESQUE",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:81",
+          "name": "Make / something.",
+          "text": "Make\nsomething.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:83",
+          "name": "23–24 JANUARY 2027 · KOCHI",
+          "text": "23–24 JANUARY 2027 · KOCHI",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:85",
+          "name": "MALAYALAM / NOTO SANS MALAYALAM",
+          "text": "MALAYALAM / NOTO SANS MALAYALAM",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:87",
+          "name": "കൊച്ചി",
+          "text": "കൊച്ചി",
+          "fonts": [
+            {
+              "family": "Noto Sans Malayalam",
+              "style": "Bold",
+              "variationSettings": {
+                "wght": 700,
+                "wdth": 100
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:89",
+          "name": "KOCHI",
+          "text": "KOCHI",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:91",
+          "name": "Do not add tracking to Malayalam text.",
+          "text": "Do not add tracking to Malayalam text.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:94",
+          "name": "The proposed type kit",
+          "text": "The proposed type kit",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:96",
+          "name": "SIZES SHOWN IN PX / SCALE PROPORTIONALLY FOR PRINT",
+          "text": "SIZES SHOWN IN PX / SCALE PROPORTIONALLY FOR PRINT",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:98",
+          "name": "01",
+          "text": "01",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:100",
+          "name": "Aa",
+          "text": "Aa",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:102",
+          "name": "Bricolage Grotesque",
+          "text": "Bricolage Grotesque",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:104",
+          "name": "EXTRABOLD / 800",
+          "text": "EXTRABOLD / 800",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:107",
+          "name": "112–160",
+          "text": "112–160",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:109",
+          "name": "Campaign",
+          "text": "Campaign",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:111",
+          "name": "48–64",
+          "text": "48–64",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:113",
+          "name": "Section title",
+          "text": "Section title",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:115",
+          "name": "02",
+          "text": "02",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:117",
+          "name": "Aa",
+          "text": "Aa",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:119",
+          "name": "Bricolage Grotesque",
+          "text": "Bricolage Grotesque",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:121",
+          "name": "REGULAR / 400",
+          "text": "REGULAR / 400",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:124",
+          "name": "24–28",
+          "text": "24–28",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:126",
+          "name": "Introduction",
+          "text": "Introduction",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:128",
+          "name": "18–22",
+          "text": "18–22",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:130",
+          "name": "Body copy",
+          "text": "Body copy",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:132",
+          "name": "03",
+          "text": "03",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:134",
+          "name": "Aa",
+          "text": "Aa",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:136",
+          "name": "IBM Plex Mono",
+          "text": "IBM Plex Mono",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:138",
+          "name": "REGULAR–MEDIUM / 400–500",
+          "text": "REGULAR–MEDIUM / 400–500",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:141",
+          "name": "14–16",
+          "text": "14–16",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:143",
+          "name": "Labels & data",
+          "text": "Labels & data",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:145",
+          "name": "12–14",
+          "text": "12–14",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:147",
+          "name": "Small captions",
+          "text": "Small captions",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:149",
+          "name": "04",
+          "text": "04",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:151",
+          "name": "അ",
+          "text": "അ",
+          "fonts": [
+            {
+              "family": "Noto Sans Malayalam",
+              "style": "Bold",
+              "variationSettings": {
+                "wght": 700,
+                "wdth": 100
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:153",
+          "name": "Noto Sans Malayalam",
+          "text": "Noto Sans Malayalam",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:155",
+          "name": "BOLD / 700",
+          "text": "BOLD / 700",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:158",
+          "name": "Match presence",
+          "text": "Match presence",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:160",
+          "name": "Local headlines",
+          "text": "Local headlines",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:162",
+          "name": "0 tracking",
+          "text": "0 tracking",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:164",
+          "name": "Natural shaping",
+          "text": "Natural shaping",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:166",
+          "name": "The public 2013 guide specifies Benton Sans. These proposed alternatives need organiser kit review.",
+          "text": "The public 2013 guide specifies Benton Sans. These proposed alternatives need organiser kit review.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:169",
+          "name": "MAKER FAIRE KOCHI",
+          "text": "MAKER FAIRE KOCHI",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:171",
+          "name": "PROPOSED CAMPAIGN TYPOGRAPHY",
+          "text": "PROPOSED CAMPAIGN TYPOGRAPHY",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:173",
+          "name": "02",
+          "text": "02",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "1188:51",
+          "name": "Index",
+          "text": "PHOTO ZINE / PHOTOGRAPHS",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Regular"
+            }
+          ]
+        },
+        {
+          "id": "1188:52",
+          "name": "Title",
+          "text": "The four working photographs.",
+          "fonts": [
+            {
+              "family": "Anton",
+              "style": "Regular"
+            }
+          ]
+        },
+        {
+          "id": "1188:53",
+          "name": "Note",
+          "text": "Use these illustrative adaptations as image fills. Keep the photo credit with each use. Original source links are in the guide.",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        },
+        {
+          "id": "1188:57",
+          "name": "Subject",
+          "text": "Cheenavala · Kochi",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        },
+        {
+          "id": "1188:58",
+          "name": "Credit",
+          "text": "Wouter Hagens · Public domain · Adapted",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Regular"
+            }
+          ]
+        },
+        {
+          "id": "1188:59",
+          "name": "Source note",
+          "text": "Real source photograph with monochrome, blue ink and paper-edge treatment. The texture and tracing are part of the raster image.",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        },
+        {
+          "id": "1188:63",
+          "name": "Subject",
+          "text": "Coir spinning · Kochi backwaters",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        },
+        {
+          "id": "1188:64",
+          "name": "Credit",
+          "text": "Bricaniwi · CC BY-SA 4.0 · Adapted",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Regular"
+            }
+          ]
+        },
+        {
+          "id": "1188:65",
+          "name": "Source note",
+          "text": "Real source photograph with monochrome, blue ink and paper-edge treatment. The texture and tracing are part of the raster image.",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        },
+        {
+          "id": "1188:69",
+          "name": "Subject",
+          "text": "Uru · Beypore",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        },
+        {
+          "id": "1188:70",
+          "name": "Credit",
+          "text": "Shyamal · CC BY-SA 3.0 · Adapted",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Regular"
+            }
+          ]
+        },
+        {
+          "id": "1188:71",
+          "name": "Source note",
+          "text": "Real source photograph with monochrome, blue ink and paper-edge treatment. The texture and tracing are part of the raster image.",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        },
+        {
+          "id": "1188:75",
+          "name": "Subject",
+          "text": "Aranmula kannadi",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        },
+        {
+          "id": "1188:76",
+          "name": "Credit",
+          "text": "Captain · CC BY-SA 3.0 · Adapted",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Regular"
+            }
+          ]
+        },
+        {
+          "id": "1188:77",
+          "name": "Source note",
+          "text": "Real source photograph with monochrome, blue ink and paper-edge treatment. The texture and tracing are part of the raster image.",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        },
+        {
+          "id": "1188:81",
+          "name": "Subject",
+          "text": "Cheenavala · Original photograph",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        },
+        {
+          "id": "1188:82",
+          "name": "Credit",
+          "text": "Wouter Hagens · Public domain · Source image",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Regular"
+            }
+          ]
+        },
+        {
+          "id": "1188:83",
+          "name": "Source note",
+          "text": "Shown alongside the illustrated version in the guide.",
+          "fonts": [
+            {
+              "family": "Geist",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "page": {
+        "id": "5:16",
+        "name": "05 Guidelines"
+      },
+      "frames": [
+        {
+          "id": "13:259",
+          "name": "08 — Campaign guidelines"
+        },
+        {
+          "id": "14:58",
+          "name": "Official brand / Campaign guidance"
+        }
+      ],
+      "texts": [
+        {
+          "id": "13:261",
+          "name": "08 / CAMPAIGN DESIGN PRINCIPLES",
+          "text": "08 / CAMPAIGN DESIGN PRINCIPLES",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:263",
+          "name": "THE OPEN WORKSHOP",
+          "text": "THE OPEN WORKSHOP",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:265",
+          "name": "Campaign / guidelines",
+          "text": "Campaign\nguidelines",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:267",
+          "name": "Proposed campaign guidance. Confirm against the organiser’s current identity kit.",
+          "text": "Proposed campaign guidance. Confirm against the organiser’s current identity kit.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:280",
+          "name": "01",
+          "text": "01",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:282",
+          "name": "Keep the signature.",
+          "text": "Keep the signature.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:284",
+          "name": "Use the supplied Maker Faire logo. / Keep its colours and proportions.",
+          "text": "Use the supplied Maker Faire logo.\nKeep its colours and proportions.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:286",
+          "name": "02",
+          "text": "02",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:288",
+          "name": "Connect the parts.",
+          "text": "Connect the parts.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:290",
+          "name": "Align parts at the joint holes. / Keep the hole visible.",
+          "text": "Align parts at the joint holes.\nKeep the hole visible.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:292",
+          "name": "03",
+          "text": "03",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:294",
+          "name": "Limit the palette.",
+          "text": "Limit the palette.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:296",
+          "name": "Choose one main colour. / Use paper and ink for information.",
+          "text": "Choose one main colour.\nUse paper and ink for information.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:298",
+          "name": "04",
+          "text": "04",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:300",
+          "name": "Set Malayalam carefully.",
+          "text": "Set Malayalam carefully.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:302",
+          "name": "Use real Malayalam content. / Keep the script’s natural spacing.",
+          "text": "Use real Malayalam content.\nKeep the script’s natural spacing.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:304",
+          "name": "05",
+          "text": "05",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:306",
+          "name": "Make contrast clear.",
+          "text": "Make contrast clear.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:308",
+          "name": "Keep information easy to read. / Save bright colours for emphasis.",
+          "text": "Keep information easy to read.\nSave bright colours for emphasis.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:310",
+          "name": "06",
+          "text": "06",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:312",
+          "name": "Show the making.",
+          "text": "Show the making.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:314",
+          "name": "Show grain, joints and process. / Photograph real hands at work.",
+          "text": "Show grain, joints and process.\nPhotograph real hands at work.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:341",
+          "name": "ONE SHARED PIVOT",
+          "text": "ONE SHARED PIVOT",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:345",
+          "name": "DOMINANT",
+          "text": "DOMINANT",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:347",
+          "name": "SUPPORT",
+          "text": "SUPPORT",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:349",
+          "name": "കൊച്ചി",
+          "text": "കൊച്ചി",
+          "fonts": [
+            {
+              "family": "Noto Sans Malayalam",
+              "style": "Bold",
+              "variationSettings": {
+                "wght": 700,
+                "wdth": 100
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:351",
+          "name": "KOCHI",
+          "text": "KOCHI",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:354",
+          "name": "Aa",
+          "text": "Aa",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:357",
+          "name": "Aa",
+          "text": "Aa",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "13:359",
+          "name": "PAPER / INK",
+          "text": "PAPER / INK",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:361",
+          "name": "YELLOW / INK",
+          "text": "YELLOW / INK",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:371",
+          "name": "WOOD",
+          "text": "WOOD",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:373",
+          "name": "PAPER",
+          "text": "PAPER",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:376",
+          "name": "MAKER FAIRE KOCHI",
+          "text": "MAKER FAIRE KOCHI",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:378",
+          "name": "CAMPAIGN GUIDELINES",
+          "text": "CAMPAIGN GUIDELINES",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "13:380",
+          "name": "08",
+          "text": "08",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:60",
+          "name": "05 / BRAND GUIDELINES",
+          "text": "05 / BRAND GUIDELINES",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:62",
+          "name": "THE OPEN WORKSHOP / DESIGN EXPLORATION",
+          "text": "THE OPEN WORKSHOP / DESIGN EXPLORATION",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:65",
+          "name": "OFFICIAL BRAND / LOCAL CAMPAIGN",
+          "text": "OFFICIAL BRAND\nLOCAL CAMPAIGN",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:68",
+          "name": "01 / PROTECTED ARTWORK",
+          "text": "01 / PROTECTED ARTWORK",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:90",
+          "name": "KEEP CLEAR",
+          "text": "KEEP CLEAR",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:92",
+          "name": "REFERENCE ONLY — REPLACE WITH SUPPLIED KOCHI LOGO",
+          "text": "REFERENCE ONLY — REPLACE WITH SUPPLIED KOCHI LOGO",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:94",
+          "name": "02 / OFFICIAL LOGO COLOURS",
+          "text": "02 / OFFICIAL LOGO COLOURS",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:97",
+          "name": "Maker red",
+          "text": "Maker red",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:99",
+          "name": "#ED1C24",
+          "text": "#ED1C24",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:102",
+          "name": "Maker cyan",
+          "text": "Maker cyan",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:104",
+          "name": "#00AEEF",
+          "text": "#00AEEF",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:106",
+          "name": "Keep the white inside the logo.",
+          "text": "Keep the white inside the logo.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:109",
+          "name": "FIXED",
+          "text": "FIXED",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:111",
+          "name": "PROPOSED",
+          "text": "PROPOSED",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:113",
+          "name": "Supplied event identity.",
+          "text": "Supplied event identity.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:115",
+          "name": "Supporting campaign artwork.",
+          "text": "Supporting campaign artwork.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "96pt ExtraBold",
+              "variationSettings": {
+                "wght": 800,
+                "wdth": 100,
+                "opsz": 96
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:117",
+          "name": "Preserve the local logo’s colours, proportions and white interior. / Clearspace ≥ its internal letter-to-blue-border gap.",
+          "text": "Preserve the local logo’s colours, proportions and white interior.\nClearspace ≥ its internal letter-to-blue-border gap.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:119",
+          "name": "Construction graphics, waterfront references / and the proposed campaign palette.",
+          "text": "Construction graphics, waterfront references\nand the proposed campaign palette.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:121",
+          "name": "BENTON SANS",
+          "text": "BENTON SANS",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:123",
+          "name": "Specified by the 2013 manual. / Check the current organiser kit before production.",
+          "text": "Specified by the 2013 manual.\nCheck the current organiser kit before production.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:125",
+          "name": "BRICOLAGE / IBM PLEX MONO / NOTO MALAYALAM",
+          "text": "BRICOLAGE / IBM PLEX MONO / NOTO MALAYALAM",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:127",
+          "name": "Our proposed campaign typography. / These are not approved Maker Faire brand fonts.",
+          "text": "Our proposed campaign typography.\nThese are not approved Maker Faire brand fonts.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:130",
+          "name": "BEFORE PRODUCTION",
+          "text": "BEFORE PRODUCTION",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:132",
+          "name": "Use the current organiser kit. / The January 2013 manual is a reference for this draft.",
+          "text": "Use the current organiser kit.\nThe January 2013 manual is a reference for this draft.",
+          "fonts": [
+            {
+              "family": "Bricolage Grotesque",
+              "style": "Regular",
+              "variationSettings": {
+                "wght": 400,
+                "wdth": 100,
+                "opsz": 14
+              }
+            }
+          ]
+        },
+        {
+          "id": "14:134",
+          "name": "makerfaire.com/community/guidelines  ·  makerfaire.com/make-logos",
+          "text": "makerfaire.com/community/guidelines  ·  makerfaire.com/make-logos",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:136",
+          "name": "Maker Faire Identity Guidelines v6 (Jan 2013)  ·  Official Maker Faire colour sheet",
+          "text": "Maker Faire Identity Guidelines v6 (Jan 2013)  ·  Official Maker Faire colour sheet",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:139",
+          "name": "MAKER FAIRE KOCHI",
+          "text": "MAKER FAIRE KOCHI",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:141",
+          "name": "OFFICIAL BRAND / CAMPAIGN BOUNDARY",
+          "text": "OFFICIAL BRAND / CAMPAIGN BOUNDARY",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "14:143",
+          "name": "05",
+          "text": "05",
+          "fonts": [
+            {
+              "family": "IBM Plex Mono",
+              "style": "Medium"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -2,28 +2,32 @@
 
 Repository: content strategy and campaign assets for **Maker Faire Kochi 2027**.
 
-## Design system: read this before making any visual
-The visual system ("The Open Workshop") is saved offline in **`design-system/`**. Use it instead of calling the Figma MCP, which is rate-limited.
+## Brand guidelines: read this before making any visual
+The guidelines come from [niyamax/maker-faire-kochi](https://github.com/niyamax/maker-faire-kochi) and are copied verbatim into **`guidelines/`** (commit and re-sync steps in `guidelines/UPSTREAM.md`). Don't edit them here.
 
-1. `design-system/DESIGN.md`: the spec. Its YAML frontmatter tokens are normative: use the hex values, fonts and sizes verbatim.
-2. `design-system/tokens/tokens.css`: link it for colours, local fonts and type classes. `tokens.json` has the same values in W3C token format.
-3. `design-system/kit.json` and `design-system/assets/kit/`: the construction-kit SVGs (parts, assemblies, wayfinding), with path roles and joint pivots.
-4. `design-system/reference/figma-map.md` and `reference/screens/`: the Figma boards, verbatim copy and node ids.
+1. `guidelines/docs/creative-guidelines.md`: the authority for direction, type, colour, logo, illustration and content.
+2. `brand/tokens.css`: link it for the fonts and colour variables. `brand/logo/official/` holds the official lockups.
+3. `guidelines/references/README.md`: the selected visual references (straight-beam baseline, Make Some Noise, media-team post/story, camera/slider).
+4. `guidelines/docs/research-and-credits.md`: sources, image provenance and licences. Keep credits and licences with their assets.
 
-Only go back to Figma (file `xczyTXBjbMPH9JXyYDeO8w`) if something isn't in that folder.
+`archive/open-workshop/` is the former "Open Workshop" design system (Bricolage, paper/ink palette, construction kit). It is **historical**: use it for provenance only, not for new work. The Figma moodboard is file `0kwqCaBkGGypYupzl7gsuj`; edit Figma or Paper only when the user asks.
 
 ## Hard rules
-- Colours are paper `#f4efdf`, ink `#20251f`, blue `#2854d9`, red `#ef432d` and yellow `#f7c928`. Maker red and blue (`#ed1c24`, `#00aeef`) are for the official logo only.
-- Type is Bricolage Grotesque 96pt ExtraBold (display), Bricolage Regular (body), IBM Plex Mono Medium in uppercase (labels), Noto Sans Malayalam Bold (place name) and Baloo Chettan 2 ExtraBold (Malayalam/Manglish headlines, Malayalam letters only; Latin stays Bricolage).
-- Assemble, don't decorate. Build graphics from kit parts joined at their holes. Don't recolour inside a part or distort it; scale uniformly.
-- Logo: use the official Maker Faire Kochi lockups in `design-system/assets/logo/official/`, as supplied. Use long on paper, border on coloured or dark grounds, and square for stacked sign-offs. Never recolour, crop or overlap them. `assets/logo/reference-logo.*` is a superseded placeholder, so don't publish it.
-- The K and the other assemblies are supporting graphics, never a logo or part of a lockup.
-- Content: no event date unless asked (use "COMING SOON"). Use clear, descriptive words (CODING, not CODE). Volunteer calls are Kerala-wide (location "KERALA").
+- **Two directions; say which one a piece uses.**
+  - General: Anton Regular headlines, IBM Plex Mono Regular for supporting text, IBM Plex Mono Medium for labels, captions and event details.
+  - Loud Design / Make Some Noise campaign: warm yellow `#ffe86c`, electric blue `#2b19d9`, Dela Gothic One headlines, Inter supporting copy.
+- Colour has a purpose. Start from neutral structure and use the official red `#ed1c24`, cyan `#00aeef` and white only to draw attention, show a part or state, or improve contrast. Never recolour everything just to show the palette. The Open Workshop paper/ink/coir palette is historical.
+- Malayalam: Noto Sans Malayalam for script coverage. Baloo Chettan 2 ExtraBold for Malayalam/Manglish display headlines (Malayalam letters only; Latin stays in the direction's display face). Give Malayalam equal visual presence.
+- Illustration: straight slotted beams with plausible joints, opaque faces and fine hairline edges. Curved playful beams are rejected. Make one dominant image event with a clear reading order. Solve one illustration before extending it to many applications, and label conceptual machines as illustrations, not engineering designs.
+- Logo: use the official Maker Faire Kochi lockups in `brand/logo/official/` intact: original proportions and colours, white interior kept. Use long on light grounds, border on coloured or dark grounds, and square for stacked sign-offs. Never recolour, reconstruct, crop or overlap them.
+- The Open Workshop kit SVGs (`archive/open-workshop/assets/kit/`) are archive art, allowed only in the awareness carousels until straight-beam illustrations replace them. The K and other assemblies are never a logo or part of a lockup.
+- Content: no event date unless asked (use "COMING SOON"). Don't invent venues, deadlines, experience requirements or performance claims. Use clear, descriptive words (CODING, not CODE). Volunteer calls are Kerala-wide (location "KERALA"); before release, re-check the signup URL (`makerfaire.in/volunteer`) and the rendered QR, with its full quiet zone.
+- Evidence: never present stock photos as documented Kerala participants or generated objects as photographed exhibits. Record whether a direction is selected, exploratory or rejected, and keep substantial prior iterations.
 
 ## Workflows: generating and scheduling content
 Repeatable pipelines live in **`workflows/`**; read `workflows/README.md`, then the runbook of the one you're using.
 
-- `workflows/awareness-carousels/`: renders the awareness carousels (19 topics × 5 designs × post + story) in English and Manglish, with layout QA and a review gallery.
+- `workflows/awareness-carousels/`: renders the awareness carousels (19 topics × 5 designs × post + story) in English and Manglish, in either look (`--look=general` or `--look=noise`), with layout QA and a review gallery.
 - `workflows/instagram-scheduling/`: schedules the carousels and their stories on Meta Business Suite from an approved plan.
 
 Rules that apply to any agent:

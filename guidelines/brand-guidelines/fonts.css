@@ -1,0 +1,8 @@
+/* Locally bundled OFL fonts from the earlier proposed Kochi campaign. */
+@font-face{font-family:"Bricolage Grotesque";src:url("fonts/BricolageGrotesque-variable.ttf") format("truetype");font-weight:200 800;font-stretch:75% 100%;font-style:normal;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url("fonts/IBMPlexMono-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url("fonts/IBMPlexMono-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Noto Sans Malayalam";src:url("fonts/NotoSansMalayalam-variable.ttf") format("truetype");font-weight:100 900;font-stretch:62.5% 100%;font-style:normal;font-display:swap}
+
+/* Current headline font: retained at the user's request. */
+@font-face{font-family:"Anton";src:url("fonts/Anton-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
