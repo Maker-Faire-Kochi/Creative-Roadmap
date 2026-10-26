@@ -182,6 +182,53 @@ function layoutWeave(beat) {
   return out;
 }
 
+/**
+ * How hard the letters are pushed (0 → 1, with a little overshoot): nothing until the object pops up, then a
+ * damped spring, so the letters are shoved out and settle back a touch; easing off as the object leaves.
+ */
+function push(beat, t) {
+  const s = t - beat.pop;
+  if (!(s > 0)) return 0;
+  const spring = 1 - Math.exp(-s / 0.2) * Math.cos(s * 9);
+  return Math.max(0, spring) * (1 - smoother((t - beat.exit) / 0.35));
+}
+
+/**
+ * The sideways push (ours, beside the studio's squeeze above and below): a row the object still crosses opens
+ * round it. Its letters left of the object close up toward the left edge and those right of it toward the right
+ * edge, squeezed in width, never hidden, in order. The object's width at the row comes from the same silhouette.
+ */
+function partRows(words, hole, outline, k, area) {
+  const gap = 0.03 * area.w, x0 = area.x, x1 = area.x + area.w, n = outline.top.length;
+  const rows = new Map();
+  for (const wd of words) {
+    if (!rows.has(wd.ri)) rows.set(wd.ri, []);
+    rows.get(wd.ri).push(...wd.L.cells);
+  }
+  for (const cells of rows.values()) {
+    if (!cells.length) continue;
+    const ry0 = Math.min(...cells.map((c) => c.y)), ry1 = Math.max(...cells.map((c) => c.y + c.h)), pad = (ry1 - ry0) * 0.15;
+    let ox0 = Infinity, ox1 = -Infinity;
+    for (let i = 0; i < n; i++) {
+      const top = outline.top[i];
+      if (top === null) continue;
+      const oy0 = hole.y + top * hole.h, oy1 = hole.y + (outline.bottom?.[i] ?? 1) * hole.h;
+      if (oy0 < ry1 - pad && oy1 > ry0 + pad) { ox0 = Math.min(ox0, hole.x + (i / n) * hole.w); ox1 = Math.max(ox1, hole.x + ((i + 1) / n) * hole.w); }
+    }
+    if (ox0 > ox1) continue;
+    const mid = (ox0 + ox1) / 2, left = cells.filter((c) => c.x + c.w / 2 < mid), right = cells.filter((c) => c.x + c.w / 2 >= mid);
+    const l1 = Math.max(x0, ...left.map((c) => c.x + c.w)), r0 = Math.min(x1, ...right.map((c) => c.x));
+    if (left.length && l1 > ox0 - gap) {
+      const sc = 1 + (Math.max(0.15, (ox0 - gap - x0) / (l1 - x0)) - 1) * k;
+      for (const c of left) { c.x = x0 + (c.x - x0) * sc; c.w *= sc; }
+    }
+    if (right.length && r0 < ox1 + gap) {
+      const sc = 1 + (Math.max(0.15, (x1 - ox1 - gap) / (x1 - r0)) - 1) * k;
+      for (const c of right) { const far = x1 - (c.x + c.w); c.w *= sc; c.x = x1 - far * sc - c.w; }
+    }
+  }
+}
+
 /** The object's outline in its hole, from the 3D just drawn: the studio's 48-column top and bottom contour. */
 function silhouette(hole) {
   const g = mask.getContext("2d", { willReadFrequently: true });
@@ -246,14 +293,17 @@ function letters(beat, t) {
   // Weave: the whole sentence gives way around the object's live silhouette, as one block of rows (the studio's
   // cut-out response; cells keep their own index and row for drawing, a sentence-wide pair for the response).
   if (weave() && words.length) {
-    const hole = beat.hole, outline = silhouette(hole);
-    for (const side of ["above", "below"]) {
-      const block = [], mine = words.filter((wd) => wd.row.side === side);
-      if (!mine.length) continue;
-      mine.forEach((wd) => wd.L.cells.forEach((c) => block.push({ ...c, index: block.length, row: wd.ri, word: wd, ownIndex: c.index, ownRow: c.row })));
-      const reacted = reactTypeToCutout(block, hole, outline, mine[0].row.block, REACTION);
-      mine.forEach((wd) => { wd.L.cells = []; });
-      for (const c of reacted) c.word.L.cells.push({ ...c, index: c.ownIndex, row: c.ownRow, word: undefined });
+    const hole = beat.hole, outline = silhouette(hole), k = push(beat, t);
+    if (k > 0) {
+      for (const side of ["above", "below"]) {
+        const block = [], mine = words.filter((wd) => wd.row.side === side);
+        if (!mine.length) continue;
+        mine.forEach((wd) => wd.L.cells.forEach((c) => block.push({ ...c, index: block.length, row: wd.ri, word: wd, ownIndex: c.index, ownRow: c.row })));
+        const reacted = reactTypeToCutout(block, hole, outline, mine[0].row.block, REACTION * k);
+        mine.forEach((wd) => { wd.L.cells = []; });
+        for (const c of reacted) c.word.L.cells.push({ ...c, index: c.ownIndex, row: c.ownRow, word: undefined });
+      }
+      partRows(words, hole, outline, k, beat.last ? plan.layout.endType : plan.layout.type);
     }
   }
   // Pass 2: punctuation, accents, plates and strikes on the letters where they ended up.

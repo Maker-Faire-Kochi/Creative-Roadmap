@@ -236,3 +236,74 @@ export const STORYBOARDS = {
     ],
   },
 };
+
+// ── Weave heroes ──────────────────────────────────────────────────────────────
+// The Weave looks show ONE object a beat. The sentence is set first, filling the poster; then the hero pops up
+// in the middle and pushes the letters out of its way, does its one action, and shrinks away before the letters
+// go. Two heroes per beat: `cc0` (a model from the library) and `beams` (a beam-kit assembly), chosen with
+// --hero=cc0|beams. Times are seconds after the pop; the hero is named "hero" ("hero.blades", "@hero+[0,0.1,0]").
+// A beam frame's sides open by turning them before the beat (time -5, instantly) and close by turning them back.
+const open = (part, amount) => ["turn", part, -5, { axis: "z", amount, dur: 0.01 }];
+const close = (part, amount, t) => ["turn", part, t, { axis: "z", amount: -amount, dur: 0.4 }];
+export const WEAVE_HEROES = {
+  "05-repair-is-making": [
+    {
+      cc0: { prop: { model: "desk-fan", yaw: -0.4 }, means: "One repair stands for all three: the fan's blades snap back on, it shudders, then spins up.",
+        do: [["pop", "hero.blades", 0.3, { dur: 0.3 }], ["shake", "hero", 0.6, { amount: 0.01 }], ["spin", "hero.blades", 0.85, { axis: "z", rate: 2.4 }]] },
+      beams: { prop: { model: "beam-frame-m", yaw: -0.62 }, means: "A frame with three loose sides: they swing shut and pin, one after another. Repairing is reconnecting.",
+        do: [open("hero.side1", 0.9), open("hero.side2", -0.8), open("hero.side3", 0.7), close("hero.side1", 0.9, 0.35), close("hero.side2", -0.8, 0.75), close("hero.side3", 0.7, 1.15)] },
+    },
+    {
+      cc0: { prop: { model: "table-lamp" }, means: "The rewired lamp lights up: that's making.", do: [["glow", "hero.shade", 0.45, { amount: 2.2 }]] },
+      beams: { prop: { model: "beam-crank", yaw: -0.62 }, means: "The crank turns (red, the drive) and lifts the arm: making is doing.",
+        do: [["spin", "hero.crank", 0.3, { axis: "z", rate: -0.7, dur: 0.4 }], ["turn", "hero.arm", 0.3, { axis: "z", amount: 0.55, dur: 1.4 }]] },
+    },
+  ],
+  "06-version-one": [
+    {
+      cc0: { actor: { kind: "makey", yaw: -0.5 }, means: "Makey, the maker robot, falls over: the version that didn't work.", act: [["tumble", "hero", 0.3]] },
+      beams: { prop: { model: "beam-gesture", yaw: -0.3 }, means: "The open gesture collapses, joint by joint: it didn't work.",
+        do: [["turn", "hero.joint3", 0.3, { axis: "z", amount: -1.1, dur: 0.35 }], ["turn", "hero.joint2", 0.5, { axis: "z", amount: -0.7, dur: 0.35 }], ["turn", "hero.joint1", 0.7, { axis: "z", amount: 0.5, dur: 0.35 }]] },
+    },
+    {
+      cc0: { prop: { model: "cog" }, means: "The printed cog sparks and cracks in two: the broken print, and with it every first try that fails.",
+        do: [["move", "hero.left", 0.4, { to: [-0.035, 0, 0.012], dur: 0.3 }], ["turn", "hero.left", 0.4, { axis: "z", amount: -0.22, dur: 0.3 }], ["move", "hero.right", 0.4, { to: [0.035, 0, -0.012], dur: 0.3 }], ["turn", "hero.right", 0.4, { axis: "z", amount: 0.22, dur: 0.3 }]],
+        fx: [["spark", 0.35, { at: "@hero+[0,0.06,0]", size: 0.08 }], ["smoke", 0.5, { at: "@hero+[0,0.04,0]", size: 0.02, spread: 0.06 }]] },
+      beams: { prop: { model: "beam-frame-m", yaw: -0.62 }, means: "A frame shudders and one side breaks loose and drops: something went wrong.",
+        do: [["shake", "hero", 0.3, { amount: 0.012 }], ["turn", "hero.side2", 0.55, { axis: "z", amount: 1.2, dur: 0.45 }]] },
+    },
+    {
+      cc0: { prop: { model: "digit-1", yaw: 0.9 }, means: "A 1 rises: not failure, version 1.", do: [["turntable", "hero", 0.4, { rate: 0.06 }]] },
+      beams: { prop: { model: "beam-link", yaw: -0.62 }, means: "A single beam swings up into place: the first version, standing.",
+        do: [["turn", "hero.swing", -5, { axis: "z", amount: -1.3, dur: 0.01 }], ["turn", "hero.swing", 0.35, { axis: "z", amount: 1.3 + Math.PI / 2, dur: 0.6 }]] },
+    },
+    {
+      cc0: { prop: { model: "cog" }, means: "The cog, whole now, turning: what changed.", do: [["spin", "hero", 0.3, { axis: "y", rate: 0.35, dur: 0.6 }]] },
+      beams: { prop: { model: "beam-crank", yaw: -0.62 }, means: "The crank turns and the arm lifts: the next version works. Come show it.",
+        do: [["spin", "hero.crank", 0.3, { axis: "z", rate: -0.8, dur: 0.4 }], ["turn", "hero.arm", 0.3, { axis: "z", amount: 0.6, dur: 1.2 }]] },
+    },
+  ],
+  "12-where-it-started": [
+    {
+      cc0: { prop: { model: "open-book" }, means: "The magazine lands open and its pages turn: the makers were in a magazine.",
+        fx: [["pages", 0.35, { spine: "@hero+[0,0.04,0]", width: 0.135, depth: 0.22, count: 3, every: 0.35, dur: 0.6 }]] },
+      beams: { prop: { model: "beam-gesture", yaw: -0.3 }, means: "The gesture opens like a magazine's spread.",
+        do: [["turn", "hero.joint3", -5, { axis: "z", amount: -1.2, dur: 0.01 }], ["turn", "hero.joint3", 0.35, { axis: "z", amount: 1.6, dur: 0.7 }]] },
+    },
+    {
+      cc0: { prop: { model: "robot-arm" }, means: "A maker's project, a robot arm, rises off the page and moves.", do: [["swing", "hero", 0.5, { axis: "z", amount: 0.12, hz: 1.2, dur: 1.5 }]] },
+      beams: { prop: { model: "beam-crank", yaw: -0.62 }, means: "A project made of beams rises and its crank turns: projects brought to the page.",
+        do: [["spin", "hero.crank", 0.35, { axis: "z", rate: -0.6, dur: 0.4 }]] },
+    },
+    {
+      cc0: { prop: { model: "tent", yaw: -0.62 }, means: "A tent goes up: the first Faire, Bay Area, 2006.", do: [["turntable", "hero", 0.4, { rate: 0.05 }]] },
+      beams: { prop: { model: "beam-frame-l", yaw: -0.62 }, means: "A large frame stands up: the first Faire, the first structure.", do: [["turntable", "hero", 0.4, { rate: 0.05 }]] },
+    },
+    {
+      cc0: { actor: { kind: "person", variant: "kurta", seed: 5, yaw: -0.5 }, means: "One of the people behind the pages steps in and claps: they came together.", act: [["clap", "hero", 0.5]] },
+      beams: { prop: { model: "beam-gesture", yaw: -0.3 }, means: "The gesture's blue beam reaches out and joins: they came together.",
+        do: [["turn", "hero.joint3", 0.35, { axis: "z", amount: 0.8, dur: 0.8 }]] },
+    },
+  ],
+};
+for (const [key, list] of Object.entries(WEAVE_HEROES)) list.forEach((weave, i) => { STORYBOARDS[key].beats[i].weave = weave; });

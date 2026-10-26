@@ -61,9 +61,15 @@ const LOOKS = {
   weave: {
     name: "Weave / Studio Sans (exploratory)", status: "exploratory", studioFont: "original", charWidth: 0.74, plates: false, shift: true, weave: true,
     labelFamily: "IBM Plex Mono", labelWeight: 500, fonts: PLEX,
-    // The sentence fills the poster and parts around the object; the Colour look's grounds; the lockup only on the
-    // end card.
+    // The sentence fills the poster; one object pops up in the middle and pushes the letters out. The Colour
+    // look's grounds; the lockup only on the end card.
     grounds: (n) => ({ beats: rotate(["paper", "cyan", "yellow", "blue"], n), payoff: "red", end: "paper" }),
+  },
+  "weave-plain": {
+    name: "Weave Plain / Studio Sans (exploratory)", status: "exploratory", studioFont: "original", charWidth: 0.74, plates: false, weave: true,
+    labelFamily: "IBM Plex Mono", labelWeight: 500, fonts: PLEX,
+    // Weave on one ground, as General is to Colour: paper throughout, accents in red.
+    grounds: () => ({ beats: ["paper"], payoff: "paper", end: "paper" }),
   },
   "noise-shift": {
     name: "Noise Shift / Dela Gothic One (exploratory)", status: "exploratory", studioFont: "dela", charWidth: 0.9, plates: true, markScale: 1.25, shift: true,
@@ -96,10 +102,11 @@ const PLACES = ["text-top", "model-top"];
 const FPS = 30, PAD = 70, WARM = 1.5, END = 2.6, MIN_S = 12, MAX_S = 18, MAX_ROWS = 6;
 const IN = 0.45, OUT = 0.35;
 const TX_ORDER = ["iris", "wipe", "shutter", "rise"];
-// Weave: where the object's hole sits in the type area, [cx, cy, w, h] as fractions of it; beats rotate through
-// these (centre-low, left, right, centre-high) unless the storyboard sets `cut`. The end card's hole is central.
-const CUTS = [[0.5, 0.6, 0.62, 0.4], [0.34, 0.55, 0.56, 0.38], [0.66, 0.5, 0.56, 0.38], [0.5, 0.42, 0.6, 0.38]];
-const END_CUT = [0.5, 0.5, 0.56, 0.42];
+// Weave: the object's hole, [cx, cy, w, h] as fractions of the type area: always the middle, where it pops up.
+const CUT = [0.5, 0.5, 0.56, 0.42];
+// Weave timing: the object pops up once the sentence is in (at least POP_MIN into the beat), acts for at least
+// ACT seconds, and shrinks away LEAVE seconds before the letters go out.
+const POP_AFTER = 0.35, POP_MIN = 0.9, ACT = 1.6, LEAVE = 0.4;
 // Weave type areas: the whole post with a margin; on a story, the full width between Instagram's top and bottom
 // overlays. The end card keeps a band under the letters for the lockup.
 const WEAVE = { post: { margin: 36, top: 36, bottom: 1314, logoW: 520 }, story: { margin: 36, top: 200, bottom: 1660, logoW: 560 } };
@@ -109,11 +116,14 @@ const DIRS = { "orbit-l": [1, 0], "truck-l": [1, 0], "orbit-r": [-1, 0], "truck-
 const ARGS = process.argv.slice(2);
 const lookArg = ARGS.find((a) => a.startsWith("--look="))?.slice(7);
 const placeArg = ARGS.find((a) => a.startsWith("--place="))?.slice(8);
+// Weave looks: the beat's one object is a CC0 model (cc0) or a beam-kit assembly (beams).
+const HERO = ARGS.find((a) => a.startsWith("--hero="))?.slice(7) ?? "cc0";
+if (!["cc0", "beams"].includes(HERO)) { console.error("--hero is cc0 or beams"); process.exit(2); }
 if (!LOOKS[lookArg]) { console.error(`Pass --look=${Object.keys(LOOKS).join("|")}`); process.exit(2); }
 if (placeArg && !PLACES.includes(placeArg)) { console.error(`--place is ${PLACES.join(" or ")}`); process.exit(2); }
 const LOOK = LOOKS[lookArg];
 const only = ARGS.filter((a) => !a.startsWith("--"));
-const OUT_DIR = path.resolve(REPO, process.env.MFK_OUT || `output/motion-posters-${lookArg}${placeArg ? `-${placeArg}` : ""}`);
+const OUT_DIR = path.resolve(REPO, process.env.MFK_OUT || `output/motion-posters-${lookArg}${placeArg ? `-${placeArg}` : ""}${LOOK.weave && HERO === "beams" ? "-beams" : ""}`);
 for (const [dir, file] of [[STUDIO, "src/scene.js"], [WEBSITE, "app/three/core/kit.ts"]])
   if (!fs.existsSync(path.join(dir, file))) { console.error(`${path.relative(PKG, dir)} missing: run git submodule update --init`); process.exit(2); }
 if (!fs.existsSync(path.join(PKG, "build/stage.js"))) { console.error("build/stage.js missing: run npm run build:stage"); process.exit(2); }
@@ -148,19 +158,29 @@ function timeline(key, look = LOOK) {
     if (b.say && !b.why) issues.push(`beat ${i + 1}: a rewrite (say) needs a why`);
     if (rows.length > MAX_ROWS) issues.push(`beat ${i + 1}: ${rows.length} rows, at most ${MAX_ROWS}`);
     for (const r of rows) if (!SETTABLE.test(rowText(r))) issues.push(`beat ${i + 1}: "${rowText(r)}" has characters the letters can't set`);
-    if (!b.stage && !b.set && !sb.set) issues.push(`beat ${i + 1}: no stage`);
+    const hero = look.weave ? b.weave?.[HERO] : null;
+    if (look.weave) {
+      if (!hero) issues.push(`beat ${i + 1}: no weave.${HERO} hero yet`);
+      else if ([hero.prop, hero.actor].filter(Boolean).length !== 1) issues.push(`beat ${i + 1}: a weave hero is exactly one prop or one actor`);
+      else if (!hero.means) issues.push(`beat ${i + 1}: the weave hero needs a means`);
+    }
+    else if (!b.stage && !b.set && !sb.set) issues.push(`beat ${i + 1}: no stage`);
     const lead = look.shift && i > 0 ? 0.3 : 0.12, rel = [];
     let k = lead;
     rows.forEach((r, ri) => { if (ri) k += Math.max(0.4, 0.24 * rows[ri - 1].words.length); rel.push(k); });
     const words = wordCount(rows), hold = Math.max(1.2, 0.3 * words - (k - lead));
-    return { b, rows, rel, dur: k + IN + hold + OUT };
+    // Weave: the sentence is read first, then the object pops up and acts before the letters go.
+    const pop = Math.max(k + IN + POP_AFTER, POP_MIN);
+    const dur = look.weave ? Math.max(k + IN + hold + OUT, pop + ACT + LEAVE + OUT) : k + IN + hold + OUT;
+    return { b, rows, rel, dur, hero, pop };
   });
   const sum = plans.reduce((n, p) => n + p.dur, 0);
   const f = Math.max(0.85, Math.min(Math.max(1, (MIN_S - END) / sum), (MAX_S - END) / sum));
   const beats = [];
   let clock = 0, set = sb.set ?? "tableau", opts = sb.opts ?? {};
-  plans.forEach(({ b, rows, rel, dur }, i) => {
-    if (b.set) { set = b.set; opts = b.opts ?? {}; }
+  plans.forEach(({ b, rows, rel, dur, hero, pop }, i) => {
+    if (look.weave) set = "tableau";
+    else if (b.set) { set = b.set; opts = b.opts ?? {}; }
     else if (b.stage) set = "tableau";
     const start = clock, end = clock + dur * f;
     const cam = b.cam ?? MOVES[(i + topicNo) % MOVES.length];
@@ -168,8 +188,14 @@ function timeline(key, look = LOOK) {
       index: i, start, end, set, opts, cam, camStart: start, means: b.means ?? "",
       rows: rows.map((r, ri) => ({ ...r, t: start + rel[ri] * f })),
       ground: i === t.slides.length - 1 ? g.payoff : g.beats[i % g.beats.length],
-      tx: b.tx ?? TX_ORDER[(i + topicNo) % TX_ORDER.length], stage: b.stage, cues: [], cut: b.cut ?? CUTS[(i + topicNo) % CUTS.length],
+      tx: b.tx ?? TX_ORDER[(i + topicNo) % TX_ORDER.length], stage: b.stage, cues: [], cut: CUT,
     };
+    if (look.weave && hero) {
+      beat.pop = start + pop * f;
+      beat.exit = end - OUT - LEAVE;
+      beat.means = hero.means;
+      beat.stage = heroStage(hero, `hero${i}`, beat.pop - start, beat.exit - start);
+    }
     beat.txDir = DIRS[cam] ?? [1, 0];
     if (set !== "tableau") {
       if (b.shot !== undefined) beat.cues.push({ name: "shot", arg: b.shot, t: start });
@@ -181,9 +207,12 @@ function timeline(key, look = LOOK) {
   // The end card: COMING SOON over the beam kit's open gesture (END_STAGE), the same sign-off on every poster.
   const last = beats.at(-1);
   if (last) beats.push({
-    index: beats.length, start: clock, end: clock + END, set: "tableau", stage: END_STAGE, cam: "pull-out", camStart: clock,
+    index: beats.length, start: clock, end: clock + END, set: "tableau", cam: "pull-out", camStart: clock,
+    // Weave: COMING SOON is set first, then the gesture pops up in the middle of it.
+    stage: look.weave ? { ...END_STAGE, do: END_STAGE.do.map(([m, w, tt, p]) => [m, w, tt + 0.7, p]) } : END_STAGE,
     rows: beatRows({ lines: [END_SAY] }).map((r) => ({ ...r, t: clock + (look.shift ? 0.3 : 0.12) })),
-    ground: g.end, tx: "iris", txDir: [1, 0], cues: [], last: true, cut: END_CUT, means: "The sign-off: the beam kit's open gesture, its blue beam opening the joint.",
+    ground: g.end, tx: "iris", txDir: [1, 0], cues: [], last: true, cut: CUT, pop: clock + 0.75, exit: Infinity,
+    means: "The sign-off: the beam kit's open gesture, its blue beam opening the joint.",
   });
   // The tableau: every beat that has a stage, its times resolved to poster seconds.
   const stageBeats = beats.filter((b) => b.set === "tableau");
@@ -199,7 +228,7 @@ function timeline(key, look = LOOK) {
       };
     } catch (e) { issues.push(`beat ${b.index + 1}: ${e.message}`); return null; }
   });
-  const tableauOpts = { beats: resolved, manifest: MANIFEST, base: "/ds/3d/models", warm: WARM, fill: look.weave ? 0.72 : 1 };
+  const tableauOpts = { beats: resolved, manifest: MANIFEST, base: "/ds/3d/models", warm: WARM, fill: look.weave ? 0.85 : 1 };
   for (const b of beats) {
     if (b.set === "tableau") { b.opts = tableauOpts; b.setKey = `tableau|${key}`; }
     else b.setKey = `${b.set}|${JSON.stringify(b.opts)}`;
@@ -207,6 +236,24 @@ function timeline(key, look = LOOK) {
   const seconds = clock + END;
   if (beats.length && (seconds < MIN_S - 0.01 || seconds > MAX_S + 0.01)) issues.push(`${seconds.toFixed(1)} s, outside ${MIN_S}–${MAX_S} s`);
   return { beats, seconds, issues, place, label: `${key.slice(0, 2)} / ${t.label.toUpperCase()}` };
+}
+
+/**
+ * A Weave beat's stage from its one hero (storyboard `weave.cc0` or `weave.beams`): the prop or actor at the
+ * centre, popping up at `pop` and shrinking away at `exit` (seconds into the beat); the hero's own motions,
+ * effects and actions are given in seconds after the pop, naming it "hero" ("hero.blades", "@hero+[0,0.1,0]").
+ */
+function heroStage(hero, name, pop, exit) {
+  const rename = (v) => (typeof v === "string" ? v.replace(/^hero\b/, name).replace(/@hero\b/g, `@${name}`) : v);
+  const deep = (o) => (Array.isArray(o) ? o.map(deep) : o && typeof o === "object" ? Object.fromEntries(Object.entries(o).map(([k, v]) => [k, deep(v)])) : rename(o));
+  return {
+    props: hero.prop ? [{ at: [0, 0, 0], ...hero.prop, name }] : [],
+    actors: hero.actor ? [{ at: [0, 0, 0], ...hero.actor, name }] : [],
+    frame: hero.frame,
+    do: [["pop", name, pop, { dur: 0.5 }], ...(hero.do ?? []).map(([m, tg, tt, p]) => [m, rename(tg), pop + tt, p]), ["shrink", name, exit, { dur: 0.35 }]],
+    fx: (hero.fx ?? []).map(([kind, tt, p]) => [kind, pop + tt, deep(p)]),
+    act: (hero.act ?? []).map(([a, who, tt, o]) => [a, rename(who), pop + tt, o]),
+  };
 }
 
 function layout(fmt, place) {
@@ -290,7 +337,8 @@ for (const key of Object.keys(TOPICS)) {
     const video = path.join(dir, `${fmt}.mp4`), enc = encode(video), t0 = Date.now();
     // The cover: the first beat once its sentence has settled.
     const b0 = story.beats[0], cover = Math.round((b0.end - OUT - 0.3) * FPS);
-    const checks = new Map(story.beats.map((b) => [Math.round((b.end - OUT - 0.1) * FPS), b]));
+    // The 3D is checked once per beat while it is on: late in the beat, or mid-act for a Weave hero.
+    const checks = new Map(story.beats.map((b) => [Math.round((b.pop !== undefined ? Math.min(b.pop + 1.0, b.end - 0.2) : b.end - OUT - 0.1) * FPS), b]));
     for (let i = 0; i < frames; i++) {
       const buf = png(await page.evaluate((n) => window.poster.frame(n), i));
       if (i === cover) fs.writeFileSync(path.join(dir, `${fmt}.png`), buf);

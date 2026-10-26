@@ -1,13 +1,14 @@
 # Colour in motion
 
-Five looks for motion pieces. Two follow the guidelines' directions. Three are new **transition** looks, where every text change brings a full-screen colour change.
+Six looks for motion pieces. Two follow the guidelines' directions. Three are new **transition** looks, where every text change brings a full-screen colour change. Weave Plain sets Weave on one ground.
 
 | Look | Flag | Letters | Grounds | Status |
 |---|---|---|---|---|
 | General | `general` | Studio Sans | Paper throughout; accents in red | Selected (Studio Sans is a recorded deviation from Anton) |
 | Loud Design / Make Some Noise | `noise` | Dela Gothic One | Yellow throughout; accent words on inverted blue plates | Selected |
 | Colour | `colour` | Studio Sans | Brand colours. The beats rotate paper, cyan, yellow, blue (starting point by topic); the payoff lands on red; the end card is paper. No charcoal ground: the user ruled the dark grey out (2026-10-26) | **Exploratory** |
-| Weave | `weave` | Studio Sans | Colour's grounds. The sentence fills the poster edge to edge and parts around the 3D object (see [motion.md](motion.md) § Placement). No footer: the official lockup appears only on the end card | **Exploratory** |
+| Weave | `weave` | Studio Sans | Colour's grounds. The sentence fills the poster edge to edge, and one object pops up in the middle and pushes the letters out (see [motion.md](motion.md) § Placement). No footer: the official lockup appears only on the end card. The object is a CC0 model (`--hero=cc0`) or a beam-kit assembly (`--hero=beams`) | **Exploratory** |
+| Weave Plain | `weave-plain` | Studio Sans | Paper throughout, accents in red, no colour change; otherwise as Weave | **Exploratory** |
 | Noise Shift | `noise-shift` | Dela Gothic One | Noise palette + red. The beats alternate yellow and blue; the payoff lands on red; the end card is blue | **Exploratory** |
 
 Supporting labels: IBM Plex Mono Medium (General and Colour), Inter Bold (both Noise looks). Weave has no labels.
