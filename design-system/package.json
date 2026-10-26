@@ -1,0 +1,17 @@
+{
+  "name": "mfk-design-system",
+  "private": true,
+  "type": "module",
+  "description": "Maker Faire Kochi design system v2: the 3D asset standard, CC0 models restyled to it, the motion library and Studio Sans",
+  "scripts": {
+    "fetch": "node 3d/fetch.mjs",
+    "build": "node 3d/tools/build.mjs",
+    "sheet": "node 3d/tools/sheet.mjs",
+    "specimen": "node 3d/tools/build.mjs && node 3d/tools/serve.mjs"
+  },
+  "dependencies": {
+    "esbuild": "0.25.12",
+    "playwright-core": "1.63.0",
+    "three": "0.186.1"
+  }
+}
