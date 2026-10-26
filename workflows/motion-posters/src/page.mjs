@@ -6,14 +6,21 @@
 //   3. the beat's lettering: the full sentence, one row per carousel line, laid out by the Poster Studio's own
 //      layoutTreatment/appendTreatmentArtwork and drawn by its drawPosterScene; rows squash in one after another
 //      and out together.
+// The Weave look (layout mode "weave") has no band and no footer: the sentence fills the canvas, the 3D sits in a
+// hole in it, and every frame the letters part around the object's live silhouette with the studio's own
+// cut-out response (reactTypeToCutout), the 3D drawn over them as the studio draws a cut-out; the logo comes only
+// on the end card.
 // render.mjs passes a plan (timeline, layout, look, grounds) to init() and calls frame(i) for every video frame.
 import { layoutTreatment, appendTreatmentArtwork } from "/studio/src/treatment.js";
 import { drawPosterScene } from "/studio/src/scene.js";
+import { reactTypeToCutout, silhouetteFromPixels } from "/studio/src/cutout-response.js";
 import * as stage from "/build/stage.js";
 
 const STEPS = 200; // simulation steps per second (the website's DT = 1/200)
 const IN = 0.45, OUT = 0.32, TX = 0.55, TX_LEAD = 0.15;
-let plan, ctx, canvas, logos = {}, current = null, fired = new Set(), extent = null, rowsCache = new Map();
+let lastHole = null;
+const REACTION = 0.72; // how hard the letters give way to the object (the studio's default is 0.65)
+let plan, ctx, canvas, logos = {}, current = null, fired = new Set(), extent = null, rowsCache = new Map(), framed = -1, mask = null;
 
 const clamp = (v, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
 const easeOut = (x) => 1 - (1 - x) ** 3;
@@ -26,6 +33,10 @@ export async function init(p) {
   current = null;
   extent = null;
   rowsCache = new Map();
+  framed = -1;
+  lastHole = null;
+  mask = document.createElement("canvas");
+  mask.width = mask.height = 64;
   canvas = document.createElement("canvas");
   canvas.width = p.width;
   canvas.height = p.height;
@@ -40,14 +51,19 @@ export async function init(p) {
 }
 
 const beatAt = (t) => plan.beats.find((b) => t < b.end) ?? plan.beats.at(-1);
+const weave = () => plan.layout.mode === "weave";
+/** Where the beat's 3D sits: the window (band looks) or the beat's hole in the text (Weave), in pixels. */
+const holeOf = (beat) => (weave() ? beat.hole : plan.layout.window);
+const focusOf = (r) => [r.x / plan.width, (r.x + r.w) / plan.width, r.y / plan.height, (r.y + r.h) / plan.height];
 
 /** A beat's set and options come as one key (render.mjs): a new key means a new stage, a cut. */
 async function useSet(beat, t) {
   const key = beat.setKey;
   if (current === key) return;
-  await stage.init({ set: beat.set, width: plan.width, height: plan.height, focus: plan.layout.focus, opts: { ...beat.opts, t0: t } });
+  await stage.init({ set: beat.set, width: plan.width, height: plan.height, focus: focusOf(holeOf(beat)), opts: { ...beat.opts, t0: t } });
   stage.advance(Math.round(plan.warm * STEPS));
   current = key;
+  framed = beat.index;
   fired = new Set([...fired].filter((id) => !id.startsWith("edges")));
 }
 
@@ -59,6 +75,7 @@ async function useSet(beat, t) {
  */
 function layoutRows(beat) {
   if (rowsCache.has(beat.index)) return rowsCache.get(beat.index);
+  if (weave()) return layoutWeave(beat);
   const r = plan.layout.type, CH = plan.look.charWidth, GAP = 0.3, LEAD = 0.16;
   const weight = (row) => (row.stat ? 1.7 : 1);
   const units = (row) => row.words.reduce((n, w) => n + w.text.length * CH, 0) + GAP * (row.words.length - 1);
@@ -101,6 +118,78 @@ function layoutRows(beat) {
   return out;
 }
 
+/**
+ * Weave rows: the sentence fills the whole type area, in two blocks that meet at the middle of the object's hole:
+ * the first rows above it, the rest below (reading order kept). Its words (a stat on its own row) are broken into
+ * the number of rows whose letters come closest to a pleasing width (ASPECT, width over height), and each row's
+ * words share its full width by their letters. A row is never taller than keeps its letters MIN_ASPECT wide;
+ * height left over in a block spreads its rows apart. Each block then gives way to the object on its own side
+ * (see letters()): the studio's cut-out response squeezes the block above clear of the object's top and, mirrored,
+ * the block below clear of its bottom, so the words wrap the object's live outline.
+ */
+const ASPECT = 0.8, MIN_ASPECT = 0.5;
+function layoutWeave(beat) {
+  const r = beat.last ? plan.layout.endType : plan.layout.type, hole = beat.hole, gap = 0.025 * r.w;
+  const words = beat.rows.flatMap((row) => row.words.map((w) => ({ ...w, t: row.t, stat: row.stat })));
+  const chars = (ws) => ws.reduce((n, w) => n + w.text.length, 0);
+  /** Splits the words into n rows of about equal letters (a stat word always alone). */
+  const split = (n) => {
+    const rows = [], target = chars(words) / n;
+    let cur = [];
+    for (const w of words) {
+      if (cur.length && (w.stat || cur[0].stat || (chars(cur) + w.text.length / 2 > target && rows.length < n - 1))) { rows.push(cur); cur = []; }
+      cur.push(w);
+    }
+    rows.push(cur);
+    return rows;
+  };
+  let best = null;
+  for (let n = 1; n <= Math.min(words.length, 9); n++) {
+    const rows = split(n), h = r.h / rows.length;
+    const score = rows.reduce((k, ws) => k + Math.abs(Math.log((r.w - gap * (ws.length - 1)) / chars(ws) / h / ASPECT)), 0) / rows.length;
+    if (!best || score < best.score) best = { rows, score };
+  }
+  const rows = best.rows, mid = Math.min(r.y + r.h, Math.max(r.y, hole.y + hole.h / 2));
+  const blocks = { above: { x: r.x, y: r.y, w: r.w, h: mid - r.y }, below: { x: r.x, y: mid, w: r.w, h: r.y + r.h - mid } };
+  // Rows go above and below in proportion to the room on each side; with two rows or more, both sides get one.
+  let nAbove = Math.round((rows.length * blocks.above.h) / r.h);
+  if (rows.length > 1) nAbove = Math.min(rows.length - 1, Math.max(1, nAbove));
+  const out = [];
+  const place = (group, block, side) => {
+    if (!group.length) return;
+    const slot = block.h / group.length;
+    let heights = group.map((ws) => Math.min(slot * (ws[0].stat ? 1.15 : 1), (r.w - gap * (ws.length - 1)) / chars(ws) / MIN_ASPECT));
+    const sum = heights.reduce((a, b) => a + b, 0);
+    if (sum > block.h) heights = heights.map((h) => (h * block.h) / sum);
+    const spare = Math.max(0, block.h - heights.reduce((a, b) => a + b, 0)), between = group.length > 1 ? spare / (group.length - 1) : 0;
+    // A lone row sits against the object (its far edge keeps the margin of open ground).
+    let y = block.y + (group.length > 1 ? 0 : side === "above" ? spare : 0);
+    group.forEach((ws, i) => {
+      const rh = heights[i], per = (r.w - gap * (ws.length - 1)) / chars(ws), laid = [];
+      let x = r.x;
+      for (const w of ws) {
+        laid.push({ ...w, rect: { x, y, w: per * w.text.length, h: rh } });
+        x += per * w.text.length + gap;
+      }
+      const prev = out.at(-1);
+      out.push({ words: laid, y, h: rh, side, block, t: ws[0].t + (prev && prev.t >= ws[0].t ? 0.12 : 0) });
+      y += rh + between;
+    });
+  };
+  place(rows.slice(0, nAbove), blocks.above, "above");
+  place(rows.slice(nAbove), blocks.below, "below");
+  rowsCache.set(beat.index, out);
+  return out;
+}
+
+/** The object's outline in its hole, from the 3D just drawn: the studio's 48-column top and bottom contour. */
+function silhouette(hole) {
+  const g = mask.getContext("2d", { willReadFrequently: true });
+  g.clearRect(0, 0, 64, 64);
+  g.drawImage(stage.canvas, hole.x, hole.y, hole.w, hole.h, 0, 0, 64, 64);
+  return silhouetteFromPixels(g.getImageData(0, 0, 64, 64).data, 64, 64);
+}
+
 // ── Punctuation marks ─────────────────────────────────────────────────────────
 const STUDIO_MARKS = new Set([".", ":"]);
 /** Studio Sans draws the strokes of these but drops their dots: the dot is added under the stroke. */
@@ -135,7 +224,9 @@ function letters(beat, t) {
   const scene = { width: plan.width, height: plan.height, background: "rgba(0,0,0,0)", ops: [] };
   const plates = [], strikes = [], artwork = [];
   const out = beat.last ? 1 : (beat.end - t) / OUT;
-  for (const row of layoutRows(beat)) {
+  // Pass 1: each word laid out by the studio in its rect, its letters squashed in or out by their own clock.
+  const words = [];
+  layoutRows(beat).forEach((row, ri) => {
     const n = row.words.reduce((k, w) => k + w.text.length, 0);
     let index = 0;
     for (const w of row.words) {
@@ -148,31 +239,48 @@ function letters(beat, t) {
         cell.y += h - cell.h;
         return cell.h > 1.5;
       });
-      // Punctuation is set here, not by the studio: Studio Sans draws nothing for a full stop or a colon in its air
-      // mode, and the font outlines (Dela) stretch a mark to the full row height ("THAT’S" reads "THATIS").
-      const dots = L.cells.filter((c) => (look.studioFont === "original" ? STUDIO_MARKS : MARKS).has(c.char));
-      if (dots.length) L.cells = L.cells.filter((c) => !dots.includes(c));
-      for (const lr of L.rows) lr.cells = L.cells.filter((c) => c.row === lr.index);
       index += w.text.length;
-      const shown = [...L.cells, ...dots];
-      if (!shown.length) continue;
-      const box = {
-        x0: Math.min(...shown.map((c) => c.x)), x1: Math.max(...shown.map((c) => c.x + c.w)),
-        y0: Math.min(...shown.map((c) => c.y)), y1: Math.max(...shown.map((c) => c.y + c.h)),
-      };
-      extent = extent ? { x0: Math.min(extent.x0, box.x0), x1: Math.max(extent.x1, box.x1), y0: Math.min(extent.y0, box.y0), y1: Math.max(extent.y1, box.y1) } : box;
-      // Accent: a plate in the letters' colour with the letters in the ground's (Noise looks), or the ground's
-      // accent colour. Struck: a bar through the word once its letters are in.
-      const plate = w.accent && look.plates;
-      if (plate) plates.push({ box, pad: row.h * 0.1 });
-      const colors = { fg: plate ? g.bg : w.accent ? g.accent : g.fg, bg: plate ? g.fg : g.bg };
-      artwork.push({ L, rect: w.rect, colors });
-      for (const c of dots) for (const d of mark(c, look.markScale)) artwork.push({ d, colors });
-      if (look.studioFont === "original") for (const c of L.cells.filter((cell) => STUDIO_DOTTED.has(cell.char))) for (const d of mark(c)) artwork.push({ d, colors });
-      if (w.struck) {
-        const k = easeOut(clamp((t - row.t - 0.55) / 0.35)) * Math.min(1, out * 2);
-        if (k > 0) strikes.push({ box, k, th: Math.max(8, row.h * 0.09), cy: row.y + row.h * 0.52 });
-      }
+      words.push({ w, row, ri, L });
+    }
+  });
+  // Weave: the whole sentence gives way around the object's live silhouette, as one block of rows (the studio's
+  // cut-out response; cells keep their own index and row for drawing, a sentence-wide pair for the response).
+  if (weave() && words.length) {
+    const hole = beat.hole, outline = silhouette(hole);
+    for (const side of ["above", "below"]) {
+      const block = [], mine = words.filter((wd) => wd.row.side === side);
+      if (!mine.length) continue;
+      mine.forEach((wd) => wd.L.cells.forEach((c) => block.push({ ...c, index: block.length, row: wd.ri, word: wd, ownIndex: c.index, ownRow: c.row })));
+      const reacted = reactTypeToCutout(block, hole, outline, mine[0].row.block, REACTION);
+      mine.forEach((wd) => { wd.L.cells = []; });
+      for (const c of reacted) c.word.L.cells.push({ ...c, index: c.ownIndex, row: c.ownRow, word: undefined });
+    }
+  }
+  // Pass 2: punctuation, accents, plates and strikes on the letters where they ended up.
+  for (const { w, row, L } of words) {
+    // Punctuation is set here, not by the studio: Studio Sans draws nothing for a full stop or a colon in its air
+    // mode, and the font outlines (Dela) stretch a mark to the full row height ("THAT’S" reads "THATIS").
+    const dots = L.cells.filter((c) => (look.studioFont === "original" ? STUDIO_MARKS : MARKS).has(c.char));
+    if (dots.length) L.cells = L.cells.filter((c) => !dots.includes(c));
+    for (const lr of L.rows) lr.cells = L.cells.filter((c) => c.row === lr.index);
+    const shown = [...L.cells, ...dots];
+    if (!shown.length) continue;
+    const box = {
+      x0: Math.min(...shown.map((c) => c.x)), x1: Math.max(...shown.map((c) => c.x + c.w)),
+      y0: Math.min(...shown.map((c) => c.y)), y1: Math.max(...shown.map((c) => c.y + c.h)),
+    };
+    extent = extent ? { x0: Math.min(extent.x0, box.x0), x1: Math.max(extent.x1, box.x1), y0: Math.min(extent.y0, box.y0), y1: Math.max(extent.y1, box.y1) } : box;
+    // Accent: a plate in the letters' colour with the letters in the ground's (Noise looks), or the ground's
+    // accent colour. Struck: a bar through the word once its letters are in.
+    const plate = w.accent && look.plates;
+    if (plate) plates.push({ box, pad: row.h * 0.1 });
+    const colors = { fg: plate ? g.bg : w.accent ? g.accent : g.fg, bg: plate ? g.fg : g.bg };
+    artwork.push({ L, rect: w.rect, colors });
+    for (const c of dots) for (const d of mark(c, look.markScale)) artwork.push({ d, colors });
+    if (look.studioFont === "original") for (const c of L.cells.filter((cell) => STUDIO_DOTTED.has(cell.char))) for (const d of mark(c)) artwork.push({ d, colors });
+    if (w.struck) {
+      const k = easeOut(clamp((t - row.t - 0.55) / 0.35)) * Math.min(1, out * 2);
+      if (k > 0) strikes.push({ box, k, th: Math.max(8, (box.y1 - box.y0) * 0.09), cy: box.y0 + (box.y1 - box.y0) * 0.52 });
     }
   }
   for (const p of plates) scene.ops.push({ kind: "rect", x: p.box.x0 - p.pad, y: p.box.y0 - p.pad, w: p.box.x1 - p.box.x0 + p.pad * 2, h: p.box.y1 - p.box.y0 + p.pad * 2, fill: g.fg });
@@ -185,8 +293,16 @@ function letters(beat, t) {
 }
 
 // ── Ground, transitions and footer ───────────────────────────────────────────
-function footer(groundName) {
-  const g = plan.grounds[groundName], f = plan.layout.footer, l = f.logos[g.logo];
+function footer(groundName, beat) {
+  const g = plan.grounds[groundName];
+  // Weave: no footer while the story runs; the end card carries the lockup alone, below the letters.
+  if (weave()) {
+    if (!beat.last) return;
+    const l = plan.layout.endLogos[g.logo];
+    ctx.drawImage(logos[g.logo], l.x, l.y, l.w, l.h);
+    return;
+  }
+  const f = plan.layout.footer, l = f.logos[g.logo];
   ctx.drawImage(logos[g.logo], l.x, l.y, l.w, l.h);
   ctx.save();
   ctx.fillStyle = g.fg;
@@ -198,15 +314,15 @@ function footer(groundName) {
   ctx.restore();
 }
 
-function ground(name) {
+function ground(name, beat) {
   ctx.fillStyle = plan.grounds[name].bg;
   ctx.fillRect(0, 0, plan.width, plan.height);
-  footer(name);
+  footer(name, beat);
 }
 
 /** The shape the incoming ground shows through, at progress k (0 → 1). */
 function txShape(beat, k) {
-  const W = plan.width, H = plan.height, w = plan.layout.window;
+  const W = plan.width, H = plan.height, w = holeOf(beat);
   ctx.beginPath();
   switch (beat.tx) {
     case "iris": {
@@ -247,12 +363,12 @@ function drawGround(beat, t) {
   const next = plan.beats[beat.index + 1];
   const kn = next && next.ground !== beat.ground ? smoother((t - (next.start - TX_LEAD)) / TX) : 0;
   if (kn > 0) {
-    ground(beat.ground);
-    ctx.save(); txShape(next, kn); ground(next.ground); ctx.restore();
+    ground(beat.ground, beat);
+    ctx.save(); txShape(next, kn); ground(next.ground, next); ctx.restore();
   } else if (k < 1) {
-    ground(prev.ground);
-    ctx.save(); txShape(beat, k); ground(beat.ground); ctx.restore();
-  } else ground(beat.ground);
+    ground(prev.ground, prev);
+    ctx.save(); txShape(beat, k); ground(beat.ground, beat); ctx.restore();
+  } else ground(beat.ground, beat);
 }
 
 /** Draws frame i and returns it as a PNG data URL. */
@@ -265,18 +381,27 @@ export async function frame(i) {
     const id = `${beat.index}:${c.name}:${c.t}`;
     if (t >= c.t && !fired.has(id)) { fired.add(id); stage.cue(c.name, c.arg); }
   }
+  // Weave: the hole moves at every beat; the scene re-frames its objects into it.
+  if (weave() && framed !== beat.index) { stage.reframe(focusOf(beat.hole)); framed = beat.index; }
   stage.advance(Math.floor(((i + 1) * STEPS) / plan.fps) - Math.floor((i * STEPS) / plan.fps));
   stage.render(beat.cam, t - beat.camStart);
 
   drawGround(beat, t);
-  const w = plan.layout.window;
-  ctx.save();
-  ctx.beginPath();
-  ctx.rect(w.x, w.y, w.w, w.h);
-  ctx.clip();
-  ctx.drawImage(stage.canvas, 0, 0);
-  ctx.restore();
-  drawPosterScene(ctx, letters(beat, t));
+  if (weave()) {
+    // As the studio draws a cut-out: the letters (given way around the object), then the object over them.
+    drawPosterScene(ctx, letters(beat, t));
+    ctx.drawImage(stage.canvas, 0, 0);
+  } else {
+    const w = plan.layout.window;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(w.x, w.y, w.w, w.h);
+    ctx.clip();
+    ctx.drawImage(stage.canvas, 0, 0);
+    ctx.restore();
+    drawPosterScene(ctx, letters(beat, t));
+  }
+  lastHole = holeOf(beat);
   return canvas.toDataURL("image/png");
 }
 
@@ -287,9 +412,9 @@ export function stats() {
   return { letters: e };
 }
 
-/** Luminance spread in the stage window: a blank (failed) stage reads near zero. */
+/** Luminance spread where the 3D sits (the window, or the hole): a blank (failed) stage reads near zero. */
 export function stageVariance() {
-  const w = plan.layout.window, g = document.createElement("canvas");
+  const w = lastHole ?? plan.layout.window, g = document.createElement("canvas");
   g.width = 64; g.height = 64;
   const c = g.getContext("2d");
   c.drawImage(stage.canvas, w.x, w.y, w.w, w.h, 0, 0, 64, 64);

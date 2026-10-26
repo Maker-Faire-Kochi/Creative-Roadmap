@@ -26,6 +26,7 @@ export interface StageOptions {
 let renderer: THREE.WebGLRenderer | null = null
 let inst: SceneInstance | null = null
 let cueSet: ((name: string, arg?: unknown) => string | null) | null = null
+let size = { width: 1, height: 1, zoom: 0 }
 export let canvas: HTMLCanvasElement | null = null
 
 export async function init(o: StageOptions) {
@@ -41,21 +42,27 @@ export async function init(o: StageOptions) {
   const made = await SETS[o.set](ctx, o.opts ?? {})
   inst = made.inst
   cueSet = made.cue
-  // fit() from the website's core/stage.ts: the scene frames itself for the focus box and a view offset
-  // extends the same camera over the whole canvas.
-  const [x0, x1, y0, y1] = o.focus
-  const fw = Math.max(1, o.width * (x1 - x0))
-  const fh = Math.max(1, o.height * (y1 - y0))
-  inst.resize(fw, fh)
-  const cam = inst.camera as THREE.PerspectiveCamera | THREE.OrthographicCamera
-  cam.setViewOffset(fw, fh, -o.width * x0, -o.height * y0, o.width, o.height)
-  // opts.zoom: closer than the scene frames itself (the posters' window is shorter than the website's boxes).
-  if (o.opts?.zoom) {
-    cam.zoom = Number(o.opts.zoom)
-    cam.updateProjectionMatrix()
-  }
+  size = { width: o.width, height: o.height, zoom: Number(o.opts?.zoom ?? 0) }
+  reframe(o.focus)
   renderer.compile(inst.scene, inst.camera)
   return { ok: true }
+}
+
+/**
+ * Frames the scene for a box of the canvas ([x0, x1, y0, y1] as fractions): the scene fits its subject to the box
+ * (the website's fit() from core/stage.ts), and a view offset extends the same camera over the whole canvas. The
+ * Weave look calls it at every beat, when the object's hole in the text moves.
+ */
+export function reframe(focus: [number, number, number, number]) {
+  const [x0, x1, y0, y1] = focus
+  const fw = Math.max(1, size.width * (x1 - x0))
+  const fh = Math.max(1, size.height * (y1 - y0))
+  inst!.resize(fw, fh)
+  const cam = inst!.camera as THREE.PerspectiveCamera | THREE.OrthographicCamera
+  cam.setViewOffset(fw, fh, -size.width * x0, -size.height * y0, size.width, size.height)
+  // opts.zoom: closer than the scene frames itself (the posters' window is shorter than the website's boxes).
+  if (size.zoom) cam.zoom = size.zoom
+  cam.updateProjectionMatrix()
 }
 
 /** Runs n fixed simulation steps. */

@@ -12,7 +12,7 @@ Maker Faire Kochi's working design system for motion and 3D: it shows how the br
 | `3d/src/` | The code. Every workflow uses it: `palette`, `restyle` (any model → the standard), `beams` (the beam kit), `kit` (lights, shadow, glow), `motions`, `fx` (effects), `camera` (moves), `library` |
 | `3d/specimen.html` | A live specimen of every model and beam assembly, restyled and turning |
 | [motion.md](motion.md) | The motion language: beats, timing, letters, objects, camera |
-| [color-motion.md](color-motion.md) | The four motion looks, the grounds and their contrast pairs, the logo on each ground, and the colour transitions |
+| [color-motion.md](color-motion.md) | The five motion looks, the grounds and their contrast pairs, the logo on each ground, and the colour transitions |
 | [copy.md](copy.md) | Wording for motion: full sentences, exact punctuation, and when a rewrite is allowed |
 | [type/studio-sans.md](type/studio-sans.md) | Studio Sans, the Poster Studio's elastic alphabet |
 
@@ -23,7 +23,7 @@ Maker Faire Kochi's working design system for motion and 3D: it shows how the br
 | 3D standard, CC0 library, beam kit | **Selected** (2026-10-26) |
 | Motion language, wording rules | **Selected** (2026-10-26) |
 | General motion look in Studio Sans | **Selected** by the user (2026-10-26). A local deviation: the guidelines set Anton |
-| Colour and Noise Shift looks (full-screen colour transitions) | **Exploratory** until approved |
+| Colour, Noise Shift and Weave looks (full-screen colour transitions; Weave sets the 3D inside full-bleed text) | **Exploratory** until approved |
 
 Record changes here: a direction is selected, exploratory or rejected. Keep substantial earlier iterations.
 

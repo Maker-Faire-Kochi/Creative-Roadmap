@@ -11,6 +11,7 @@ The elastic display alphabet of the [Maker Faire Kochi Poster Studio](https://gi
 |---|---|
 | Motion poster lettering, General look | Selected (2026-10-26). Replaces Anton in motion posters only: a recorded deviation (`guidelines/UPSTREAM.md`) |
 | Motion poster lettering, Colour look | Exploratory |
+| Motion poster lettering, Weave look: full-bleed, giving way to the 3D through the studio's cut-out response (`src/cutout-response.js`) | Exploratory |
 | Noise looks | Not used: they keep Dela Gothic One |
 | Static carousels, print | Not used: Anton stays the General display face |
 

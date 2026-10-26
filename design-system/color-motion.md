@@ -1,15 +1,16 @@
 # Colour in motion
 
-Four looks for motion pieces. Two follow the guidelines' directions; two are new **transition** looks, where every text change brings a full-screen colour change.
+Five looks for motion pieces. Two follow the guidelines' directions. Three are new **transition** looks, where every text change brings a full-screen colour change.
 
 | Look | Flag | Letters | Grounds | Status |
 |---|---|---|---|---|
 | General | `general` | Studio Sans | Paper throughout; accents in red | Selected (Studio Sans is a recorded deviation from Anton) |
 | Loud Design / Make Some Noise | `noise` | Dela Gothic One | Yellow throughout; accent words on inverted blue plates | Selected |
-| Colour | `colour` | Studio Sans | All brand colours. The beats rotate paper, ink, cyan, yellow, blue (starting point by topic); the payoff lands on red; the end card is paper | **Exploratory** |
+| Colour | `colour` | Studio Sans | Brand colours. The beats rotate paper, cyan, yellow, blue (starting point by topic); the payoff lands on red; the end card is paper. No charcoal ground: the user ruled the dark grey out (2026-10-26) | **Exploratory** |
+| Weave | `weave` | Studio Sans | Colour's grounds. The sentence fills the poster edge to edge and parts around the 3D object (see [motion.md](motion.md) § Placement). No footer: the official lockup appears only on the end card | **Exploratory** |
 | Noise Shift | `noise-shift` | Dela Gothic One | Noise palette + red. The beats alternate yellow and blue; the payoff lands on red; the end card is blue | **Exploratory** |
 
-Supporting labels: IBM Plex Mono Medium (General and Colour), Inter Bold (both Noise looks).
+Supporting labels: IBM Plex Mono Medium (General and Colour), Inter Bold (both Noise looks). Weave has no labels.
 
 ## Grounds and their pairs
 
@@ -19,7 +20,7 @@ Each ground fixes everything drawn on it:
 |---|---|---|---|---|---|---|
 | paper | `#F6F6F3` | ink `#222222` | red `#ED1C24` | red | long lockup | shown |
 | red | `#ED1C24` | white | ink | ink | border lockup | shown |
-| ink | `#222222` | paper | cyan `#00AEEF` | red | border lockup | hidden |
+| ink (defined, not in any rotation) | `#222222` | paper | cyan `#00AEEF` | red | border lockup | hidden |
 | cyan | `#00AEEF` | ink | white | red | border lockup | shown |
 | yellow | `#FFE86C` | blue `#2B19D9` | red | red | border lockup | shown |
 | blue | `#2B19D9` | yellow | white | red | border lockup | hidden |

@@ -1,6 +1,6 @@
 # Motion posters
 
-Renders one **motion poster per awareness topic**: 19 topics × post (1080×1350) and story (1080×1920), in four looks. Each poster is a short **story** (12–18 s, 30 fps, silent MP4) with **one beat per carousel slide**, then a COMING SOON sign-off.
+Renders one **motion poster per awareness topic**: 19 topics × post (1080×1350) and story (1080×1920), in five looks. Each poster is a short **story** (12–18 s, 30 fps, silent MP4) with **one beat per carousel slide**, then a COMING SOON sign-off.
 
 A beat has two layers:
 - **The sentence:** the slide's full sentence in the [Poster Studio](https://github.com/niyamax/maker-faire-kochi-poster-studio)'s letters, one carousel line per row, rows coming in at reading pace.
@@ -37,7 +37,9 @@ node src/render.mjs --look=noise --place=model-top 06-   # force a placement
 npm run specimen:studio-sans                      # output/studio-sans-specimen.png
 ```
 
-The looks are `general`, `noise`, `colour` and `noise-shift` ([color-motion.md](../../design-system/color-motion.md)). Colour and Noise Shift are **exploratory**.
+The looks are `general`, `noise`, `colour`, `noise-shift` and `weave` ([color-motion.md](../../design-system/color-motion.md)). Colour, Noise Shift and Weave are **exploratory**.
+
+**Weave** (`npm run render:weave`) puts the 3D *inside* the sentence. The text fills the poster edge to edge, and every frame it gives way to the object's live silhouette through the studio's own cut-out response. There is no footer; the lockup appears on the end card only. A beat can place its hole with `cut: [cx, cy, w, h]` (fractions of the type area). See [motion.md](../../design-system/motion.md) § Placement.
 
 ## How it works
 
@@ -60,6 +62,7 @@ Per topic: `place` (`text-top` or `model-top`), then per beat:
 | `means` | What the beat's objects mean, in a sentence. Shown in the gallery for review |
 | `say`, `why` | Only for a rewrite of the slide's sentence (rows with its `*accent*` and `~strike~`), and why |
 | `cam`, `tx` | The camera move that opens the beat; the colour transition (transition looks) |
+| `cut` | Weave only: where the object's hole sits, `[cx, cy, w, h]` |
 | `stage.props` | `{ name, model, at, yaw, scale, keep }`, with a model from `design-system/3d/manifest.json` or a beam (`beam-gesture`, `beam-crank`, `beam-frame-s/m/l`, `beam-link`) |
 | `stage.actors` | `{ name, kind: "makey" or "person", variant, seed, at, yaw }` |
 | `stage.do` | `[motion, "prop" or "prop.part", time, params]` |
@@ -90,7 +93,8 @@ Times are seconds from the beat's start, or `"r1"` (when row 1 comes in), `"r1+0
 
 | Direction | Status |
 |---|---|
-| v3 (this workflow): full sentences in Studio Sans or Dela, objects that act each sentence out (CC0 + beam kit + website actors), camera moves, two placements, Colour and Noise Shift transition looks | **Selected** (2026-10-26), pilot pending review. Colour and Noise Shift **exploratory** |
+| v3 (this workflow): full sentences in Studio Sans or Dela, objects that act each sentence out (CC0 + beam kit + website actors), camera moves, two placements, Colour and Noise Shift transition looks | **Selected** (2026-10-26), pilot pending review. Colour and Noise Shift **exploratory**. Colour lost its charcoal ground at the user's request |
+| Weave: full-bleed sentence giving way to the 3D (the studio's cut-out response), lockup on the end card only | **Exploratory** (2026-10-26) |
 | v2: key-word lettering over makerfaire.in scenes, the sentence in small type underneath | **Rejected** (2026-10-26): the words read as fragments, and the scenes were reused rather than chosen for each topic, so they felt random |
 | v1: 8-second loops of the studio animating only the topic label | **Rejected**: the letters moved, but the poster never said what the topic was about |
 

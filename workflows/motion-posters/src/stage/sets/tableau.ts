@@ -38,7 +38,7 @@ interface Actor { holder: THREE.Group, step(dt: number): void, frame(a: number):
 const ENTER = new Set(['drop', 'pop', 'rise', 'slide'])
 const EXIT_S = 0.3
 
-export default async function create(ctx: SceneContext, opts: { beats: BeatSpec[], manifest: Manifest, base: string, warm: number, t0?: number }): Promise<SceneInstance & { edges(on: boolean): void }> {
+export default async function create(ctx: SceneContext, opts: { beats: BeatSpec[], manifest: Manifest, base: string, warm: number, t0?: number, fill?: number }): Promise<SceneInstance & { edges(on: boolean): void }> {
   const scene = new THREE.Scene()
   addLights(scene)
   const m = createMaterials()
@@ -200,7 +200,8 @@ export default async function create(ctx: SceneContext, opts: { beats: BeatSpec[
       if (i < 0) i = opts.beats.length - 1
       const f = frames[i]!
       const width = Math.hypot(f.size.x, f.size.z)
-      const view = f.view ?? Math.max(f.size.y * 1.5, width * 1.25 / aspect, 0.2)
+      // fill < 1 frames closer: the Weave look's object fills its hole in the text.
+      const view = (f.view ?? Math.max(f.size.y * 1.5, width * 1.25 / aspect, 0.2)) * (opts.fill ?? 1)
       const d = 20
       camera.position.set(
         f.centre.x + Math.sin(f.yaw) * Math.cos(f.pitch) * d,

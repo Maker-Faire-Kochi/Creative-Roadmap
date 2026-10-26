@@ -53,4 +53,11 @@ The default rotation never repeats a move twice in a row. A storyboard can set `
 
 ## Placement
 
-A poster sets its letters on top with the model below (`text-top`), or the model on top with the letters below (`model-top`). By default the placement alternates by topic. The storyboard can set it with `place`, and the command line can force it with `--place=`. The letters never leave their band, and the footer (logo and labels) stays clear of both.
+**Band looks** (General, Noise, Colour, Noise Shift): a poster sets its letters on top with the model below (`text-top`), or the model on top with the letters below (`model-top`). By default the placement alternates by topic. The storyboard can set it with `place`, and the command line can force it with `--place=`. The letters never leave their band, and the footer (logo and labels) stays clear of both.
+
+**Weave** (`weave`): there is no band and no footer. The 3D sits inside the text.
+- **Fill:** the sentence fills the whole poster (on a story, the full width between Instagram's top and bottom overlays). Its words break into the number of rows that keeps the letters a pleasing width (about 0.8 wide to tall, never under 0.5). Each row's words share the full width.
+- **The hole:** each beat gives the object a hole in the text. It is centre-low, left, right or centre-high, rotating, or set with `cut`. The scene re-frames its objects into the hole at every beat, framed closer so the object fills it.
+- **The split:** the sentence splits into a block above the hole and a block below it, meeting at its middle.
+- **Every frame:** the studio's cut-out response (`reactTypeToCutout`, its "Object cut-out" layout) squeezes each block clear of the object's live silhouette: the block above clear of its top, the block below clear of its bottom. Then the object is drawn over the letters, as the studio draws a cut-out. The words wrap the object as it moves (a fan spinning, Makey falling, a cog cracking).
+- **End card:** COMING SOON is set the same way around the beam gesture, with the official lockup alone underneath.

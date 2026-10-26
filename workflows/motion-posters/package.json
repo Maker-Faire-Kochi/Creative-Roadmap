@@ -10,7 +10,8 @@
     "render:colour": "node src/render.mjs --look=colour",
     "render:noise-shift": "node src/render.mjs --look=noise-shift",
     "wording": "node src/wording.mjs",
-    "specimen:studio-sans": "node src/specimen-studio-sans.mjs"
+    "specimen:studio-sans": "node src/specimen-studio-sans.mjs",
+    "render:weave": "node src/render.mjs --look=weave"
   },
   "dependencies": {
     "esbuild": "0.25.12",

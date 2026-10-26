@@ -4,7 +4,7 @@
 // makerfaire.in actors and scenes (vendor/website), bundled into build/stage.js. Every text change moves the
 // camera; the transition looks also change the whole ground's colour. Frames are drawn one at a time in headless
 // Chrome (src/page.mjs) and ffmpeg encodes them, so a render repeats exactly.
-// usage: npm run build:stage, then node src/render.mjs --look=general|noise|colour|noise-shift [--place=text-top|model-top] [topicPrefix ...]
+// usage: npm run build:stage, then node src/render.mjs --look=general|noise|colour|noise-shift|weave [--place=text-top|model-top] [topicPrefix ...]
 // Output: $MFK_OUT (default output/motion-posters-<look>[-<place>], git-ignored).
 import fs from "node:fs";
 import path from "node:path";
@@ -54,8 +54,16 @@ const LOOKS = {
   colour: {
     name: "Colour / Studio Sans (exploratory)", status: "exploratory", studioFont: "original", charWidth: 0.74, plates: false, shift: true,
     labelFamily: "IBM Plex Mono", labelWeight: 500, fonts: PLEX,
-    // Every text change brings a new brand colour; the payoff lands on red; the end card is paper.
-    grounds: (n) => ({ beats: rotate(["paper", "ink", "cyan", "yellow", "blue"], n), payoff: "red", end: "paper" }),
+    // Every text change brings a new brand colour; the payoff lands on red; the end card is paper. No charcoal
+    // (ink) ground: the user ruled the dark grey out.
+    grounds: (n) => ({ beats: rotate(["paper", "cyan", "yellow", "blue"], n), payoff: "red", end: "paper" }),
+  },
+  weave: {
+    name: "Weave / Studio Sans (exploratory)", status: "exploratory", studioFont: "original", charWidth: 0.74, plates: false, shift: true, weave: true,
+    labelFamily: "IBM Plex Mono", labelWeight: 500, fonts: PLEX,
+    // The sentence fills the poster and parts around the object; the Colour look's grounds; the lockup only on the
+    // end card.
+    grounds: (n) => ({ beats: rotate(["paper", "cyan", "yellow", "blue"], n), payoff: "red", end: "paper" }),
   },
   "noise-shift": {
     name: "Noise Shift / Dela Gothic One (exploratory)", status: "exploratory", studioFont: "dela", charWidth: 0.9, plates: true, markScale: 1.25, shift: true,
@@ -88,6 +96,13 @@ const PLACES = ["text-top", "model-top"];
 const FPS = 30, PAD = 70, WARM = 1.5, END = 2.6, MIN_S = 12, MAX_S = 18, MAX_ROWS = 6;
 const IN = 0.45, OUT = 0.35;
 const TX_ORDER = ["iris", "wipe", "shutter", "rise"];
+// Weave: where the object's hole sits in the type area, [cx, cy, w, h] as fractions of it; beats rotate through
+// these (centre-low, left, right, centre-high) unless the storyboard sets `cut`. The end card's hole is central.
+const CUTS = [[0.5, 0.6, 0.62, 0.4], [0.34, 0.55, 0.56, 0.38], [0.66, 0.5, 0.56, 0.38], [0.5, 0.42, 0.6, 0.38]];
+const END_CUT = [0.5, 0.5, 0.56, 0.42];
+// Weave type areas: the whole post with a margin; on a story, the full width between Instagram's top and bottom
+// overlays. The end card keeps a band under the letters for the lockup.
+const WEAVE = { post: { margin: 36, top: 36, bottom: 1314, logoW: 520 }, story: { margin: 36, top: 200, bottom: 1660, logoW: 560 } };
 const MOVES = ["push-in", "orbit-l", "crane-down", "orbit-r", "truck-l", "pull-out", "crane-up", "truck-r"];
 const DIRS = { "orbit-l": [1, 0], "truck-l": [1, 0], "orbit-r": [-1, 0], "truck-r": [-1, 0], "crane-up": [0, 1], "crane-down": [0, -1] };
 
@@ -153,7 +168,7 @@ function timeline(key, look = LOOK) {
       index: i, start, end, set, opts, cam, camStart: start, means: b.means ?? "",
       rows: rows.map((r, ri) => ({ ...r, t: start + rel[ri] * f })),
       ground: i === t.slides.length - 1 ? g.payoff : g.beats[i % g.beats.length],
-      tx: b.tx ?? TX_ORDER[(i + topicNo) % TX_ORDER.length], stage: b.stage, cues: [],
+      tx: b.tx ?? TX_ORDER[(i + topicNo) % TX_ORDER.length], stage: b.stage, cues: [], cut: b.cut ?? CUTS[(i + topicNo) % CUTS.length],
     };
     beat.txDir = DIRS[cam] ?? [1, 0];
     if (set !== "tableau") {
@@ -168,7 +183,7 @@ function timeline(key, look = LOOK) {
   if (last) beats.push({
     index: beats.length, start: clock, end: clock + END, set: "tableau", stage: END_STAGE, cam: "pull-out", camStart: clock,
     rows: beatRows({ lines: [END_SAY] }).map((r) => ({ ...r, t: clock + (look.shift ? 0.3 : 0.12) })),
-    ground: g.end, tx: "iris", txDir: [1, 0], cues: [], last: true, means: "The sign-off: the beam kit's open gesture, its blue beam opening the joint.",
+    ground: g.end, tx: "iris", txDir: [1, 0], cues: [], last: true, cut: END_CUT, means: "The sign-off: the beam kit's open gesture, its blue beam opening the joint.",
   });
   // The tableau: every beat that has a stage, its times resolved to poster seconds.
   const stageBeats = beats.filter((b) => b.set === "tableau");
@@ -184,7 +199,7 @@ function timeline(key, look = LOOK) {
       };
     } catch (e) { issues.push(`beat ${b.index + 1}: ${e.message}`); return null; }
   });
-  const tableauOpts = { beats: resolved, manifest: MANIFEST, base: "/ds/3d/models", warm: WARM };
+  const tableauOpts = { beats: resolved, manifest: MANIFEST, base: "/ds/3d/models", warm: WARM, fill: look.weave ? 0.72 : 1 };
   for (const b of beats) {
     if (b.set === "tableau") { b.opts = tableauOpts; b.setKey = `tableau|${key}`; }
     else b.setKey = `${b.set}|${JSON.stringify(b.opts)}`;
@@ -196,6 +211,18 @@ function timeline(key, look = LOOK) {
 
 function layout(fmt, place) {
   const F = FORMATS[fmt], P = F[place];
+  if (LOOK.weave) {
+    const Wv = WEAVE[fmt], type = { x: Wv.margin, y: Wv.top, w: F.w - Wv.margin * 2, h: Wv.bottom - Wv.top };
+    const endLogos = Object.fromEntries(Object.entries(LOGOS).map(([k, l]) => {
+      const h = Wv.logoW * l.ratio;
+      return [k, { x: (F.w - Wv.logoW) / 2, y: Wv.bottom - h, w: Wv.logoW, h }];
+    }));
+    const logoTop = Math.min(...Object.values(endLogos).map((l) => l.y));
+    return {
+      mode: "weave", type, endType: { ...type, h: logoTop - 40 - type.y }, endLogos,
+      window: { x: 0, y: 0, w: F.w, h: F.h },
+    };
+  }
   const logos = Object.fromEntries(Object.entries(LOGOS).map(([k, l]) => {
     const h = F.logoW * l.ratio;
     return [k, { x: PAD, y: F.base - h, w: F.logoW, h }];
@@ -249,8 +276,14 @@ for (const key of Object.keys(TOPICS)) {
   fs.mkdirSync(dir, { recursive: true });
   for (const fmt of Object.keys(FORMATS)) {
     const F = FORMATS[fmt], L = layout(fmt, story.place), frames = Math.round(story.seconds * FPS), issues = [];
+    // Weave: each beat's hole in pixels, inside the type area it sits in.
+    const holed = story.beats.map((b) => {
+      if (!LOOK.weave) return b;
+      const T = b.last ? L.endType : L.type, [cx, cy, w, h] = b.cut;
+      return { ...b, hole: { x: T.x + (cx - w / 2) * T.w, y: T.y + (cy - h / 2) * T.h, w: w * T.w, h: h * T.h } };
+    });
     const plan = {
-      width: F.w, height: F.h, fps: FPS, warm: WARM, layout: L, look: { ...LOOK, grounds: undefined }, fonts: LOOK.fonts, grounds: GROUNDS, beats: story.beats,
+      width: F.w, height: F.h, fps: FPS, warm: WARM, layout: L, look: { ...LOOK, grounds: undefined }, fonts: LOOK.fonts, grounds: GROUNDS, beats: holed,
       maxRows: MAX_ROWS, label: story.label, signoff: "MAKER FAIRE KOCHI · COMING SOON", logos: LOGOS,
     };
     await page.evaluate((p) => window.poster.init(p), plan);
@@ -262,7 +295,8 @@ for (const key of Object.keys(TOPICS)) {
       const buf = png(await page.evaluate((n) => window.poster.frame(n), i));
       if (i === cover) fs.writeFileSync(path.join(dir, `${fmt}.png`), buf);
       const s = await page.evaluate(() => window.poster.stats());
-      const band = L.type, e = s.letters;
+      const now = holed.find((b) => i / FPS < b.end) ?? holed.at(-1);
+      const band = L.mode === "weave" && now.last ? L.endType : L.type, e = s.letters;
       if (e && (e.x0 < band.x - 6 || e.x1 > band.x + band.w + 6 || e.y0 < band.y - 6 || e.y1 > band.y + band.h + 6))
         issues.push(`letters leave their band at ${(i / FPS).toFixed(1)} s`);
       if (checks.has(i)) {
