@@ -10,12 +10,12 @@ import type { RobotCommand } from '../../../vendor/website/app/three/robots/type
 import { createMakey } from '../../../vendor/website/app/three/robots/makey/makey'
 import { createPerson } from '../../../vendor/website/app/three/people/person'
 import {
-  Director, FX, Library, addLights, contactShadow, createMaterials, fitOrtho,
+  Director, FX, Library, addLights, createMaterials, fitOrtho,
   type FxName, type Fx, type Manifest, type MotionName, type MotionParams, type Model,
 } from '../../../../../design-system/3d/src/index'
 
 type V3 = [number, number, number]
-export interface PropSpec { name: string, model: string, at?: V3, yaw?: number, scale?: number, keep?: boolean, shadow?: boolean }
+export interface PropSpec { name: string, model: string, at?: V3, yaw?: number, scale?: number, keep?: boolean }
 export interface ActorSpec { name: string, kind: 'makey' | 'person', variant?: string, seed?: number, at?: V3, yaw?: number, keep?: boolean, look?: Record<string, unknown>, accent?: boolean }
 export interface BeatSpec {
   start: number
@@ -95,7 +95,6 @@ export default async function create(ctx: SceneContext, opts: { beats: BeatSpec[
       if ('model' in s) {
         model = await lib.instantiate(s.model)
         root = model.root
-        if (s.shadow !== false) root.add(contactShadow(Math.max(model.size.x, model.size.z) * 0.62))
       }
       else {
         actor = makeActor(s)

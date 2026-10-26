@@ -1,7 +1,7 @@
 // Specimen helpers: draw one restyled model on its own, three-quarter orthographic, as the standard frames it.
 // Used by the contact sheet (3d/tools/sheet.mjs) and the specimen page.
 import * as THREE from 'three'
-import { addLights, contactShadow, fitOrtho } from './kit'
+import { addLights, fitOrtho } from './kit'
 import type { Materials } from './palette'
 import { loadModel, type Model, type ModelSpec } from './restyle'
 import { BEAMS } from './beams'
@@ -19,7 +19,6 @@ export async function renderTile(url: string, spec: ModelSpec, m: Materials, siz
   const scene = new THREE.Scene()
   addLights(scene)
   scene.add(model.root)
-  scene.add(contactShadow(Math.max(model.size.x, model.size.z) * 0.6))
   const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.01, 100)
   const r = Math.max(model.size.x, model.size.y, model.size.z)
   const target = new THREE.Vector3(0, model.size.y / 2, 0)

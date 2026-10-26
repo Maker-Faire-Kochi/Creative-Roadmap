@@ -47,7 +47,7 @@
     ds.addLights(scene);
     const turn = new THREE.Group();
     turn.add(model.root);
-    scene.add(turn, ds.contactShadow(Math.max(model.size.x, model.size.z) * 0.6));
+    scene.add(turn);
     const r = Math.max(model.size.x, model.size.y, model.size.z);
     const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.01, 100);
     cam.position.set(Math.sin(-0.62) * r * 3, model.size.y / 2 + r * 1.7, Math.cos(-0.62) * r * 3);

@@ -1,5 +1,5 @@
-// Stage parts every 3D illustration shares (3d/STANDARD.md): the light pair, the contact shadow under anything
-// standing, the glow halo of a lit part, the orthographic framing, and a few plain geometries the motions draw
+// Stage parts every 3D illustration shares (3d/STANDARD.md): the light pair (no shadows of any kind), the glow
+// halo of a lit part, the orthographic framing, and a few plain geometries the motions draw
 // with (pins, arcs, rings). Written for this design system; the values follow the makerfaire.in scenes.
 import * as THREE from 'three'
 import { KEYS, type Materials } from './palette'
@@ -10,33 +10,6 @@ export function addLights(scene: THREE.Scene) {
   const key = new THREE.DirectionalLight(0xffffff, 1.6)
   key.position.set(-3, 5, 4)
   scene.add(key)
-}
-
-let blob: THREE.CanvasTexture | null = null
-function blobTexture() {
-  if (blob) return blob
-  const c = document.createElement('canvas')
-  c.width = c.height = 64
-  const g = c.getContext('2d')!
-  const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32)
-  grad.addColorStop(0, 'rgba(0,0,0,1)')
-  grad.addColorStop(0.6, 'rgba(0,0,0,0.45)')
-  grad.addColorStop(1, 'rgba(0,0,0,0)')
-  g.fillStyle = grad
-  g.fillRect(0, 0, 64, 64)
-  blob = new THREE.CanvasTexture(c)
-  return blob
-}
-
-/** A soft dark blob on the ground under an object (radius in metres). */
-export function contactShadow(radiusX: number, radiusZ = radiusX) {
-  const mat = new THREE.MeshBasicMaterial({ map: blobTexture(), transparent: true, opacity: 0.22, depthWrite: false })
-  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(radiusX * 2, radiusZ * 2), mat)
-  mesh.rotation.x = -Math.PI / 2
-  mesh.position.y = 0.0005
-  mesh.renderOrder = -1
-  mesh.name = 'shadow'
-  return mesh
 }
 
 let halo: THREE.CanvasTexture | null = null

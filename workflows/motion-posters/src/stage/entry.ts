@@ -38,6 +38,9 @@ export async function init(o: StageOptions) {
   renderer.setClearColor(0x000000, 0)
   const palette = readPalette()
   const materials = createMaterials(palette)
+  // No shadows: the website's actors and scenes lay a soft contact-shadow blob under everything standing; the
+  // posters draw none (design-system/3d/STANDARD.md).
+  materials.shadow.visible = false
   const ctx = { materials, palette, posterMode: false, coarse: true, width: o.width, height: o.height }
   const made = await SETS[o.set](ctx, o.opts ?? {})
   inst = made.inst

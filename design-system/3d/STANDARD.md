@@ -8,7 +8,7 @@ Every 3D object in Maker Faire Kochi motion work looks like it belongs to one se
 - **Real scale, in metres.** Makey is about 0.25 m. People are 7.5 heads tall, children 5.5. A model's `height` in the manifest sets its scale.
 - **Opaque faces, flat colour.** One `MeshLambertMaterial` per palette key, drawn with polygon offset, with no maps and no PBR.
 - **Hairline edges.** 1px ink (`#222222`) lines at a 20° crease angle, or 30–60° for curved models, so facets don't turn into a mesh of lines. Dark parts get no edges.
-- **Light.** Hemisphere light 1.9 (sky white, ground `#D8D8D2`) plus one directional light 1.6 from the upper-left front (-3, 5, 4). No shadow maps. Anything standing gets a soft contact-shadow blob.
+- **Light.** Hemisphere light 1.9 (sky white, ground `#D8D8D2`) plus one directional light 1.6 from the upper-left front (-3, 5, 4). **No shadows of any kind:** no shadow maps and no contact-shadow blobs (the website's blobs are switched off too). The objects stand on the poster's ground as drawn shapes.
 - **Framing.** An elevated three-quarter orthographic view: azimuth about -0.62 rad, elevation about 0.52 rad. Transparent background, no tone mapping.
 - **Budget.** At most 5,000 triangles a model and about 80,000 a scene.
 

@@ -9,7 +9,7 @@ Maker Faire Kochi's working design system for motion and 3D: it shows how the br
 | [3d/STANDARD.md](3d/STANDARD.md) | The 3D asset standard: how every model looks (taken from the makerfaire.in scenes), the selection checklist, and how to add a model |
 | [3d/manifest.json](3d/manifest.json) + `3d/models/` | The CC0 model library: the source, licence, sha256, triangle count and restyle rules of every model |
 | [3d/CREDITS.md](3d/CREDITS.md) | Where every model comes from |
-| `3d/src/` | The code. Every workflow uses it: `palette`, `restyle` (any model → the standard), `beams` (the beam kit), `kit` (lights, shadow, glow), `motions`, `fx` (effects), `camera` (moves), `library` |
+| `3d/src/` | The code. Every workflow uses it: `palette`, `restyle` (any model → the standard), `beams` (the beam kit), `kit` (lights, glow; no shadows), `motions`, `fx` (effects), `camera` (moves), `library` |
 | `3d/specimen.html` | A live specimen of every model and beam assembly, restyled and turning |
 | [motion.md](motion.md) | The motion language: beats, timing, letters, objects, camera |
 | [color-motion.md](color-motion.md) | The six motion looks, the grounds and their contrast pairs, the logo on each ground, and the colour transitions |
