@@ -55,14 +55,22 @@ The default rotation never repeats a move twice in a row. A storyboard can set `
 
 **Band looks** (General, Noise, Colour, Noise Shift): a poster sets its letters on top with the model below (`text-top`), or the model on top with the letters below (`model-top`). By default the placement alternates by topic. The storyboard can set it with `place`, and the command line can force it with `--place=`. The letters never leave their band, and the footer (logo and labels) stays clear of both.
 
-**Weave** (`weave`, `weave-plain`; with `--hero=cc0|beams`): there is no band and no footer. **One object** a beat, inside the text.
-1. **The text comes first.** The sentence fills the whole poster (on a story, the full width between Instagram's top and bottom overlays). Its words break into the number of rows that keeps the letters a pleasing width (about 0.8 wide to tall, never under 0.5), and each row's words share the full width. Nothing interrupts it while it is read.
-2. **The pop.** Once the sentence is in (at least 0.9 s into the beat), the beat's one object (its *hero*) **pops up in the middle** with a soft overshoot.
-3. **The push.** The letters are shoved out of its way as it grows. The push springs: it overshoots a little and settles. Every frame, from the object's live silhouette:
-   - The studio's cut-out response (`reactTypeToCutout`) squeezes the rows above clear of the object's top and the rows below clear of its bottom. The sentence splits into these two blocks at the middle of the hole.
-   - Our sideways push opens any row the object still crosses: its letters close up toward the left and right edges, narrowed, never hidden, in order.
+**Weave** (`weave`, `weave-plain`; with `--hero=cc0|beams`): there is no footer, and there is **one object** a beat.
+
+**Text-rich beats** (6 words or more) set the object inside the text:
+1. **The text comes first.** The sentence fills the whole poster (on a story, the full width between Instagram's top and bottom overlays). Its words break into the number of rows that keeps the letters a pleasing width (about 0.8 wide to tall, never under 0.5), and each row's words share the full width.
+2. **The pop.** Once the sentence is in (at least 0.9 s into the beat), the beat's one object (its *hero*) pops up in the middle.
+3. **Room is made once, for all of its movement.** Before rendering, a 3D-only pass measures the object's **footprint**: the union of its silhouette over its whole act (spin, tumble, crack), with a margin. As the object spawns, the letters make room for that footprint in **one graceful move** (quintic, 0.6 s, no bounce):
+   - The studio's cut-out response (`reactTypeToCutout`) squeezes the rows above clear of its top and the rows below clear of its bottom.
+   - Our sideways parting opens the rows it crosses: letters close up toward the left and right edges, narrowed, never hidden, in order.
    - The object is drawn over the letters, as the studio draws a cut-out.
-4. **The act.** The hero does its one action: blades spin, the cog cracks, Makey tumbles, the frame's sides swing shut. The letters keep giving way to it as it moves.
-5. **Out.** The hero shrinks away 0.4 s before the letters go, and the letters flow back into place. On the end card the beam gesture pops into the middle of COMING SOON, and the official lockup sits alone underneath.
+4. **The act.** The hero does its one action: blades spin, the cog cracks, Makey tumbles, the frame's sides swing shut. **The letters hold still**; only the studio's slow breathing continues. They never follow the object.
+5. **Out.** The hero shrinks away 0.4 s before the letters go, and the letters ease back in one move.
+
+**Short beats** (fewer than 6 words) and the end card are set as a **band**, like the other looks:
+- The letters fill their band and the object sits in its own window.
+- The window alternates: **on top** for the first band beat, **below** for the next.
+- Without a footer the two share the whole poster. On the end card the official lockup sits alone at the bottom.
+- A storyboard can force either layout with `weave.layout`.
 
 The hero is either a CC0 model or actor (`--hero=cc0`) or one beam-kit assembly (`--hero=beams`, our primitives). The storyboard gives both for every beat (`WEAVE_HEROES`), each with what it means. `weave` changes the ground's colour on every text change; `weave-plain` stays on paper.

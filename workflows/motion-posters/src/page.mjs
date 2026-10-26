@@ -6,10 +6,11 @@
 //   3. the beat's lettering: the full sentence, one row per carousel line, laid out by the Poster Studio's own
 //      layoutTreatment/appendTreatmentArtwork and drawn by its drawPosterScene; rows squash in one after another
 //      and out together.
-// The Weave look (layout mode "weave") has no band and no footer: the sentence fills the canvas, the 3D sits in a
-// hole in it, and every frame the letters part around the object's live silhouette with the studio's own
-// cut-out response (reactTypeToCutout), the 3D drawn over them as the studio draws a cut-out; the logo comes only
-// on the end card.
+// The Weave looks (layout mode "weave") have no footer. A text-rich beat's sentence fills the canvas and its one
+// object pops up in the middle: the letters make room for the object's measured footprint (all of its movement)
+// in one graceful move, with the studio's own cut-out response above and below and a sideways parting, then hold
+// still while it acts; the 3D is drawn over them as the studio draws a cut-out. Other beats are set as a band,
+// the object in its own window, alternately on top and below. The logo comes only on the end card.
 // render.mjs passes a plan (timeline, layout, look, grounds) to init() and calls frame(i) for every video frame.
 import { layoutTreatment, appendTreatmentArtwork } from "/studio/src/treatment.js";
 import { drawPosterScene } from "/studio/src/scene.js";
@@ -21,6 +22,8 @@ const IN = 0.45, OUT = 0.32, TX = 0.55, TX_LEAD = 0.15;
 let lastHole = null;
 const REACTION = 0.72; // how hard the letters give way to the object (the studio's default is 0.65)
 let plan, ctx, canvas, logos = {}, current = null, fired = new Set(), extent = null, rowsCache = new Map(), framed = -1, mask = null;
+/** Weave: each in-text beat's footprint, the room its object needs over its whole act (measure()). */
+let footprints = new Map();
 
 const clamp = (v, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
 const easeOut = (x) => 1 - (1 - x) ** 3;
@@ -35,6 +38,7 @@ export async function init(p) {
   rowsCache = new Map();
   framed = -1;
   lastHole = null;
+  footprints = new Map();
   mask = document.createElement("canvas");
   mask.width = mask.height = 64;
   canvas = document.createElement("canvas");
@@ -52,8 +56,14 @@ export async function init(p) {
 
 const beatAt = (t) => plan.beats.find((b) => t < b.end) ?? plan.beats.at(-1);
 const weave = () => plan.layout.mode === "weave";
-/** Where the beat's 3D sits: the window (band looks) or the beat's hole in the text (Weave), in pixels. */
-const holeOf = (beat) => (weave() ? beat.hole : plan.layout.window);
+/** A Weave beat whose object pops up inside the text (a text-rich beat); the others are set as a band. */
+const inText = (beat) => weave() && beat.mode === "in-text";
+/** A Weave band beat's rectangles: the type, the window and the end card's lockup, by placement. */
+const bandOf = (beat) => plan.layout.bands[beat.place];
+/** Where the beat's 3D sits, in pixels: the window (band looks and Weave band beats) or its hole in the text. */
+const holeOf = (beat) => (!weave() ? plan.layout.window : inText(beat) ? beat.hole : beat.last ? bandOf(beat).endWindow : bandOf(beat).window);
+/** Where the beat's letters go. */
+const typeOf = (beat) => (!weave() ? plan.layout.type : inText(beat) ? plan.layout.type : beat.last ? bandOf(beat).endType : bandOf(beat).type);
 const focusOf = (r) => [r.x / plan.width, (r.x + r.w) / plan.width, r.y / plan.height, (r.y + r.h) / plan.height];
 
 /** A beat's set and options come as one key (render.mjs): a new key means a new stage, a cut. */
@@ -75,8 +85,8 @@ async function useSet(beat, t) {
  */
 function layoutRows(beat) {
   if (rowsCache.has(beat.index)) return rowsCache.get(beat.index);
-  if (weave()) return layoutWeave(beat);
-  const r = plan.layout.type, CH = plan.look.charWidth, GAP = 0.3, LEAD = 0.16;
+  if (inText(beat)) return layoutWeave(beat);
+  const r = typeOf(beat), CH = plan.look.charWidth, GAP = 0.3, LEAD = 0.16;
   const weight = (row) => (row.stat ? 1.7 : 1);
   const units = (row) => row.words.reduce((n, w) => n + w.text.length * CH, 0) + GAP * (row.words.length - 1);
   const size = (rows) => {
@@ -129,7 +139,7 @@ function layoutRows(beat) {
  */
 const ASPECT = 0.8, MIN_ASPECT = 0.5;
 function layoutWeave(beat) {
-  const r = beat.last ? plan.layout.endType : plan.layout.type, hole = beat.hole, gap = 0.025 * r.w;
+  const r = plan.layout.type, hole = beat.hole, gap = 0.025 * r.w;
   const words = beat.rows.flatMap((row) => row.words.map((w) => ({ ...w, t: row.t, stat: row.stat })));
   const chars = (ws) => ws.reduce((n, w) => n + w.text.length, 0);
   /** Splits the words into n rows of about equal letters (a stat word always alone). */
@@ -183,14 +193,12 @@ function layoutWeave(beat) {
 }
 
 /**
- * How hard the letters are pushed (0 → 1, with a little overshoot): nothing until the object pops up, then a
- * damped spring, so the letters are shoved out and settle back a touch; easing off as the object leaves.
+ * How far the letters have made room (0 → 1): one graceful move as the object spawns (starting just before it
+ * pops, quintic, no bounce), held still while it acts, and one move back as it leaves. The room is the object's
+ * footprint, so nothing in the letters follows the object's own motion.
  */
 function push(beat, t) {
-  const s = t - beat.pop;
-  if (!(s > 0)) return 0;
-  const spring = 1 - Math.exp(-s / 0.2) * Math.cos(s * 9);
-  return Math.max(0, spring) * (1 - smoother((t - beat.exit) / 0.35));
+  return smoother((t - (beat.pop - 0.15)) / 0.6) * (1 - smoother((t - beat.exit) / 0.45));
 }
 
 /**
@@ -235,6 +243,28 @@ function silhouette(hole) {
   g.clearRect(0, 0, 64, 64);
   g.drawImage(stage.canvas, hole.x, hole.y, hole.w, hole.h, 0, 0, 64, 64);
   return silhouetteFromPixels(g.getImageData(0, 0, 64, 64).data, 64, 64);
+}
+
+/** Grows a footprint by the union with one silhouette (per column: the highest top, the lowest bottom). */
+function unite(into, sil) {
+  if (!into) return { top: [...sil.top], bottom: [...sil.bottom] };
+  sil.top.forEach((top, i) => {
+    if (top === null) return;
+    into.top[i] = into.top[i] === null ? top : Math.min(into.top[i], top);
+    into.bottom[i] = into.bottom[i] === null ? sil.bottom[i] : Math.max(into.bottom[i], sil.bottom[i]);
+  });
+  return into;
+}
+
+/** A footprint with a margin: one column wider each side and a little taller, so the letters clear it. */
+function breathe(fp, pad = 0.03) {
+  const n = fp.top.length, top = [], bottom = [];
+  for (let i = 0; i < n; i++) {
+    const near = [i - 1, i, i + 1].filter((j) => j >= 0 && j < n && fp.top[j] !== null);
+    top.push(near.length ? Math.max(0, Math.min(...near.map((j) => fp.top[j])) - pad) : null);
+    bottom.push(near.length ? Math.min(1, Math.max(...near.map((j) => fp.bottom[j])) + pad) : null);
+  }
+  return { top, bottom };
 }
 
 // ── Punctuation marks ─────────────────────────────────────────────────────────
@@ -290,10 +320,12 @@ function letters(beat, t) {
       words.push({ w, row, ri, L });
     }
   });
-  // Weave: the whole sentence gives way around the object's live silhouette, as one block of rows (the studio's
-  // cut-out response; cells keep their own index and row for drawing, a sentence-wide pair for the response).
-  if (weave() && words.length) {
-    const hole = beat.hole, outline = silhouette(hole), k = push(beat, t);
+  // Weave, in-text: the sentence makes room for the object's footprint, in two blocks (the studio's cut-out
+  // response above and below; cells keep their own index and row for drawing, a block-wide pair for the
+  // response), and the rows it crosses part sideways.
+  const outline = inText(beat) ? footprints.get(beat.index) : null;
+  if (outline && words.length) {
+    const hole = beat.hole, k = push(beat, t);
     if (k > 0) {
       for (const side of ["above", "below"]) {
         const block = [], mine = words.filter((wd) => wd.row.side === side);
@@ -303,7 +335,7 @@ function letters(beat, t) {
         mine.forEach((wd) => { wd.L.cells = []; });
         for (const c of reacted) c.word.L.cells.push({ ...c, index: c.ownIndex, row: c.ownRow, word: undefined });
       }
-      partRows(words, hole, outline, k, beat.last ? plan.layout.endType : plan.layout.type);
+      partRows(words, hole, outline, k, plan.layout.type);
     }
   }
   // Pass 2: punctuation, accents, plates and strikes on the letters where they ended up.
@@ -348,7 +380,7 @@ function footer(groundName, beat) {
   // Weave: no footer while the story runs; the end card carries the lockup alone, below the letters.
   if (weave()) {
     if (!beat.last) return;
-    const l = plan.layout.endLogos[g.logo];
+    const l = bandOf(beat).endLogos[g.logo];
     ctx.drawImage(logos[g.logo], l.x, l.y, l.w, l.h);
     return;
   }
@@ -421,8 +453,8 @@ function drawGround(beat, t) {
   } else ground(beat.ground, beat);
 }
 
-/** Draws frame i and returns it as a PNG data URL. */
-export async function frame(i) {
+/** Moves the 3D on to frame i and draws it: the beat's stage, its cues, its framing, one frame of simulation. */
+async function step(i) {
   const t = i / plan.fps, beat = beatAt(t);
   await useSet(beat, t);
   const edgesId = `edges:${beat.index}`;
@@ -431,18 +463,42 @@ export async function frame(i) {
     const id = `${beat.index}:${c.name}:${c.t}`;
     if (t >= c.t && !fired.has(id)) { fired.add(id); stage.cue(c.name, c.arg); }
   }
-  // Weave: the hole moves at every beat; the scene re-frames its objects into it.
-  if (weave() && framed !== beat.index) { stage.reframe(focusOf(beat.hole)); framed = beat.index; }
+  // Weave: every beat has its own hole or window; the scene re-frames its object into it.
+  if (weave() && framed !== beat.index) { stage.reframe(focusOf(holeOf(beat))); framed = beat.index; }
   stage.advance(Math.floor(((i + 1) * STEPS) / plan.fps) - Math.floor((i * STEPS) / plan.fps));
   stage.render(beat.cam, t - beat.camStart);
+  return { t, beat };
+}
 
+/**
+ * Weave: runs the poster's 3D once, alone, and measures each in-text beat's footprint: the union of its
+ * object's silhouettes from the pop to the exit, with a margin. The letters then make room for all of the
+ * object's movement at once, and never follow it. The stage is reset afterwards, so the real pass starts clean.
+ */
+export async function measure(frames) {
+  if (!weave()) return { beats: 0 };
+  const shapes = new Map();
+  for (let i = 0; i < frames; i++) {
+    const { t, beat } = await step(i);
+    if (inText(beat) && t >= beat.pop && t <= beat.exit && i % 2 === 0) shapes.set(beat.index, unite(shapes.get(beat.index), silhouette(beat.hole)));
+  }
+  footprints = new Map([...shapes].map(([k, fp]) => [k, breathe(fp)]));
+  current = null;
+  fired = new Set();
+  framed = -1;
+  return { beats: footprints.size };
+}
+
+/** Draws frame i and returns it as a PNG data URL. */
+export async function frame(i) {
+  const { t, beat } = await step(i);
   drawGround(beat, t);
-  if (weave()) {
-    // As the studio draws a cut-out: the letters (given way around the object), then the object over them.
+  if (inText(beat)) {
+    // As the studio draws a cut-out: the letters (making room for the object), then the object over them.
     drawPosterScene(ctx, letters(beat, t));
     ctx.drawImage(stage.canvas, 0, 0);
   } else {
-    const w = plan.layout.window;
+    const w = holeOf(beat);
     ctx.save();
     ctx.beginPath();
     ctx.rect(w.x, w.y, w.w, w.h);

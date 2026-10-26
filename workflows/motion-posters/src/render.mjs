@@ -107,6 +107,10 @@ const CUT = [0.5, 0.5, 0.56, 0.42];
 // Weave timing: the object pops up once the sentence is in (at least POP_MIN into the beat), acts for at least
 // ACT seconds, and shrinks away LEAVE seconds before the letters go out.
 const POP_AFTER = 0.35, POP_MIN = 0.9, ACT = 1.6, LEAVE = 0.4;
+// Weave: a sentence of RICH_WORDS words or more gets its object inside the text; a shorter one is set as a band,
+// the object in its own window, on top for one band beat and below for the next (the storyboard can force
+// either with weave.layout).
+const RICH_WORDS = 6;
 // Weave type areas: the whole post with a margin; on a story, the full width between Instagram's top and bottom
 // overlays. The end card keeps a band under the letters for the lockup.
 const WEAVE = { post: { margin: 36, top: 36, bottom: 1314, logoW: 520 }, story: { margin: 36, top: 200, bottom: 1660, logoW: 560 } };
@@ -177,7 +181,8 @@ function timeline(key, look = LOOK) {
   const sum = plans.reduce((n, p) => n + p.dur, 0);
   const f = Math.max(0.85, Math.min(Math.max(1, (MIN_S - END) / sum), (MAX_S - END) / sum));
   const beats = [];
-  let clock = 0, set = sb.set ?? "tableau", opts = sb.opts ?? {};
+  let clock = 0, set = sb.set ?? "tableau", opts = sb.opts ?? {}, bands = 0;
+  const nextPlace = () => (bands++ % 2 ? "text-top" : "model-top");
   plans.forEach(({ b, rows, rel, dur, hero, pop }, i) => {
     if (look.weave) set = "tableau";
     else if (b.set) { set = b.set; opts = b.opts ?? {}; }
@@ -190,6 +195,10 @@ function timeline(key, look = LOOK) {
       ground: i === t.slides.length - 1 ? g.payoff : g.beats[i % g.beats.length],
       tx: b.tx ?? TX_ORDER[(i + topicNo) % TX_ORDER.length], stage: b.stage, cues: [], cut: CUT,
     };
+    if (look.weave) {
+      beat.mode = b.weave?.layout ?? (wordCount(rows) >= RICH_WORDS ? "in-text" : "band");
+      if (beat.mode === "band") beat.place = nextPlace();
+    }
     if (look.weave && hero) {
       beat.pop = start + pop * f;
       beat.exit = end - OUT - LEAVE;
@@ -212,6 +221,7 @@ function timeline(key, look = LOOK) {
     stage: look.weave ? { ...END_STAGE, do: END_STAGE.do.map(([m, w, tt, p]) => [m, w, tt + 0.7, p]) } : END_STAGE,
     rows: beatRows({ lines: [END_SAY] }).map((r) => ({ ...r, t: clock + (look.shift ? 0.3 : 0.12) })),
     ground: g.end, tx: "iris", txDir: [1, 0], cues: [], last: true, cut: CUT, pop: clock + 0.75, exit: Infinity,
+    ...(look.weave ? { mode: "band", place: nextPlace() } : {}),
     means: "The sign-off: the beam kit's open gesture, its blue beam opening the joint.",
   });
   // The tableau: every beat that has a stage, its times resolved to poster seconds.
@@ -264,11 +274,22 @@ function layout(fmt, place) {
       const h = Wv.logoW * l.ratio;
       return [k, { x: (F.w - Wv.logoW) / 2, y: Wv.bottom - h, w: Wv.logoW, h }];
     }));
-    const logoTop = Math.min(...Object.values(endLogos).map((l) => l.y));
-    return {
-      mode: "weave", type, endType: { ...type, h: logoTop - 40 - type.y }, endLogos,
-      window: { x: 0, y: 0, w: F.w, h: F.h },
+    const logoTop = Math.min(...Object.values(endLogos).map((l) => l.y)), H = type.h, GAP = 40;
+    // Band beats: no footer, so the letters and the window share the whole height. On the end card the lockup
+    // takes the bottom, under whichever of the two is lower.
+    const rect = (y0, y1, full = false) => ({ x: full ? 0 : type.x, y: y0, w: full ? F.w : type.w, h: y1 - y0 });
+    const split = 0.47 * H;
+    const bands = {
+      "model-top": {
+        window: rect(type.y, type.y + split, true), type: rect(type.y + split + GAP, type.y + H),
+        endWindow: rect(type.y, type.y + split, true), endType: rect(type.y + split + GAP, logoTop - GAP), endLogos,
+      },
+      "text-top": {
+        type: rect(type.y, type.y + split), window: rect(type.y + split + GAP, type.y + H, true),
+        endType: rect(type.y, type.y + split), endWindow: rect(type.y + split + GAP, logoTop - GAP, true), endLogos,
+      },
     };
+    return { mode: "weave", type, bands, window: { x: 0, y: 0, w: F.w, h: F.h } };
   }
   const logos = Object.fromEntries(Object.entries(LOGOS).map(([k, l]) => {
     const h = F.logoW * l.ratio;
@@ -325,8 +346,8 @@ for (const key of Object.keys(TOPICS)) {
     const F = FORMATS[fmt], L = layout(fmt, story.place), frames = Math.round(story.seconds * FPS), issues = [];
     // Weave: each beat's hole in pixels, inside the type area it sits in.
     const holed = story.beats.map((b) => {
-      if (!LOOK.weave) return b;
-      const T = b.last ? L.endType : L.type, [cx, cy, w, h] = b.cut;
+      if (!LOOK.weave || b.mode !== "in-text") return b;
+      const T = L.type, [cx, cy, w, h] = b.cut;
       return { ...b, hole: { x: T.x + (cx - w / 2) * T.w, y: T.y + (cy - h / 2) * T.h, w: w * T.w, h: h * T.h } };
     });
     const plan = {
@@ -334,6 +355,8 @@ for (const key of Object.keys(TOPICS)) {
       maxRows: MAX_ROWS, label: story.label, signoff: "MAKER FAIRE KOCHI · COMING SOON", logos: LOGOS,
     };
     await page.evaluate((p) => window.poster.init(p), plan);
+    // Weave: measure every in-text object's footprint first (a 3D-only pass), so the letters make room once.
+    await page.evaluate((n) => window.poster.measure(n), Math.round(story.seconds * FPS));
     const video = path.join(dir, `${fmt}.mp4`), enc = encode(video), t0 = Date.now();
     // The cover: the first beat once its sentence has settled.
     const b0 = story.beats[0], cover = Math.round((b0.end - OUT - 0.3) * FPS);
@@ -344,7 +367,7 @@ for (const key of Object.keys(TOPICS)) {
       if (i === cover) fs.writeFileSync(path.join(dir, `${fmt}.png`), buf);
       const s = await page.evaluate(() => window.poster.stats());
       const now = holed.find((b) => i / FPS < b.end) ?? holed.at(-1);
-      const band = L.mode === "weave" && now.last ? L.endType : L.type, e = s.letters;
+      const band = L.mode !== "weave" || now.mode !== "band" ? L.type : now.last ? L.bands[now.place].endType : L.bands[now.place].type, e = s.letters;
       if (e && (e.x0 < band.x - 6 || e.x1 > band.x + band.w + 6 || e.y0 < band.y - 6 || e.y1 > band.y + band.h + 6))
         issues.push(`letters leave their band at ${(i / FPS).toFixed(1)} s`);
       if (checks.has(i)) {

@@ -39,10 +39,12 @@ npm run specimen:studio-sans                      # output/studio-sans-specimen.
 
 The looks are `general`, `noise`, `colour`, `noise-shift`, `weave` and `weave-plain` ([color-motion.md](../../design-system/color-motion.md)). Colour, Noise Shift and both Weaves are **exploratory**.
 
-**Weave** puts **one object a beat** *inside* the sentence:
-1. The text is set first, filling the poster edge to edge.
-2. The object pops up in the middle and pushes the letters out. Above and below, the push is the studio's own cut-out response; sideways, it is our row parting. Both work from the object's live silhouette.
-3. The object acts, then leaves, and the letters flow back.
+**Weave** has **one object a beat**.
+- **Text-rich beats** (6 words or more) set it *inside* the sentence:
+  1. The text is set first, filling the poster edge to edge.
+  2. The object pops up in the middle, and the letters make room for it in one graceful move. The room comes from the object's **footprint**, measured beforehand in a 3D-only pass (`measure()`) as the space its whole act needs. Above and below, the move is the studio's cut-out response; sideways, it is our row parting.
+  3. The letters then hold still while the object acts, and ease back when it leaves.
+- **Shorter beats** and the end card are set as a band, the object in its own window, alternately on top and below.
 
 There is no footer; the lockup appears on the end card only. Each beat has two heroes in `WEAVE_HEROES`:
 - `cc0`: a library model or actor
@@ -78,7 +80,7 @@ Per topic: `place` (`text-top` or `model-top`), then per beat:
 | `means` | What the beat's objects mean, in a sentence. Shown in the gallery for review |
 | `say`, `why` | Only for a rewrite of the slide's sentence (rows with its `*accent*` and `~strike~`), and why |
 | `cam`, `tx` | The camera move that opens the beat; the colour transition (transition looks) |
-| `weave` | Weave only (set from `WEAVE_HEROES`): `{ cc0, beams }`, each one `prop` or `actor` with its `do`, `fx`, `act` (seconds after the pop) and `means` |
+| `weave` | Weave only (set from `WEAVE_HEROES`): `{ cc0, beams }`, each one `prop` or `actor` with its `do`, `fx`, `act` (seconds after the pop) and `means`; optional `layout: "in-text" \| "band"` |
 | `stage.props` | `{ name, model, at, yaw, scale, keep }`, with a model from `design-system/3d/manifest.json` or a beam (`beam-gesture`, `beam-crank`, `beam-frame-s/m/l`, `beam-link`) |
 | `stage.actors` | `{ name, kind: "makey" or "person", variant, seed, at, yaw }` |
 | `stage.do` | `[motion, "prop" or "prop.part", time, params]` |
@@ -110,7 +112,8 @@ Times are seconds from the beat's start, or `"r1"` (when row 1 comes in), `"r1+0
 | Direction | Status |
 |---|---|
 | v3 (this workflow): full sentences in Studio Sans or Dela, objects that act each sentence out (CC0 + beam kit + website actors), camera moves, two placements, Colour and Noise Shift transition looks | **Selected** (2026-10-26), pilot pending review. Colour and Noise Shift **exploratory**. Colour lost its charcoal ground at the user's request |
-| Weave, take 2: text first, then one object pops up in the middle and pushes the letters out (studio cut-out response + our sideways part); CC0 or beam-kit hero; colour or plain ground; lockup on the end card only | **Exploratory** (2026-10-26) |
+| Weave, take 3: in-text only for text-rich beats (otherwise an alternating band); the letters make room once for the object's measured footprint and hold still while it acts | **Exploratory** (2026-10-26) |
+| Weave, take 2: one object, text first, pushed from the object's live silhouette every frame | **Superseded** (2026-10-26): the letters glitched around the object whenever it moved |
 | Weave, take 1: several objects in a moving hole, arriving with the text | **Rejected** (2026-10-26): "the idea is there but the execution not much"; too many objects, and nothing visibly happened to the text |
 | v2: key-word lettering over makerfaire.in scenes, the sentence in small type underneath | **Rejected** (2026-10-26): the words read as fragments, and the scenes were reused rather than chosen for each topic, so they felt random |
 | v1: 8-second loops of the studio animating only the topic label | **Rejected**: the letters moved, but the poster never said what the topic was about |
