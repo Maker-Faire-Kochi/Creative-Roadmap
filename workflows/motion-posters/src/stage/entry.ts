@@ -8,6 +8,7 @@ import * as THREE from 'three'
 import { createMaterials } from '../../vendor/website/app/three/core/kit'
 import { readPalette } from '../../vendor/website/app/three/core/palette'
 import type { SceneInstance } from '../../vendor/website/app/three/core/stage'
+import { applyCamOffset, moveOffset, type Move } from '../../../../design-system/3d/src/camera'
 import { SETS, type SetName } from './sets'
 
 export const DT = 1 / 200
@@ -67,10 +68,22 @@ export function cue(name: string, arg?: unknown): string | null {
   return cueSet?.(name, arg) ?? inst!.action?.(name) ?? null
 }
 
-export function render() {
+/**
+ * Draws the scene. `move` is the beat's camera move and `s` the seconds since the beat began: the move is laid on
+ * top of whatever camera the scene set this frame, then taken off again, so scenes that place their camera once
+ * (and those that place it every frame) both see their own camera next time.
+ */
+export function render(move: Move = 'hold', s = 0) {
   inst!.frame(1)
+  const cam = inst!.camera as THREE.PerspectiveCamera | THREE.OrthographicCamera
+  const saved = { p: cam.position.clone(), q: cam.quaternion.clone(), zoom: cam.zoom }
+  if (move !== 'hold') applyCamOffset(cam, moveOffset(move, s))
   renderer!.clear()
-  renderer!.render(inst!.scene, inst!.camera)
+  renderer!.render(inst!.scene, cam)
+  cam.position.copy(saved.p)
+  cam.quaternion.copy(saved.q)
+  cam.zoom = saved.zoom
+  cam.updateProjectionMatrix()
 }
 
 export function dispose() {

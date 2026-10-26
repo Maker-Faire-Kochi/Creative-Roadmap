@@ -10,6 +10,7 @@ import workshop from '../../../vendor/website/app/three/scenes/workshop/index'
 import people from '../../../vendor/website/app/three/people/lab'
 import makey from './makey'
 import pinMap from './pin-map'
+import tableau from './tableau'
 
 export interface MadeSet {
   inst: SceneInstance
@@ -58,6 +59,11 @@ export const SETS = {
   people: async (ctx, opts) => ({ inst: await withQuery(opts.query, async () => people(ctx)), cue: null }),
   /** A pin map of the places the copy names (sets/pin-map.ts); cues: pin:<id>, pins, kochi, links, travel. */
   'pin-map': async (ctx, opts) => ({ inst: await pinMap(ctx, opts), cue: null }),
+  /** Our stage: CC0 props from design-system/3d plus the website's actors, per beat (sets/tableau.ts); cue edges <bool>. */
+  tableau: async (ctx, opts) => {
+    const inst = await tableau(ctx, opts as never)
+    return { inst, cue: (name, arg) => (name === 'edges' ? (inst.edges(arg !== false), 'edges') : null) }
+  },
   /** The hero playground: Makey, ducks, the balancer and the dog playing football (plays by itself). */
   hero: async ctx => ({ inst: await hero(ctx), cue: null }),
 } satisfies Record<string, SetFactory>

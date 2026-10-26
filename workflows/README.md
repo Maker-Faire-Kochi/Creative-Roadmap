@@ -5,7 +5,7 @@ Repeatable pipelines for Maker Faire Kochi campaign content. Each one has its ow
 | Workflow | What it does | Runbook |
 |---|---|---|
 | `awareness-carousels/` | Renders the awareness carousels (19 topics × 5 designs × post + story) in English and in Manglish, packages the gallery, runs layout QA | [README](awareness-carousels/README.md) |
-| `motion-posters/` | Renders a motion poster per awareness topic (post + story, 12–18-second stories, a beat per slide): Poster Studio lettering over the makerfaire.in 3D scenes (git submodules) | [README](motion-posters/README.md) |
+| `motion-posters/` | Renders a motion poster per awareness topic (post + story, 12–18-second stories, a beat per slide) in four looks. Each beat sets the slide's full sentence in the Poster Studio letters, and a 3D tableau acts it out: CC0 models and the beam kit from `design-system/`, plus the makerfaire.in actors (git submodules). The camera moves on every text change | [README](motion-posters/README.md) |
 | `instagram-scheduling/` | Schedules those carousels and their stories on Meta Business Suite (Instagram @makerfairekochi) from an approved plan | [README](instagram-scheduling/README.md) |
 
 The flow is: **copy → render → QA → caption approval → schedule → verify**.
@@ -19,5 +19,7 @@ The flow is: **copy → render → QA → caption approval → schedule → veri
 - **Prove changes by re-rendering to a scratch folder** (`MFK_OUT=/tmp/x node src/build.mjs 05-`) and comparing with `cmp`; the renderer is deterministic, so unchanged inputs give byte-identical PNGs.
 
 ## Requirements
+
+The motion posters also use `design-system/` (the 3D standard, the model library, the motion language): run `npm install` there too.
 
 Node 24+, Google Chrome (macOS path is the default; override with `CHROME_PATH`), `ffmpeg`, Python 3. Run `npm install` once inside each workflow folder.

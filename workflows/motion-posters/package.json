@@ -2,11 +2,15 @@
   "name": "mfk-motion-posters",
   "private": true,
   "type": "module",
-  "description": "Maker Faire Kochi awareness motion posters: topic stories with the Poster Studio letters and the makerfaire.in 3D scenes",
+  "description": "Maker Faire Kochi awareness motion posters: topic stories in the Poster Studio letters, acted out by design-system 3D (CC0 models, the beam kit) and the makerfaire.in actors",
   "scripts": {
     "build:stage": "node src/stage/bundle.mjs",
     "render:general": "node src/render.mjs --look=general",
-    "render:noise": "node src/render.mjs --look=noise"
+    "render:noise": "node src/render.mjs --look=noise",
+    "render:colour": "node src/render.mjs --look=colour",
+    "render:noise-shift": "node src/render.mjs --look=noise-shift",
+    "wording": "node src/wording.mjs",
+    "specimen:studio-sans": "node src/specimen-studio-sans.mjs"
   },
   "dependencies": {
     "esbuild": "0.25.12",
