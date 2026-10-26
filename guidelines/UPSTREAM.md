@@ -23,4 +23,6 @@ Then update the commit above, check `brand/tokens.css` font paths still resolve,
 - **Baloo Chettan 2 ExtraBold** stays the Malayalam display face for Manglish headlines (Malayalam letters only, `brand/fonts/`). Upstream uses Noto Sans Malayalam alone; Noto is still used for all other Malayalam.
 - **All three official lockups** (long, border, square; PNG + PDF) live in `brand/logo/official/`. Upstream ships only the long PNG.
 - **Open Workshop kit as archive art:** the awareness carousels keep the kit SVGs from `archive/open-workshop/assets/kit/` (tinted whole to the look's ink) until straight-beam illustrations replace them. Not for new work.
+- **Studio Sans in motion (General):** motion posters in the General direction letter their headlines in Studio Sans, the Poster Studio's elastic alphabet, instead of Anton. The user chose this on 2026-10-26. Static work keeps Anton; the Noise direction keeps Dela Gothic One. See `design-system/type/studio-sans.md`.
+- **Transition looks (exploratory):** the motion posters' Colour and Noise Shift looks change the whole ground's colour on every text change. They are exploratory until approved (`design-system/color-motion.md`).
 - **Kochi content rules** in the root `AGENTS.md` (COMING SOON instead of a date, clear descriptive words, Kerala-wide volunteer calls, Manglish rules) apply alongside upstream's.
