@@ -489,6 +489,14 @@ export async function measure(frames) {
   return { beats: footprints.size };
 }
 
+/** The top of the footer zone the 3D may not enter (the lockup and labels, with some air), or null if none. */
+function guardTop(beat) {
+  const AIR = 24;
+  if (weave()) return beat.last ? Math.min(...Object.values(bandOf(beat).endLogos).map((l) => l.y)) - AIR : null;
+  const f = plan.layout.footer;
+  return Math.min(f.top, f.base - f.labelSize * 2.6) - AIR;
+}
+
 /** Draws frame i and returns it as a PNG data URL. */
 export async function frame(i) {
   const { t, beat } = await step(i);
@@ -498,14 +506,15 @@ export async function frame(i) {
     drawPosterScene(ctx, letters(beat, t));
     ctx.drawImage(stage.canvas, 0, 0);
   } else {
-    const w = holeOf(beat);
+    // The object is framed into its window, but never clipped to it: the letters first, then the 3D over
+    // everything, so a lamp's glow, a pop's overshoot or an exit is never cut at the window's edge.
+    // The one exception is the footer: the 3D never passes over the logo lockup or its labels (AGENTS.md).
+    drawPosterScene(ctx, letters(beat, t));
+    const gy = guardTop(beat);
     ctx.save();
-    ctx.beginPath();
-    ctx.rect(w.x, w.y, w.w, w.h);
-    ctx.clip();
+    if (gy !== null) { ctx.beginPath(); ctx.rect(0, 0, plan.width, gy); ctx.clip(); }
     ctx.drawImage(stage.canvas, 0, 0);
     ctx.restore();
-    drawPosterScene(ctx, letters(beat, t));
   }
   lastHole = holeOf(beat);
   return canvas.toDataURL("image/png");

@@ -213,16 +213,16 @@ function timeline(key, look = LOOK) {
     beats.push(beat);
     clock = end;
   });
-  // The end card: COMING SOON over the beam kit's open gesture (END_STAGE), the same sign-off on every poster.
+  // The end card: COMING SOON with Makey waving (END_STAGE), the same sign-off on every poster.
   const last = beats.at(-1);
   if (last) beats.push({
     index: beats.length, start: clock, end: clock + END, set: "tableau", cam: "pull-out", camStart: clock,
-    // Weave: COMING SOON is set first, then the gesture pops up in the middle of it.
-    stage: look.weave ? { ...END_STAGE, do: END_STAGE.do.map(([m, w, tt, p]) => [m, w, tt + 0.7, p]) } : END_STAGE,
+    // Weave: COMING SOON is set first, then Makey pops up in the middle of it and waves.
+    stage: look.weave ? { ...END_STAGE, do: END_STAGE.do.map(([m, w, tt, p]) => [m, w, tt + 0.7, p]), act: END_STAGE.act.map(([a, w, tt, o]) => [a, w, tt + 0.5, o]) } : END_STAGE,
     rows: beatRows({ lines: [END_SAY] }).map((r) => ({ ...r, t: clock + (look.shift ? 0.3 : 0.12) })),
     ground: g.end, tx: "iris", txDir: [1, 0], cues: [], last: true, cut: CUT, pop: clock + 0.75, exit: Infinity,
     ...(look.weave ? { mode: "band", place: nextPlace() } : {}),
-    means: "The sign-off: the beam kit's open gesture, its blue beam opening the joint.",
+    means: "The sign-off: Makey, the maker robot, pops up and waves the viewer in.",
   });
   // The tableau: every beat that has a stage, its times resolved to poster seconds.
   const stageBeats = beats.filter((b) => b.set === "tableau");

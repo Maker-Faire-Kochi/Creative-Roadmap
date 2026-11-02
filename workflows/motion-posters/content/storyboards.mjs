@@ -22,12 +22,13 @@
 // opts, shot, act: { cue: time }.
 // Never show an event date: the website's machines scene (a live countdown) is not used.
 export const END_SAY = "COMING SOON";
-// The sign-off on every end card: the beam kit's open gesture (the guidelines' straight-beam baseline), and the
-// blue beam opening its joint: an open invitation.
+// The sign-off on every end card: Makey, the makerfaire.in maker robot, pops up and waves the viewer in under
+// COMING SOON. (Until 2026-11-02 this was the beam kit's open gesture; replaced at the user's request.)
+// The name is unique so it never clashes with a Makey a topic's own beats put on stage.
 export const END_STAGE = {
-  props: [{ name: "gesture", model: "beam-gesture", at: [0, 0, 0], yaw: -0.3 }],
-  do: [["pop", "gesture", 0.05, { dur: 0.45 }], ["turn", "gesture.joint3", 0.6, { axis: "z", amount: 0.85, dur: 1.0 }]],
-  frame: { view: 0.78, at: [0, 0.26, 0] },
+  actors: [{ name: "signoff-makey", kind: "makey", at: [0, 0, 0], yaw: -0.5 }],
+  do: [["pop", "signoff-makey", 0.05, { dur: 0.45 }]],
+  act: [["wave", "signoff-makey", 0.45]],
 };
 
 const DIGIT_YAW = 0.9; // turns a digit's face (its wood face) square to the default camera
@@ -214,6 +215,9 @@ export const STORYBOARDS = {
             ["slide", "p3", "r1+0.2", { from: [-0.7, 0, -0.9], dur: 0.9 }],
           ],
           act: [["clap", "p1", "r2+0.2"], ["clap", "p2", "r2+0.3"], ["clap", "p3", "r2+0.25"]],
+          // Framed a little higher and wider than the fit: the 3D is no longer clipped to its window, and the
+          // pull-out's close start would otherwise carry the giant magazine down into the footer.
+          frame: { at: [0, 0.08, -0.17], view: 2.4 },
         },
       },
     ],

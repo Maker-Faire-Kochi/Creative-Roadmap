@@ -89,7 +89,7 @@ Per topic: `place` (`text-top` or `model-top`), then per beat:
 | `stage.frame` | `{ at, view, yaw, pitch }` when the fitted framing isn't right |
 | `set`, `opts`, `shot`, `act` | Cut to a makerfaire.in scene instead |
 
-Times are seconds from the beat's start, or `"r1"` (when row 1 comes in), `"r1+0.3"`, or `"end-0.4"`. `END_STAGE` is the sign-off on every poster: the beam kit's open gesture, with its blue beam opening the joint.
+Times are seconds from the beat's start, or `"r1"` (when row 1 comes in), `"r1+0.3"`, or `"end-0.4"`. `END_STAGE` is the sign-off on every poster: Makey, the makerfaire.in robot, pops up and waves under COMING SOON (it was the beam kit's open gesture until 2026-11-02).
 
 **Status:** the pilot topics 05, 06 and 12 are staged. The other topics have their wording (and any rewrites) but no stage yet, and the renderer skips them with "no stage" until they are built.
 
