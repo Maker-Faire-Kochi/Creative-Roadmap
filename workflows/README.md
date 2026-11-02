@@ -6,6 +6,7 @@ Repeatable pipelines for Maker Faire Kochi campaign content. Each one has its ow
 |---|---|---|
 | `awareness-carousels/` | Renders the awareness carousels (19 topics × 5 designs × post + story) in English and in Manglish, packages the gallery, runs layout QA | [README](awareness-carousels/README.md) |
 | `motion-posters/` | Renders a motion poster per awareness topic (post + story, 12–18-second stories, a beat per slide) in four looks. Each beat sets the slide's full sentence in the Poster Studio letters, and a 3D tableau acts it out: CC0 models and the beam kit from `design-system/`, plus the makerfaire.in actors (git submodules). The camera moves on every text change | [README](motion-posters/README.md) |
+| `live-action/` | Turns live-action footage (a maker or organiser talking to camera) into a story: a Poster Studio opener (white on red), the footage with its own sound and tilted red-on-white Studio Sans subtitle cards (Manglish or English, as spoken), then the motion posters' COMING SOON end card or a CTA end card with QR codes. Built and rendered with HyperFrames from one spec per story | [README](live-action/README.md) |
 | `instagram-scheduling/` | Schedules those carousels and their stories on Meta Business Suite (Instagram @makerfairekochi) from an approved plan | [README](instagram-scheduling/README.md) |
 
 The flow is: **copy → render → QA → caption approval → schedule → verify**.

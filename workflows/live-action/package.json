@@ -1,0 +1,16 @@
+{
+  "name": "mfk-live-action",
+  "private": true,
+  "type": "module",
+  "description": "Maker Faire Kochi live-action stories: a Poster Studio opener, the footage with its own sound and Studio Sans subtitle cards, and the motion posters' COMING SOON end card, assembled and rendered with HyperFrames",
+  "scripts": {
+    "breaks": "node src/breaks.mjs",
+    "build": "node src/build.mjs",
+    "render": "node src/build.mjs --render"
+  },
+  "dependencies": {
+    "jsqr": "^1.4.0",
+    "playwright-core": "1.63.0",
+    "qrcode": "^1.5.4"
+  }
+}
