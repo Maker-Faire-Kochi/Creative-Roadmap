@@ -2,6 +2,8 @@
 
 Schedules the awareness carousels (feed) and their matching stories on **Meta Business Suite** for **@makerfairekochi**, from an approved plan. A Playwright script drives a dedicated Chrome window, attaches files directly (no macOS file picker) and confirms every booking in Meta's own Scheduled lists. Read `../README.md` and the repo-root `AGENTS.md` first.
 
+**Trial reels** (reels shown to non-followers first) can only be made in the Instagram mobile app, so they go through a phone instead: `phone.py` drives the app on an Android phone over wireless debugging. See [Trial reels from a phone](#trial-reels-from-a-phone-wireless-debugging) at the end.
+
 ## Hard rules
 
 1. **Never schedule a caption the user hasn't approved.** Record approval with `prepare.py --approve ... --basis "<who/when>"` only after the user has actually approved those captions. An agent's own judgment is not approval.
@@ -66,3 +68,55 @@ Meta's lists are **virtualized**: only about 10 rows exist at once, so a one-sho
 | `unconfirmed` / `count N of M` | Meta may have saved it anyway. Check the lists, then `record` it, or rerun (the duplicate check protects you) |
 | A hung "Scheduling your post…" overlay | Handled by the 1-minute reload and retry |
 | Uploads fail in the macOS file dialog | Not used here; attach through the script. Don't switch to clicking the dialog |
+
+## Trial reels from a phone (wireless debugging)
+
+Meta Business Suite can't make a reel a **trial**; only the Instagram app can. `phone.py` schedules one by driving Instagram on an Android phone over `adb`, the way it was done for the first seven trial reels (2 Nov 2026: the old motion posters, *What is Maker Faire?* and *Why Kochi?*). It is plain Python (standard library only); you need `adb` (Android platform-tools).
+
+### Rules (in addition to the ones above)
+1. **The caption is approved first**, word for word, as for the feed. Write it to a text file (it can live in `output/`) and pass that file. The script types it, reads the field back and stops if it differs in any character.
+2. **Schedule only. Never tap Share.** The script checks that the button reads *Schedule* and, by default, stops just before it (`READY, not submitted`). Look at `shots/ready.png`, then rerun with `--submit` or tap Schedule yourself. Do the first reel of a run this way; the rest can go with `--submit`.
+3. **Trial on, tag @makerfaire** (user, 2 Nov 2026). The tag goes in *Tag people*, not the caption (the caption has no account tags). "Automatically share to everyone" in Trial settings stays **off** unless the user asks: a trial that does well is shared to followers by hand.
+4. **Check the content before it goes on the phone:** no event date, CODING not CODE, and any QR decodes to the right URL (decode a frame of the end card with `jsqr`).
+5. **The cover:** if the video starts on a blank ground before its title draws in, set the cover to the title frame (`--cover-drag`, below), and say so in the report.
+6. **Keep the phone's address out of the repo.** It goes in `MFK_ADB_SERIAL` in your shell; screenshots and the ledger go to `output/trial-reels/` (`MFK_PHONE_OUT`).
+
+### One-time pairing (the user does this on the phone)
+1. On the phone: **Settings → Developer options → Wireless debugging** (on), then **Pair device with pairing code**.
+2. The phone shows an `IP:port` and a six-digit code. Run `! adb pair IP:PAIRPORT CODE` in the session (the pairing port is not the connect port).
+3. Send the agent the `IP:port` from the main Wireless debugging screen. Instagram must be logged in as **@makerfairekochi**.
+
+The pairing persists. The connect port changes when wireless debugging is toggled or the phone restarts; read the new one from the phone, or `adb mdns services`.
+
+### The flow
+```bash
+cd workflows/instagram-scheduling
+export MFK_ADB_SERIAL=<IP:PORT>                # from the phone's Wireless debugging screen
+python3 phone.py connect                        # prints model, Android and Instagram versions
+python3 phone.py push "<video.mp4>" mfk-7-why-kochi.mp4   # into Movies/MFK, newest = first gallery tile
+```
+Then, on the phone (or with `phone.py shot` and taps): Instagram → **+** → **Reel** to open the *New reel* gallery, and dismiss any promo popup. Find the new video's tile with `python3 phone.py shot gallery`; the duration on the tile tells it apart. On the OnePlus the first video tile after the camera tile is at `608,970`.
+
+```bash
+python3 phone.py reel --tile 608,970 --caption output/trial-reels/why-kochi.txt \
+  --date 2026-11-02 --time 12:30 [--cover-drag 35]      # stops before Schedule
+# check output/trial-reels/shots/ready.png, then repeat with --submit (or tap Schedule)
+python3 phone.py scheduled                     # Settings → Scheduled content: confirm it is listed at the time
+```
+
+What `reel` does: pick the tile → Next → (cover) → type the caption, read it back → Tag people → @makerfaire → **Trial** toggle on, then check that Audience reads *Trial* → More options → **Schedule this reel** → check the date row → set the 24-hour time dial → check the time row → back to the share screen and check the button reads *Schedule* → (with `--submit`) Schedule, and append a line to `output/trial-reels/ledger.jsonl`. Any check that fails stops the run with `FAIL:` and the screen as it is. Find out where it stopped with `phone.py shot <name>` before you touch anything.
+
+Report the run as a table of time (IST) and reel, plus caption, tag, Trial, cover and anything you changed without asking. Trial reels are booked outside `meta.mjs`, so they aren't in its `schedule.json`; the record is `ledger.jsonl` plus Instagram's Scheduled content list.
+
+### Trial-reel troubleshooting
+
+| Symptom | Cause / fix |
+|---|---|
+| `adb connect` "failed to connect" / refused | This Mac isn't paired with the phone, or the connect port changed. Pair again (above) and read the current port |
+| `no Trial toggle` | Trial reels need a **public professional** account (about 200 followers for professional accounts) that is eligible for recommendations. On 2 Nov the toggle was missing after the app had updated itself, although the account had posted trials before. The user got it back on the phone. Ask the user to check rather than guessing; never post without Trial as a workaround |
+| `caption mismatch` | Autocorrect changed a word (e.g. "interestform" → "interest form"), or typing began before the field had focus. Clear the field and rerun. The script sends text in pieces that end at spaces, so a word is never split |
+| `non-ASCII character` | `adb input text` can't type Malayalam or emoji. Paste those captions on the phone by hand, then let the script verify them (or do the rest by hand) |
+| `the date row isn't …` | The date picker isn't automated; the script books the date already shown (today). For another day, set the date by hand on the phone |
+| `less than 15 minutes` | As for the feed: ask the user for a new time |
+| Back closed Instagram / taps land on the wrong screen | The share screen scrolls, so positions move. Relaunch (`adb shell monkey -p com.instagram.android -c android.intent.category.LAUNCHER 1`), take a `shot` and continue from what is on screen |
+| Settings search box empty | The text arrived before the box had focus; tap the box and type again |
