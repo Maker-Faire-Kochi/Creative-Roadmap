@@ -4,6 +4,7 @@
 // workflows/motion-posters/src/page.mjs.
 import { layoutTreatment, appendTreatmentArtwork } from "/studio/src/treatment.js";
 import { drawPosterScene } from "/studio/src/scene.js";
+import { wrap } from "/x/wrap.mjs";
 
 const CH = 0.74; // a Studio Sans letter's width over its height
 const MARKS = new Set([".", ",", "’", "'"]);
@@ -19,31 +20,8 @@ function mark(c) {
   }
 }
 
-/** Greedy word wrap into at most maxRows rows, at the largest type size that fits maxW. */
-function wrap(text, maxW, maxH, maxRows, lead) {
-  // "/" in the copy forces the line breaks; the type is then as large as the longest line allows.
-  if (text.includes("/")) {
-    const rows = text.split("/").map((r) => r.trim().replace(/\s+/g, " ")).filter(Boolean);
-    return { rows, h: Math.min(maxH, Math.floor(maxW / (CH * Math.max(...rows.map((r) => r.length))))) };
-  }
-  // "MAKER FAIRE" wraps as one word: the name never breaks across two rows.
-  const words = text.replace(/MAKER FAIRE/gi, (m) => m.replace(" ", "\u0001")).split(/\s+/).filter(Boolean);
-  for (let h = maxH; h >= 30; h -= 2) {
-    const per = Math.floor(maxW / (CH * h)), rows = [];
-    let cur = "";
-    for (const w of words) {
-      const next = cur ? `${cur} ${w}` : w;
-      if (next.length <= per) cur = next;
-      else { if (cur) rows.push(cur); cur = w; }
-    }
-    if (cur) rows.push(cur);
-    if (rows.length <= maxRows && rows.every((r) => r.length <= per)) return { rows: rows.map((r) => r.replace(/\u0001/g, " ")), h };
-  }
-  throw new Error(`cannot fit: ${text}`);
-}
-
 export function card({ text, color, maxW, maxH, maxRows, lead = 0.2, pad = 0.18 }) {
-  const { rows, h } = wrap(text, maxW, maxH, maxRows, lead);
+  const { rows, h } = wrap(text, { maxW, maxH, maxRows, ch: CH });
   const widths = rows.map((r) => r.length * CH * h);
   const W = Math.ceil(Math.max(...widths)), padY = Math.ceil(h * pad);
   const H = Math.ceil(rows.length * h + (rows.length - 1) * h * lead + padY * 2);

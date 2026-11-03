@@ -120,9 +120,14 @@ def cmd_push(a):
 
 def cmd_reel(a):
     want = open(a.caption, encoding="utf-8").read().rstrip("\n")
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import hashtags  # the caption's last line: 3-5 tags from hashtags.json
+    try: hashtags.check(want)
+    except ValueError as e: die(f"hashtags: {e}")
     when = datetime.datetime.strptime(f"{a.date} {a.time}", "%Y-%m-%d %H:%M")
     if when.minute % 5: die("the time dial takes 5-minute steps")
-    phone_now = datetime.datetime.strptime(sh("date", "+%Y-%m-%d %H:%M").strip(), "%Y-%m-%d %H:%M")
+    # The format is quoted for the phone's shell: adb joins its arguments with spaces.
+    phone_now = datetime.datetime.strptime(sh("date", "'+%Y-%m-%d %H:%M'").strip(), "%Y-%m-%d %H:%M")
     if when - phone_now < datetime.timedelta(minutes=15): die(f"{when} is less than 15 minutes from the phone's clock ({phone_now})")
     tx, ty = map(int, a.tile.split(","))
 

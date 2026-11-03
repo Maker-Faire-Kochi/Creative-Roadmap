@@ -1,7 +1,8 @@
 // Live-action stories: builds a HyperFrames project from one spec (content/<slug>.json) and, with --render, the MP4.
 //   1. Opener: the headline in the Poster Studio's letters (Studio Sans, air mode), white on brand red, full bleed;
 //      a pop as each row lands; it wipes up to uncover the footage (the motion posters' wipe).
-//   2. Footage: as shot, full length, its own sound, with one subtitle card per phrase: red Studio Sans on a white
+//   2. Footage: as shot, full length, its own sound, with one subtitle card per phrase: red IBM Plex Mono Medium (or
+//      Studio Sans, subtitleFace "studio") on a white
 //      rounded plate, tilted a little in 3D, its bottom edge on the 80% title-safe line.
 //   3. End card: the last 2.6 s of a General-look motion poster (Makey, COMING SOON, lockup, labels), its topic
 //      label re-set for this story.
@@ -19,6 +20,7 @@ import QRCode from "qrcode";
 import { openStudioPage, REPO } from "./studio-page.mjs";
 import { renderEndCard } from "./end-card.mjs";
 import { envelope, characterBreak } from "./voice.mjs";
+import { wrap } from "./browser/wrap.mjs";
 
 const PKG = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const HF = "hyperframes@0.8.229"; // pinned so a story re-renders identically; bump deliberately
@@ -31,7 +33,7 @@ const QR_IN = 0.9; // cta end card: the QR plates pop in after Makey has landed 
 const RED = "#ED1C24", WHITE = "#FFFFFF";
 // Opener lettering: margin round the frame, rows staggered by ROW_GAP, each squashing in over IN_DUR.
 const OPENER = { margin: 44, bottomExtra: 40, rowGap: 0.16, inDur: 0.5, energy: 1, curve: "smooth" };
-// Subtitle cards: Studio Sans up to 60 px, up to 4 rows in 760 px; a card opens LEAD before its phrase, holds
+// Subtitle cards: up to 4 rows in 760 px (Studio Sans up to 60 px; Plex Mono per FACES below); a card opens LEAD before its phrase, holds
 // across a pause shorter than HOLD (no blink between phrases) and otherwise stays TAIL after it.
 const SUB = { color: RED, maxW: 760, maxH: 60, maxRows: 4, lead: 0.22, pad: 0.1 };
 const SUB_TIME = { LEAD: 0.05, HOLD: 0.5, TAIL: 0.3 };
@@ -40,6 +42,18 @@ const SUB_TIME = { LEAD: 0.05, HOLD: 0.5, TAIL: 0.3 };
 // (src/voice.mjs, characterBreak), as well as at the voice breaks. A spec can set subtitleRows (0 = off: rows wrap
 // up to 4, as before the rule).
 const SUB_ROWS = 2, SUB_MIN = 48;
+// Subtitle faces. "plex" (default, selected 2026-11-03): IBM Plex Mono Medium, the guidelines' caption face, set as
+// live HTML text, 64 px down to 50 px (a monospaced advance of 0.6 em, so the character-count wrap is exact).
+// "studio": the Poster Studio's Studio Sans, drawn to PNGs in the browser (src/browser/subtitle.mjs).
+// "anton" (selected 2026-11-03, replacing plex): Anton, the General headline face, set as live HTML text, 70 px down to
+// 56 px (capitals 0.86 em: 60 px down to 48 px, as tall as the Studio Sans cards). Anton is proportional, so rows are
+// wrapped by its advance widths, measured in the browser at build time; ch (its mean capital, 0.47 em) is only the
+// two-row rule's estimate of where a card must split.
+const FACES = {
+  anton: { ch: 0.47, max: 70, min: 56, lineHeight: 1.08, family: "Anton MF", weight: 400, font: "guidelines/brand-guidelines/fonts/Anton-Regular.ttf" },
+  plex: { ch: 0.6, max: 64, min: 50, lineHeight: 1.12, family: "IBM Plex Mono MF", weight: 500, font: "guidelines/brand-guidelines/fonts/IBMPlexMono-Medium.ttf" },
+  studio: { ch: 0.74, max: SUB.maxH, min: SUB_MIN },
+};
 const SAFE_BOTTOM = H * 0.1; // the 80% title-safe box's bottom line, 192 px up
 // SFX: the HyperFrames media-use bundled library (Pixabay licence, credits in its CREDITS.md). Each starts so its
 // peak lands one frame after the picture: pop peaks 0.12 s in, whoosh 0.16 s in.
@@ -54,10 +68,18 @@ if (!slug) { console.error("usage: node src/build.mjs <slug> [--render] [--no-ch
 const SPEC_FILE = path.join(PKG, "content", `${slug}.json`);
 if (!fs.existsSync(SPEC_FILE)) { console.error(`no spec: ${path.relative(REPO, SPEC_FILE)}`); process.exit(2); }
 const spec = JSON.parse(fs.readFileSync(SPEC_FILE, "utf8"));
+const faceName = spec.subtitleFace ?? "anton", FACE = FACES[faceName];
+if (!FACE) { console.error(`subtitleFace: one of ${Object.keys(FACES).join(", ")}`); process.exit(2); }
 const OUT = path.resolve(REPO, process.env.MFK_OUT || `output/live-action/${slug}`);
 const fromRepo = (p) => path.resolve(REPO, p);
 // Clips: `clips: [{ src, subtitles }]`, played back to back; a single `footage` + `subtitles` is one clip.
-const clips = spec.clips ?? [{ src: spec.footage.src, subtitles: spec.subtitles, speaker: spec.footage.speaker, language: spec.footage.language }];
+const clips = spec.clips ?? [{ src: spec.footage.src, subtitles: spec.subtitles, speaker: spec.footage.speaker, language: spec.footage.language, frame: spec.footage.frame }];
+// A clip's optional `frame: { width, height, x, y }` zooms and places the footage to frame the speaker: the video's box
+// in px (object-fit cover) and its top-left offset, as Studio's resize/move writes them. It must cover the frame.
+for (const [i, c] of clips.entries()) if (c.frame) {
+  const f = c.frame;
+  if (f.x > 0 || f.y > 0 || f.x + f.width < W || f.y + f.height < H) { console.error(`clips[${i}].frame leaves the frame uncovered`); process.exit(2); }
+}
 // End card: "poster" cuts the last 2.6 s of a General story (end.from) and re-sets its label; "cta" renders the
 // end beat on a ground of its own (src/end-card.mjs) with QR codes where COMING SOON would be.
 const endSpec = { kind: "poster", ...spec.end };
@@ -82,7 +104,7 @@ const footageDur = r3(run), endAt = r3(footageAt + footageDur), total = r3(endAt
 // Cards in footage-run time; a card holds across a short pause only within its own clip.
 const subRows = spec.subtitleRows ?? SUB_ROWS;
 // subtitleSplit false: the cards are kept as written (a person grouped them); they still wrap to subRows rows.
-const fit = subRows ? { rows: subRows, perRow: Math.floor(SUB.maxW / (0.74 * SUB_MIN)), split: spec.subtitleSplit !== false } : null;
+const fit = subRows ? { rows: subRows, perRow: Math.floor(SUB.maxW / (FACE.ch * FACE.min)), split: spec.subtitleSplit !== false } : null;
 if (subRows) SUB.maxRows = subRows;
 for (const clip of clips) {
   const env = fit ? envelope(fromRepo(clip.src)) : null;
@@ -98,7 +120,7 @@ for (const c of cards) if (c.end <= c.start) { console.error(`${c.id}: ends befo
 fs.rmSync(path.join(OUT, "assets"), { recursive: true, force: true });
 for (const d of ["assets/subs", "assets/sfx", "assets/fonts", "compositions"]) fs.mkdirSync(path.join(OUT, d), { recursive: true });
 
-// ── Studio letters: the opener MP4 and the subtitle PNGs ─────────────────────
+// ── Studio letters: the opener MP4 (and, for subtitleFace "studio", the subtitle PNGs) ──
 const { browser, page, png } = await openStudioPage();
 await page.evaluate(async () => { window.O = await import("/x/opener.mjs"); window.S = await import("/x/subtitle.mjs"); });
 const M = OPENER.margin;
@@ -108,9 +130,29 @@ await page.evaluate((p) => window.O.init(p), {
 });
 await encode(path.join(OUT, "assets/opener.mp4"), Math.round(openerSec * FPS), (i) => page.evaluate((n) => window.O.frame(n), i).then(png));
 const sizes = {};
+// A proportional face: its advance widths per character at 1 px, measured from the font file in the browser.
+let measure;
+if (FACE.font && FACE.ch !== 0.6) {
+  const b64 = fs.readFileSync(fromRepo(FACE.font)).toString("base64");
+  const adv = await page.evaluate(async ({ b64, chars }) => {
+    const f = new FontFace("SubFace", `url(data:font/ttf;base64,${b64})`);
+    await f.load(); document.fonts.add(f);
+    const ctx = document.createElement("canvas").getContext("2d");
+    ctx.font = "1000px SubFace";
+    return Object.fromEntries([...chars].map((ch) => [ch, ctx.measureText(ch).width / 1000]));
+  }, { b64, chars: [...new Set(cards.map((c) => c.say).join(""))].join("") });
+  measure = (s, h) => [...s].reduce((w, ch) => w + (adv[ch] ?? 0.6), 0) * h;
+}
 for (const c of cards) {
-  const r = await page.evaluate((a) => window.S.card(a), { text: c.say, ...SUB });
-  fs.writeFileSync(path.join(OUT, `assets/subs/${c.id}.png`), png(r.png));
+  let r;
+  if (faceName === "studio") {
+    r = await page.evaluate((a) => window.S.card(a), { text: c.say, ...SUB });
+    fs.writeFileSync(path.join(OUT, `assets/subs/${c.id}.png`), png(r.png));
+  } else {
+    // FACE.min sets where the two-row rule splits; a card kept whole (subtitleSplit false) may set smaller, as Studio Sans does.
+    const { rows, h } = wrap(c.say, { maxW: SUB.maxW, maxH: FACE.max, maxRows: SUB.maxRows, ch: FACE.ch, measure });
+    r = { rows, size: h };
+  }
   sizes[c.id] = r;
   console.log(`${c.id} ${r.size}px  ${r.rows.join(" / ")}`);
 }
@@ -146,10 +188,13 @@ if (endSpec.kind === "poster") {
 }
 for (const s of Object.values(SFX)) fs.copyFileSync(path.join(SFX_DIR, s.file), path.join(OUT, "assets/sfx", s.file));
 fs.copyFileSync(LABEL_FONT, path.join(OUT, "assets/fonts/IBMPlexMono-Medium.ttf"));
+if (FACE.font) fs.copyFileSync(fromRepo(FACE.font), path.join(OUT, "assets/fonts", path.basename(FACE.font)));
 
 // ── HyperFrames project ──────────────────────────────────────────────────────
 const write = (rel, text) => fs.writeFileSync(path.join(OUT, rel), text);
 const cuts = clips.slice(1).map((c) => r3(footageAt + c.at)); // reel times of the cuts between clips
+// end.transition "sweep": the same red sweep and whoosh hide the cut from the footage to the end card.
+if (endSpec.transition === "sweep") cuts.push(endAt);
 const sfx = [
   ...Array.from({ length: rows }, (_, r) => ({ id: `sfx-pop-${r + 1}`, at: 0.24 + r * OPENER.rowGap, s: SFX.pop, vol: POP_VOLUMES[r % 4], lane: 4 + r })),
   { id: "sfx-whoosh", at: footageAt + 0.06, s: SFX.whoosh, vol: 0.45, lane: 4 },
@@ -172,7 +217,7 @@ write("index.html", `<!doctype html>
       #root { width: 100%; height: 100%; }
       .footage { position: absolute; left: 0; top: 0; width: ${W}px; height: ${H}px; object-fit: cover; z-index: 1; }
       #subs { z-index: 2; }
-      .tx { z-index: 3; overflow: hidden; }
+      .tx { z-index: 5; overflow: hidden; }
       .tx-panel { position: absolute; inset: 0; background: ${RED}; }
       #opener { z-index: 3; }
       #end { z-index: 4; }
@@ -187,8 +232,9 @@ write("index.html", `<!doctype html>
         data-start="0" data-duration="${openerSec}" data-track-index="0" data-track-kind="graphics" data-width="${W}" data-height="${H}"></div>
 ${clips.map((c, i) => {
   // The first clip fades its sound in under the wipe; between clips a 0.06 s fade each side keeps the hard cut click-free.
-  const fades = `data-fade-in="${i === 0 ? 0.25 : 0.06}"${i < clips.length - 1 ? ` data-fade-out="0.06"` : ""}`;
-  return `      <video id="footage-${c.n}" class="clip footage" data-start="${r3(footageAt + c.at)}" data-duration="${c.dur}" data-track-index="1"
+  const fades = `data-fade-in="${i === 0 ? 0.25 : 0.06}"${i < clips.length - 1 || endSpec.transition === "sweep" ? ` data-fade-out="0.06"` : ""}`;
+  const framed = c.frame ? ` style="width: ${c.frame.width}px; height: ${c.frame.height}px; translate: ${c.frame.x}px ${c.frame.y}px"` : "";
+  return `      <video id="footage-${c.n}" class="clip footage"${framed} data-start="${r3(footageAt + c.at)}" data-duration="${c.dur}" data-track-index="1"
         src="assets/footage-${c.n}.mp4" playsinline data-has-audio="true" data-volume="1" ${fades}></video>`;
 }).join("\n")}
       <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html"
@@ -235,11 +281,17 @@ write("compositions/subs.html", `<template>
     .sub { position: absolute; left: 0; right: 0; bottom: ${SAFE_BOTTOM}px; display: flex; justify-content: center; }
     .plate { background: #ffffff; border-radius: 36px; padding: 20px 32px; box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18); }
     .plate img { display: block; }
+${FACE.font ? `    @font-face { font-family: "${FACE.family}"; src: url("assets/fonts/${path.basename(FACE.font)}"); font-weight: ${FACE.weight}; }
+` : ""}    .plate.text { padding: 22px 36px; }
+    .sub-text { font-family: "${FACE.family}"; font-weight: ${FACE.weight}; color: ${SUB.color}; text-align: center; white-space: pre;
+      line-height: ${FACE.lineHeight ?? 1}; letter-spacing: 0; }
   </style>
   <div id="root" data-composition-id="subs" data-width="${W}" data-height="${H}">
 ${cards.map((c, i) => `    <!-- ${esc(c.means ?? "")} -->
     <div id="sub-${c.id}" class="clip sub" data-start="${c.start}" data-duration="${r3(c.end - c.start)}" data-track-index="${i % 2}">
-      <div class="plate" id="plate-${c.id}"><img src="assets/subs/${c.id}.png" width="${sizes[c.id].w}" height="${sizes[c.id].h}" alt="${esc(flat(c.say))}" /></div>
+      ${faceName === "studio"
+    ? `<div class="plate" id="plate-${c.id}"><img src="assets/subs/${c.id}.png" width="${sizes[c.id].w}" height="${sizes[c.id].h}" alt="${esc(flat(c.say))}" /></div>`
+    : `<div class="plate text" id="plate-${c.id}"><div class="sub-text" style="font-size: ${sizes[c.id].size}px">${sizes[c.id].rows.map(esc).join("<br>")}</div></div>`}
     </div>`).join("\n")}
   </div>
   <script>

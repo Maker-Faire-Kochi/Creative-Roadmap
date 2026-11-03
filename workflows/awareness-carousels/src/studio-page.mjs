@@ -74,11 +74,15 @@ const lineWidth = (ws, h, cw) => ws.reduce((n, w) => n + wordWidth(w, h, cw), 0)
 const CH_MIN = 0.4; // how narrow a Studio Sans letter may get (width / height) when a Latin row grows tall
 
 /**
- * Draws one slide. p: { width, height, ground: { bg, fg, accent, logo }, band: { x, y, w, h }, slide, footer, label }
- * Returns { png, size, issues }.
+ * Draws one slide. p: { width, height, ground: { bg, fg, accent, logo }, band: { x, y, w, h }, slide, footer, label,
+ *   asset?: PNG data URL (a trimmed 3D still, studio-stills.mjs), assetSize, textShare, gap, minAsset, signoff?: bool }
+ * With an asset the lettering keeps to the top textShare of the band and the still fills the room left under it;
+ * the sign-off (last slide) carries the square lockup, with the still beside it. Returns { png, size, issues }.
  */
-export function slide(p) {
-  const { width: W, height: H, ground: g, band } = p;
+export async function slide(p) {
+  const { width: W, height: H, ground: g } = p;
+  const band = p.asset ? { ...p.band, h: p.band.h * p.textShare } : p.band;
+  let textBottom = band.y;
   canvas.width = W; canvas.height = H;
   ctx.fillStyle = g.bg; ctx.fillRect(0, 0, W, H);
   const issues = [];
@@ -96,7 +100,9 @@ export function slide(p) {
     drawPosterScene(ctx, scene);
     ctx.fillStyle = g.accent;
     ctx.font = '500 56px "IBM Plex Mono", "Noto Sans Malayalam"';
-    p.slide.label.split("/").map((s) => s.trim()).forEach((s, i) => ctx.fillText(s.toUpperCase(), band.x, band.y + h + 110 + i * 72));
+    const parts = p.slide.label.split("/").map((s) => s.trim());
+    parts.forEach((s, i) => ctx.fillText(s.toUpperCase(), band.x, band.y + h + 110 + i * 72));
+    textBottom = band.y + h + 110 + (parts.length - 1) * 72 + 16;
   } else {
     const rows = p.slide.lines.map(parse);
     // The field: each row as large as the band's width allows (a short row sets bigger, as on the studio's
@@ -162,12 +168,48 @@ export function slide(p) {
     ctx.fillStyle = g.strike;
     for (const s of strikes) ctx.fillRect(s.x0 - s.th, s.y - s.th / 2, s.x1 - s.x0 + s.th * 2, s.th);
     if (y > band.y + band.h + 2) issues.push("rows run past the band");
+    textBottom = y + desc.at(-1) * hs.at(-1); // the last row's bottom, plus any Malayalam signs hanging below it
   }
   if (size < p.minSize) issues.push(`type ${Math.round(size)} px, under ${p.minSize}`);
 
-  // Identity: one lockup (border on red, long on paper), one small label line. Nothing else.
-  const f = p.footer, l = logos[g.logo], lh = f.logoW * (l.naturalHeight / l.naturalWidth);
-  ctx.drawImage(l, f.pad, f.base - lh, f.logoW, lh);
+  // Identity: one lockup and one small label line. Inner slides: border on red, long on paper. The sign-off: the
+  // square lockup (stacked sign-offs, guidelines), the illustration beside it.
+  const f = p.footer;
+  let footTop;
+  if (p.signoff) {
+    ctx.drawImage(logos.square, f.pad, f.base - f.squareW, f.squareW, f.squareW);
+    footTop = f.base - f.squareW;
+  } else {
+    const l = logos[g.logo], lh = f.logoW * (l.naturalHeight / l.naturalWidth);
+    ctx.drawImage(l, f.pad, f.base - lh, f.logoW, lh);
+    footTop = f.base - lh;
+  }
+  if (p.asset) {
+    const img = new Image();
+    img.src = p.asset;
+    await img.decode();
+    const top = textBottom + p.gap;
+    // Inner slides: the room between the lettering and the footer, the still centred in it. The sign-off: right of
+    // the square lockup, down to just above the label line, the still standing on that line.
+    const left = f.pad + f.squareW + p.gap;
+    const r = p.signoff
+      ? { x: left, y: top, w: W - f.pad - left, h: f.base - f.labelSize - 28 - top }
+      : { x: band.x, y: top, w: band.w, h: footTop - p.gap - top };
+    if (r.h < p.minAsset) issues.push(`no room for the illustration (${Math.round(r.h)} px)`);
+    else {
+      // Size by visual weight, not by the room: every illustration covers about the same area (p.assetSize² px),
+      // whether it is one tall object or a row of four, so it supports the lettering instead of competing with it.
+      // On the sign-off Makey stands a little taller than the square lockup beside it.
+      const weight = p.signoff ? (p.footer.squareW * 1.6) / img.height : p.assetSize / (img.width ** 0.4 * img.height ** 0.6); // weighted to height: a wide row gets a little more width
+      const k = Math.min(weight, (p.signoff ? 1 : 0.85) * r.w / img.width, r.h / img.height); // a wide row keeps a margin on its left
+      const w = img.width * k, h = img.height * k;
+      // Text top left, picture bottom right: one diagonal reading order. The picture stands on the line above the
+      // footer, right-aligned with the lettering's edge.
+      const x = r.x + r.w - w, y = r.y + r.h - h;
+      ctx.drawImage(img, x, y, w, h);
+      if (k > 1.35) issues.push(`illustration upscaled ${k.toFixed(2)}×`);
+    }
+  }
   ctx.fillStyle = g.fg;
   ctx.textAlign = "right";
   ctx.font = `500 ${f.labelSize}px "IBM Plex Mono", "Noto Sans Malayalam"`;

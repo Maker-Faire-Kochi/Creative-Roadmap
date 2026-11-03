@@ -10,7 +10,7 @@ Schedules the awareness carousels (feed) and their matching stories on **Meta Bu
 2. **Never publish immediately.** The script only uses Schedule; don't add or click "Publish now".
 3. **Don't book a slot less than 15 minutes away** (the script refuses). Never silently move a missed slot; ask the user for a new time and record it in the plan's `overrides`.
 4. **Instagram only, account `@makerfairekochi`.** The script checks the account before it uploads.
-5. **Captions:** keywords are literal bracketed text on the last line, e.g. `[MakerFaireKochi, Maker, Coding, Kochi, Kerala]`. No `#` hashtags, no account tags. **Stories have no caption.**
+5. **Captions:** the body, then the bracketed **keywords** (search words), e.g. `[MakerFaireKochi, Maker, Coding, Kochi, Kerala]`, then a last line of **hashtags** (labels) from [the pool](#keywords-and-hashtags). `prepare.py` and `phone.py` refuse a hashtag line that breaks the pool's rules. No account tags (they go in *Tag people*). **Stories have no caption.**
 6. **Don't duplicate.** The script checks Meta's scheduled lists first (a duplicate = same caption **and** same time; captions repeat across designs, so caption alone isn't enough). If a run ends `unconfirmed`, look at Meta before retrying.
 7. **The repo is public.** Don't commit anything from `output/` (ledger, screenshots, upload copies) or Meta identifiers (`asset_id`, `business_id`). They come from the open Meta page, or from `META_ASSET_ID` / `META_BUSINESS_ID` in your shell.
 8. Never change the artwork. The ledger holds each PNG's SHA-256 and validation fails if it changed.
@@ -68,6 +68,45 @@ Meta's lists are **virtualized**: only about 10 rows exist at once, so a one-sho
 | `unconfirmed` / `count N of M` | Meta may have saved it anyway. Check the lists, then `record` it, or rerun (the duplicate check protects you) |
 | A hung "Scheduling your post…" overlay | Handled by the 1-minute reload and retry |
 | Uploads fail in the macOS file dialog | Not used here; attach through the script. Don't switch to clicking the dialog |
+
+## Keywords and hashtags
+
+A caption ends with two lines that do different jobs (user, 2026-11-04; research brief `output/research/instagram-captions-2026.md`):
+
+| | Keywords `[…]` | Hashtags `#…` (last line) |
+|---|---|---|
+| Job | **Search words.** Instagram's keyword search matches the words in captions ([Instagram](https://about.instagram.com/blog/announcements/break-down-how-instagram-search-works/)). Since July 2025, Google and Bing also index public professional posts, captions included | **Labels.** Each tag has its own tag page and search entry, and links the post to a topic and community ([Meta Transparency Center](https://transparency.meta.com/features/explaining-ranking/ig-search/)) |
+| Reach | Plain, specific caption words help people find the post | None: Instagram (Mosseri, 2025) says they don't raise reach ([Social Media Today](https://www.socialmediatoday.com/news/instagram-implements-new-limits-on-hashtag-use/808309/)) |
+| Form | Words people actually search for. Name the topic in the body too; a keyword dump reads as spam | 3–5 targeted tags; **5 is Instagram's cap** (Dec 2025), caption and comments together. In the caption, never a first comment |
+
+**The pool:** [`hashtags.json`](hashtags.json). Every tag there has a post count, its source and the date it was measured.
+
+| | Pick |
+|---|---|
+| **Always** | `#MakerFaireKochi` (ours; first) and `#MakerFaire` (the global community's tag) |
+| **Vertical: 1–2 tags for what the post is about** | |
+| Maker Faire and the movement (awareness topics 01, 11–13, 15, 16, 19) | `#MakerMovement` / `#MakersOfInstagram` |
+| Kerala and Kochi make (02, 14, 17, 18) | `#MadeInIndia` / `#MakersOfInstagram`, with the place tag first in mind |
+| Makerspaces, Fab Labs, institutions | `#Makerspace` / `#FabLab` |
+| Electronics, robotics, coding (03) | `#Electronics` / `#Robotics` / `#Coding` / `#Arduino` / `#ArduinoProject` / `#RaspberryPi` / `#Mechatronics` |
+| Fabrication, 3D printing | `#AdditiveManufacturing` / `#CAD` / `#CNC` / `#3DPrinting` |
+| Craft, art, handloom (03) | `#IWearHandloom` / `#Handloom` / `#MadeInIndia` |
+| Repair and reuse (05) | `#RightToRepair` / `#RepairCafe` / `#Fixing` / `#CircularEconomy` / `#Repair` / `#Upcycling` |
+| Prototyping, version one (06) | `#Prototype` / `#HandsOnLearning` / `#ProductDesign` |
+| Kuttimakers, students (07, 09) | `#STEMForKids` / `#STEMEducation` / `#HandsOnLearning` / `#WomenInSTEM` / `#STEAM` |
+| Maker Stories, people (04, 08, 10) | `#MakersOfInstagram` / `#MakerMovement`, plus the maker's discipline |
+| Volunteer calls | `#VolunteersNeeded` / `#CommunityService` / `#Volunteering` |
+| Call for makers and exhibitors | `#MakersOfInstagram` / `#Makerspace` / `#MakerMovement` |
+| Startups | `#StartupIndia` |
+| **Place: 1 tag** | `#Kochi` (default) or `#Kerala` (Kerala-wide: volunteer calls, Kerala's making) |
+
+The checks (in `hashtags.py`, used by `prepare.py` and `phone.py`):
+- **Count and order:** 3–5 tags, `#MakerFaireKochi` first, all on the last line.
+- **Spelling and source:** each tag is spelled exactly as in the pool (CamelCase, ASCII).
+- **Avoid list:** never a tag from it. These are off-audience or too big: `#Maker` and `#MakersGonnaMake` (woodworking, crafts, handmade selling), `#DIY`, `#Keralagram`, `#Volunteer` and others; each is listed with its reason.
+- **Old captions:** captions approved before 2026-11-04 have no hashtag line and still pass `prepare.py`. `phone.py` requires the line.
+
+To use a new tag, add it to `hashtags.json` first, with its post count, source and date. Prefer tags of about 15K–5M posts: larger ones bury a post, smaller ones have no audience. No year or date tags until the event date is announced. Re-measure the pool every few months (sources: [best-hashtags.com](https://best-hashtags.com/), [displaypurposes.com](https://displaypurposes.com/)) and update `updated`.
 
 ## Trial reels from a phone (wireless debugging)
 

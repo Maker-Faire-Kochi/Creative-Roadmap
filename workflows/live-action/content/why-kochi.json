@@ -67,7 +67,14 @@
           "say": "EE KOLLAM, 2027, MAKER FAIRE KOCHIYIL VACH RUN CHEYYUNNATH.",
           "means": "this year, 2027, we are running Maker Faire in Kochi."
         }
-      ]
+      ],
+      "frame": {
+        "width": 1469,
+        "height": 2611,
+        "x": -137.9,
+        "y": -76.3
+      },
+      "frameWhy": "Matched to the user's Studio framing of C0007 in Call for Volunteers (2026-11-03): the same face size (296 px wide) and face centre (510, 753) in the frame, from macOS Vision face detection on 7 frames of C0003 (median)."
     },
     {
       "src": "nov 1st week/kurian vids/C0004.MP4",
@@ -93,12 +100,13 @@
         },
         {
           "start": 6.56,
-          "end": 7.84,
+          "end": 8.15,
           "say": "NINGALKKU PART AAKAAN THALPARYAM UND",
-          "means": "you would like to take part,"
+          "means": "you would like to take part,",
+          "timingWhy": "The user (2026-11-03): card 12 holds to 26.5 s reel time, then card 13 follows."
         },
         {
-          "start": 7.84,
+          "start": 8.15,
           "end": 9.57,
           "say": "ALLENKIL NINGALUDE PROJECTS SHOWCASE",
           "means": "or your projects, to showcase them,"
@@ -115,7 +123,14 @@
           "say": "PLEASE CHECK OUT THE LINK.",
           "means": "please check out the link."
         }
-      ]
+      ],
+      "frame": {
+        "width": 1559,
+        "height": 2772,
+        "x": -264.6,
+        "y": -157.9
+      },
+      "frameWhy": "Matched to the user's Studio framing of C0007 in Call for Volunteers (2026-11-03): the same face size (296 px wide) and face centre (510, 753) in the frame, from macOS Vision face detection on 7 frames of C0004 (median)."
     }
   ],
   "end": {

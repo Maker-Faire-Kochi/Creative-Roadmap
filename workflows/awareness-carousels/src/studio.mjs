@@ -1,8 +1,10 @@
 // The Studio track (exploratory, 2026-11-02): the awareness carousels as Poster Studio type posters.
 // Latin in Studio Sans (the studio's own engine, workflows/motion-posters/vendor/poster-studio, unmodified),
 // Malayalam in Baloo Chettan 2 ExtraBold; red grounds with white letters and ink accents, the last slide on paper
-// (ink letters, red accents), one lockup and one label line. After the studio's art direction: the lettering is
-// the artwork; no plates, rules, arrows or kit art.
+// (ink letters, red accents), one lockup and one label line. After the studio's art direction: the lettering leads;
+// no plates, rules or arrows. Under it, one 3D illustration per slide (content/studio-assets.mjs), drawn by the motion
+// posters' stage (workflows/motion-posters/build/stage.js: CC0 props, the beam kit, Makey); the last slide is the
+// sign-off with the square lockup and Makey waving. --plain renders type only (the 2026-11-02 morning version).
 // usage: node src/studio.mjs --lang=ml [--track=red|white] [topicPrefix ...]   (output: $MFK_OUT, default output/awareness-carousels-studio)
 // Writes <out>/ml/<topic>/post|story/NN.png, _strip-post.jpg, _strip-story.jpg, <out>/ml/_series-overview.jpg and
 // <out>/build/qa-report-ml.json.
@@ -13,10 +15,14 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright-core";
 import { TOPICS } from "../content/topics.mjs";
 import { TOPICS_ML } from "../content/topics-ml.mjs";
+import { STUDIO_ASSETS } from "../content/studio-assets.mjs";
 
 const SRC = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(SRC, "../../..");
 const STUDIO = path.join(REPO, "workflows/motion-posters/vendor/poster-studio");
+const STAGE = path.join(REPO, "workflows/motion-posters/build");
+const DS = path.join(REPO, "design-system");
+const PLAIN = process.argv.includes("--plain");
 const CHROME = process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const ARGS = process.argv.slice(2);
 const ML = ARGS.includes("--lang=ml");
@@ -28,6 +34,7 @@ const only = ARGS.filter((a) => !a.startsWith("--"));
 const OUT = path.resolve(REPO, process.env.MFK_OUT || "output/awareness-carousels-studio");
 const LANG_DIR = path.join(OUT, ML ? "ml" : "en", TRACK);
 if (!fs.existsSync(path.join(STUDIO, "src/scene.js"))) { console.error("Poster Studio missing: git submodule update --init (workflows/motion-posters/vendor/poster-studio)"); process.exit(2); }
+if (!PLAIN && !fs.existsSync(path.join(STAGE, "stage.js"))) { console.error("3D stage missing: cd workflows/motion-posters && npm install && npm run build:stage (or pass --plain)"); process.exit(2); }
 
 const C = { paper: "#F6F6F3", ink: "#222222", red: "#ED1C24", white: "#FFFFFF" };
 const GROUNDS = {
@@ -40,8 +47,8 @@ const GROUNDS = {
 const TRACKS = { red: ["red", "paper"], white: ["paper-red", "red-white"] };
 // Bands keep clear of the footer and, on stories, of Instagram's top bar and reply field.
 const FORMATS = {
-  post: { w: 1080, h: 1350, band: { x: 60, y: 110, w: 960, h: 1000 }, footer: { pad: 60, base: 1282, logoW: 340, labelSize: 22 } },
-  story: { w: 1080, h: 1920, band: { x: 60, y: 230, w: 960, h: 1260 }, footer: { pad: 60, base: 1672, logoW: 380, labelSize: 24 } },
+  post: { w: 1080, h: 1350, band: { x: 60, y: 110, w: 960, h: 1000 }, footer: { pad: 60, base: 1282, logoW: 340, squareW: 300, labelSize: 22 }, textShare: 0.5, assetSize: 500 },
+  story: { w: 1080, h: 1920, band: { x: 60, y: 230, w: 960, h: 1260 }, footer: { pad: 60, base: 1672, logoW: 380, squareW: 340, labelSize: 24 }, textShare: 0.52, assetSize: 620 },
 };
 const MIN_SIZE = 64;
 const FONTS = [
@@ -49,13 +56,15 @@ const FONTS = [
   { family: "IBM Plex Mono", url: "/repo/guidelines/brand-guidelines/fonts/IBMPlexMono-Medium.ttf", descriptors: { weight: "500" } },
   { family: "Noto Sans Malayalam", url: "/repo/guidelines/brand-guidelines/fonts/NotoSansMalayalam-variable.ttf", descriptors: { weight: "100 900" } },
 ];
-const LOGOS = { long: "/repo/brand/logo/official/MF_Kochi_Logo_long.png", border: "/repo/brand/logo/official/MF_Kochi_Logo_border.png" };
+const LOGOS = { long: "/repo/brand/logo/official/MF_Kochi_Logo_long.png", border: "/repo/brand/logo/official/MF_Kochi_Logo_border.png", square: "/repo/brand/logo/official/MF_Kochi_Logo_square.png" };
+const STILL = 1400; // px, the square canvas each 3D still is drawn on before trimming
+const MANIFEST = JSON.parse(fs.readFileSync(path.join(DS, "3d/manifest.json"), "utf8"));
 
 const browser = await chromium.launch({ executablePath: CHROME, args: ["--force-color-profile=srgb"] });
 const page = await browser.newPage();
 page.on("pageerror", (e) => console.error("page error:", e.message));
-const ROOTS = { "/studio/": STUDIO, "/x/": SRC, "/repo/": REPO };
-const TYPES = { ".js": "text/javascript", ".mjs": "text/javascript", ".ttf": "font/ttf", ".woff2": "font/woff2", ".png": "image/png" };
+const ROOTS = { "/studio/": STUDIO, "/x/": SRC, "/repo/": REPO, "/stage/": STAGE, "/ds/": DS };
+const TYPES = { ".js": "text/javascript", ".mjs": "text/javascript", ".ttf": "font/ttf", ".woff2": "font/woff2", ".png": "image/png", ".glb": "model/gltf-binary" };
 await page.route("http://mfk.local/**", (r) => {
   const u = decodeURIComponent(new URL(r.request().url()).pathname);
   if (u === "/r.html") return r.fulfill({ body: "<!doctype html><meta charset=utf-8>", contentType: "text/html" });
@@ -66,6 +75,21 @@ await page.route("http://mfk.local/**", (r) => {
 await page.goto("http://mfk.local/r.html");
 const ready = await page.evaluate(async (p) => { window.S = await import("/x/studio-page.mjs"); return window.S.init(p); }, { fonts: FONTS, logos: LOGOS });
 const report = [];
+// One still per illustrated slide, shared by post and story.
+const stills = new Map();
+async function stillFor(key, i, ground) {
+  let spec = PLAIN ? null : STUDIO_ASSETS[key]?.[i];
+  if (!spec) return null;
+  // A lit part washes out on paper (pale glow faces, no halo to read against): on paper it stays unlit.
+  if (ground.bg === C.paper) spec = { ...spec, do: (spec.do ?? []).filter(([m]) => m !== "glow") };
+  const id = `${key}#${i}#${ground.bg}`;
+  if (!stills.has(id)) {
+    const r = await page.evaluate(async (p) => { window.ST ??= await import("/x/studio-stills.mjs"); return window.ST.still(p); }, { spec, size: STILL, manifest: MANIFEST });
+    if (r.error) report.push({ topic: key, slide: i + 1, issues: [`illustration: ${r.error}`] });
+    stills.set(id, r.error ? null : r.png);
+  }
+  return stills.get(id);
+}
 if (ready.fonts.some((ok) => !ok)) report.push({ topic: "*", issues: [`font load failure: ${JSON.stringify(ready.fonts)}`] });
 
 const png = (url) => Buffer.from(url.split(",")[1], "base64");
@@ -79,7 +103,8 @@ for (const [key, en] of Object.entries(TOPICS)) {
     for (const [i, sl] of t.slides.entries()) {
       const last = i === n - 1, ground = GROUNDS[TRACKS[TRACK][last ? 1 : 0]];
       const label = last ? (ML ? "MAKER FAIRE KOCHI · ഉടൻ വരുന്നു" : "MAKER FAIRE KOCHI · COMING SOON") : `${String(i + 1).padStart(2, "0")} / ${String(n).padStart(2, "0")}`;
-      const r = await page.evaluate((p) => window.S.slide(p), { width: F.w, height: F.h, ground, band: F.band, footer: F.footer, slide: sl, label, minSize: MIN_SIZE });
+      const asset = await stillFor(key, i, ground), signoff = last && !PLAIN;
+      const r = await page.evaluate((p) => window.S.slide(p), { width: F.w, height: F.h, ground, band: F.band, footer: F.footer, slide: sl, label, minSize: MIN_SIZE, asset, textShare: F.textShare, gap: 40, minAsset: 220, assetSize: F.assetSize, signoff });
       const file = path.join(dir, `${String(i + 1).padStart(2, "0")}.png`);
       fs.writeFileSync(file, png(r.png));
       files.push(file);

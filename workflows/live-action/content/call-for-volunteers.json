@@ -1,0 +1,73 @@
+{
+  "title": "Call for Volunteers",
+  "status": "Draft 2026-11-03: wording from the user (2026-11-03), timed to a word-level whisper large-v3 pass on C0007 (cards 1–4 run on without a voice break; card 5 opens after the pause at 5.55 s). Timing awaits the user's check in Studio; Manglish a fluent speaker's review before release. Earlier draft (2026-11-02) wording was from whisper and is superseded.",
+  "opener": {
+    "text": "CALL\nFOR\nVOLUNTEERS",
+    "seconds": 3,
+    "loop": 4
+  },
+  "clips": [
+    {
+      "src": "nov 1st week/kurian vids/C0007.MP4",
+      "speaker": "Kurian",
+      "subtitles": [
+        {
+          "start": 0.15,
+          "end": 2,
+          "say": "2027 KOCHIYIL VACH NADAKKUNNA",
+          "means": "Held in Kochi in 2027,"
+        },
+        {
+          "start": 2,
+          "end": 3.24,
+          "say": "THE BIGGEST MAKER FAIRE IL",
+          "means": "at the biggest Maker Faire,"
+        },
+        {
+          "start": 3.24,
+          "end": 4.23,
+          "say": "NINGALKKU VOLUNTEER CHEYYAAN",
+          "means": "to volunteer,"
+        },
+        {
+          "start": 4.23,
+          "end": 5.55,
+          "say": "THAALPARYAM UNDENKIL",
+          "means": "if you are interested,"
+        },
+        {
+          "start": 5.65,
+          "end": 6.8,
+          "say": "PLEASE CHECK OUT THE LINK.",
+          "means": "please check out the link."
+        }
+      ],
+      "frame": {
+        "width": 1486,
+        "height": 2641,
+        "x": -83.687,
+        "y": -126.176
+      },
+      "frameWhy": "The user's own Studio edit (2026-11-03): footage zoomed to 1486×2641 and moved (-83.687, -126.176) to place Kurian in frame."
+    }
+  ],
+  "end": {
+    "kind": "cta",
+    "ground": "paper",
+    "seconds": 6,
+    "label": "CALL FOR VOLUNTEERS",
+    "qr": [
+      {
+        "url": "https://makerfaire.in/volunteer",
+        "caption": "VOLUNTEER"
+      },
+      {
+        "url": "https://t.me/makerfairekochi",
+        "caption": "TELEGRAM"
+      }
+    ],
+    "groundWhy": "Paper, as Why Kochi?: the blue ground was rejected (user, 2026-11-02).",
+    "transition": "sweep",
+    "transitionWhy": "The user (2026-11-03): the outro uses the red block sweeping up with the whoosh, as between the clips in Why Kochi?."
+  }
+}

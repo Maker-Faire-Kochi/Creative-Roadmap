@@ -4,7 +4,7 @@ Turns a piece of **live-action footage** (a maker or organiser talking to camera
 
 1. **Opener:** a question or headline in the [Poster Studio](https://github.com/niyamax/maker-faire-kochi-poster-studio)'s letters (Studio Sans, air mode), white on brand red `#ED1C24`, filling the frame. The rows squash up one after another, with a pop as each one lands. After 3 s it wipes up, uncovering the footage.
 2. **Footage:** played as shot, full length, with its own sound and a whoosh on the wipe. One **subtitle card** per spoken phrase:
-   - red Studio Sans on a white rounded plate, **at most two rows**, 60 px (down to 48 px before a card splits);
+   - red **Anton** (the General headline face) on a white rounded plate, set as live text, **at most two rows**, 70 px, capitals 60 px tall (down to 56 px before a card splits; a card kept whole with `subtitleSplit: false` sets smaller instead). Anton is proportional, so rows wrap by its advance widths, measured from the font at build time. `subtitleFace: "plex"` sets IBM Plex Mono Medium instead (64 → 50 px); `"studio"` brings back the earlier Studio Sans cards (60 → 48 px);
    - a new card at every voice break, and also wherever a phrase won't fit in two rows (**the two-row rule**: the card splits between words, at the quietest moment near where the words divide, each piece on screen at least 0.6 s; "MAKER FAIRE" never splits);
    - tilted a little in 3D, alternating left and right; the whole plate tilts, never the letters;
    - its bottom edge on the bottom line of the 80% title-safe box.
@@ -46,6 +46,9 @@ node src/breaks.mjs "<clip>" --whisper          # one proposed card per phrase, 
 |---|---|
 | `title`, `status` | The story's name; its approval state (who approved the wording and when; outstanding reviews) |
 | `opener.settings` | Optional: the Poster Studio's treatment settings for this headline (`pressure`, `contrast`, `style`, `variation`). Lower `pressure` thins heavy letters (a W that fills in) |
+| `subtitleFace` | Optional: `anton` (default), `plex` (IBM Plex Mono Medium) or `studio` (Studio Sans, drawn by the Poster Studio) |
+| `clips[].frame` | Optional: `{ width, height, x, y }` zooms and places that clip to frame the speaker: the video's box in px (object-fit cover) and its top-left offset, as Studio's resize/move writes them. It must cover the 1080×1920 frame. Carry a Studio framing edit back here, or the next build loses it. A single `footage` takes `footage.frame` |
+| `end.transition` | Optional: `"sweep"` hides the cut from the footage to the end card with the red sweep and whoosh used between clips |
 | `subtitleRows` | Optional: the two-row rule's row limit (default 2; 0 turns it off) |
 | `opener.text` | The headline, one row per `\n`, uppercase. Studio Sans sets A–Z, 0–9 and `. , ’ ?` |
 | `opener.seconds` | How long the opener holds before it has wiped away (default 3); `loop`: the letters' loop period (default 4) |
@@ -93,8 +96,13 @@ Subtitle timing: a card opens 0.05 s before its phrase and pops up (flip from 78
 
 | Direction | Status |
 |---|---|
-| Studio Sans opener (white on red) → footage with tilted red-on-white Studio Sans subtitle cards → General COMING SOON end card | **Selected** (2026-11-02), first story *What is Maker Faire?* (Kurian) |
+| Studio Sans opener (white on red) → footage with tilted red-on-white Studio Sans subtitle cards → General COMING SOON end card | **Selected** (2026-11-02), first story *What is Maker Faire?* (Kurian). Subtitle face superseded 2026-11-03 (next row) |
+| Subtitle cards in IBM Plex Mono Medium, the brand's caption face, instead of Studio Sans; opener, plates, tilt and timing unchanged | **Rejected** (2026-11-03): "the text doesnt look good" |
+| Subtitle cards in Anton, the General headline face, capitals as tall as the Studio Sans cards | **Selected** (2026-11-03), all three stories |
+| Footage zoomed to frame the speaker: the user framed C0007 in Studio (1.38×); the other clips are matched to it by face size and position (macOS Vision face detection, median of 7 frames): C0002 1.59×, C0003 1.36×, C0004 1.44× | **Selected** (2026-11-03) |
+| Red sweep with whoosh on the cut to the CTA end card (`end.transition: "sweep"`) | **Selected** (2026-11-03), *Call for Volunteers* |
 | Two clips back to back with a red sweep between them, ending on a paper CTA card: Makey and the footer as on the posters, two QR codes (interest form, Telegram) in place of COMING SOON, 6 s | **Selected** (2026-11-02), *Why Kochi?* (Kurian, C0003 + C0004) |
+| One clip ending on the paper CTA card with the volunteer form and Telegram QR codes; opener CALL FOR / VOLUNTEERS | **Draft** (2026-11-02), *Call for Volunteers* (Kurian, C0007). Wording awaits approval. C0006 (take part / support the initiative) is held as a spare: it largely repeats C0004 in *Why Kochi?* |
 | The CTA end card on blue `#2B19D9` | **Rejected** (2026-11-02): "blue is not working at all" |
 | Cards broken only at voice breaks (up to 4 rows) | **Superseded** (2026-11-02) by the two-row rule: some cards were "very big chunks of text on one go". A raw 34-character limit was tried first and split too much |
 | Opener at the studio defaults for every headline | **Adjusted** (2026-11-02): in WHY KOCHI? the W filled in and read as a U; a spec can pass the studio's own settings (`opener.settings`, here pressure 0, contrast 0, style original) |

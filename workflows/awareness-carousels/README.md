@@ -30,6 +30,8 @@ Output goes to `$MFK_OUT` (default `output/awareness-carousels-<look>/`, git-ign
 | `src/package.mjs` | Verifies the PNGs, builds the gallery (`index.html`), topic overview sheets and the cover sheet |
 | `src/ml-docs.mjs` | Writes the English ↔ Manglish copy deck and the Manglish captions |
 | `src/looks.mjs` | The two looks: fonts, colour roles per design, logo plan |
+| `src/studio.mjs`, `studio-page.mjs`, `studio-stills.mjs` | The Studio track: type posters, their 3D illustrations and the square-lockup sign-off |
+| `content/studio-assets.mjs` | **The Studio track's illustration per slide** (props, actors, actions) |
 | `src/paths.mjs` | Shared paths and environment |
 
 ## Commands
@@ -49,6 +51,23 @@ node src/package.mjs --look=general --docs-only  # just the docs
 `package.mjs` styles the gallery from `build/look.json`, which the render writes.
 
 `--no-logo` renders without the official logo; `--review` writes to `_logo-review/` instead.
+
+### Studio track (exploratory)
+
+The Malayalam carousels as Poster Studio type posters: Latin in Studio Sans, Malayalam in Baloo Chettan 2. There are two colour tracks:
+- `red`: white letters on red, with the last slide on paper.
+- `white`: red letters on paper, with the last slide on red.
+
+Under the lettering sits **one 3D illustration per slide**, from `content/studio-assets.mjs`. Each one is a still of the motion posters' tableau (CC0 props, the beam kit, Makey), drawn by `workflows/motion-posters/build/stage.js`. The **last slide is the sign-off**: the square lockup, with Makey waving beside it. Stat slides have no illustration, because the numeral is the image. Each illustration is sized by visual weight (`assetSize` in `src/studio.mjs`: about the same area whether it is one object or a row), so it supports the lettering rather than filling the space. It sits at the bottom right, on the line above the footer, so text and picture read on one diagonal. A wide row keeps a margin on its left. On the sign-off, Makey stands about 1.6× the square lockup's height. On paper grounds a lit part (`glow`) is drawn unlit, since it washes out there.
+
+```bash
+(cd ../motion-posters && npm install && npm run build:stage)   # once: the 3D stage
+node src/studio.mjs --lang=ml --track=red 01- 02- 05- 13-      # output/awareness-carousels-studio/ml/red/
+node src/studio.mjs --lang=ml --track=white 01- 02- 05- 13-
+node src/studio.mjs --lang=ml --track=red --plain              # type only, no illustrations (the earlier version)
+```
+
+Illustrations exist for the pilot topics 01, 02, 05 and 13. Other topics render type only until they get an entry. QA also flags an illustration that has no room left under the text, or one that would be upscaled too far.
 
 ## Output layout (`$MFK_OUT`)
 
