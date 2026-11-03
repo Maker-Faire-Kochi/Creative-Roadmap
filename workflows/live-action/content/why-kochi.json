@@ -1,0 +1,153 @@
+{
+  "title": "Why Kochi?",
+  "status": "Subtitle wording and grouping from the user (2026-11-02), over a per-card whisper large-v3 Manglish transcript. Cards are kept as the user grouped them (subtitleSplit false); new boundaries inside a phrase sit on the quietest moment near where the words divide. Manglish needs a fluent speaker's review before release.",
+  "subtitleSplit": false,
+  "subtitleSplitWhy": "The user set these cards (2026-11-02): \"this much break shouldn't be there\". Still at most two rows; a long card sets smaller instead of splitting.",
+  "opener": {
+    "text": "WHY\nKOCHI?",
+    "seconds": 3,
+    "loop": 4,
+    "settings": {
+      "pressure": 0,
+      "contrast": 0,
+      "style": "original"
+    },
+    "settingsWhy": "At the studio defaults (pressure 0.84, contrast 0.62, jostle) the W of WHY fills in and reads as a U. The user asked for a much lighter W (2026-11-02): pressure 0, contrast 0 and the plain original style bring it to the weight of the other letters."
+  },
+  "clips": [
+    {
+      "src": "nov 1st week/kurian vids/C0003.MP4",
+      "speaker": "Kurian",
+      "subtitles": [
+        {
+          "start": 0.3,
+          "end": 2.19,
+          "say": "SUPER FAB LAB AANENKILUM,",
+          "means": "Whether it's the Super Fab Lab,"
+        },
+        {
+          "start": 2.19,
+          "end": 3.85,
+          "say": "TINKER SPACE AANENKILUM, ELLAM",
+          "means": "or Tinker Space, it's all"
+        },
+        {
+          "start": 3.85,
+          "end": 4.6,
+          "say": "ACTUALLY KOCHIYIL AANU.",
+          "means": "actually in Kochi."
+        },
+        {
+          "start": 4.9,
+          "end": 6.77,
+          "say": "AND CONNECTIVITY NOKKUMBOL,",
+          "means": "And when it comes to connectivity,"
+        },
+        {
+          "start": 6.77,
+          "end": 7.64,
+          "say": "ETTAVUM KOODUTHAL AALUKALKKU",
+          "means": "the most people"
+        },
+        {
+          "start": 7.64,
+          "end": 9.07,
+          "say": "VARAAN PATTUNNA, ETHI CHERAAN PATTUNNA",
+          "means": "can come to, can reach,"
+        },
+        {
+          "start": 9.07,
+          "end": 10.9,
+          "say": "KIND OF SPACE KOCHI AAYATHU KONDAANU.",
+          "means": "that kind of space is Kochi, so"
+        },
+        {
+          "start": 11.2,
+          "end": 15.35,
+          "say": "EE KOLLAM, 2027, MAKER FAIRE KOCHIYIL VACH RUN CHEYYUNNATH.",
+          "means": "this year, 2027, we are running Maker Faire in Kochi."
+        }
+      ],
+      "frame": {
+        "width": 1469,
+        "height": 2611,
+        "x": -137.9,
+        "y": -76.3
+      },
+      "frameWhy": "Matched to the user's Studio framing of C0007 in Call for Volunteers (2026-11-03): the same face size (296 px wide) and face centre (510, 753) in the frame, from macOS Vision face detection on 7 frames of C0003 (median)."
+    },
+    {
+      "src": "nov 1st week/kurian vids/C0004.MP4",
+      "speaker": "Kurian",
+      "subtitles": [
+        {
+          "start": 0.55,
+          "end": 2.96,
+          "say": "NINGAL ORU MAKER AANU, ORU HOBBYIST AANU,",
+          "means": "If you're a maker, a hobbyist,"
+        },
+        {
+          "start": 2.96,
+          "end": 5.69,
+          "say": "AND 2027 KOCHIYIL VACHU NADAKKUNNA",
+          "means": "and at the 2027 one held in Kochi,"
+        },
+        {
+          "start": 5.69,
+          "end": 6.56,
+          "say": "THE BIGGEST MAKER FAIRE IL",
+          "means": "the biggest Maker Faire,"
+        },
+        {
+          "start": 6.56,
+          "end": 8.15,
+          "say": "NINGALKKU PART AAKAAN THALPARYAM UND",
+          "means": "you would like to take part,",
+          "timingWhy": "The user (2026-11-03): card 12 holds to 26.5 s reel time, then card 13 follows."
+        },
+        {
+          "start": 8.15,
+          "end": 9.57,
+          "say": "ALLENKIL NINGALUDE PROJECTS SHOWCASE",
+          "means": "or your projects, to showcase them,"
+        },
+        {
+          "start": 9.57,
+          "end": 10.7,
+          "say": "CHEYYAAN THALPARYAM UNDENKIL,",
+          "means": "if you are interested,"
+        },
+        {
+          "start": 10.97,
+          "end": 11.8,
+          "say": "PLEASE CHECK OUT THE LINK.",
+          "means": "please check out the link."
+        }
+      ],
+      "frame": {
+        "width": 1559,
+        "height": 2772,
+        "x": -264.6,
+        "y": -157.9
+      },
+      "frameWhy": "Matched to the user's Studio framing of C0007 in Call for Volunteers (2026-11-03): the same face size (296 px wide) and face centre (510, 753) in the frame, from macOS Vision face detection on 7 frames of C0004 (median)."
+    }
+  ],
+  "end": {
+    "kind": "cta",
+    "ground": "paper",
+    "seconds": 6,
+    "label": "WHY KOCHI",
+    "qr": [
+      {
+        "url": "https://makerfaire.in/interestform",
+        "caption": "INTEREST FORM"
+      },
+      {
+        "url": "https://t.me/makerfairekochi",
+        "caption": "TELEGRAM"
+      }
+    ],
+    "groundWhy": "Paper, as the General end card: the blue ground didn't work (user, 2026-11-02)."
+  }
+}

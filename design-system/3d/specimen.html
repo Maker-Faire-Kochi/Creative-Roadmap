@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D specimen</title>
+<style>
+  /* The 3D specimen of design system v2: every model and beam assembly, restyled to 3d/STANDARD.md, turning. */
+  :root { --paper: #F6F6F3; --ink: #222222; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 15px/1.5 "IBM Plex Mono", monospace; }
+  header, main { max-width: 1200px; margin: auto; padding: 24px 16px; }
+  h1 { font: 400 clamp(36px, 7vw, 72px)/1 "Anton", sans-serif; margin: 8px 0; text-transform: uppercase; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+  figure { margin: 0; border-top: 2px solid var(--ink); padding-top: 8px; }
+  canvas { width: 100%; aspect-ratio: 1; display: block; }
+  figcaption { font-size: 12px; text-transform: uppercase; }
+  figcaption span { display: block; text-transform: none; color: #555; }
+</style>
+</head>
+<body>
+<header>
+  <p>MAKER FAIRE KOCHI / DESIGN SYSTEM V2 / 3D</p>
+  <h1>3D specimen</h1>
+  <p>Every CC0 model in 3d/manifest.json and every assembly of the beam kit, restyled to the standard: opaque faces, ink hairlines, neutral first. Illustrations, not engineering designs or photographs.</p>
+</header>
+<main class="grid" id="grid"></main>
+<script type="module">
+  const ds = await import("/build/ds3d.js");
+  const { THREE } = ds;
+  const manifest = await (await fetch("/3d/manifest.json")).json();
+  const m = ds.createMaterials();
+  const lib = new ds.Library(manifest, "/3d/models", m);
+  const ids = [...Object.keys(ds.BEAMS), ...Object.keys(manifest.models)];
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(2, devicePixelRatio));
+  renderer.setSize(480, 480, false);
+  const stages = [];
+  for (const id of ids) {
+    const fig = document.createElement("figure"), canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 480;
+    const entry = manifest.models[id] ?? ds.BEAMS[id];
+    const credit = manifest.models[id] ? `${entry.source.author}, ${entry.source.pack}, CC0` : "Beam kit, design system";
+    fig.append(canvas, Object.assign(document.createElement("figcaption"), { innerHTML: `${id}<span>${entry.title} · ${credit}</span>` }));
+    document.getElementById("grid").append(fig);
+    const model = await lib.instantiate(id);
+    const scene = new THREE.Scene();
+    ds.addLights(scene);
+    const turn = new THREE.Group();
+    turn.add(model.root);
+    scene.add(turn);
+    const r = Math.max(model.size.x, model.size.y, model.size.z);
+    const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.01, 100);
+    cam.position.set(Math.sin(-0.62) * r * 3, model.size.y / 2 + r * 1.7, Math.cos(-0.62) * r * 3);
+    cam.lookAt(0, model.size.y / 2, 0);
+    ds.fitOrtho(cam, 1, 1, r * 1.5);
+    stages.push({ canvas, scene, cam, turn });
+  }
+  const loop = (ms) => {
+    for (const s of stages) {
+      s.turn.rotation.y = Math.sin(ms / 2400) * 0.6;
+      renderer.render(s.scene, s.cam);
+      const g = s.canvas.getContext("2d");
+      g.clearRect(0, 0, 480, 480);
+      g.drawImage(renderer.domElement, 0, 0, 480, 480);
+    }
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+</script>
+</body>
+</html>

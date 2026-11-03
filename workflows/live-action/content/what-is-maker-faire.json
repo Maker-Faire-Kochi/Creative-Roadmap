@@ -1,0 +1,84 @@
+{
+  "title": "What is Maker Faire?",
+  "status": "Approved by the user 2026-11-02 (subtitle wording and timing); Manglish awaits a fluent speaker's review before release.",
+  "subtitleRows": 0,
+  "subtitleRowsWhy": "Rendered and approved before the two-row rule existed (2026-11-02); 0 keeps that render reproducible (cards wrap up to 4 rows).",
+  "opener": {
+    "text": "WHAT\nIS\nMAKER\nFAIRE?",
+    "seconds": 3,
+    "loop": 4
+  },
+  "footage": {
+    "src": "nov 1st week/kurian vids/C0002.MP4",
+    "speaker": "Kurian",
+    "language": "Malayalam with English stretches",
+    "frame": {
+      "width": 1713,
+      "height": 3045,
+      "x": -323.3,
+      "y": -629.6
+    },
+    "frameWhy": "Matched to the user's Studio framing of C0007 in Call for Volunteers (2026-11-03): the same face size (296 px wide) and face centre (510, 753) in the frame, from macOS Vision face detection on 7 frames of C0002 (median)."
+  },
+  "end": {
+    "from": "nov 1st week/new motion posters/motion-posters-general/05-repair-is-making/story.mp4",
+    "label": "WHAT IS MAKER FAIRE"
+  },
+  "subtitles": [
+    {
+      "start": 0.38,
+      "end": 2.9,
+      "say": "GLOBALLY ETTAVUM KOODUTHAL MAKERS VARUKAYUM",
+      "means": "Globally, the most makers are coming"
+    },
+    {
+      "start": 2.9,
+      "end": 6.03,
+      "say": "AVARE CELEBRATE CHEYYUNNA ETTAVUM VALIYA FESTIVAL AANU MAKER FAIRE.",
+      "means": "and the biggest festival they celebrate is Maker Faire."
+    },
+    {
+      "start": 6.43,
+      "end": 7.94,
+      "say": "AND NEXT YEAR 2027",
+      "means": "And next year, 2027,"
+    },
+    {
+      "start": 7.94,
+      "end": 11.2,
+      "say": "WE ARE ACTUALLY / HOSTING THE / MAKER FAIRE / IN KERALA",
+      "means": "we are actually hosting the Maker Faire in Kerala."
+    },
+    {
+      "start": 11.55,
+      "end": 13.25,
+      "say": "SO, IF YOU / ARE A MAKER",
+      "means": "So, if you are a maker"
+    },
+    {
+      "start": 13.5,
+      "end": 15.3,
+      "say": "AND NINGAL ENTHENKILUM BUILD CHEYYUNNUND",
+      "means": "and you are building something,"
+    },
+    {
+      "start": 15.55,
+      "end": 17.4,
+      "say": "PUTHYATH AAYT ENTHENKILUM LEARN CHEYYUNNUND",
+      "means": "learning something new,"
+    },
+    {
+      "start": 17.4,
+      "end": 19.9,
+      "say": "NINGALK BAAKKI ULLA MAKERS NE MEET CHEYYANAM ENNUNDENKIL",
+      "means": "and if you want to meet the other makers,"
+    },
+    {
+      "start": 20.25,
+      "end": 21,
+      "say": "COME DOWN / TO KOCHI",
+      "means": "come down to Kochi."
+    }
+  ],
+  "wordingChange": "2026-11-03, the user: card 1 VALIYA → KOODUTHAL, card 2 AVARU → AVARE."
+}

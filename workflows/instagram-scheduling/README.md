@@ -2,13 +2,15 @@
 
 Schedules the awareness carousels (feed) and their matching stories on **Meta Business Suite** for **@makerfairekochi**, from an approved plan. A Playwright script drives a dedicated Chrome window, attaches files directly (no macOS file picker) and confirms every booking in Meta's own Scheduled lists. Read `../README.md` and the repo-root `AGENTS.md` first.
 
+**Trial reels** (reels shown to non-followers first) can only be made in the Instagram mobile app, so they go through a phone instead: `phone.py` drives the app on an Android phone over wireless debugging. See [Trial reels from a phone](#trial-reels-from-a-phone-wireless-debugging) at the end.
+
 ## Hard rules
 
 1. **Never schedule a caption the user hasn't approved.** Record approval with `prepare.py --approve ... --basis "<who/when>"` only after the user has actually approved those captions. An agent's own judgment is not approval.
 2. **Never publish immediately.** The script only uses Schedule; don't add or click "Publish now".
 3. **Don't book a slot less than 15 minutes away** (the script refuses). Never silently move a missed slot; ask the user for a new time and record it in the plan's `overrides`.
 4. **Instagram only, account `@makerfairekochi`.** The script checks the account before it uploads.
-5. **Captions:** keywords are literal bracketed text on the last line, e.g. `[MakerFaireKochi, Maker, Coding, Kochi, Kerala]`. No `#` hashtags, no account tags. **Stories have no caption.**
+5. **Captions:** the body, then the bracketed **keywords** (search words), e.g. `[MakerFaireKochi, Maker, Coding, Kochi, Kerala]`, then a last line of **hashtags** (labels) from [the pool](#keywords-and-hashtags). `prepare.py` and `phone.py` refuse a hashtag line that breaks the pool's rules. No account tags (they go in *Tag people*). **Stories have no caption.**
 6. **Don't duplicate.** The script checks Meta's scheduled lists first (a duplicate = same caption **and** same time; captions repeat across designs, so caption alone isn't enough). If a run ends `unconfirmed`, look at Meta before retrying.
 7. **The repo is public.** Don't commit anything from `output/` (ledger, screenshots, upload copies) or Meta identifiers (`asset_id`, `business_id`). They come from the open Meta page, or from `META_ASSET_ID` / `META_BUSINESS_ID` in your shell.
 8. Never change the artwork. The ledger holds each PNG's SHA-256 and validation fails if it changed.
@@ -66,3 +68,94 @@ Meta's lists are **virtualized**: only about 10 rows exist at once, so a one-sho
 | `unconfirmed` / `count N of M` | Meta may have saved it anyway. Check the lists, then `record` it, or rerun (the duplicate check protects you) |
 | A hung "Scheduling your post…" overlay | Handled by the 1-minute reload and retry |
 | Uploads fail in the macOS file dialog | Not used here; attach through the script. Don't switch to clicking the dialog |
+
+## Keywords and hashtags
+
+A caption ends with two lines that do different jobs (user, 2026-11-04; research brief `output/research/instagram-captions-2026.md`):
+
+| | Keywords `[…]` | Hashtags `#…` (last line) |
+|---|---|---|
+| Job | **Search words.** Instagram's keyword search matches the words in captions ([Instagram](https://about.instagram.com/blog/announcements/break-down-how-instagram-search-works/)). Since July 2025, Google and Bing also index public professional posts, captions included | **Labels.** Each tag has its own tag page and search entry, and links the post to a topic and community ([Meta Transparency Center](https://transparency.meta.com/features/explaining-ranking/ig-search/)) |
+| Reach | Plain, specific caption words help people find the post | None: Instagram (Mosseri, 2025) says they don't raise reach ([Social Media Today](https://www.socialmediatoday.com/news/instagram-implements-new-limits-on-hashtag-use/808309/)) |
+| Form | Words people actually search for. Name the topic in the body too; a keyword dump reads as spam | 3–5 targeted tags; **5 is Instagram's cap** (Dec 2025), caption and comments together. In the caption, never a first comment |
+
+**The pool:** [`hashtags.json`](hashtags.json). Every tag there has a post count, its source and the date it was measured.
+
+| | Pick |
+|---|---|
+| **Always** | `#MakerFaireKochi` (ours; first) and `#MakerFaire` (the global community's tag) |
+| **Vertical: 1–2 tags for what the post is about** | |
+| Maker Faire and the movement (awareness topics 01, 11–13, 15, 16, 19) | `#MakerMovement` / `#MakersOfInstagram` |
+| Kerala and Kochi make (02, 14, 17, 18) | `#MadeInIndia` / `#MakersOfInstagram`, with the place tag first in mind |
+| Makerspaces, Fab Labs, institutions | `#Makerspace` / `#FabLab` |
+| Electronics, robotics, coding (03) | `#Electronics` / `#Robotics` / `#Coding` / `#Arduino` / `#ArduinoProject` / `#RaspberryPi` / `#Mechatronics` |
+| Fabrication, 3D printing | `#AdditiveManufacturing` / `#CAD` / `#CNC` / `#3DPrinting` |
+| Craft, art, handloom (03) | `#IWearHandloom` / `#Handloom` / `#MadeInIndia` |
+| Repair and reuse (05) | `#RightToRepair` / `#RepairCafe` / `#Fixing` / `#CircularEconomy` / `#Repair` / `#Upcycling` |
+| Prototyping, version one (06) | `#Prototype` / `#HandsOnLearning` / `#ProductDesign` |
+| Kuttimakers, students (07, 09) | `#STEMForKids` / `#STEMEducation` / `#HandsOnLearning` / `#WomenInSTEM` / `#STEAM` |
+| Maker Stories, people (04, 08, 10) | `#MakersOfInstagram` / `#MakerMovement`, plus the maker's discipline |
+| Volunteer calls | `#VolunteersNeeded` / `#CommunityService` / `#Volunteering` |
+| Call for makers and exhibitors | `#MakersOfInstagram` / `#Makerspace` / `#MakerMovement` |
+| Startups | `#StartupIndia` |
+| **Place: 1 tag** | `#Kochi` (default) or `#Kerala` (Kerala-wide: volunteer calls, Kerala's making) |
+
+The checks (in `hashtags.py`, used by `prepare.py` and `phone.py`):
+- **Count and order:** 3–5 tags, `#MakerFaireKochi` first, all on the last line.
+- **Spelling and source:** each tag is spelled exactly as in the pool (CamelCase, ASCII).
+- **Avoid list:** never a tag from it. These are off-audience or too big: `#Maker` and `#MakersGonnaMake` (woodworking, crafts, handmade selling), `#DIY`, `#Keralagram`, `#Volunteer` and others; each is listed with its reason.
+- **Old captions:** captions approved before 2026-11-04 have no hashtag line and still pass `prepare.py`. `phone.py` requires the line.
+
+To use a new tag, add it to `hashtags.json` first, with its post count, source and date. Prefer tags of about 15K–5M posts: larger ones bury a post, smaller ones have no audience. No year or date tags until the event date is announced. Re-measure the pool every few months (sources: [best-hashtags.com](https://best-hashtags.com/), [displaypurposes.com](https://displaypurposes.com/)) and update `updated`.
+
+## Trial reels from a phone (wireless debugging)
+
+Meta Business Suite can't make a reel a **trial**; only the Instagram app can. `phone.py` schedules one by driving Instagram on an Android phone over `adb`, the way it was done for the first seven trial reels (2 Nov 2026: the old motion posters, *What is Maker Faire?* and *Why Kochi?*). It is plain Python (standard library only); you need `adb` (Android platform-tools).
+
+### Rules (in addition to the ones above)
+1. **The caption is approved first**, word for word, as for the feed. Write it to a text file (it can live in `output/`) and pass that file. The script types it, reads the field back and stops if it differs in any character.
+2. **Schedule only. Never tap Share.** The script checks that the button reads *Schedule* and, by default, stops just before it (`READY, not submitted`). Look at `shots/ready.png`, then rerun with `--submit` or tap Schedule yourself. Do the first reel of a run this way; the rest can go with `--submit`.
+3. **Trial on, tag @makerfaire** (user, 2 Nov 2026). The tag goes in *Tag people*, not the caption (the caption has no account tags). "Automatically share to everyone" in Trial settings stays **off** unless the user asks: a trial that does well is shared to followers by hand.
+4. **Check the content before it goes on the phone:** no event date, CODING not CODE, and any QR decodes to the right URL (decode a frame of the end card with `jsqr`).
+5. **The cover:** if the video starts on a blank ground before its title draws in, set the cover to the title frame (`--cover-drag`, below), and say so in the report.
+6. **Keep the phone's address out of the repo.** It goes in `MFK_ADB_SERIAL` in your shell; screenshots and the ledger go to `output/trial-reels/` (`MFK_PHONE_OUT`).
+
+### One-time pairing (the user does this on the phone)
+1. On the phone: **Settings → Developer options → Wireless debugging** (on), then **Pair device with pairing code**.
+2. The phone shows an `IP:port` and a six-digit code. Run `! adb pair IP:PAIRPORT CODE` in the session (the pairing port is not the connect port).
+3. Send the agent the `IP:port` from the main Wireless debugging screen. Instagram must be logged in as **@makerfairekochi**.
+
+The pairing persists. The connect port changes when wireless debugging is toggled or the phone restarts; read the new one from the phone, or `adb mdns services`.
+
+### The flow
+```bash
+cd workflows/instagram-scheduling
+export MFK_ADB_SERIAL=<IP:PORT>                # from the phone's Wireless debugging screen
+python3 phone.py connect                        # prints model, Android and Instagram versions
+python3 phone.py push "<video.mp4>" mfk-7-why-kochi.mp4   # into Movies/MFK, newest = first gallery tile
+```
+Then, on the phone (or with `phone.py shot` and taps): Instagram → **+** → **Reel** to open the *New reel* gallery, and dismiss any promo popup. Find the new video's tile with `python3 phone.py shot gallery`; the duration on the tile tells it apart. On the OnePlus the first video tile after the camera tile is at `608,970`.
+
+```bash
+python3 phone.py reel --tile 608,970 --caption output/trial-reels/why-kochi.txt \
+  --date 2026-11-02 --time 12:30 [--cover-drag 35]      # stops before Schedule
+# check output/trial-reels/shots/ready.png, then repeat with --submit (or tap Schedule)
+python3 phone.py scheduled                     # Settings → Scheduled content: confirm it is listed at the time
+```
+
+What `reel` does: pick the tile → Next → (cover) → type the caption, read it back → Tag people → @makerfaire → **Trial** toggle on, then check that Audience reads *Trial* → More options → **Schedule this reel** → check the date row → set the 24-hour time dial → check the time row → back to the share screen and check the button reads *Schedule* → (with `--submit`) Schedule, and append a line to `output/trial-reels/ledger.jsonl`. Any check that fails stops the run with `FAIL:` and the screen as it is. Find out where it stopped with `phone.py shot <name>` before you touch anything.
+
+Report the run as a table of time (IST) and reel, plus caption, tag, Trial, cover and anything you changed without asking. Trial reels are booked outside `meta.mjs`, so they aren't in its `schedule.json`; the record is `ledger.jsonl` plus Instagram's Scheduled content list.
+
+### Trial-reel troubleshooting
+
+| Symptom | Cause / fix |
+|---|---|
+| `adb connect` "failed to connect" / refused | This Mac isn't paired with the phone, or the connect port changed. Pair again (above) and read the current port |
+| `no Trial toggle` | Trial reels need a **public professional** account (about 200 followers for professional accounts) that is eligible for recommendations. On 2 Nov the toggle was missing after the app had updated itself, although the account had posted trials before. The user got it back on the phone. Ask the user to check rather than guessing; never post without Trial as a workaround |
+| `caption mismatch` | Autocorrect changed a word (e.g. "interestform" → "interest form"), or typing began before the field had focus. Clear the field and rerun. The script sends text in pieces that end at spaces, so a word is never split |
+| `non-ASCII character` | `adb input text` can't type Malayalam or emoji. Paste those captions on the phone by hand, then let the script verify them (or do the rest by hand) |
+| `the date row isn't …` | The date picker isn't automated; the script books the date already shown (today). For another day, set the date by hand on the phone |
+| `less than 15 minutes` | As for the feed: ask the user for a new time |
+| Back closed Instagram / taps land on the wrong screen | The share screen scrolls, so positions move. Relaunch (`adb shell monkey -p com.instagram.android -c android.intent.category.LAUNCHER 1`), take a `shot` and continue from what is on screen |
+| Settings search box empty | The text arrived before the box had focus; tap the box and type again |

@@ -1,43 +1,47 @@
-# design-system/ — Maker Faire Kochi "The Open Workshop" (offline)
+# Design system v2
 
-An offline copy of the Figma moodboard's design system, so Claude, Codex or a person can work **without the Figma MCP**. Snapshot: 2026-10-05, from Figma file `xczyTXBjbMPH9JXyYDeO8w`.
+Maker Faire Kochi's working design system for motion and 3D: it shows how the brand guidelines apply when things move and when objects are 3D. v1 was the Open Workshop system (Bricolage, paper/ink/coir, the construction kit). It is archived in `archive/open-workshop/` and is history only.
 
-## Read in this order
-1. **`DESIGN.md`**: the spec. Its YAML frontmatter is the normative tokens; the prose covers rules, kit usage, logo policy and content rules.
-2. **`tokens/tokens.css`**: import it into any HTML/CSS. It defines the `--mf-color-*` variables, the fonts (local woff2) and the `.mf-display`, `.mf-label` and similar classes. `tokens/tokens.json` holds the same values in W3C design-token format.
-3. **`kit.json`**: every kit SVG, with its viewBox, each path's colour, bounding box and role (e.g. "upper diagonal beam", "hub bolt"), plus the joint pivots for animation.
-4. **`reference/figma-map.md`**: the Figma file page by page, with node ids and the verbatim text of every board, linked to the screenshots in `reference/screens/`.
+**Authority:** `guidelines/` is the brand authority, copied verbatim from [niyamax/maker-faire-kochi](https://github.com/niyamax/maker-faire-kochi). Don't restate or override it here. `brand/tokens.css` holds the fonts, colours and official lockups. This system adds what the guidelines leave open: a 3D standard, a motion language, colour in motion and wording for motion. Where it departs from the guidelines, the departure is recorded in `guidelines/UPSTREAM.md` § Local deviations.
 
-## Folder map
+| Part | What it is |
+|---|---|
+| [3d/STANDARD.md](3d/STANDARD.md) | The 3D asset standard: how every model looks (taken from the makerfaire.in scenes), the selection checklist, and how to add a model |
+| [3d/manifest.json](3d/manifest.json) + `3d/models/` | The CC0 model library: the source, licence, sha256, triangle count and restyle rules of every model |
+| [3d/CREDITS.md](3d/CREDITS.md) | Where every model comes from |
+| `3d/src/` | The code. Every workflow uses it: `palette`, `restyle` (any model → the standard), `beams` (the beam kit), `kit` (lights, glow; no shadows), `motions`, `fx` (effects), `camera` (moves), `library` |
+| `3d/specimen.html` | A live specimen of every model and beam assembly, restyled and turning |
+| [motion.md](motion.md) | The motion language: beats, timing, letters, objects, camera |
+| [color-motion.md](color-motion.md) | The six motion looks, the grounds and their contrast pairs, the logo on each ground, and the colour transitions |
+| [copy.md](copy.md) | Wording for motion: full sentences, exact punctuation, and when a rewrite is allowed |
+| [type/studio-sans.md](type/studio-sans.md) | Studio Sans, the Poster Studio's elastic alphabet |
+
+## Status
+
+| Item | Status |
+|---|---|
+| 3D standard, CC0 library, beam kit | **Selected** (2026-10-26) |
+| Motion language, wording rules | **Selected** (2026-10-26) |
+| General motion look in Studio Sans | **Selected** by the user (2026-10-26). A local deviation: the guidelines set Anton |
+| Colour, Noise Shift, Weave and Weave Plain looks (full-screen colour transitions; Weave pops one object up inside full-bleed text and pushes the letters out) | **Exploratory** until approved |
+
+Record changes here: a direction is selected, exploratory or rejected. Keep substantial earlier iterations.
+
+## Use
+
+```bash
+cd design-system
+npm install                 # three, esbuild, playwright-core (exact versions)
+node 3d/fetch.mjs           # reproduce 3d/models/ from the recorded sources and check hashes, licences, budgets
+npm run specimen            # build and serve the 3D specimen on http://localhost:4173
+npm run sheet -- --out=sheet.png --manifest      # a contact sheet of the library (or --beams, or any .glb files)
 ```
-DESIGN.md                 spec (tokens + rules)
-tokens/tokens.css         CSS variables + @font-face + type classes
-tokens/tokens.json        W3C design tokens
-kit.json                  kit SVG geometry, path roles, pivots, Figma node ids
-assets/kit/parts/         beam|elbow|wheel - red|blue|yellow|ink .svg      (240×240)
-assets/kit/assemblies/    k|crank|crane|arrow - full|ink|paper|blue|yellow  (600×600, from Figma)
-                          wheelarm - full|ink|paper|blue|yellow         (600×600, derived from kit parts — not in Figma)
-assets/kit/wayfinding/    wayfinding-arrow-ink|paper .svg (rotate for Up/Left)
-assets/logo/official/     official Maker Faire Kochi logos: long | border | square (.png + .pdf)
-assets/logo/              reference-logo.svg/.png (superseded Figma placeholder, do not publish)
-assets/fonts/             Bricolage Grotesque (variable), IBM Plex Mono 500/600, Noto Sans Malayalam 700 (OFL)
-reference/figma-map.md    node-by-node map + verbatim copy
-reference/screens/        board screenshots + component-set exports + labelled kit contact sheet
-specimen.html             open in a browser to see tokens, type and the whole kit
-```
 
-## Quick start (HTML)
-```html
-<link rel="stylesheet" href="design-system/tokens/tokens.css">
-<h1 class="mf-display" style="color:var(--mf-color-ink)">A city made of working parts.</h1>
-<p class="mf-label">Maker Faire Kochi / The Open Workshop</p>
-<img src="design-system/assets/kit/assemblies/k-full.svg" width="400" alt="">
-```
-When inlining several kit SVGs on one page, prefix their `id`s (they all use `Vector`, `Vector_2`, …).
+`workflows/motion-posters` bundles `3d/src` into its stage. One copy of three serves both (see its `src/stage/bundle.mjs`).
 
-## Worked examples in this repo
-- `volunteer-call-*/build/build.mjs`: static Instagram story and post posters built on this system.
-- `brag-output-2026-10-02-154317/build/`: Hyperframes videos that animate the kit at its joints (`kit.js` shows the K assembly, the arrow unfold and the bass-driven spin).
+## Rules
 
-## Refreshing from Figma
-Only when the Figma file changes. Re-export the component sets (`7:74`, `8:42`, `21:145`) and the boards listed in `reference/figma-map.md`, then update `DESIGN.md` and the token files. Keep the hex values exactly as Figma reports them.
+- **CC0 only.** Every third-party model is CC0-1.0, and its source and hash are recorded in the manifest. `3d/fetch.mjs --check` fails on anything else.
+- **Illustrations, not evidence.** The models and the beam kit are illustrations. Never present them as photographs, documented Kerala participants or real exhibits. Label conceptual machines as illustrations, not engineering designs.
+- **Colour has a purpose.** The structure stays neutral. Red marks a drive input, an action or a fault. Cyan marks a selection or a connection. At most one accent blue appears in a scene.
+- Generated renders never go in here. They belong in `output/` (git-ignored), and the repo is public.

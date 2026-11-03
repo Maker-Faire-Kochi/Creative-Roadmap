@@ -35,11 +35,17 @@ DAYS = PLAN['days']
 def digest(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
+import hashtags  # the hashtag pool and its checks (hashtags.json)
+
 def bracket_tags(caption):
-    """Caption keywords are literal bracketed text, not hashtags or account tags."""
-    body = '\n'.join(line for line in caption.splitlines() if not line.lstrip().startswith('#')).rstrip()
+    """Caption keywords are literal bracketed text (search words), then, from 2026-11-04, one last line of
+    hashtags from hashtags.json (labels). Markdown headings ("# ...") are dropped; no account tags. Captions
+    approved before 2026-11-04 have no hashtag line and are kept as approved."""
+    text = '\n'.join(line for line in caption.splitlines() if not re.match(r'^\s*#+\s', line)).rstrip()
+    tags = hashtags.check(text, required=False)
+    body, _ = hashtags.split_tags(text)
     if re.search(r'\[[^\[\]]+\]$', body):
-        return re.sub(r'\s*(\[[^\[\]]+\])$', r'\n\n\1', body)
+        return re.sub(r'\s*(\[[^\[\]]+\])$', r'\n\n\1', body) + (f'\n{" ".join(tags)}' if tags else '')
     raise ValueError('Caption missing approved bracketed keywords')
 
 folders = {int(p.name[:2]): p for p in ROOT.iterdir() if p.is_dir() and re.match(r'^\d\d-', p.name)}

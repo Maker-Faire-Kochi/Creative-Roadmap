@@ -1,0 +1,36 @@
+KERALA ALREADY MAKES — PHOTO CREDITS
+
+Balance / Cheenavala
+Photographer: Wouter Hagens (2005)
+Original: https://commons.wikimedia.org/wiki/File:Kochi_Chinese_fishing_A.jpg
+Original license: Public domain — https://creativecommons.org/publicdomain/mark/1.0/
+Local original: photos/cheenavala-original.jpg
+Adaptation: assets/cheenavala.png
+
+Twist / Coir
+Photographer: Bricaniwi (2009)
+Original: https://commons.wikimedia.org/wiki/File:Making_coir_rope_in_Kerala.JPG
+Original license: CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0/
+Local original: photos/coir-original.jpg
+Adaptation: assets/coir.png
+
+Join / Beypore Uru
+Photographer: Shyamal (2016)
+Original: https://commons.wikimedia.org/wiki/File:Traditional_carpenters_on_Uru.jpg
+Original license: CC BY-SA 3.0 — https://creativecommons.org/licenses/by-sa/3.0/
+Local original: photos/uru-original.jpg
+Adaptation: assets/uru.png
+
+Reflect / Aranmula
+Photographer: Captain (2010)
+Original: https://commons.wikimedia.org/wiki/File:Finalfinish@vaalkannady.jpg
+Original license: CC BY-SA 3.0 — https://creativecommons.org/licenses/by-sa/3.0/
+Local original: photos/mirror-original.jpg
+Adaptation: assets/mirror.png
+
+Changes: AI-assisted monochrome print treatment, cobalt pen tracing, selective blue ink and white cut-paper edges; cropping, native typography and explanatory labels. All four source JPEGs are retained in the source package. Edited images are illustrative adaptations. No photographer endorsement is implied.
+
+The new adapted carousel artwork is shared under CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+Original public-domain or CC BY-SA license status is recorded individually above. Existing Paper design-system identity and tokens are not part of this artwork license.
+
+Mood-board references are private design research and are not included in the Instagram image set: user-supplied Cheenavala reference; 1 Granary Issue 6 cover; Helena Almeida work shown by Galeria Francisco Fino; VISIONAIRE 64 ART / John Baldessari Blue Edition. URLs are in moodboard.html.

@@ -1,0 +1,204 @@
+{
+  "about": "Hashtag pool for Maker Faire Kochi captions. Source of truth: pick a caption's hashtags from here (README, 'Keywords and hashtags'). prepare.py and phone.py check every caption's hashtag line against this file. Hashtags label a post and link it to a topic and community; they are not keywords (the bracketed list) and they don't raise reach. Post counts are Instagram totals reported by the sources named, as of the date given; re-measure every few months and record the date.",
+  "updated": "2026-11-04",
+  "cap": 5,
+  "pattern": "#MakerFaireKochi #MakerFaire, then 1-2 vertical tags, then 1 place tag (3-5 in all). Prefer tags of about 15K to 5M posts; larger ones bury a post, smaller ones have no audience.",
+  "always": [
+    { "tag": "#MakerFaireKochi", "posts": "0 (new)", "why": "Ours: the feed of everything about the Faire. First on every post; ask exhibitors and visitors to use it." },
+    { "tag": "#MakerFaire", "posts": "~128K", "source": "best-hashtags, Oct 2024", "why": "The global Maker Faire community's own tag, promoted by official Faires (makerfaire.com)." }
+  ],
+  "place": [
+    { "tag": "#Kochi", "posts": "3.5M", "source": "displaypurposes, 3 Nov 2026", "use": "Default: the Faire, the venue city, Kochi's makerspaces." },
+    { "tag": "#Kerala", "posts": "12.7M", "source": "displaypurposes, 3 Nov 2026", "use": "Kerala-wide posts: volunteer calls, Kerala's making traditions, makers from across the state." }
+  ],
+  "verticals": {
+    "movement": {
+      "label": "Maker Faire and the maker movement",
+      "for": "What Maker Faire is, its history, the global network, what travels between Faires",
+      "topics": ["01", "11", "12", "13", "15", "16", "19"],
+      "tags": [
+        { "tag": "#MakerMovement", "posts": "337K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#MakersOfInstagram", "posts": "956K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#MakersMovement", "posts": "5.2M", "source": "best-hashtags, Oct 2024", "note": "the broader variant; use one of the two movement tags, not both" }
+      ]
+    },
+    "kerala-makes": {
+      "label": "Kerala and Kochi make",
+      "for": "Kerala's own making (repair shops, kitchens, campuses, workshops), Kochi's place in the network",
+      "topics": ["02", "14", "17", "18"],
+      "tags": [
+        { "tag": "#MadeInIndia", "posts": "3.6M", "source": "best-hashtags, Mar 2026" },
+        { "tag": "#MakersOfInstagram", "posts": "956K", "source": "best-hashtags, Oct 2024" }
+      ],
+      "note": "Lead with the place tag here; usually #Kerala, or #Kochi for Kochi-specific posts"
+    },
+    "makerspaces": {
+      "label": "Makerspaces, Fab Labs and institutions",
+      "for": "Super Fab Lab, Tinker Space, campus labs, the infrastructure that enables makers; why Kochi",
+      "topics": [],
+      "tags": [
+        { "tag": "#Makerspace", "posts": "460-560K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#FabLab", "posts": "206K", "source": "best-hashtags, Oct 2024" }
+      ]
+    },
+    "electronics": {
+      "label": "Electronics, robotics and coding",
+      "for": "Circuits, robots, microcontrollers, software",
+      "topics": ["03"],
+      "tags": [
+        { "tag": "#Electronics", "posts": "4.4M", "source": "best-hashtags, Dec 2025" },
+        { "tag": "#Robotics", "posts": "3.4M", "source": "best-hashtags, Dec 2025" },
+        { "tag": "#Coding", "posts": "4.0M", "source": "best-hashtags, Dec 2025" },
+        { "tag": "#Arduino", "posts": "1.6M", "source": "best-hashtags, Oct 2025" },
+        { "tag": "#ArduinoProject", "posts": "251K", "source": "best-hashtags, Oct 2025" },
+        { "tag": "#RaspberryPi", "posts": "478K", "source": "best-hashtags, Dec 2025" },
+        { "tag": "#Mechatronics", "posts": "155K", "source": "best-hashtags, Dec 2025" }
+      ]
+    },
+    "fabrication": {
+      "label": "Fabrication and 3D printing",
+      "for": "3D printing, CNC, CAD, digital fabrication",
+      "topics": [],
+      "tags": [
+        { "tag": "#AdditiveManufacturing", "posts": "232K", "source": "best-hashtags, Apr 2026" },
+        { "tag": "#CAD", "posts": "989K", "source": "best-hashtags, Apr 2026" },
+        { "tag": "#CNC", "posts": "3.0M", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#3DPrinting", "posts": "9.3M", "source": "best-hashtags, Apr 2026", "note": "large and full of cosplay and miniatures; only when the post is about printing itself" }
+      ]
+    },
+    "craft": {
+      "label": "Craft, art and handloom",
+      "for": "Not just tech: textiles, handloom, art, handmade objects",
+      "topics": ["03"],
+      "tags": [
+        { "tag": "#IWearHandloom", "posts": "621K", "source": "best-hashtags, Mar 2026" },
+        { "tag": "#Handloom", "posts": "2.9-6.7M", "source": "best-hashtags, Mar 2026" },
+        { "tag": "#MadeInIndia", "posts": "3.6M", "source": "best-hashtags, Mar 2026" }
+      ]
+    },
+    "repair": {
+      "label": "Repair and reuse",
+      "for": "Repair is making, fixing, reuse, upcycling",
+      "topics": ["05"],
+      "tags": [
+        { "tag": "#RightToRepair", "posts": "43K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#RepairCafe", "posts": "14K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#Fixing", "posts": "200K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#CircularEconomy", "posts": "703K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#Repair", "posts": "3.4M", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#Upcycling", "posts": "3.4-6.7M", "source": "best-hashtags, Aug 2026" }
+      ]
+    },
+    "prototyping": {
+      "label": "Prototyping and version one",
+      "for": "First versions, failed attempts, iterating, building to learn",
+      "topics": ["06"],
+      "tags": [
+        { "tag": "#Prototype", "posts": "1.6M", "source": "best-hashtags, Feb 2026" },
+        { "tag": "#HandsOnLearning", "posts": "644K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#ProductDesign", "posts": "4.2M", "source": "best-hashtags, Apr 2026" }
+      ]
+    },
+    "young-makers": {
+      "label": "Kuttimakers, students and learning",
+      "for": "Young makers, schools, campuses, curiosity, STEM",
+      "topics": ["07", "09"],
+      "tags": [
+        { "tag": "#STEMForKids", "posts": "247K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#STEMEducation", "posts": "444-760K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#HandsOnLearning", "posts": "644K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#WomenInSTEM", "posts": "857K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#STEAM", "posts": "5.1M", "source": "best-hashtags, Oct 2024" }
+      ]
+    },
+    "maker-stories": {
+      "label": "Maker Stories and the people",
+      "for": "Profiles and interviews of makers; who counts as a maker; sharing over winning",
+      "topics": ["04", "08", "10"],
+      "tags": [
+        { "tag": "#MakersOfInstagram", "posts": "956K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#MakerMovement", "posts": "337K", "source": "best-hashtags, Oct 2024" }
+      ],
+      "note": "Add the maker's own discipline tag (electronics, craft, repair, ...)"
+    },
+    "volunteers": {
+      "label": "Volunteer calls",
+      "for": "Calls for volunteers (Kerala-wide)",
+      "topics": [],
+      "tags": [
+        { "tag": "#VolunteersNeeded", "posts": "81K", "source": "best-hashtags, Mar 2026" },
+        { "tag": "#CommunityService", "posts": "901K", "source": "best-hashtags, Mar 2026" },
+        { "tag": "#Volunteering", "posts": "3.5M", "source": "best-hashtags, Mar 2026" }
+      ],
+      "note": "Place tag #Kerala (volunteer calls are Kerala-wide)"
+    },
+    "call-for-makers": {
+      "label": "Call for makers and exhibitors",
+      "for": "Interest form, take part, showcase your project",
+      "topics": [],
+      "tags": [
+        { "tag": "#MakersOfInstagram", "posts": "956K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#Makerspace", "posts": "460-560K", "source": "best-hashtags, Oct 2024" },
+        { "tag": "#MakerMovement", "posts": "337K", "source": "best-hashtags, Oct 2024" }
+      ]
+    },
+    "startups": {
+      "label": "Startups and innovation",
+      "for": "Hardware startups, founders, the startup ecosystem",
+      "topics": [],
+      "tags": [
+        { "tag": "#StartupIndia", "posts": "543K", "source": "best-hashtags, Feb 2026" }
+      ]
+    }
+  },
+  "avoid": [
+    { "tag": "#Maker", "posts": "6.8-9.3M", "why": "Mostly woodworking and crafts; a different crowd (Flick related tags)" },
+    { "tag": "#Makers", "posts": "2.3-2.9M", "why": "Same crowd as #Maker" },
+    { "tag": "#MakersGonnaMake", "posts": "12.2M", "why": "Handmade selling and crafts" },
+    { "tag": "#DIY", "posts": "69M", "why": "Too broad to be seen in" },
+    { "tag": "#Handcrafted", "posts": "23.8M", "why": "Too broad; shopping" },
+    { "tag": "#Woodworking", "posts": "18.2M", "why": "Too broad, one craft" },
+    { "tag": "#Innovation", "posts": "9.8M", "why": "Too broad, corporate" },
+    { "tag": "#Technology", "posts": "19.2M", "why": "Too broad" },
+    { "tag": "#Volunteer", "posts": "6.5-10.3M", "why": "Broad, global charity and causes; use #VolunteersNeeded" },
+    { "tag": "#Keralagram", "posts": "2.6M", "why": "Lifestyle and travel photography" },
+    { "tag": "#Kochigram", "posts": "164K", "why": "Lifestyle" },
+    { "tag": "#KeralaTourism", "posts": "2.3M", "why": "Travel" },
+    { "tag": "#Reels", "posts": "", "why": "Format mega-tag; Later advises against" }
+  ],
+  "rules": [
+    "At most 5 hashtags per post or reel, caption and comments together (Instagram, Dec 2025). Put them in the caption, never a first comment.",
+    "The hashtag line is the caption's last line, after the bracketed keywords. Keywords are search words; hashtags are labels. Each keeps its own line.",
+    "#MakerFaireKochi first, #MakerFaire second, then vertical tags, then the place tag.",
+    "CamelCase, ASCII only (phone.py types captions over adb; screen readers read CamelCase as words).",
+    "No year or date tags until the event date is announced (no event date in our copy).",
+    "Stories have no caption and no hashtags.",
+    "A tag not in this pool is added here first, with its measured post count, source and date."
+  ],
+  "sources": [
+    "https://www.socialmediatoday.com/news/instagram-implements-new-limits-on-hashtag-use/808309/",
+    "https://later.com/blog/instagram-hashtags/",
+    "https://transparency.meta.com/features/explaining-ranking/ig-search/",
+    "https://about.instagram.com/blog/announcements/break-down-how-instagram-search-works/",
+    "https://www.hypebot.com/why-instagram-hashtags-do-not-work",
+    "https://skedsocial.com/blog/instagram-hashtag-research.md",
+    "https://makerfaire.com/bay-area/promote/",
+    "https://displaypurposes.com/hashtags/hashtag/kochi",
+    "https://displaypurposes.com/hashtags/hashtag/kerala",
+    "https://best-hashtags.com/hashtag/makerfaire/",
+    "https://best-hashtags.com/hashtag/makerspace/",
+    "https://best-hashtags.com/hashtag/robotics/",
+    "https://best-hashtags.com/hashtag/3dprinting/",
+    "https://best-hashtags.com/hashtag/arduino/",
+    "https://best-hashtags.com/hashtag/repaircafe/",
+    "https://best-hashtags.com/hashtag/righttorepair/",
+    "https://best-hashtags.com/hashtag/upcycling/",
+    "https://best-hashtags.com/hashtag/prototype/",
+    "https://best-hashtags.com/hashtag/stemeducation/",
+    "https://best-hashtags.com/hashtag/stemforkids/",
+    "https://best-hashtags.com/hashtag/handloom/",
+    "https://best-hashtags.com/hashtag/volunteer/",
+    "https://best-hashtags.com/hashtag/startupindia/",
+    "https://www.flick.social/learn/hashtags/maker"
+  ]
+}

@@ -25,11 +25,9 @@ A single-page interactive roadmap that maps the entire content strategy for **Ma
 
 ## Brand
 
-Uses the official MAKE palette per the [MAKE Style Guide](https://makerfaire.com/wp-content/uploads/2021/08/MAKE_Style-Guide-web.pdf):
+Campaign artwork follows the Maker Faire Kochi creative guidelines in [`guidelines/`](guidelines/README.md) (copied from [niyamax/maker-faire-kochi](https://github.com/niyamax/maker-faire-kochi); see [`guidelines/UPSTREAM.md`](guidelines/UPSTREAM.md)). Active fonts, colours and the official logos are in [`brand/`](brand/). The earlier "Open Workshop" system is kept for reference in [`archive/open-workshop/`](archive/open-workshop/).
 
-- **Red** `#EA002A`
-- **Cyan** `#00AEEF`
-- **White / Black / Neutral** foundation
+This roadmap page keeps its own styling (Barlow Condensed + Inter, the MAKE palette per the [MAKE Style Guide](https://makerfaire.com/wp-content/uploads/2021/08/MAKE_Style-Guide-web.pdf)).
 
 ## Quick Start
 

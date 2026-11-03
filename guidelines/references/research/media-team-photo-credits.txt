@@ -1,0 +1,17 @@
+Maker Faire Kochi media-team poster / Photo credits
+
+Handheld smartphone filming: Ehaan Dewa, Pexels License.
+https://www.pexels.com/photo/person-filming-outdoors-with-smartphone-camera-33928939/
+https://www.pexels.com/license/
+
+Traditional carpenter working on an Uru, Beypore: Shyamal (2016), CC BY-SA 3.0.
+https://commons.wikimedia.org/wiki/File:Traditional_carpenters_on_Uru.jpg
+https://creativecommons.org/licenses/by-sa/3.0/
+
+Electronics soldering: Tima Miroshnichenko (2021), Pexels License.
+https://www.pexels.com/photo/a-person-holding-a-soldering-iron-6754851/
+https://www.pexels.com/license/
+
+Changes: monochrome rendering, crops and paper collage. Uru adaptation shared under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Phone and electronics photographs used under the Pexels License. Phone and electronics are illustrative stock photographs, not documented Kerala photographs. No affiliation or endorsement by the people pictured is implied. Maker Faire trademarks and supplied logo remain with their rights holders. Retain attribution with distribution or accompanying caption.
+
+Fonts: Anton and IBM Plex Mono, SIL OFL 1.1. Licenses retained in assets/fonts/.

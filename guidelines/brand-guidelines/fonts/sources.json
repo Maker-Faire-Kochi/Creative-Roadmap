@@ -1,0 +1,40 @@
+{
+  "downloadDate": "2026-10-11",
+  "files": [
+    {
+      "file": "BricolageGrotesque-variable.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/bricolagegrotesque/BricolageGrotesque%5Bopsz%2Cwdth%2Cwght%5D.ttf",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "file": "BricolageGrotesque-OFL.txt",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/bricolagegrotesque/OFL.txt",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "file": "NotoSansMalayalam-variable.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansmalayalam/NotoSansMalayalam%5Bwdth%2Cwght%5D.ttf",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "file": "NotoSansMalayalam-OFL.txt",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansmalayalam/OFL.txt",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "file": "IBMPlexMono-Regular.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexmono/IBMPlexMono-Regular.ttf",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "file": "IBMPlexMono-Medium.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexmono/IBMPlexMono-Medium.ttf",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "file": "IBMPlexMono-OFL.txt",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexmono/OFL.txt",
+      "license": "SIL Open Font License 1.1"
+    }
+  ]
+}

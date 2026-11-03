@@ -1,0 +1,120 @@
+{
+  "compiledOn": "2026-10-22",
+  "scope": "Curated reference copies; localSource paths refer to the full local working archive, outside the tracked repository.",
+  "assets": [
+    {
+      "file": "references/illustration/straight-beam-baseline.png",
+      "localSource": "migration/straight-beam-verified.png",
+      "bytes": 58401,
+      "sha256": "2ad804caf3e88d99837a0f6a82cd514adb0d3257f529ee1d628f470c3d47f8a6"
+    },
+    {
+      "file": "references/illustration/beam-palette.json",
+      "localSource": "beam-illustrations/palette.json",
+      "bytes": 178,
+      "sha256": "2a5e452e861946320cd0665dbfc1015db61c626cf22f8bb53e19a14bed80fddc"
+    },
+    {
+      "file": "references/campaign/make-some-noise-poster.png",
+      "localSource": "genz-poster-lab/signal-noise/poster.png",
+      "bytes": 1052633,
+      "sha256": "600778922b5fe02884cfe71ce38834dc5c9c5a1ca84e0ac97df637b96c16eeb7"
+    },
+    {
+      "file": "references/campaign/make-some-noise-moodboard.png",
+      "localSource": "genz-poster-lab/signal-noise/moodboard.png",
+      "bytes": 509920,
+      "sha256": "a5e7ece07341719ad4aa9d47ee18076f63753492a11f7ec62da45953b5e37cdb"
+    },
+    {
+      "file": "references/campaign/noisemaker-prompt.txt",
+      "localSource": "genz-poster-lab/signal-noise/assets/noisemaker-prompt.txt",
+      "bytes": 1115,
+      "sha256": "f8d92b6360a41a736a1192cba01f3850e499f907dbd7c23f613c6a3db6bcdc89"
+    },
+    {
+      "file": "references/campaign/media-team-post.png",
+      "localSource": "genz-poster-lab/media-signal/exports/media-team-post.png",
+      "bytes": 423128,
+      "sha256": "7bd1878ae69546a96a0127adc980a505c5e198da7c4098473a021b1203871279"
+    },
+    {
+      "file": "references/campaign/media-team-story.png",
+      "localSource": "genz-poster-lab/media-signal/exports/media-team-story.png",
+      "bytes": 453989,
+      "sha256": "398f158d3f4b0e58129732cbbec5f8477d48e78e3f6790e4ab33471a7b534a5b"
+    },
+    {
+      "file": "references/illustration/camera-slider.png",
+      "localSource": "genz-poster-lab/media-signal/machine/machine.png",
+      "bytes": 174255,
+      "sha256": "e51607625f63f2a2f6ef837dbe3c92b83d7dfa0a8a1a1e48fa037b134e4ab71a"
+    },
+    {
+      "file": "references/illustration/camera-slider.svg",
+      "localSource": "genz-poster-lab/media-signal/machine/machine.svg",
+      "bytes": 549845,
+      "sha256": "d3ff6c2386cb6fcc2086d23563049514c53254abbc8405c6584372128f16ac43"
+    },
+    {
+      "file": "references/brand/MF_Kochi_Logo_long.png",
+      "localSource": "genz-poster-lab/media-signal/assets/MF_Kochi_Logo_long.png",
+      "bytes": 62989,
+      "sha256": "41d8234a330daf8c7e2d02b4e82020b1c13cfea038644943819c87cac815c755"
+    },
+    {
+      "file": "references/licenses/LICENSE.anatomy.txt",
+      "localSource": "genz-poster-lab/media-signal/machine/vendor/anatomy/LICENSE",
+      "bytes": 1061,
+      "sha256": "87c078ab9d90a3044f359e6b563d4e6afea7aa060897cf4f21618687b3856796"
+    },
+    {
+      "file": "references/licenses/LICENSE.hairline.txt",
+      "localSource": "hairline-extension/LICENSE.hairline.txt",
+      "bytes": 1068,
+      "sha256": "e9dae550d384fb086e62718402c9e5836d3c43be5c30dff23ed741076ead231c"
+    },
+    {
+      "file": "references/research/maker-faire-research.json",
+      "localSource": "maker-faire-posters/research.json",
+      "bytes": 1482,
+      "sha256": "5f019d6e5b73f8482fd9cf90548885a82d356ced1d005a5753d5fbf4e22ba013"
+    },
+    {
+      "file": "references/research/kerala-photo-credits.txt",
+      "localSource": "kerala-photo-zine/credits.txt",
+      "bytes": 2069,
+      "sha256": "5cc581c561f6aaa2a26d731af2acc47a79611f4323738b7b87ae784b60a89897"
+    },
+    {
+      "file": "references/research/media-team-photo-credits.txt",
+      "localSource": "media-team/credits.txt",
+      "bytes": 1194,
+      "sha256": "e79fd7141fe2bdf3cc3a4468c91972cf176dfff40fafb81fcafef74c39c31c12"
+    },
+    {
+      "file": "references/campaign/fonts/DelaGothicOne-OFL.txt",
+      "localSource": "genz-poster-lab/media-signal/assets/fonts/DelaGothicOne-OFL.txt",
+      "bytes": 4392,
+      "sha256": "c0014792d4f4abc0508c295b277f2b17ae44465c8dc88d12af9cea48279b5fda"
+    },
+    {
+      "file": "references/campaign/fonts/DelaGothicOne-Regular.ttf",
+      "localSource": "genz-poster-lab/media-signal/assets/fonts/DelaGothicOne-Regular.ttf",
+      "bytes": 2508848,
+      "sha256": "4ff87a0965f1b0505e5a2c58424bc6ad3cff27e56a82f21c2fc9d6b0e3857ee2"
+    },
+    {
+      "file": "references/campaign/fonts/Inter-OFL.txt",
+      "localSource": "genz-poster-lab/media-signal/assets/fonts/Inter-OFL.txt",
+      "bytes": 4170,
+      "sha256": "d9e1fc204d8a66611439f2f762ebcd76be5a9eaec9ec33cbfdf6d9f907aac2cf"
+    },
+    {
+      "file": "references/campaign/fonts/Inter.ttf",
+      "localSource": "genz-poster-lab/media-signal/assets/fonts/Inter.ttf",
+      "bytes": 862936,
+      "sha256": "746431e950fd28d29b0189d708d4a5852a8458edb3184387eadcee9e5e34676c"
+    }
+  ]
+}

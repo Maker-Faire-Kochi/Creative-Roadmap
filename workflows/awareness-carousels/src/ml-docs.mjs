@@ -19,11 +19,11 @@ fs.mkdirSync(path.join(OUT, "ml"), { recursive: true });
 const clean = (s) => s.replace(/[*~]/g, "");
 const slide = (s) => (s.lines ? s.lines.map(clean).join(" / ") : `${s.stat} · ${s.label}`);
 
-let deck = "# Malayalam (Manglish) copy deck\n\nEnglish slide → Manglish slide, for review. Malayalam grammar with the English maker words kept in English; \"Maker Faire Kochi\" stays in English. Line breaks are shown as \" / \".\n";
-let caps = "# Malayalam (Manglish) captions\n\nKeywords stay as English bracketed tags (same as the English schedule).\n";
+let deck = "# Malayalam & English copy deck\n\nEnglish slide → Malayalam & English slide, for review. Spoken Malayalam in Malayalam script, with English wherever people say it in English; \"Maker Faire Kochi\" stays in English. Line breaks are shown as \" / \". **A fluent speaker reviews this before anything is published.**\n";
+let caps = "# Malayalam & English captions\n\nKeywords stay as English bracketed tags (same as the English schedule).\n";
 for (const [k, t] of Object.entries(TOPICS)) {
   const m = TOPICS_ML[k], n = +k.slice(0, 2);
-  deck += `\n## ${k.slice(0, 2)} · ${t.label}\n\n| # | English | Manglish |\n|---|---|---|\n`;
+  deck += `\n## ${k.slice(0, 2)} · ${t.label}\n\n| # | English | Malayalam & English |\n|---|---|---|\n`;
   for (let i = 0; i < Math.max(t.slides.length, m.slides.length); i++)
     deck += `| ${i + 1} | ${t.slides[i] ? slide(t.slides[i]) : "—"} | ${m.slides[i] ? slide(m.slides[i]) : "—"} |\n`;
   caps += `\n## ${k.slice(0, 2)} · ${t.label}\n\n${m.caption}\n\n${tags[n]}\n`;

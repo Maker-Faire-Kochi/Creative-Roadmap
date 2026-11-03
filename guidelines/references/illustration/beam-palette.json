@@ -1,0 +1,12 @@
+{
+  "light": {
+    "paper": "#F6F6F3",
+    "ink": "#222222",
+    "accent": "#225DAC"
+  },
+  "dark": {
+    "paper": "#181818",
+    "ink": "#F6F6F3",
+    "accent": "#A0C2F1"
+  }
+}
